@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Header from '../components/Header/Index'
 
 
 export default function Home() {
@@ -9,6 +10,7 @@ export default function Home() {
         <meta name="description" content="biggest ecommerce platform in bangladesh" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <Header/>
 
       <main>
         <h1>
