@@ -3,7 +3,7 @@ import TopComp from "./components/TopComp";
 
 const Index = () => {
   return (
-    <header className="w-full py-2 border-b border-gray-50">
+    <header className="w-[1320px] py-2 border-b border-gray-50 m-auto">
       <TopComp />
       <BottomComp />
     </header>
