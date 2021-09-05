@@ -42,19 +42,23 @@ const TopComp = () => {
         <div className="leading-none text-gray-700 font-semibold">English</div>
       </div>
       {/* five div */}
-      <div className="ml-5">
+      <div className="ml-5 mr-5">
         <div className="leading-none text-gray-700">017293</div>
         <div className="leading-none text-gray-700 font-semibold text-sm">
           Contact Us
         </div>
       </div>
       {/* six div */}
-      <div className="flex ">
-        <div>
+      <div className="flex space-x-4">
+        <div className="w-10 h-10 rounded-full border flex justify-center items-center ">
           <FiShoppingCart />
         </div>
-        <div></div>
-        <div>a</div>
+        <div className="w-10 h-10 rounded-full border flex justify-center items-center ">
+          <FiShoppingCart />
+        </div>
+        <div className="w-10 h-10 rounded-full border flex justify-center items-center ">
+          <FiShoppingCart />
+        </div>
       </div>
     </div>
   );
