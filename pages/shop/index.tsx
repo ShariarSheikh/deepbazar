@@ -1,12 +1,11 @@
 import Head from "next/head";
-import Header from "../components/Header/Index";
-import TopSection from "../pages-ui/main-page-ui/TopSection/TopSection";
+import Header from "../../components/Header/Index";
 
-export default function Index() {
+const index = () => {
   return (
     <div>
       <Head>
-        <title>DeepBazar-Home</title>
+        <title>DeepBazar-Shop</title>
         <meta
           name="description"
           content="biggest ecommerce platform in bangladesh"
@@ -15,9 +14,11 @@ export default function Index() {
       </Head>
       <Header />
 
-      <main className="max-w-[1366px] w-full m-auto mt-16">
-        <TopSection />
+      <main>
+        <h1>this is all products</h1>
       </main>
     </div>
   );
-}
+};
+
+export default index;
