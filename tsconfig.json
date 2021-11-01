@@ -23,7 +23,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-, "redux/loginSlice/loginSlice.js"  ],
+, "redux/loginSlice/loginSlice.js", "components/Footer/Index.js", "components/Header/Index.js", "components/Header/components/BottomComp.js", "components/Header/components/DropdownCategories.js", "components/Header/components/HamburgerMenu.js", "components/Header/components/TopComp.js", "components/JoinBox/Index.js", "components/JoinBox/components/Login.js", "components/JoinBox/components/SignUp.js", "components/ShoppingCart/ShoppingCart.js", "redux/showCategorySlice/showCategorySlice.js", "redux/store.js", "pages/index.js", "pages/_app.js", "pages/shop/index.js"  ],
   "exclude": [
     "node_modules"
   ]

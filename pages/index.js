@@ -9,9 +9,9 @@ import Cookies from "js-cookie";
 import { useSelector } from "react-redux";
 import { loginBox } from "../redux/loginSlice/loginSlice";
 
-const Index: React.FC = () => {
+const Index = () => {
   const isLogin = useSelector(loginBox);
-  const [hideLoginBox, setHideLoginBox] = useState<boolean>(false);
+  const [hideLoginBox, setHideLoginBox] = useState(false);
 
   useEffect(() => {
     isLogin?.userStatus === "success" && setHideLoginBox(true);

@@ -3,9 +3,9 @@ import Link from "next/link";
 import { RiArrowDropDownFill } from "react-icons/ri";
 import { categoryList } from "../../../utils/Data";
 
-const HamburgerMenu: React.FC<{ isOpenMenu: boolean }> = ({ isOpenMenu }) => {
-  const [open, setOpen] = useState<boolean>(false);
-  const [showCategory, setShowCategory] = useState<boolean>(false);
+const HamburgerMenu = ({ isOpenMenu }) => {
+  const [open, setOpen] = useState(false);
+  const [showCategory, setShowCategory] = useState(false);
 
   useEffect(() => {
     setOpen(isOpenMenu);
@@ -67,7 +67,7 @@ const HamburgerMenu: React.FC<{ isOpenMenu: boolean }> = ({ isOpenMenu }) => {
 
 export default HamburgerMenu;
 
-const Categories: React.FC<{ showCategory: boolean }> = ({ showCategory }) => {
+const Categories = ({ showCategory }) => {
   const removeFirstCategory = categoryList.slice(1);
   const categoryListHeight = removeFirstCategory.length * 48;
   return (

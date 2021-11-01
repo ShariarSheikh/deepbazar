@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { RootState } from "../store";
 
 export const showCategorySlice = createSlice({
   name: "Show Category",
@@ -19,7 +18,7 @@ export const showCategorySlice = createSlice({
 
 export const { showCategory, hideCategory } = showCategorySlice.actions;
 
-export const showCategoryOpen = (state: RootState) =>
+export const showCategoryOpen = (state) =>
   state.showCategoryOpen.open;
 
 export default showCategorySlice.reducer;

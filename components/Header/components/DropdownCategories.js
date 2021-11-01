@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { showCategoryOpen } from "../../../redux/showCategorySlice/showCategorySlice";
 import { categoryList } from "../../../utils/Data";
 
-const DropdownCategories: React.FC = () => {
+const DropdownCategories = () => {
   const openCategory = useSelector(showCategoryOpen);
 
   return (
@@ -43,12 +43,9 @@ const DropdownCategories: React.FC = () => {
 
 export default DropdownCategories;
 
-interface Props {
-  categoryLink: string;
-  categoryList: { id: number; text: string; link: string }[];
-}
 
-const SubcategoryList: React.FC<Props> = ({ categoryList, categoryLink }) => {
+
+const SubcategoryList = ({ categoryList, categoryLink }) => {
   return (
     <ul className="absolute top-16 left-0 w-full group-hover:block hidden bg-white shadow-lg cursor-default">
       {categoryList.map(({ id, text, link }) => (

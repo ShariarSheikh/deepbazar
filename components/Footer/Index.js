@@ -1,6 +1,6 @@
 import React from "react";
 
-const Index: React.FC = () => {
+const Index = () => {
   return (
     <footer className="w-full bg-black min-h-[500px]">
       <div>

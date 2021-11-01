@@ -2,7 +2,7 @@ import React from "react";
 import { BsHeart } from "react-icons/bs";
 import { FiShoppingCart } from "react-icons/fi";
 
-const ShoppingCart: React.FC = () => {
+const ShoppingCart = () => {
   return (
     <div
       className="relative md:w-[32%] lg:w-[24%] 2xl:min-w-[320px] max-w-xs w-[48%] h-[260px] xl:min-h-[380px] max-h-[380px]
