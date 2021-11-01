@@ -3,17 +3,12 @@ import { RootState } from "../store";
 import axios from "axios";
 import Cookies from "js-cookie";
 
-interface User {
-  name: string;
-  number: number;
-  email: string;
-  password: string;
-}
+
 
 //login user
 export const signUpUser = createAsyncThunk(
   "signup/signUpUser",
-  async (user: User, { rejectWithValue }) => {
+  async (user, { rejectWithValue }) => {
     try {
       const response = await axios.post(
         process.env.NEXT_PUBLIC_VERCEL_UR_SIGN_UP,
@@ -30,7 +25,7 @@ export const signUpUser = createAsyncThunk(
 //login user
 export const loginUser = createAsyncThunk(
   "login/loginUser",
-  async (user: { email: string; password: string }, { rejectWithValue }) => {
+  async (user, { rejectWithValue }) => {
     try {
       const response = await axios.post(
         process.env.NEXT_PUBLIC_VERCEL_UR_LOGIN,
@@ -129,6 +124,6 @@ export const loginSlice = createSlice({
 
 export const { openLoginBox } = loginSlice.actions;
 
-export const loginBox = (state: RootState) => state.loginBox;
+export const loginBox = (state) => state.loginBox;
 
 export default loginSlice.reducer;
