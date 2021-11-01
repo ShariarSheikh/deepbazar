@@ -1,7 +1,8 @@
 import Head from "next/head";
+import React from "react";
 import Header from "../../components/Header/Index";
 
-const index = () => {
+const index: React.FC = () => {
   return (
     <div>
       <Head>

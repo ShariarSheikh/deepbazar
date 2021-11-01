@@ -1,8 +1,22 @@
 import Head from "next/head";
+import React, { useEffect, useState } from "react";
 import Header from "../components/Header/Index";
+import Footer from "../components/Footer/Index";
+import ProductsFeedOne from "../pages-ui/main-page-ui/ProductsFeedOne/ProductsFeedOne";
 import TopSection from "../pages-ui/main-page-ui/TopSection/TopSection";
+import JoinBox from "../components/JoinBox/Index";
+import Cookies from "js-cookie";
+import { useSelector } from "react-redux";
+import { loginBox } from "../redux/loginSlice/loginSlice";
 
-export default function Index() {
+const Index: React.FC = () => {
+  const isLogin = useSelector(loginBox);
+  const [hideLoginBox, setHideLoginBox] = useState<boolean>(false);
+
+  useEffect(() => {
+    isLogin?.userStatus === "success" && setHideLoginBox(true);
+  }, [isLogin?.userStatus]);
+
   return (
     <div>
       <Head>
@@ -15,9 +29,16 @@ export default function Index() {
       </Head>
       <Header />
 
-      <main className="max-w-[1366px] w-full m-auto mt-16">
+      <main className="max-w-[1366px] w-full m-auto mt-10 px-4">
         <TopSection />
+        <ProductsFeedOne />
       </main>
+
+      <Footer />
+
+      {!hideLoginBox && !Cookies.get("token") && <JoinBox />}
     </div>
   );
-}
+};
+
+export default Index;
