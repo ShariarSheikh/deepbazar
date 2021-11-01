@@ -23,7 +23,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "redux/loginSlice/loginSlice.js"  ],
   "exclude": [
     "node_modules"
   ]
