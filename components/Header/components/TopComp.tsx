@@ -4,8 +4,15 @@ import { BsHeart, BsPerson } from "react-icons/bs";
 import { IoSearchOutline } from "react-icons/io5";
 import { RiArrowDropDownFill } from "react-icons/ri";
 import React, { useEffect, useRef, useState } from "react";
+import HamburgerMenu from "./HamburgerMenu";
+import { useRouter } from "next/dist/client/router";
+import Link from "next/link";
+import { categoryList } from "../../../utils/Data";
+import { useDispatch } from "react-redux";
+import { openLoginBox } from "../../../redux/loginSlice/loginSlice";
+import Cookies from "js-cookie";
 
-const TopComp = () => {
+const TopComp: React.FC = () => {
   return (
     <div className="w-full py-5 flex items-center justify-between border-b font-roboto px-4 2xl:px-0 transition-all duration-150">
       {/* max width 1014px */}
@@ -18,21 +25,29 @@ const TopComp = () => {
 
 export default TopComp;
 
-const IfDeviceSmall = () => {
+const IfDeviceSmall: React.FC = () => {
+  const router = useRouter();
+  const [open, setOpen] = useState<boolean>(false);
+
+  useEffect(() => {
+    setOpen(false);
+  }, [router.route]);
+
   return (
     <div className="w-full lg:hidden">
       <div className="flex items-center justify-between">
-        <MenuIcon />
+        <MenuIcon open={open} setOpen={setOpen} />
         <Logo />
         <ButtonIcons />
       </div>
       <div className="w-full mt-4">
         <SearchBox />
       </div>
+      <HamburgerMenu isOpenMenu={open} />
     </div>
   );
 };
-const IfDeviceLarge = () => {
+const IfDeviceLarge: React.FC = () => {
   return (
     <div className="hidden w-full h-full lg:block">
       <div className="w-full flex items-center justify-between h-full">
@@ -46,15 +61,20 @@ const IfDeviceLarge = () => {
   );
 };
 
-const MenuIcon = () => {
+const MenuIcon: React.FC<{ open: boolean; setOpen(boolean: boolean) }> = ({
+  open,
+  setOpen,
+}) => {
   return (
     <div className="block lg:hidden">
+      {/* menu icon */}
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        className="h-7 w-7 text-black"
+        className={`h-7 w-7 text-black ${open ? "hidden" : "visible"}`}
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"
+        onClick={() => setOpen(true)}
       >
         <path
           strokeLinecap="round"
@@ -63,21 +83,40 @@ const MenuIcon = () => {
           d="M4 6h16M4 12h16M4 18h16"
         />
       </svg>
+
+      {/* menu close icon */}
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        className={`h-7 w-7 text-black ${open ? "visible" : "hidden"}`}
+        onClick={() => setOpen(false)}
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2}
+          d="M6 18L18 6M6 6l12 12"
+        />
+      </svg>
     </div>
   );
 };
 
-const Logo = () => {
+const Logo: React.FC = () => {
   return (
     <div className="lg:pr-5 ml-7 lg:ml-0">
       <p className="cursor-pointer font-bold text-lg sm:text-2xl text-gray-800">
-        DeepBazar
+        <Link href="/" passHref>
+          DeepBazar
+        </Link>
       </p>
     </div>
   );
 };
 
-const DeliveryLocation = () => {
+const DeliveryLocation: React.FC = () => {
   return (
     <div className="flex items-center cursor-pointer mr-7">
       <GoLocation className="mr-1 text-gray-500" />
@@ -93,7 +132,18 @@ const DeliveryLocation = () => {
   );
 };
 
-const ButtonIcons = () => {
+const ButtonIcons: React.FC = () => {
+  const dispatch = useDispatch();
+  const router = useRouter();
+
+  const handleIcons = () => {
+    if (Cookies.get("token")) {
+      router.push(`/profile`);
+    } else {
+      dispatch(openLoginBox());
+    }
+  };
+
   return (
     <div className="flex md:space-x-4 space-x-2">
       <div className="md:w-12 md:h-12 rounded-full md:border flex justify-center items-center cursor-pointer group">
@@ -102,14 +152,34 @@ const ButtonIcons = () => {
       <div className="md:w-12 md:h-12 rounded-full md:border flex justify-center items-center cursor-pointer group">
         <BsHeart className="w-6 h-6 group-hover:scale-105 transform ease-out transition duration-200" />
       </div>
-      <div className="md:w-12 md:h-12 rounded-full md:border flex justify-center items-center cursor-pointer group">
-        <BsPerson className="w-6 h-6 group-hover:scale-105 transform ease-out transition duration-200" />
+      <div
+        className="md:w-12 md:h-12 rounded-full md:border flex justify-center items-center cursor-pointer group overflow-hidden"
+        onClick={() => handleIcons()}
+      >
+        {Cookies.get("token") && Cookies.get("profileImg") && (
+          <img
+            className="w-full object-cover"
+            src={Cookies.get("profileImg")}
+            alt={Cookies.get("userName")}
+          />
+        )}
+        {!Cookies.get("token") && (
+          <BsPerson className="w-6 h-6 group-hover:scale-105 transform ease-out transition duration-200" />
+        )}
+        {!Cookies.get("profileImg") && Cookies.get("token") && (
+          <div className="w-full h-full bg-yellow-400 flex justify-center items-center">
+            <p>
+              {Cookies.get("userName") &&
+                Cookies.get("userName").charAt(0).toUpperCase()}
+            </p>
+          </div>
+        )}
       </div>
     </div>
   );
 };
 
-const LanguageAndContact = () => {
+const LanguageAndContact: React.FC = () => {
   return (
     <div className="h-full flex items-center">
       <div className="ml-5 cursor-pointer">
@@ -128,7 +198,7 @@ const LanguageAndContact = () => {
   );
 };
 
-const SearchBox = () => {
+const SearchBox: React.FC = () => {
   return (
     <div className="flex-1">
       <form className="w-full flex justify-between h-[42px] bg-gray-200">
@@ -146,16 +216,17 @@ const SearchBox = () => {
   );
 };
 
-const SearchCategoryList = () => {
-  const [category, setCategory] = useState("All");
-  const [isOpenMenu, setIsOpenMenu] = useState(false);
-  const menuRef = useRef(null);
+const SearchCategoryList: React.FC = () => {
+  const [category, setCategory] = useState<string>("All");
+  const [isOpenMenu, setIsOpenMenu] = useState<boolean>(false);
+  const menuRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     isOpenMenu && menuRef.current.focus();
-    addEventListener("scroll", () => setIsOpenMenu(false));   
+    addEventListener("scroll", () => setIsOpenMenu(false));
   }, [isOpenMenu]);
 
-  const clickHandler = (text) => {
+  const clickHandler = (text: string) => {
     setCategory(text);
     setIsOpenMenu(false);
   };
@@ -189,30 +260,3 @@ const SearchCategoryList = () => {
     </div>
   );
 };
-
-const categoryList = [
-  {
-    id: 1,
-    category: "All",
-  },
-  {
-    id: 2,
-    category: "Men's Clothes",
-  },
-  {
-    id: 3,
-    category: "Women's Clothes",
-  },
-  {
-    id: 4,
-    category: "Bags",
-  },
-  {
-    id: 5,
-    category: "Toys",
-  },
-  {
-    id: 6,
-    category: "Baby and Kids",
-  },
-];
