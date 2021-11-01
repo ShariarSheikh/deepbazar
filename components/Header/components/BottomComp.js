@@ -10,7 +10,7 @@ import {
 } from "../../../redux/showCategorySlice/showCategorySlice";
 import DropdownCategories from "./DropdownCategories";
 
-const BottomComp: React.FC = () => {
+const BottomComp = () => {
   const router = useRouter();
   const dispatch = useDispatch();
 

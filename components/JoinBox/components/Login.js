@@ -2,32 +2,29 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   loginBox,
-  signUpUser,
+  loginUser,
   userData,
 } from "../../../redux/loginSlice/loginSlice";
 import Cookies from "js-cookie";
 
-const SignUp: React.FC<{ setShowUi(string: string) }> = ({ setShowUi }) => {
+const Login = ({ setShowUi }) => {
   const getUser = useSelector(loginBox);
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-  const [name, setName] = useState<string>("");
-  const [number, setNumber] = useState<any | number>();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const dispatch = useDispatch();
   //onsubmit
   const onSubmit = (e) => {
     e.preventDefault();
 
-    const user = { name, number, email, password };
-    if (!email || !password || !name || !number) {
+    const user = { email, password };
+
+    if (!email || !password) {
       alert(
-        `Please enter your ${!email && "email"} ${!password && "password"} ${
-          !name && "name"
-        } ${!number && "number"}`
+        `Please enter your ${!email && "email"} ${!password && "password"}`
       );
     } else {
-      dispatch(signUpUser(user));
+      dispatch(loginUser(user));
     }
   };
 
@@ -36,61 +33,35 @@ const SignUp: React.FC<{ setShowUi(string: string) }> = ({ setShowUi }) => {
       Cookies.set("token", getUser?.token, { expires: 7 });
 
       dispatch(userData());
-      setEmail(""), setPassword(""), setName(""), setNumber(0);
+      setEmail(""), setPassword("");
     }
   }, [getUser?.status]);
 
   return (
-    <div className="w-full bg-white px-3 h-screen">
+    <div className="w-full h-screen bg-white px-3">
       <h1 className="text-xl font-roboto font-semibold text-center">
-        SignUp DeepBazar
+        Login DeepBazar
       </h1>
-
-      {getUser?.status === "rejected" && (
-        <p className="text-red-400 py-3">{getUser?.error}</p>
-      )}
 
       <form
         onSubmit={onSubmit}
         className="w-full max-w-[360px] m-auto mt-9 pb-8"
       >
         <div className="flex flex-col mb-4">
-          <label htmlFor="Name">Name</label>
-          <input
-            className="outline-none bg-blue-50 py-2 pl-2 text-gray-700"
-            type="name"
-            placeholder="Enter your name"
-            value={name}
-            required
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              setName(e.target.value)
-            }
-          />
-        </div>
-        <div className="flex flex-col mb-4">
-          <label htmlFor="Mobile Number">Mobile Number</label>
-          <input
-            className="outline-none bg-blue-50 py-2 pl-2 text-gray-700 input_arrow_hide"
-            type="number"
-            placeholder="Enter your mobile number"
-            value={number}
-            required
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              setNumber(e.target.value)
-            }
-          />
-        </div>
-        <div className="flex flex-col mb-4">
+          {getUser?.status === "rejected" && (
+            <p className="text-red-400 py-3">{getUser?.error}</p>
+          )}
+
           <label htmlFor="Email">Email</label>
           <input
             className="outline-none bg-blue-50 py-2 pl-2 text-gray-700"
             type="email"
             placeholder="Enter your email address"
             value={email}
-            required
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            onChange={(e) =>
               setEmail(e.target.value)
             }
+            required
           />
         </div>
         <div className="flex flex-col mb-4">
@@ -100,11 +71,11 @@ const SignUp: React.FC<{ setShowUi(string: string) }> = ({ setShowUi }) => {
             type="password"
             placeholder="Enter your password"
             value={password}
-            minLength={6}
-            required
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            onChange={(e) =>
               setPassword(e.target.value)
             }
+            minLength={6}
+            required
           />
         </div>
 
@@ -117,9 +88,12 @@ const SignUp: React.FC<{ setShowUi(string: string) }> = ({ setShowUi }) => {
         <div className="w-full mt-6 text-gray-500 font-medium text-center">
           <p
             className="mb-1  cursor-pointer hover:text-blue-400"
-            onClick={() => setShowUi("login")}
+            onClick={() => setShowUi("signUp")}
           >
-            Already have an account? <span>Login</span>
+            Don't have an account? <span>SignUp</span>
+          </p>
+          <p className="mb-2 cursor-pointer hover:text-blue-400">
+            Forgot password?
           </p>
         </div>
       </form>
@@ -127,21 +101,21 @@ const SignUp: React.FC<{ setShowUi(string: string) }> = ({ setShowUi }) => {
   );
 };
 
-export default SignUp;
+export default Login;
 
-const LoginButton: React.FC = () => {
+const LoginButton = () => {
   return (
     <button
       className="w-full mt-5 h-10 rounded-sm cursor-pointer
      bg-black text-yellow-400 font-medium active:scale-105 duration-200"
       type="submit"
     >
-      SignUp
+      Login
     </button>
   );
 };
 
-const LoadingButton: React.FC = () => {
+const LoadingButton = () => {
   return (
     <button
       className="w-full mt-5 h-10 rounded-sm cursor-wait

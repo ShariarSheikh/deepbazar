@@ -12,7 +12,7 @@ import { useDispatch } from "react-redux";
 import { openLoginBox } from "../../../redux/loginSlice/loginSlice";
 import Cookies from "js-cookie";
 
-const TopComp: React.FC = () => {
+const TopComp = () => {
   return (
     <div className="w-full py-5 flex items-center justify-between border-b font-roboto px-4 2xl:px-0 transition-all duration-150">
       {/* max width 1014px */}
@@ -25,9 +25,9 @@ const TopComp: React.FC = () => {
 
 export default TopComp;
 
-const IfDeviceSmall: React.FC = () => {
+const IfDeviceSmall = () => {
   const router = useRouter();
-  const [open, setOpen] = useState<boolean>(false);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     setOpen(false);
@@ -47,7 +47,7 @@ const IfDeviceSmall: React.FC = () => {
     </div>
   );
 };
-const IfDeviceLarge: React.FC = () => {
+const IfDeviceLarge = () => {
   return (
     <div className="hidden w-full h-full lg:block">
       <div className="w-full flex items-center justify-between h-full">
@@ -61,7 +61,7 @@ const IfDeviceLarge: React.FC = () => {
   );
 };
 
-const MenuIcon: React.FC<{ open: boolean; setOpen(boolean: boolean) }> = ({
+const MenuIcon = ({
   open,
   setOpen,
 }) => {
@@ -104,7 +104,7 @@ const MenuIcon: React.FC<{ open: boolean; setOpen(boolean: boolean) }> = ({
   );
 };
 
-const Logo: React.FC = () => {
+const Logo = () => {
   return (
     <div className="lg:pr-5 ml-7 lg:ml-0">
       <p className="cursor-pointer font-bold text-lg sm:text-2xl text-gray-800">
@@ -116,7 +116,7 @@ const Logo: React.FC = () => {
   );
 };
 
-const DeliveryLocation: React.FC = () => {
+const DeliveryLocation = () => {
   return (
     <div className="flex items-center cursor-pointer mr-7">
       <GoLocation className="mr-1 text-gray-500" />
@@ -132,7 +132,7 @@ const DeliveryLocation: React.FC = () => {
   );
 };
 
-const ButtonIcons: React.FC = () => {
+const ButtonIcons = () => {
   const dispatch = useDispatch();
   const router = useRouter();
 
@@ -179,7 +179,7 @@ const ButtonIcons: React.FC = () => {
   );
 };
 
-const LanguageAndContact: React.FC = () => {
+const LanguageAndContact = () => {
   return (
     <div className="h-full flex items-center">
       <div className="ml-5 cursor-pointer">
@@ -198,7 +198,7 @@ const LanguageAndContact: React.FC = () => {
   );
 };
 
-const SearchBox: React.FC = () => {
+const SearchBox = () => {
   return (
     <div className="flex-1">
       <form className="w-full flex justify-between h-[42px] bg-gray-200">
@@ -216,17 +216,17 @@ const SearchBox: React.FC = () => {
   );
 };
 
-const SearchCategoryList: React.FC = () => {
-  const [category, setCategory] = useState<string>("All");
-  const [isOpenMenu, setIsOpenMenu] = useState<boolean>(false);
-  const menuRef = useRef<HTMLDivElement>(null);
+const SearchCategoryList = () => {
+  const [category, setCategory] = useState("All");
+  const [isOpenMenu, setIsOpenMenu] = useState(false);
+  const menuRef = useRef(null);
 
   useEffect(() => {
     isOpenMenu && menuRef.current.focus();
     addEventListener("scroll", () => setIsOpenMenu(false));
   }, [isOpenMenu]);
 
-  const clickHandler = (text: string) => {
+  const clickHandler = (text) => {
     setCategory(text);
     setIsOpenMenu(false);
   };

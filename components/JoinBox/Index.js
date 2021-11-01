@@ -4,8 +4,8 @@ import { loginBox, openLoginBox } from "../../redux/loginSlice/loginSlice";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
 
-const Index: React.FC = () => {
-  const [showUi, setShowUi] = useState<string>("login");
+const Index = () => {
+  const [showUi, setShowUi] = useState("login");
   const isLoginBox = useSelector(loginBox);
   const dispatch = useDispatch();
 
