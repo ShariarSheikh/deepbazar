@@ -18,7 +18,7 @@ const Index = () => {
     <div
       className={`fixed top-0 right-0 ${
         isLoginBox.open ? "w-full" : "w-0"
-      } min-h-screen bg-black bg-opacity-60`}
+      } min-h-screen bg-black bg-opacity-60 z-30`}
     >
       <div className="w-full min-h-screen flex justify-end items-center z-20">
         <div

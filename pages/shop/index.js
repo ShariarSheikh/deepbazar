@@ -1,8 +1,27 @@
 import Head from "next/head";
-import React from "react";
-import Header from "../../components/Header/Index";
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import ProductsFeed from "../../components/ProductsFeed/ProductsFeed";
+import ShoppingCart from "../../components/ShoppingCart/ShoppingCart";
+import { LoadingShoppingCart } from "../../utils/loading";
+import {
+  fetchProductsData,
+  getProducts,
+} from "../../redux/getProductsSlice/getProductsSlice";
 
-const index: React.FC = () => {
+const index = () => {
+  const { error, products, status } = useSelector(getProducts);
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchProductsData());
+  }, []);
+
+  if (error) {
+    <div>{error}</div>;
+  }
+
   return (
     <div>
       <Head>
@@ -13,10 +32,22 @@ const index: React.FC = () => {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Header />
 
-      <main>
-        <h1>this is all products</h1>
+      <main className="max-w-[1366px] w-full m-auto mt-10 px-4">
+        {status === "pending" ? (
+          <ProductsFeed sectionName="">
+            <LoadingShoppingCart />
+            <LoadingShoppingCart />
+            <LoadingShoppingCart />
+            <LoadingShoppingCart />
+          </ProductsFeed>
+        ) : (
+          <ProductsFeed sectionName="">
+            {products?.map((x) => (
+              <ShoppingCart key={x.id} data={x} />
+            ))}
+          </ProductsFeed>
+        )}
       </main>
     </div>
   );

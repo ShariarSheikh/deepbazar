@@ -1,6 +1,6 @@
 import React from "react";
 
-const TopSection: React.FC = () => {
+const TopSection = () => {
   return (
     <section className="w-full max-h-[420px] h-[420px] relative">
       <div className="w-full h-full flex flex-col sm:flex-row items-center flex-grow sm:space-x-4 space-y-4 sm:space-y-0">

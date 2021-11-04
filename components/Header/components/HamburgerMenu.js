@@ -46,7 +46,9 @@ const HamburgerMenu = ({ isOpenMenu }) => {
               Categories
               <RiArrowDropDownFill className="text-gray-500 ml-2 w-6 h-6" />
             </p>
-            <Categories showCategory={showCategory} />
+            <Categories
+              showCategory={showCategory}
+            />
           </li>
 
           <li className="text-base border-b border-gray-300 h-12 flex items-center cursor-pointer px-4">
@@ -69,17 +71,21 @@ export default HamburgerMenu;
 
 const Categories = ({ showCategory }) => {
   const removeFirstCategory = categoryList.slice(1);
-  const categoryListHeight = removeFirstCategory.length * 48;
   return (
     <div
       className={`w-full mt-5 bg-white ${
-        showCategory ? `h-[${categoryListHeight}px]` : "h-0"
+        showCategory ? "h-[240px]" : "h-0"
       } overflow-hidden transition-all duration-200`}
     >
       <ul className={`w-full flex flex-col h-full`}>
         {removeFirstCategory?.map(({ id, category, link, img }) => (
-          <Link href={`/category${link}`} passHref key={id}>
-            <li className="h-12 w-full flex flex-row items-center justify-between cursor-pointer px-4 border-t border-gray-100">
+          <Link
+            href={`/shop${link}`}
+            passHref
+            key={id}
+   
+          >
+            <li className="h-12 w-full flex flex-row items-center justify-between cursor-pointer px-4 border-t border-gray-100 overflow-hidden">
               <p>{category}</p>
               <img
                 className="w-[40px] h-full object-contain"

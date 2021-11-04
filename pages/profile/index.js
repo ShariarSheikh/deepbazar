@@ -59,6 +59,7 @@ const index = (props) => {
       alert("delete your account");
     }
   };
+
   return (
     <div>
       <Head>
@@ -69,11 +70,12 @@ const index = (props) => {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Header />
 
-      <main className="max-w-[1366px] w-full m-auto mt-10 px-4">
-        <TopSection />
-        <h1 className="text-start mt-20 font-semibold text-2xl">{user.name}</h1>
+      <main className="max-w-[1366px] w-full m-auto mt-10 px-4 min-h-[60vh]">
+        <TopSection userImg={user.profileImg} />
+        <h1 className="text-start font-semibold text-2xl">
+          {user.name.toLocaleUpperCase()}
+        </h1>
 
         <div className="mt-5 py-5 bg-gray-200 w-full px-5 flex justify-between">
           <p

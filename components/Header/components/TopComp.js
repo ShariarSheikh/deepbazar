@@ -8,9 +8,11 @@ import HamburgerMenu from "./HamburgerMenu";
 import { useRouter } from "next/dist/client/router";
 import Link from "next/link";
 import { categoryList } from "../../../utils/Data";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { openLoginBox } from "../../../redux/loginSlice/loginSlice";
 import Cookies from "js-cookie";
+import { getCart, openCart } from "../../../redux/cartSlice/cartSlice";
+import CartBadges from "../../../utils/CartBadges";
 
 const TopComp = () => {
   return (
@@ -31,7 +33,7 @@ const IfDeviceSmall = () => {
 
   useEffect(() => {
     setOpen(false);
-  }, [router.route]);
+  }, [router]);
 
   return (
     <div className="w-full lg:hidden">
@@ -61,10 +63,7 @@ const IfDeviceLarge = () => {
   );
 };
 
-const MenuIcon = ({
-  open,
-  setOpen,
-}) => {
+const MenuIcon = ({ open, setOpen }) => {
   return (
     <div className="block lg:hidden">
       {/* menu icon */}
@@ -133,10 +132,11 @@ const DeliveryLocation = () => {
 };
 
 const ButtonIcons = () => {
+  const { cartTotalQuantity } = useSelector(getCart);
   const dispatch = useDispatch();
   const router = useRouter();
 
-  const handleIcons = () => {
+  const handleProfile = () => {
     if (Cookies.get("token")) {
       router.push(`/profile`);
     } else {
@@ -144,17 +144,26 @@ const ButtonIcons = () => {
     }
   };
 
+  const handleCart = () => {
+     dispatch(openCart());
+  };
+
+
   return (
     <div className="flex md:space-x-4 space-x-2">
-      <div className="md:w-12 md:h-12 rounded-full md:border flex justify-center items-center cursor-pointer group">
+      <div
+        className="md:w-12 md:h-12 rounded-full md:border flex justify-center items-center cursor-pointer group relative"
+        onClick={() => handleCart()}
+      >
         <FiShoppingCart className="w-6 h-6 group-hover:scale-105 transform ease-out transition duration-200" />
+        {cartTotalQuantity > 0 && <CartBadges number={cartTotalQuantity} />}
       </div>
       <div className="md:w-12 md:h-12 rounded-full md:border flex justify-center items-center cursor-pointer group">
         <BsHeart className="w-6 h-6 group-hover:scale-105 transform ease-out transition duration-200" />
       </div>
       <div
         className="md:w-12 md:h-12 rounded-full md:border flex justify-center items-center cursor-pointer group overflow-hidden"
-        onClick={() => handleIcons()}
+        onClick={() => handleProfile()}
       >
         {Cookies.get("token") && Cookies.get("profileImg") && (
           <img

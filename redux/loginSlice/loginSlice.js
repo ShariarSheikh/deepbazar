@@ -1,9 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { RootState } from "../store";
 import axios from "axios";
 import Cookies from "js-cookie";
-
-
 
 //login user
 export const signUpUser = createAsyncThunk(
@@ -22,7 +19,7 @@ export const signUpUser = createAsyncThunk(
   }
 );
 
-//login user
+//login user process.env.NEXT_PUBLIC_VERCEL_UR_LOGIN
 export const loginUser = createAsyncThunk(
   "login/loginUser",
   async (user, { rejectWithValue }) => {
