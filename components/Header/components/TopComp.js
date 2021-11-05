@@ -167,7 +167,7 @@ const ButtonIcons = () => {
       >
         {Cookies.get("token") && Cookies.get("profileImg") && (
           <img
-            className="w-full object-cover"
+            className="w-full h-full object-cover"
             src={Cookies.get("profileImg")}
             alt={Cookies.get("userName")}
           />

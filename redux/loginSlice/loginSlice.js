@@ -56,10 +56,39 @@ export const userData = createAsyncThunk("user/userData", async () => {
     Cookies.set("profileImg", data.user.profileImg, {
       expires: 7,
     });
+    Cookies.set("uId", data.user.id, {
+      expires: 7,
+    });
   }
 
   return response?.data;
 });
+
+// img profile img
+export const profileImgUpdate = createAsyncThunk(
+  "profile img/profileImgUpdate",
+  async (data, { rejectWithValue }) => {
+    try {
+      const response = await axios.patch(
+        process.env.NEXT_PUBLIC_VERCEL_UR_PROFILE_IMG,
+        data
+      );
+
+      if (response?.data?.success) {
+        Cookies.set("profileImg", response?.data?.updateImg?.profileImg, {
+          expires: 7,
+        });
+        Cookies.set("imagesFileName", response?.data?.updateImg?.imagesFileName, {
+          expires: 7,
+        });
+      }
+
+      return response?.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data.message);
+    }
+  }
+);
 
 // login slice
 export const loginSlice = createSlice({
@@ -73,6 +102,10 @@ export const loginSlice = createSlice({
     token: "",
     userStatus: "",
     userError: "",
+    user: null,
+    //upload profile img
+    imgStatus: "",
+    imgError: "",
   },
 
   reducers: {
@@ -115,6 +148,18 @@ export const loginSlice = createSlice({
     },
     [userData.rejected]: (state, action) => {
       state.userStatus = "rejected";
+    },
+    //upload profile image
+    [profileImgUpdate.pending]: (state, action) => {
+      state.imgStatus = "pending";
+    },
+    [profileImgUpdate.fulfilled]: (state, action) => {
+      state.imgStatus = "success";
+      state.profileImg = action.payload;
+    },
+    [profileImgUpdate.rejected]: (state, action) => {
+      state.imgStatus = "rejected";
+      state.imgError = action.payload;
     },
   },
 });
