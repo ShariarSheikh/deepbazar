@@ -25,7 +25,24 @@
   margin: 0;
 }
 
-/* Firefox */
-.input_arrow_hide[type="number"] {
-  -moz-appearance: textfield;
+/* //loading animation */
+@keyframes pulse {
+  50% {
+    opacity: 0.6;
+  }
+}
+.pulse-animation {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 3) infinite;
+}
+
+/* hide input arrows */
+.hide_input_arrow::-webkit-outer-spin-button,
+.hide_input_arrow::-webkit-inner-spin-button {
+  /* display: none; <- Crashes Chrome on hover */
+  -webkit-appearance: none;
+  margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+.hide_input_arrow[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
 }
