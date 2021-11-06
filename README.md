@@ -3,7 +3,6 @@
 </p>
 <p align="start">
   <img src="https://i.ibb.co/xCBYM6g/screencapture-deepbazar-vercel-app-profile-2021-11-05-21-21-20.png" width="100%">
-  <img src="https://i.ibb.co/VJrst8r/screencapture-deepbazar-vercel-app-shop-2021-11-05-21-17-26.png" width="100%">
 </p>
 
 <p align="start">
