@@ -12,7 +12,7 @@ const YourOrder = () => {
   const router = useRouter();
 
   useEffect(() => {
-    cartTotalQuantity <= 0 && router.push("/");
+    cartTotalQuantity <= 0 && router.replace("/");
   }, [cartItems]);
 
   return (
