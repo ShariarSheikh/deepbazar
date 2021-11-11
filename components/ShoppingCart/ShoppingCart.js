@@ -23,10 +23,7 @@ const ShoppingCart = ({ data }) => {
      flex flex-col justify-between mb-5 md:mb-7 xl:mb-12 hover:shadow-2xl transition-all duration-200 group md:ml-2"
     >
       <div className="bg-purple-100 w-full h-[180px] md:h-[290px] relative overflow-hidden">
-        <Link
-          href={`/shop/product/?category=${category}&name=${title}&id=${id}`}
-          passHref
-        >
+        <Link href={`/product/${id}`} passHref>
           <img
             className="h-full w-full object-cover cursor-pointer"
             src={img}
