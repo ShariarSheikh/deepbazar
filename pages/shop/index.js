@@ -1,27 +1,24 @@
 import Head from "next/head";
-import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+import React from "react";
 import ProductsFeed from "../../components/ProductsFeed/ProductsFeed";
 import ShoppingCart from "../../components/ShoppingCart/ShoppingCart";
 import { LoadingShoppingCart } from "../../utils/loading";
-import {
-  fetchProductsData,
-  getProducts,
-} from "../../redux/getProductsSlice/getProductsSlice";
+import axios from "axios";
+import { useRouter } from "next/dist/client/router";
 
-const index = () => {
-  const { error, products, status } = useSelector(getProducts);
+const index = ({ products }) => {
+  const router = useRouter();
 
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchProductsData());
-  }, []);
-
-  if (error) {
-    <div>{error}</div>;
+  if (router.isFallback) {
+    <main className="max-w-[1366px] w-full m-auto mt-10 px-4">
+      <ProductsFeed sectionName="">
+        <LoadingShoppingCart />
+        <LoadingShoppingCart />
+        <LoadingShoppingCart />
+        <LoadingShoppingCart />
+      </ProductsFeed>
+    </main>;
   }
-
   return (
     <div>
       <Head>
@@ -34,23 +31,43 @@ const index = () => {
       </Head>
 
       <main className="max-w-[1366px] w-full m-auto mt-10 px-4">
-        {status === "pending" ? (
-          <ProductsFeed sectionName="">
-            <LoadingShoppingCart />
-            <LoadingShoppingCart />
-            <LoadingShoppingCart />
-            <LoadingShoppingCart />
-          </ProductsFeed>
-        ) : (
-          <ProductsFeed sectionName="">
-            {products?.map((x) => (
-              <ShoppingCart key={x.id} data={x} />
-            ))}
-          </ProductsFeed>
-        )}
+        <ProductsFeed sectionName="">
+          {products?.map((x) => (
+            <ShoppingCart key={x.id} data={x} />
+          ))}
+        </ProductsFeed>
       </main>
     </div>
   );
+};
+
+export const getStaticProps = async () => {
+  const dev = process.env.NODE_ENV !== "production";
+  const server = dev
+    ? "http://localhost:3000"
+    : "https://deepbazar.vercel.app/";
+
+  //fetch all products
+  const allProducts = await axios.get(
+    server + process.env.NEXT_PUBLIC_VERCEL_UR_PRODUCT_ALL
+  );
+  const products = await allProducts?.data?.data;
+
+  if (!products) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {
+      products: products,
+    },
+    revalidate: 10, // In seconds
+  };
 };
 
 export default index;
