@@ -61,7 +61,7 @@ export const getStaticProps = async ({ params }) => {
   const dev = process.env.NODE_ENV !== "production";
   const server = dev
     ? "http://localhost:3000"
-    : "https://deepbazar.vercel.app/";
+    : "https://deepbazar.vercel.app";
 
   const { category } = params;
 

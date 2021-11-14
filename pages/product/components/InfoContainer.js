@@ -34,8 +34,8 @@ const InfoContainer = ({ data }) => {
   return (
     <div className={`w-full max-w-[768px] m-auto lg:w-3/6 mt-10 lg:mt-0`}>
       <div>
-        <h1 className="text-3xl font-semibold">
-          {data?.title.toLocaleUpperCase()}
+        <h1 className="text-3xl font-semibold uppercase">
+          {data?.title}
         </h1>
         <p className="mt-3">
           Availability:

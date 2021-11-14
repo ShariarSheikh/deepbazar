@@ -8,9 +8,9 @@ const ImgContainer = ({ images }) => {
       <div
         className={`w-full lg:w-[55px] flex flex-row space-x-5 lg:space-x-0 overflow-hidden mt-6`}
       >
-        {images?.map((x) => (
+        {images?.map((x, k) => (
           <Image
-            key={x}
+            key={k}
             className="cursor-pointer z-20"
             src={x}
             alt="product"
