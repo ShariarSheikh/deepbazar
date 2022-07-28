@@ -1,8 +1,12 @@
-import { products } from "../../../utils/Data";
+import { products } from "../../../data/Data";
 
 export default async function topSelling(req, res) {
-  const data = products;
+  const topSellingData = await products.filter((x) => x.topSelling === true);
 
-  const topSellingData = await data.filter((x) => x.topSelling === true);
-  res.status(200).json({ data: topSellingData });
+  const data =
+    req.query.length > 0
+      ? topSellingData.slice(0, req.query.length)
+      : topSellingData;
+
+  res.status(200).json({ data });
 }

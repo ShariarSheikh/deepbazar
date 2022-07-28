@@ -5,6 +5,14 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+body {
+  background-color: #f7f7f7;
+}
+
+.page {
+  @apply min-h-screen;
+}
+
 /* hide scrollbar css */
 /* Hide scrollbar for Chrome, Safari and Opera */
 .hide-scrollbar::-webkit-scrollbar {

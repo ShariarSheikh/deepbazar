@@ -1,91 +1,60 @@
 import Head from "next/head";
-import { useRouter } from "next/dist/client/router";
+import { useRouter } from "next/router";
 import React from "react";
-import ProductsFeed from "../../../components/ProductsFeed/ProductsFeed";
-import ShoppingCart from "../../../components/ShoppingCart/ShoppingCart";
+import ProductsFeed from "../../../components/common/ProductsFeed/ProductsFeed";
+import ShoppingCart from "../../../components/common/ShoppingCart/ShoppingCart";
 import { LoadingShoppingCart } from "../../../utils/loading";
-import axios from "axios";
-import { categoryList } from "../../../utils/Data";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  fetchProductByCategories,
+  getProductApiState,
+} from "../../../redux/productsApi/productApiSlice";
+import Layout from "../../../components/core/layout";
 
-const index = ({ products }) => {
-  const { category } = useRouter().query;
+const index = () => {
+  const { pdByCategories } = useSelector(getProductApiState);
   const router = useRouter();
+  const dispatch = useDispatch();
 
-  if (router.isFallback) {
-    <main className="max-w-[1366px] w-full m-auto mt-8 px-4">
-      <h2 className="font-medium text-xl uppercase">{category}</h2>
+  useEffect(() => {
+    if (!router.isReady) return;
 
-      <ProductsFeed sectionName="">
-        <LoadingShoppingCart />
-        <LoadingShoppingCart />
-        <LoadingShoppingCart />
-        <LoadingShoppingCart />
-      </ProductsFeed>
-    </main>;
-  }
+    dispatch(fetchProductByCategories(router.query.category));
+  }, [router.isReady, router.asPath]);
+
   return (
-    <div>
-      <Head>
-        <title>DeepBazar-{category}</title>
-        <meta
-          name="description"
-          content="biggest ecommerce platform in bangladesh"
-        />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <main className="max-w-[1366px] w-full m-auto mt-8 px-4">
-        <h2 className="font-medium text-xl uppercase">{category}</h2>
-        <ProductsFeed sectionName="">
-          {products?.map((x) => (
-            <ShoppingCart key={x.id} data={x} />
-          ))}
-        </ProductsFeed>
-      </main>
-    </div>
+    <Layout pageName="categoryPage">
+      <div className="page max-w-[1366px] w-full m-auto mt-8 px-4">
+        <h2 className="font-medium text-xl uppercase">
+          {router.query.category}
+        </h2>
+        {pdByCategories.status === "pending" && (
+          <ProductsFeed sectionName="">
+            <LoadingShoppingCart />
+            <LoadingShoppingCart />
+            <LoadingShoppingCart />
+            <LoadingShoppingCart />
+            <LoadingShoppingCart />
+            <LoadingShoppingCart />
+            <LoadingShoppingCart />
+            <LoadingShoppingCart />
+          </ProductsFeed>
+        )}
+        {pdByCategories.status === "success" &&
+          pdByCategories.products.length > 0 && (
+            <ProductsFeed sectionName="">
+              {pdByCategories.products?.map((x) => (
+                <ShoppingCart key={x.id} data={x} />
+              ))}
+            </ProductsFeed>
+          )}
+        {pdByCategories.status === "rejected" && (
+          <p className="p-10 text-sm text-red-500">{pdByCategories.error}</p>
+        )}
+      </div>
+    </Layout>
   );
-};
-
-// This function gets called at build time
-export async function getStaticPaths() {
-  const paths = categoryList.slice(1).map((ctg) => ({
-    params: { category: ctg.link },
-  }));
-
-  return {
-    paths: paths,
-    fallback: true,
-  };
-}
-
-export const getStaticProps = async ({ params }) => {
-  const dev = process.env.NODE_ENV !== "production";
-  const server = dev
-    ? "http://localhost:3000"
-    : "https://deepbazar.vercel.app";
-
-  const { category } = params;
-
-  //fetch category products
-  const categoryProducts = await axios.get(
-    server + process.env.NEXT_PUBLIC_VERCEL_UR_GET_CATEGORY_PRODUCTS + category
-  );
-  const products = await categoryProducts?.data?.data;
-
-  if (!products) {
-    return {
-      redirect: {
-        destination: "/",
-        permanent: false,
-      },
-    };
-  }
-
-  return {
-    props: {
-      products: products,
-    },
-    revalidate: 10, // In seconds
-  };
 };
 
 export default index;

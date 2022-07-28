@@ -1,4 +1,4 @@
-import { products } from "../../../utils/Data";
+import { products } from "../../../data/Data";
 
 export default async function getProducts(req, res) {
   const data = await products;

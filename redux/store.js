@@ -1,28 +1,19 @@
 import { configureStore } from "@reduxjs/toolkit";
-import cartSlice, { getTotals } from "./cartSlice/cartSlice";
-import getCategorySlice from "./getCategoryListSlice/getCategorySlice";
-import getNewProductsSlice from "./getNewProductsSlice/getNewProductsSlice";
-import getProductsSlice from "./getProductsSlice/getProductsSlice";
-import getSingleProductSlice from "./getSingleProductSlice/getSingleProductSlice";
-import getTopSelling from "./getTopSelling/getTopSelling";
+import cartSlice from "./cartSlice/cartSlice";
 import loginSlice from "./loginSlice/loginSlice";
+import productApiSlice from "./productsApi/productApiSlice";
 //category list open action
 import showCategorySlice from "./showCategorySlice/showCategorySlice";
 
 export const store = configureStore({
   reducer: {
     showCategoryOpen: showCategorySlice,
-    loginBox: loginSlice,
+    loginState: loginSlice,
 
-    // products all product data
-    getProducts: getProductsSlice,
-    getTopSellingProduct: getTopSelling,
-    getNewProducts: getNewProductsSlice,
-    getCategoryList: getCategorySlice,
-    getSingleProduct: getSingleProductSlice,
+    //--------------------------------------- products api state
+    getProductApiState: productApiSlice,
 
     //get cart data
     getCart: cartSlice,
   },
 });
-

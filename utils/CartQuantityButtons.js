@@ -1,12 +1,4 @@
-import React, { useEffect, useState } from "react";
-
-const CartQuantityButtons = ({
-  quantity,
-  countItem,
-  increment,
-  decrement,
-  selectCount,
-}) => {
+const CartQuantityButtons = ({ quantity, countItem, increment, decrement }) => {
   return (
     <div className="w-full max-w-[200px] flex items-center h-10 space-x-3 mt-5">
       <div
@@ -35,7 +27,7 @@ const CartQuantityButtons = ({
           className="hide_input_arrow w-10 h-10 bg-black text-white overflow-hidden pl-2"
           type="number"
           value={countItem}
-          onChange={selectCount}
+          readOnly
         />
       </div>
       <div

@@ -1,73 +1,53 @@
-import Head from "next/head";
 import React from "react";
-import ProductsFeed from "../../components/ProductsFeed/ProductsFeed";
-import ShoppingCart from "../../components/ShoppingCart/ShoppingCart";
+import ProductsFeed from "../../components/common/ProductsFeed/ProductsFeed";
+import ShoppingCart from "../../components/common/ShoppingCart/ShoppingCart";
 import { LoadingShoppingCart } from "../../utils/loading";
-import axios from "axios";
-import { useRouter } from "next/dist/client/router";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  fetchAllProducts,
+  getProductApiState,
+} from "../../redux/productsApi/productApiSlice";
+import Layout from "../../components/core/layout";
 
-const index = ({ products }) => {
-  const router = useRouter();
+const index = () => {
+  const { allProducts } = useSelector(getProductApiState);
+  const dispatch = useDispatch();
 
-  if (router.isFallback) {
-    <main className="max-w-[1366px] w-full m-auto mt-10 px-4">
-      <ProductsFeed sectionName="">
-        <LoadingShoppingCart />
-        <LoadingShoppingCart />
-        <LoadingShoppingCart />
-        <LoadingShoppingCart />
-      </ProductsFeed>
-    </main>;
-  }
+  useEffect(() => {
+    dispatch(fetchAllProducts());
+  }, []);
+
   return (
-    <div>
-      <Head>
-        <title>DeepBazar-Shop</title>
-        <meta
-          name="description"
-          content="biggest ecommerce platform in bangladesh"
-        />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+    <Layout pageName="shop">
+      <div className="page max-w-[1366px] w-full m-auto mt-10 px-4">
+        {allProducts.status === "pending" && (
+          <ProductsFeed sectionName="">
+            <LoadingShoppingCart />
+            <LoadingShoppingCart />
+            <LoadingShoppingCart />
+            <LoadingShoppingCart />
+            <LoadingShoppingCart />
+            <LoadingShoppingCart />
+            <LoadingShoppingCart />
+            <LoadingShoppingCart />
+          </ProductsFeed>
+        )}
 
-      <main className="max-w-[1366px] w-full m-auto mt-10 px-4">
-        <ProductsFeed sectionName="">
-          {products?.map((x) => (
-            <ShoppingCart key={x.id} data={x} />
-          ))}
-        </ProductsFeed>
-      </main>
-    </div>
+        {allProducts.status === "success" && allProducts.products.length > 0 && (
+          <ProductsFeed sectionName="">
+            {allProducts.products?.map((x) => (
+              <ShoppingCart key={x.id} data={x} />
+            ))}
+          </ProductsFeed>
+        )}
+
+        {allProducts.status === "rejected" && (
+          <p className="p-10 text-sm text-red-500">{allProducts.error}</p>
+        )}
+      </div>
+    </Layout>
   );
-};
-
-export const getStaticProps = async () => {
-  const dev = process.env.NODE_ENV !== "production";
-  const server = dev
-    ? "http://localhost:3000"
-    : "https://deepbazar.vercel.app";
-
-  //fetch all products
-  const allProducts = await axios.get(
-    server + process.env.NEXT_PUBLIC_VERCEL_UR_PRODUCT_ALL
-  );
-  const products = await allProducts?.data?.data;
-
-  if (!products) {
-    return {
-      redirect: {
-        destination: "/",
-        permanent: false,
-      },
-    };
-  }
-
-  return {
-    props: {
-      products: products,
-    },
-    revalidate: 10, // In seconds
-  };
 };
 
 export default index;

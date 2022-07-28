@@ -1,7 +1,9 @@
-import { products } from "../../../utils/Data";
+import { products } from "../../../data/Data";
 
 export default async function getCategoryList(req, res) {
-  const category = req.query.category;
-  const categoryList = await products.filter((x) => x.category === category);
+  const { category } = req.query;
+  const categoryList = await products.filter(
+    (x) => x.category.toLowerCase() === category.toLowerCase()
+  );
   res.status(200).json({ data: categoryList });
 }

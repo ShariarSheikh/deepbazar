@@ -1,61 +1,51 @@
-import Head from "next/head";
-import React from "react";
-import TopSection from "../home-pages-ui/TopSection/TopSection";
-import TopSellingProductsFeed from "../home-pages-ui/TopSellingProductsFeed/TopSellingProductsFeed";
-import NewProductsFeed from "../home-pages-ui/NewProductsFeed/NewProductsFeed";
-import Banner from "../home-pages-ui/Banner/Banner";
-import axios from "axios";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
 
-const Index = ({ products }) => {
+import { useDispatch } from "react-redux";
+import Layout from "../components/core/layout";
+import Banner from "../components/PagesComponent/home/Banner";
+import NewProductsFeed from "../components/PagesComponent/home/NewProductsFeed";
+import TopSection from "../components/PagesComponent/home/TopSection";
+import TopSellingProductsFeed from "../components/PagesComponent/home/TopSellingProductsFeed";
+import {
+  fetchNewProducts,
+  fetchTopSelling,
+  getProductApiState,
+} from "../redux/productsApi/productApiSlice";
+
+const Index = () => {
+  const { topSellingProducts, newProducts } = useSelector(getProductApiState);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchTopSelling(10));
+    dispatch(fetchNewProducts());
+  }, []);
+
   return (
-    <div>
-      <Head>
-        <title>DeepBazar-Home</title>
-        <meta
-          name="description"
-          content="biggest ecommerce platform in bangladesh"
-        />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <main className="max-w-[1366px] w-full m-auto mt-10 px-4">
+    <Layout pageName="home">
+      <main className="page max-w-[1366px] w-full m-auto mt-10 px-4">
         <TopSection />
-        <TopSellingProductsFeed products={products?.topSellingProducts} />
+        {topSellingProducts.status === "pending" && <p>Loading.....</p>}
+        {topSellingProducts.status === "rejected" && (
+          <p className="text-sm text-red-500">{topSellingProducts.error}</p>
+        )}
+        {topSellingProducts.status === "success" && (
+          <TopSellingProductsFeed products={topSellingProducts.products} />
+        )}
         <Banner />
-        <NewProductsFeed products={products?.newProducts} />
+
+        {newProducts.status === "pending" && <p>Loading.....</p>}
+        {newProducts.status === "rejected" && (
+          <p className="text-sm text-red-500">{error}</p>
+        )}
+        {newProducts.status === "success" && (
+          <NewProductsFeed products={newProducts?.products} />
+        )}
       </main>
-    </div>
+    </Layout>
   );
-};
-
-export const getStaticProps = async () => {
-  const dev = process.env.NODE_ENV !== "production";
-  const server = dev
-    ? "http://localhost:3000"
-    : "https://deepbazar.vercel.app";
-
-  //fetch topSellingProducts
-  const fetchTopSellingProducts = await axios.get(
-    server + process.env.NEXT_PUBLIC_VERCEL_UR_PRODUCT_TOP_SELLING
-  );
-  const topSellingProducts = await fetchTopSellingProducts?.data?.data;
-
-  //fetch new products
-  const fetchNewProducts = await axios.get(
-    server + process.env.NEXT_PUBLIC_VERCEL_UR_PRODUCT_NEW_PRODUCT
-  );
-  const newProducts = await fetchNewProducts?.data?.data;
-
-  const products = {
-    topSellingProducts,
-    newProducts,
-  };
-  return {
-    props: {
-      products: products,
-    },
-    revalidate: 10, // In seconds
-  };
 };
 
 export default Index;
