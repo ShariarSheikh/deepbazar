@@ -38,4 +38,10 @@ export default class ProductApi {
       (data) => data.data
     );
   };
+
+  static searchProducts = (category = "All", query) => {
+    return Api.get(
+      `/api/products/searchProducts?category=${category}&query=${query}`
+    ).then((data) => data.data);
+  };
 }

@@ -10,7 +10,7 @@ export const categoryList = [
     id: 2,
     category: "Men's Clothes",
     img: "https://images.unsplash.com/photo-1490114538077-0a7f8cb49891?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2070&q=80",
-    link: "/men-clothes",
+    link: "men-clothes",
     categoryList: [
       {
         id: 1,
@@ -43,7 +43,7 @@ export const categoryList = [
     id: 3,
     category: "Women's Clothes",
     img: "https://media.istockphoto.com/photos/fashion-clothes-on-a-rack-in-a-light-background-indoors-place-for-picture-id1257563298?b=1&k=20&m=1257563298&s=170667a&w=0&h=Hhf0-AsQp7Z7k9q8XKHfQUY86uPJvE8vmmGHXihWS_M=",
-    link: "/women-clothes",
+    link: "women-clothes",
     categoryList: [
       {
         id: 1,
@@ -76,7 +76,7 @@ export const categoryList = [
     id: 4,
     category: "Bags",
     img: "https://png.pngitem.com/pimgs/s/297-2978659_pencil-case-in-the-bag-clipart-clipart-school.png",
-    link: "/bags",
+    link: "bags",
     categoryList: [
       {
         id: 1,
@@ -109,7 +109,7 @@ export const categoryList = [
     id: 5,
     category: "Toys",
     img: "https://png.pngitem.com/pimgs/s/278-2782298_duck-dog-chew-toy-squeaky-dog-toys-hd.png",
-    link: "/toys",
+    link: "toys",
     categoryList: [
       {
         id: 1,
@@ -143,7 +143,7 @@ export const categoryList = [
     id: 6,
     category: "Baby and Kids",
     img: "https://png.pngitem.com/pimgs/s/15-159849_baby-clothes-transparent-images-png-baby-clothes-png.png",
-    link: "/baby-and-kids",
+    link: "baby-and-kids",
     categoryList: [
       {
         id: 1,

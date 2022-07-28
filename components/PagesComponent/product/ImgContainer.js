@@ -25,7 +25,7 @@ const ImgContainer = ({ images }) => {
         {images?.slice(0, 1).map((x) => (
           <Image
             key={x}
-            className="w-full h-full object-cover bg-gray-100"
+            className="w-full h-full object-contain bg-gray-100"
             src={x}
             alt="main picture"
             layout="fill"

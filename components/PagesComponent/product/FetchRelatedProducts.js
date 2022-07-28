@@ -4,9 +4,9 @@ import {
   fetchRelatedProducts,
   getProductApiState,
 } from "../../../redux/productsApi/productApiSlice";
-import { LoadingShoppingCart } from "../../../utils/loading";
 import ProductsFeed from "../../common/ProductsFeed/ProductsFeed";
 import ShoppingCart from "../../common/ShoppingCart/ShoppingCart";
+import { LoadingShoppingCart } from "../../common/Loading/loading";
 
 const FetchRelatedProducts = ({ category }) => {
   const { relatedProducts } = useSelector(getProductApiState);

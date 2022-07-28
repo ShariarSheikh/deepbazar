@@ -1,23 +1,22 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
 import Cookies from "js-cookie";
+import UserAccessApi from "../../services/access.services";
 
 //login user
 export const loginUser = createAsyncThunk(
   "login/loginUser",
   async (user, { rejectWithValue }) => {
     try {
-      const response = await axios.post(
-        process.env.NEXT_PUBLIC_VERCEL_UR_LOGIN,
-        user
-      );
+      const { data } = await UserAccessApi.login(user.email, user.password);
 
-      return response?.data?.token;
+      return data;
     } catch (error) {
       return rejectWithValue(error.response.data.message);
     }
   }
 );
+
+const user = Cookies.get("user") ? JSON.parse(Cookies.get("user")) : {};
 
 // login slice
 const loginSlice = createSlice({
@@ -25,7 +24,7 @@ const loginSlice = createSlice({
   initialState: {
     isBoxOpen: false,
     userData: {
-      user: {},
+      user: user,
       status: "",
       error: "",
     },
@@ -34,6 +33,13 @@ const loginSlice = createSlice({
   reducers: {
     openLoginBox: (state) => {
       state.isBoxOpen = !state.isBoxOpen;
+    },
+
+    logout: (state) => {
+      Cookies.remove("user");
+      state.userData.user = {};
+      state.userData.status = "";
+      state.userData.error = "";
     },
   },
   extraReducers: {
@@ -52,7 +58,7 @@ const loginSlice = createSlice({
   },
 });
 
-export const { openLoginBox } = loginSlice.actions;
+export const { openLoginBox, logout } = loginSlice.actions;
 
 export const loginState = (state) => state.loginState;
 

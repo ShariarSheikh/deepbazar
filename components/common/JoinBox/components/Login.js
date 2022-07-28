@@ -1,16 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  loginState,
-  loginUser,
-  userData,
-} from "../../../../redux/loginSlice/loginSlice";
+import { loginState, loginUser } from "../../../../redux/loginSlice/loginSlice";
 import Cookies from "js-cookie";
 
-const Login = ({ setShowUi }) => {
+const Login = () => {
   const { userData } = useSelector(loginState);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("deepBazar@gmail.com");
+  const [password, setPassword] = useState("123456");
 
   const dispatch = useDispatch();
   //onsubmit
@@ -30,9 +26,7 @@ const Login = ({ setShowUi }) => {
 
   useEffect(() => {
     if (userData.status === "success") {
-      Cookies.set("token", userData.user?.token, { expires: 7 });
-
-      dispatch(userData());
+      Cookies.set("user", JSON.stringify(userData.user), { expires: 7 });
       setEmail(""), setPassword("");
     }
   }, [userData?.status]);
@@ -59,7 +53,7 @@ const Login = ({ setShowUi }) => {
             placeholder="Enter your email address"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            required
+            readOnly
           />
         </div>
         <div className="flex flex-col mb-4">
@@ -71,13 +65,13 @@ const Login = ({ setShowUi }) => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             minLength={6}
-            required
+            readOnly
           />
         </div>
 
         {userData.status === "pending" ? <LoadingButton /> : <LoginButton />}
 
-        <div className="w-full mt-6 text-gray-500 font-medium text-center">
+        {/* <div className="w-full mt-6 text-gray-500 font-medium text-center">
           <p
             className="mb-1  cursor-pointer hover:text-blue-400"
             onClick={() => setShowUi("signUp")}
@@ -87,7 +81,7 @@ const Login = ({ setShowUi }) => {
           <p className="mb-2 cursor-pointer hover:text-blue-400">
             Forgot password?
           </p>
-        </div>
+        </div> */}
       </form>
     </div>
   );

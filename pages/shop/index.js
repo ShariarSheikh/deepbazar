@@ -1,7 +1,6 @@
 import React from "react";
 import ProductsFeed from "../../components/common/ProductsFeed/ProductsFeed";
 import ShoppingCart from "../../components/common/ShoppingCart/ShoppingCart";
-import { LoadingShoppingCart } from "../../utils/loading";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -9,6 +8,7 @@ import {
   getProductApiState,
 } from "../../redux/productsApi/productApiSlice";
 import Layout from "../../components/core/layout";
+import { LoadingShoppingCart } from "../../components/common/Loading/loading";
 
 const index = () => {
   const { allProducts } = useSelector(getProductApiState);

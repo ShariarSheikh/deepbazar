@@ -79,6 +79,22 @@ export const fetchNewProducts = createAsyncThunk(
   }
 );
 
+export const fetchSearchedProducts = createAsyncThunk(
+  "get/fetchSearchedProducts",
+  async (search, { rejectWithValue }) => {
+    try {
+      const { data } = await ProductApi.searchProducts(
+        search.category,
+        search.query
+      );
+
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
 const productApiSlice = createSlice({
   name: "products api",
   initialState: {
@@ -109,6 +125,11 @@ const productApiSlice = createSlice({
       products: [],
     },
     newProducts: {
+      status: "",
+      error: "",
+      products: [],
+    },
+    searchedProducts: {
       status: "",
       error: "",
       products: [],
@@ -192,6 +213,18 @@ const productApiSlice = createSlice({
     [fetchNewProducts.rejected]: (state, action) => {
       state.newProducts.status = "rejected";
       state.newProducts.error = action.payload;
+    },
+    //searched products fetch-----------------------------------------------------|
+    [fetchSearchedProducts.pending]: (state) => {
+      state.searchedProducts.status = "pending";
+    },
+    [fetchSearchedProducts.fulfilled]: (state, action) => {
+      state.searchedProducts.status = "success";
+      state.searchedProducts.products = action.payload;
+    },
+    [fetchSearchedProducts.rejected]: (state, action) => {
+      state.searchedProducts.status = "rejected";
+      state.searchedProducts.error = action.payload;
     },
   },
 });

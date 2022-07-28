@@ -1,13 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loginState, openLoginBox } from "../../../redux/loginSlice/loginSlice";
 import Login from "./components/Login";
-import SignUp from "./components/SignUp";
 
 const Index = () => {
-  const [showUi, setShowUi] = useState("login");
   const { isBoxOpen } = useSelector(loginState);
-
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -46,8 +43,7 @@ const Index = () => {
             </svg>
           </h1>
 
-          {showUi === "login" && <Login setShowUi={setShowUi} />}
-          {showUi === "signUp" && <SignUp setShowUi={setShowUi} />}
+          <Login />
         </div>
       </div>
     </div>
