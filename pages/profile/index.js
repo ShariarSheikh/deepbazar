@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { loginState, logout } from "../../redux/loginSlice/loginSlice";
 import { useDispatch } from "react-redux";
 import { AiOutlineUser } from "react-icons/ai";
+import Layout from "../../components/core/layout";
 
 const index = () => {
   const {
@@ -20,7 +21,7 @@ const index = () => {
   };
 
   return (
-    <div>
+    <Layout>
       <Head>
         <title>{user?.name}-profile</title>
         <meta
@@ -77,7 +78,7 @@ const index = () => {
           </p>
         </div>
       </main>
-    </div>
+    </Layout>
   );
 };
 

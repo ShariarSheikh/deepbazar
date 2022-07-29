@@ -1,6 +1,6 @@
 import Head from "next/head";
 import Header from "../core/Header";
-import Footer from "./Footer/Index";
+import Footer from "../code/Footer";
 
 const Layout = ({ children, pageName }) => {
   return (
