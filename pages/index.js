@@ -1,7 +1,5 @@
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
-
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Layout from "../components/core/layout";
 import Banner from "../components/PagesComponent/home/Banner";
 import NewProductsFeed from "../components/PagesComponent/home/NewProductsFeed";

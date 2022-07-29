@@ -1,6 +1,13 @@
 export default async function access(req, res) {
   const { email, password } = req.body;
-  console.log(email, password);
+
+  if (email !== "deepBazar@gmail.com") {
+    return res.status(401).json({ error: "Enter a correct email" });
+  }
+  if (password !== "123456") {
+    return res.status(401).json({ error: "password is wrong" });
+  }
+
   res.status(200).json({
     data: {
       name: "Shariar",

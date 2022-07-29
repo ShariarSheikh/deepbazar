@@ -8,10 +8,10 @@ export const loginUser = createAsyncThunk(
   async (user, { rejectWithValue }) => {
     try {
       const { data } = await UserAccessApi.login(user.email, user.password);
-
       return data;
     } catch (error) {
-      return rejectWithValue(error.response.data.message);
+      if (error.response) return rejectWithValue(error.response.data.error);
+      rejectWithValue(error.error);
     }
   }
 );
