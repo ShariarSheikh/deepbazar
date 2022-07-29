@@ -8,8 +8,8 @@ import {
   fetchProductByCategories,
   getProductApiState,
 } from "../../../redux/productsApi/productApiSlice";
-import Layout from "../../../components/core/layout";
 import { LoadingShoppingCart } from "../../../components/common/Loading/loading";
+import Layout from "../../../components/core/Layout/index";
 
 const index = () => {
   const { pdByCategories } = useSelector(getProductApiState);

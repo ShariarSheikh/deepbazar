@@ -1,8 +1,7 @@
-import React from "react";
 import Head from "next/head";
 import PaymentCart from "../../components/PagesComponent/cart/PaymentCart";
 import YourOrder from "../../components/PagesComponent/cart/YourOrder";
-import Layout from "../../components/core/layout";
+import Layout from "../../components/core/layout/index";
 
 const index = () => {
   return (

@@ -12,8 +12,8 @@ import InfoContainer from "../../components/PagesComponent/product/InfoContainer
 import ProductDescription from "../../components/PagesComponent/product/ProductDescription";
 import ImgContainer from "../../components/PagesComponent/product/ImgContainer";
 import FetchRelatedProducts from "../../components/PagesComponent/product/FetchRelatedProducts";
-import Layout from "../../components/core/layout";
 import { LoadingLayout } from "../../components/common/Loading/loading";
+import Layout from "../../components/core/layout/index";
 
 const Product = () => {
   const { singlePdByUrl } = useSelector(getProductApiState);

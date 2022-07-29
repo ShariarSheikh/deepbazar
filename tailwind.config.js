@@ -1,11 +1,10 @@
+/** @type {import('tailwindcss').Config} */
 module.exports = {
-  mode: "jit",
-  purge: [
+  content: [
     "./pages/**/*.{js,ts,jsx,tsx}",
     "./utils/**/*.{js,ts,jsx,tsx}",
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
-  darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {},
     fontFamily: {
@@ -33,12 +32,7 @@ module.exports = {
       // => @media (min-width: 1920px) { ... }
     },
   },
-  variants: {
-    extend: {},
-    transitionDuration: ["hover", "focus"],
-  },
   plugins: [
-    //...
     require("@tailwindcss/line-clamp"),
     require("tailwind-scrollbar-hide"),
   ],

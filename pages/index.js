@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import Layout from "../components/core/layout";
+import Layout from "../components/core/Layout/index";
 import Banner from "../components/PagesComponent/home/Banner";
 import NewProductsFeed from "../components/PagesComponent/home/NewProductsFeed";
 import TopSection from "../components/PagesComponent/home/TopSection";

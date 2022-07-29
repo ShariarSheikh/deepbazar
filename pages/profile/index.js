@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { loginState, logout } from "../../redux/loginSlice/loginSlice";
 import { useDispatch } from "react-redux";
 import { AiOutlineUser } from "react-icons/ai";
-import Layout from "../../components/core/layout";
+import Layout from "../../components/core/layout/index";
 
 const index = () => {
   const {
