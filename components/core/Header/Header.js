@@ -1,6 +1,6 @@
 import BottomComp from "./components/BottomComp";
 import TopComp from "./components/TopComp";
-import JoinBox from "../../common/JoinBox";
+import JoinBox from "../../common/JoinBox/Index";
 import { useSelector } from "react-redux";
 import AddedPDCart from "../../common/AddedPDCart";
 import { loginState } from "../../../redux/loginSlice/loginSlice";
