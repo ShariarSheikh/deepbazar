@@ -7,10 +7,10 @@ const ProductDescription = ({ description }) => {
       </div>
       <div className="w-full lg:w-3/6 lg:pl-10 mt-4 lg:mt-0">
         <ul className="list-disc pl-6 lg:p-0">
-          <li className="text-gray-600">Lorem, ipsum dolor.</li>
-          <li className="text-gray-600">Lorem, ipsum dolor.</li>
-          <li className="text-gray-600">Lorem, ipsum dolor.</li>
-          <li className="text-gray-600">Lorem, ipsum dolor.</li>
+          <li className="text-gray-600">What is Lorem Ipsum?</li>
+          <li className="text-gray-600">Why do we use it?</li>
+          <li className="text-gray-600">Where can I get some?</li>
+          <li className="text-gray-600">Where does it come from?</li>
         </ul>
       </div>
     </div>
