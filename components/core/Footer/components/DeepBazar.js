@@ -12,7 +12,7 @@ const DeepBazar = () => {
         </p>
 
         <p className="lg:mt-10 mt-4 text-sm md:text-base text-gray-200 font-semibold">
-          Join Us in Social <br className="md:hidden"/> Network
+          Join Us in Social <br className="md:hidden" /> Network
         </p>
         <div className="h-10 flex items-center justify-start w-full space-x-3">
           <span className="text-gray-100 cursor-pointer hover:scale-105 duration-200 pr-3">
@@ -27,7 +27,9 @@ const DeepBazar = () => {
             L
           </span>
         </div>
-        <p className="mt-3 font-semibold text-sm md:text-base">◽ +880-1772729547</p>
+        <p className="mt-3 font-semibold text-sm md:text-base">
+          ◽ +880-17720****
+        </p>
         <p className="lg:mt-16 mt-8 text-yellow-500 text-sm md:text-base">
           Created by <a href="http://shariar.vercel.app"> Shariar </a>
         </p>
