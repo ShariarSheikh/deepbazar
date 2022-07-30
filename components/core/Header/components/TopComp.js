@@ -13,7 +13,6 @@ import {
   loginState,
   openLoginBox,
 } from "../../../../redux/loginSlice/loginSlice";
-import Cookies from "js-cookie";
 import { getCart, openCart } from "../../../../redux/cartSlice/cartSlice";
 import CartBadges from "../../../../utils/CartBadges";
 import {
@@ -21,6 +20,11 @@ import {
   getProductApiState,
 } from "../../../../redux/productsApi/productApiSlice";
 import pdEndpoint from "../../../../utils/pdEndpoint";
+import {
+  getFavoriteCartState,
+  isFavoriteOpen,
+} from "../../../../redux/favoriteProductSlice/favoriteProductSlice";
+import AddedFVCart from "../../../common/AddedFVCart";
 
 const TopComp = () => {
   return (
@@ -143,6 +147,7 @@ const DeliveryLocation = () => {
 };
 
 const ButtonIcons = () => {
+  const { items } = useSelector(getFavoriteCartState);
   const { userData } = useSelector(loginState);
   const { cartTotalQuantity } = useSelector(getCart);
   const dispatch = useDispatch();
@@ -169,11 +174,19 @@ const ButtonIcons = () => {
         <FiShoppingCart className="w-6 h-6 group-hover:scale-105 transform ease-out transition duration-200" />
         {cartTotalQuantity > 0 && <CartBadges number={cartTotalQuantity} />}
       </div>
-      <div className="md:w-12 md:h-12 rounded-full md:border flex justify-center items-center cursor-pointer group">
-        <BsHeart className="w-6 h-6 group-hover:scale-105 transform ease-out transition duration-200" />
+      <div className="md:w-12 md:h-12 rounded-full md:border flex justify-center items-center group relative">
+        <BsHeart
+          onClick={() => dispatch(isFavoriteOpen())}
+          className="w-6 h-6 group-hover:scale-105 transform ease-out transition duration-200 cursor-pointer"
+        />
+        {items.length > 0 && (
+          <div className="absolute md:right-0 -right-1 md:top-0 -top-2 w-4 md:w-5 h-4 md:h-5 bg-red-500 text-white rounded-full flex justify-center items-center overflow-hidden">
+            <p className="text-[12px]">{items.length}</p>
+          </div>
+        )}
       </div>
       <div
-        className="md:w-12 md:h-12 rounded-full md:border flex justify-center items-center cursor-pointer group overflow-hidden"
+        className="w-12 h-12 rounded-full md:border flex justify-center items-center cursor-pointer group overflow-hidden"
         onClick={() => handleProfile()}
       >
         {userData?.user?.profileImg && (

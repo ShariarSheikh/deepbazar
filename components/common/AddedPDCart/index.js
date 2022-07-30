@@ -39,7 +39,7 @@ const AddedPDCart = () => {
             onClick={() => dispatch(openCart())}
             className="text-gray-600 w-8 h-8 cursor-pointer border rounded-full"
           />
-          <p className="font-semibold text-2xl pr-6">Shopping Cart</p>
+          <p className="text-2xl pr-6">Shopping Cart</p>
         </div>
 
         {cartTotalQuantity >= 1 && <CartItemsList cartItems={cartItems} />}
@@ -65,7 +65,7 @@ export default AddedPDCart;
 
 const CartItemsList = ({ cartItems }) => {
   return (
-    <div className="w-full max-h-[80vh] overflow-y-scroll pb-4 px-2">
+    <div className="w-full max-h-[80vh] overflow-y-scroll pb-4 px-3">
       {cartItems?.map((x) => (
         <CartItems data={x} key={x.id} />
       ))}

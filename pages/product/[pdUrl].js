@@ -13,7 +13,8 @@ import ProductDescription from "../../components/PagesComponent/product/ProductD
 import ImgContainer from "../../components/PagesComponent/product/ImgContainer";
 import FetchRelatedProducts from "../../components/PagesComponent/product/FetchRelatedProducts";
 import { LoadingLayout } from "../../components/common/Loading/loading";
-import Layout from "../../components/core/layout/index";
+import Header from "../../components/core/Header/Header";
+import Footer from "../../components/core/Footer/Footer";
 
 const Product = () => {
   const { singlePdByUrl } = useSelector(getProductApiState);
@@ -26,12 +27,13 @@ const Product = () => {
   }, [router.asPath]);
 
   return (
-    <Layout pageName="product">
+    <>
       <Head>
         <title>
           {pdEndpoint(singlePdByUrl.product?.title, singlePdByUrl.product?.id)}
         </title>
       </Head>
+      <Header />
       <main className="page max-w-[1366px] w-full m-auto mt-8 px-4 pb-4">
         <div className="w-full flex flex-col lg:flex-row justify-between mt-4 transition-all duration-200">
           {/* for loading */}
@@ -56,7 +58,8 @@ const Product = () => {
         <ProductDescription description={singlePdByUrl.product?.description} />
         <FetchRelatedProducts category={singlePdByUrl.product?.category} />
       </main>
-    </Layout>
+      <Footer />
+    </>
   );
 };
 

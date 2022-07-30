@@ -1,5 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import cartSlice from "./cartSlice/cartSlice";
+import favoriteProductSlice from "./favoriteProductSlice/favoriteProductSlice";
 import loginSlice from "./loginSlice/loginSlice";
 import productApiSlice from "./productsApi/productApiSlice";
 //category list open action
@@ -15,5 +16,8 @@ export const store = configureStore({
 
     //get cart data
     getCart: cartSlice,
+
+    //favorite cart
+    getFavoriteCartState: favoriteProductSlice,
   },
 });

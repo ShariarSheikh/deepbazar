@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { useRouter } from "next/router";
 import React from "react";
 import ProductsFeed from "../../../components/common/ProductsFeed/ProductsFeed";
@@ -9,7 +10,8 @@ import {
   getProductApiState,
 } from "../../../redux/productsApi/productApiSlice";
 import { LoadingShoppingCart } from "../../../components/common/Loading/loading";
-import Layout from "../../../components/core/Layout/index";
+import Header from "../../../components/core/Header/Header";
+import Footer from "../../../components/core/Footer/Footer";
 
 const index = () => {
   const { pdByCategories } = useSelector(getProductApiState);
@@ -23,7 +25,11 @@ const index = () => {
   }, [router.isReady, router.asPath]);
 
   return (
-    <Layout pageName="categoryPage">
+    <>
+      <Head>
+        <title>DeepBazar -{router.isReady && router.query?.category}</title>
+      </Head>
+      <Header />
       <div className="page max-w-[1366px] w-full m-auto mt-8 px-4">
         <h2 className="font-medium text-xl uppercase">
           {router.query.category}
@@ -52,7 +58,8 @@ const index = () => {
           <p className="p-10 text-sm text-red-500">{pdByCategories.error}</p>
         )}
       </div>
-    </Layout>
+      <Footer />
+    </>
   );
 };
 

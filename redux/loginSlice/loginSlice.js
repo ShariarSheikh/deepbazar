@@ -16,7 +16,10 @@ export const loginUser = createAsyncThunk(
   }
 );
 
-const user = Cookies.get("user") ? JSON.parse(Cookies.get("user")) : {};
+const user =
+  typeof window !== "undefined" && Cookies.get("user")
+    ? JSON.parse(Cookies.get("user"))
+    : {};
 
 // login slice
 const loginSlice = createSlice({

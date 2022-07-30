@@ -4,6 +4,7 @@ import JoinBox from "../../common/JoinBox";
 import { useSelector } from "react-redux";
 import AddedPDCart from "../../common/AddedPDCart";
 import { loginState } from "../../../redux/loginSlice/loginSlice";
+import AddedFVCart from "../../common/AddedFVCart";
 
 const Header = () => {
   const { userData } = useSelector(loginState);
@@ -12,6 +13,7 @@ const Header = () => {
       <TopComp />
       <BottomComp />
       <AddedPDCart />
+      <AddedFVCart />
       {!userData.user?.name && <JoinBox />}
     </header>
   );

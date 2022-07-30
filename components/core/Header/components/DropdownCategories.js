@@ -49,9 +49,9 @@ export default DropdownCategories;
 const SubcategoryList = ({ categoryList, categoryLink }) => {
   const dispatch = useDispatch();
   return (
-    <ul className="absolute top-16 left-0 w-full group-hover:block hidden bg-white shadow-lg cursor-default">
+    <ul className="absolute top-16 left-0 w-full group-hover:block hidden overflow-hidden bg-white shadow-lg cursor-default">
       {categoryList.map(({ id, text, link }) => (
-        <Link href={`/shop/${categoryLink}${link}`} passHref key={id}>
+        <Link href={`/product${link}`} passHref key={id}>
           <li
             className="px-2 py-2 cursor-pointer border-b border-gray-100 hover:scale-105 duration-200"
             onClick={() => dispatch(hideCategory())}

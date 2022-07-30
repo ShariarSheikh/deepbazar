@@ -5,7 +5,9 @@ import { useSelector } from "react-redux";
 import { loginState, logout } from "../../redux/loginSlice/loginSlice";
 import { useDispatch } from "react-redux";
 import { AiOutlineUser } from "react-icons/ai";
-import Layout from "../../components/core/layout/index";
+import Header from "../../components/core/Header/Header";
+import Footer from "../../components/core/Footer/Footer";
+import { useEffect } from "react";
 
 const index = () => {
   const {
@@ -20,8 +22,11 @@ const index = () => {
     router.replace("/");
   };
 
+  useEffect(() => {
+    if (!user?.name) router.replace("/");
+  }, [user]);
   return (
-    <Layout>
+    <>
       <Head>
         <title>{user?.name}-profile</title>
         <meta
@@ -30,6 +35,7 @@ const index = () => {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <Header />
 
       <main className="max-w-[1366px] w-full m-auto mt-10 px-4 min-h-[60vh]">
         <div className="w-full relative mb-20">
@@ -78,7 +84,8 @@ const index = () => {
           </p>
         </div>
       </main>
-    </Layout>
+      <Footer />
+    </>
   );
 };
 

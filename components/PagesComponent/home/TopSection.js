@@ -8,7 +8,7 @@ const TopSection = () => {
         {/* div-1 */}
         <div className="bg-white relative p-0 w-full sm:w-6/12 h-56 sm:h-full overflow-hidden group">
           <div className="absolute inset-0 bg-black bg-opacity-30 p-4">
-            <h1 className="text-white text-2xl uppercase font-bold">
+            <h1 className="text-white text-xl md:text-2xl uppercase font-bold">
               men-clothes
             </h1>
           </div>
@@ -26,7 +26,7 @@ const TopSection = () => {
           <div className="h-[48%] w-full flex flex-row justify-between">
             <div className="w-[48%] relative overflow-hidden bg-white p-0 group">
               <div className="absolute inset-0 bg-black bg-opacity-30 p-4">
-                <h1 className="text-white text-2xl uppercase font-bold">
+                <h1 className="text-white text-xl md:text-2xl uppercase font-bold">
                   bags
                 </h1>
               </div>
@@ -41,7 +41,7 @@ const TopSection = () => {
 
             <div className="w-[48%] relative overflow-hidden bg-white p-0 group">
               <div className="absolute inset-0 bg-black bg-opacity-30 p-4">
-                <h1 className="text-white text-2xl uppercase font-bold">
+                <h1 className="text-white text-xl md:text-2xl uppercase font-bold">
                   baby-and-kids
                 </h1>
               </div>
@@ -57,7 +57,7 @@ const TopSection = () => {
 
           <div className="h-[48%] relative w-full overflow-hidden bg-white p-0 group">
             <div className="absolute inset-0 bg-black bg-opacity-30 p-4">
-              <h1 className="text-white text-2xl uppercase font-bold">
+              <h1 className="text-white text-xl md:text-2xl uppercase font-bold">
                 women-clothes
               </h1>
             </div>

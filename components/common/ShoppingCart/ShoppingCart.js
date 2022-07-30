@@ -5,6 +5,7 @@ import { FiShoppingCart } from "react-icons/fi";
 import { useDispatch } from "react-redux";
 import pdEndpoint from "../../../utils/pdEndpoint";
 import { addToCart, openCart } from "../../../redux/cartSlice/cartSlice";
+import { addToFavorite } from "../../../redux/favoriteProductSlice/favoriteProductSlice";
 
 const ShoppingCart = ({ data }) => {
   const { price, title, id, images, discountOffer, currency } = data;
@@ -45,6 +46,9 @@ const ShoppingCart = ({ data }) => {
         {/* add favorite */}
         <div className="absolute bottom-1 left-1 lg:left-auto lg:bottom-14 xl:bottom-16 lg:right-2 w-10 h-10 xl:w-14 xl:h-12 lg:hidden group-hover:block cursor-pointer group">
           <div
+            onClick={() =>
+              dispatch(addToFavorite({ id: id, title: title, images: images }))
+            }
             className="w-full h-full flex justify-center items-center border bg-white border-gray-400 rounded-lg
            active:scale-110 transition duration-200"
           >

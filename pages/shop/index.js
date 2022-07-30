@@ -1,4 +1,4 @@
-import React from "react";
+import Head from "next/head";
 import ProductsFeed from "../../components/common/ProductsFeed/ProductsFeed";
 import ShoppingCart from "../../components/common/ShoppingCart/ShoppingCart";
 import { useEffect } from "react";
@@ -8,7 +8,8 @@ import {
   getProductApiState,
 } from "../../redux/productsApi/productApiSlice";
 import { LoadingShoppingCart } from "../../components/common/Loading/loading";
-import Layout from "../../components/core/Layout/index";
+import Header from "../../components/core/Header/Header";
+import Footer from "../../components/core/Footer/Footer";
 
 const index = () => {
   const { allProducts } = useSelector(getProductApiState);
@@ -19,7 +20,11 @@ const index = () => {
   }, []);
 
   return (
-    <Layout pageName="shop">
+    <>
+      <Head>
+        <title>DeepBazar-shop</title>
+      </Head>
+      <Header />
       <div className="page max-w-[1366px] w-full m-auto mt-10 px-4">
         {allProducts.status === "pending" && (
           <ProductsFeed sectionName="">
@@ -46,7 +51,8 @@ const index = () => {
           <p className="p-10 text-sm text-red-500">{allProducts.error}</p>
         )}
       </div>
-    </Layout>
+      <Footer />
+    </>
   );
 };
 

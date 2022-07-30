@@ -1,6 +1,8 @@
+import Head from "next/head";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import Layout from "../components/core/Layout/index";
+import Footer from "../components/core/Footer/Footer";
+import Header from "../components/core/Header/Header";
 import Banner from "../components/PagesComponent/home/Banner";
 import NewProductsFeed from "../components/PagesComponent/home/NewProductsFeed";
 import TopSection from "../components/PagesComponent/home/TopSection";
@@ -22,7 +24,11 @@ const Index = () => {
   }, []);
 
   return (
-    <Layout pageName="home">
+    <>
+      <Head>
+        <title>DeepBazar</title>
+      </Head>
+      <Header />
       <main className="page max-w-[1366px] w-full m-auto mt-10 px-4">
         <TopSection />
         {topSellingProducts.status === "pending" && <p>Loading.....</p>}
@@ -42,7 +48,8 @@ const Index = () => {
           <NewProductsFeed products={newProducts?.products} />
         )}
       </main>
-    </Layout>
+      <Footer />
+    </>
   );
 };
 
