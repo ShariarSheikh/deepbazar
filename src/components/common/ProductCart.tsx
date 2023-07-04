@@ -54,8 +54,7 @@ const ProductCart = ({ data }: { data: ProductTypes }) => {
         <div className="w-full h-full flex justify-end items-center">
           <div
             onClick={() => dispatch(addToFavorite(data))}
-            className="w-10 h-full flex justify-center items-center cursor-pointer bg-white border border-red-200 rounded-full
-         active:scale-110 transition duration-200"
+            className="w-10 h-full flex justify-center items-center cursor-pointer bg-white border border-red-200 rounded-full active:scale-110 transition duration-200"
           >
             <AiFillHeart className="xl:w-6 w-4 h-4 xl:h-6 text-red-500" />
           </div>
