@@ -1,3 +1,10 @@
+export interface ProductRelated {
+  product_id: number;
+  title: string;
+  price: number;
+  image: string;
+}
+
 export interface ProductTypes {
   product_id: string;
   title: string;
@@ -17,20 +24,7 @@ export interface ProductTypes {
     average_rating: number;
     total_reviews: number;
   };
-  related_products: [
-    {
-      product_id: number;
-      title: string;
-      price: number;
-      image: string;
-    },
-    {
-      product_id: number;
-      title: string;
-      price: number;
-      image: number;
-    }
-  ];
+  related_products: ProductRelated[];
   product_url: string;
   _id?: string;
   createdAt: Date;

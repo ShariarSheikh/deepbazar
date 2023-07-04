@@ -20,7 +20,7 @@ const ProductCart = ({ data }: { data: ProductTypes }) => {
    flex flex-col justify-between mb-5 md:mb-7 rounded-md xl:mb-12 hover:shadow-2xl transition-all duration-200 group md:ml-2"
     >
       <div className="w-full h-[180px] md:h-[290px] relative overflow-hidden p-2">
-        <Link href={`/product/${data.product_id}`} passHref>
+        <Link href={`/product/${data._id}`} passHref>
           <img
             className="h-full w-full object-cover cursor-pointer rounded-md"
             src={'https://via.placeholder.com/289x274'}

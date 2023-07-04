@@ -11,7 +11,7 @@ export const LoadingProductCart = () => {
 export const LoadingLayout = () => {
   return (
     <div className={`mb-5 pulse-animation bg-gray-200 w-full h-full`}>
-      <p className="opacity-0">d</p>
+      <p className="opacity-0" />
     </div>
   );
 };

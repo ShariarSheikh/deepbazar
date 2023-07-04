@@ -1,6 +1,6 @@
 import { serverProductionUrl } from '@/global.variables';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { ProductListApi } from './types';
+import { ProductDetailsApi, ProductListApi } from './types';
 
 const ProductApi = createApi({
   reducerPath: 'ProductApi',
@@ -17,7 +17,7 @@ const ProductApi = createApi({
       }),
     }),
 
-    productDetailsById: builder.query<any, any>({
+    productDetailsById: builder.query<ProductDetailsApi, any>({
       query: (id: string) => ({
         url: `/api/product/details/${id}`,
       }),
