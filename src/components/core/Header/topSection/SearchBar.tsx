@@ -1,9 +1,8 @@
 import { useAppDispatch } from '@/redux/hooks';
 import { usePathname, useRouter } from 'next/navigation';
-import { KeyboardEvent, useEffect, useRef, useState } from 'react';
-import { IoSearchOutline } from 'react-icons/io5';
-import { RiArrowDropDownFill } from 'react-icons/ri';
-import { categoryList } from '..';
+import { MouseEvent, useEffect, useRef, useState } from 'react';
+import { AiOutlineUnorderedList } from 'react-icons/ai';
+import { FiSearch } from 'react-icons/fi';
 
 //-------------------------------------------------------
 interface SearchQuery {
@@ -16,7 +15,6 @@ const SearchBar = () => {
   //STATE
   const [isShowResult, setIsShowResult] = useState<boolean>(false);
   const [isShowCategory, setIsShowCategory] = useState<boolean>(false);
-  const [categoryName, setCategoryName] = useState<string>('All');
   const [selectedCategory, setSelectedCategory] = useState<string>('aps');
   const [searchQuery, setSearchQuery] = useState<SearchQuery>({
     category: '',
@@ -31,15 +29,8 @@ const SearchBar = () => {
   const searchInputRef = useRef<HTMLInputElement>(null);
 
   // HANDLERS
-  const onClickCategory = (catName: string, selectedCat: string) => {
-    setCategoryName(catName);
-    setSelectedCategory(selectedCat);
-    setIsShowCategory(false);
-  };
-
-  type searchHandlerProps = KeyboardEvent<HTMLInputElement>;
-
-  const searchHandler = (e: searchHandlerProps) => {
+  type searchHandlerProps = React.MouseEvent<HTMLButtonElement, MouseEvent>;
+  const searchHandler = (e: searchHandlerProps): void => {
     e.preventDefault();
     const text = searchInputRef.current?.value.trim();
 
@@ -74,49 +65,23 @@ const SearchBar = () => {
 
   // HTML
   return (
-    <div className="flex-1 relative">
-      <form className="w-full flex justify-between h-[42px] bg-gray-200">
-        <div
-          className="relative text-base h-full max-w-[200px] flex items-center justify-center"
-          onClick={() => setIsShowCategory(!isShowCategory)}
-          ref={menuRef}
-          onBlur={() => setIsShowCategory(false)}
-          tabIndex={0}
-        >
-          <div className="px-2 w-full flex justify-center cursor-pointer items-center border">
-            <p className="max-w-[100px] line-clamp-1 text-sm">{categoryName}</p>
-            <RiArrowDropDownFill />
-          </div>
-
-          <div
-            className="w-[240px] h-auto max-w-[240px] max-h-[520px] text-black absolute left-0 top-12 drop-shadow-xl bg-white pt-2 z-50"
-            hidden={!isShowCategory}
-            onClick={e => e.stopPropagation()}
-          >
-            {categoryList.map(({ id, category, link }) => (
-              <li
-                className="text-sm cursor-pointer h-8 border-b border-gray-200 px-3 flex items-center"
-                key={id}
-                onClick={() => onClickCategory(category, link)}
-              >
-                {category}
-              </li>
-            ))}
-          </div>
-        </div>
+    <div className="flex-1 relative w-full max-w-[507px]">
+      <form className="w-full flex items-center justify-between h-[48px] bg-[#F3F9FB] rounded-[10px] relative">
+        <FiSearch className="text-primary absolute left-[16px] z-0" />
         <input
-          className="flex-1 border-t border-b pl-3 outline-none"
+          className="flex-1 pl-[36px] outline-none text-[14px] bg-transparent z-10"
           type="text"
-          placeholder="Search"
+          placeholder="Search category, product name and more..."
           ref={searchInputRef}
+          //@ts-expect-error => this searchHandler used on input and button, the input has key button dose't,
           onKeyPress={e => e.key === 'Enter' && searchHandler(e)}
         />
         <button
           //@ts-expect-error => this searchHandler used on input and button, the input has key button dose't,
           onClick={searchHandler}
-          className="w-10 flex items-center justify-center border cursor-pointer bg-black group"
+          className="w-10 flex items-center justify-center cursor-pointer group"
         >
-          <IoSearchOutline className="text-yellow-400 font-bold text-xl group-hover:scale-125 transform ease-out transition duration-200" />
+          <AiOutlineUnorderedList className="text-primary font-bold text-xl group-hover:scale-110 active:scale-95 transform ease-out transition duration-200" />
         </button>
       </form>
 

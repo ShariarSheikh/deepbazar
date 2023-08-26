@@ -1,10 +1,13 @@
 import useWindowSize from '@/hooks/useWindowSize';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import { CiLocationOn } from 'react-icons/ci';
+import { FaCaravan } from 'react-icons/fa';
+import { MdLocalOffer } from 'react-icons/md';
 import HamburgerMenu from '../hamburgerMenu';
 import HamburgerMenuIcon from '../hamburgerMenu/Icon';
 import DeliveryLocation from './DeliveryLocation';
-import LanguageAndContact from './LanguageAndContact';
 import Logo from './Logo';
 import ProfileButtons from './ProfileButtons';
 import SearchBar from './SearchBar';
@@ -37,14 +40,46 @@ const RenderUiForMobile = () => {
 };
 
 const RenderUiForDesktop = () => {
+  const [open, setOpen] = useState(false);
+
   return (
     <div className="hidden w-full h-full lg:block">
-      <div className="w-full flex items-center justify-between h-full">
-        <Logo />
-        <DeliveryLocation />
-        <SearchBar />
-        <LanguageAndContact />
-        <ProfileButtons />
+      <div className="w-full bg-[#F5F5F5]">
+        <div className="h-[42px] max-w-[1366px] text-[#666666] font-light mx-auto flex items-center justify-between">
+          <h1 className="text-sm">Welcome to worldwide DeepBazar!</h1>
+          <div className="flex space-x-4">
+            <button>
+              <Link href="tel:01304802278" className="flex items-center">
+                <CiLocationOn className="text-primary" />
+                <p className="ml-[6px] text-sm">
+                  Deliver to <b>033456</b>
+                </p>
+              </Link>
+            </button>
+            <span className="bg-[#D9D9D9] h-[18px] w-[1px]" />
+            <button className="flex items-center">
+              <FaCaravan className="text-primary" />
+              <p className="ml-[6px] text-sm">Track your order</p>
+            </button>
+            <span className="bg-[#D9D9D9] h-[18px] w-[1px]" />
+            <button className="flex items-center">
+              <MdLocalOffer className="text-primary" />
+              <p className="ml-[6px] text-sm">All Offers</p>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div className="border-b border-[#EDEDED]">
+        <div className="max-w-[1366px] h-full min-h-[90px] mx-auto flex items-center justify-between w-full">
+          <div className="flex items-center">
+            <HamburgerMenuIcon open={open} setOpen={setOpen} />
+            <Logo />
+            <DeliveryLocation />
+          </div>
+          <SearchBar />
+          <ProfileButtons />
+        </div>
       </div>
     </div>
   );
@@ -56,11 +91,10 @@ const TopSection = () => {
 
   return (
     <div
-      className="w-full py-5 flex items-center justify-between
-      border-b font-roboto px-4 2xl:px-0 transition-all duration-150"
+      className="w-full flex items-center justify-between
+      font-roboto px-4 2xl:px-0 transition-all duration-150"
     >
-      {width <= 1023 && <RenderUiForMobile />}
-      {width > 1023 && <RenderUiForDesktop />}
+      {width <= 1023 ? <RenderUiForMobile /> : <RenderUiForDesktop />}
     </div>
   );
 };

@@ -1,11 +1,12 @@
 import CartBadges from '@/components/common/CartBadge';
 import { showCartHandler } from '@/redux/features/cartSlice';
-import { showFavoriteCartHandler } from '@/redux/features/favoriteCartSlice';
 import { showLoginHandler } from '@/redux/features/loginSlice';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { BsHeart, BsPerson } from 'react-icons/bs';
+import { BsPerson } from 'react-icons/bs';
 import { FiShoppingCart } from 'react-icons/fi';
+import { MdOutlinePersonOutline } from 'react-icons/md';
 import { RiArrowDropDownLine } from 'react-icons/ri';
 
 //-----------------------------------
@@ -55,9 +56,6 @@ const Profile = () => {
 
 const ProfileButtons = () => {
   //STATE
-  const { items: cartFavoriteItems } = useAppSelector(
-    state => state.favoriteCartSlice
-  );
   const { cartTotalQuantity } = useAppSelector(state => state.cartSlice);
 
   //HOOKS
@@ -69,26 +67,26 @@ const ProfileButtons = () => {
   };
 
   return (
-    <div className="flex md:space-x-4 space-x-2">
-      <div
-        className="md:w-12 md:h-12 rounded-full md:border flex justify-center items-center cursor-pointer group relative"
-        onClick={() => handleCart()}
+    <div className="flex items-center md:space-x-4 space-x-2 ml-[30px]">
+      <Link href="/auth">
+        <button className="flex items-center w-full max-w-[160px] min-w-[160px]">
+          <MdOutlinePersonOutline size={24} className="text-primary" />
+          <p className="ml-[6px] text-[16px] font-bold text-[#666666]">
+            Sign Up/Sign In
+          </p>
+        </button>
+      </Link>
+
+      <button
+        onClick={handleCart}
+        className="flex items-center w-full max-w-[160px] min-w-[160px] relative"
       >
-        <FiShoppingCart className="w-6 h-6 group-hover:scale-105 transform ease-out transition duration-200" />
-        {cartTotalQuantity > 0 && <CartBadges number={cartTotalQuantity} />}
-      </div>
-      <div className="md:w-12 md:h-12 rounded-full md:border flex justify-center items-center group relative">
-        <BsHeart
-          onClick={() => dispatch(showFavoriteCartHandler())}
-          className="w-6 h-6 group-hover:scale-105 transform ease-out transition duration-200 cursor-pointer"
-        />
-        {cartFavoriteItems.length > 0 && (
-          <div className="absolute md:right-0 -right-1 md:top-0 -top-2 w-4 md:w-5 h-4 md:h-5 bg-red-500 text-white rounded-full flex justify-center items-center overflow-hidden">
-            <p className="text-[12px]">{cartFavoriteItems.length}</p>
-          </div>
+        <FiShoppingCart size={24} className="text-primary" />
+        {cartTotalQuantity > 10 && (
+          <CartBadges number={cartTotalQuantity || 6} />
         )}
-      </div>
-      <Profile />
+        <p className="ml-[6px] text-[16px] font-bold text-[#666666]">Cart</p>
+      </button>
     </div>
   );
 };

@@ -3,7 +3,6 @@
 import LoginSidebar from '@/components/common/LoginSidebar';
 import { useAppSelector } from '@/redux/hooks';
 import dynamic from 'next/dynamic';
-import BottomSection from './bottomSection';
 import TopSection from './topSection';
 
 const CartSidebar = dynamic(() => import('@/components/common/CartSidebar'));
@@ -15,9 +14,9 @@ const Header = () => {
   const { userData } = useAppSelector(state => state.loginSlice);
 
   return (
-    <header className="max-w-[1366px] w-full m-auto">
+    <header className="w-full">
       <TopSection />
-      <BottomSection />
+      {/* <BottomSection /> */}
       <CartSidebar />
       <FavoriteCartSidebar />
       {!userData.user?.name && <LoginSidebar />}

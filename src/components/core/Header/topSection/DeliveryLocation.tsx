@@ -88,26 +88,27 @@ const DeliveryLocation = () => {
   };
 
   return (
-    <div className="h-full cursor-pointer mr-7 w-full bg-white max-w-[150px] rounded-sm relative">
+    <div className="h-full cursor-pointer mr-7 w-full bg-white max-w-[133px] rounded-sm relative">
       <div
         onBlur={() => setIsOpenList(false)}
         onClick={() => setIsOpenList(!isOpenList)}
-        className="w-full h-full flex items-center px-1 border border-gray-300"
+        className="w-full h-full flex items-center px-1"
       >
         <img
-          className="w-[35px] h-[35px] object-contain"
+          className="w-[35px] h-[25px] object-contain"
           src={myLocation?.imageUrl}
           alt={myLocation?.country}
         />
         <div className="flex flex-col ml-1 w-full">
-          <span className="font-medium text-sm w-full line-clamp-1 leading-none text-gray-800">
+          <span className="font-medium text-[13px] w-full line-clamp-1 leading-none text-primary">
             {myLocation?.country}
           </span>
-          <span className="text-gray-600 text-[13px] w-full line-clamp-1 leading-none">
+          <span className="text-gray-500 text-[10px] w-full line-clamp-1 leading-none">
             {myLocation?.capital} <span>| {myLocation?.region}</span>
           </span>
         </div>
       </div>
+      <p className="text-[10px] text-gray-500 px-3">Chose your location</p>
 
       <div
         hidden={!isOpenList}
