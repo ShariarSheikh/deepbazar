@@ -23,15 +23,14 @@ const DisplayImage: FC = () => {
     <div className="relative w-full lg:w-[47%] max-w-[768px] m-auto flex flex-col-reverse min-h-[450px] max-h-[450px]">
       {/* images list */}
       <div
-        className={`w-full lg:w-[55px] h-[50px] flex flex-row space-x-5 lg:space-x-0 overflow-hidden mt-6`}
+        className={`w-full h-[50px] flex flex-row space-x-2 overflow-hidden mt-6`}
       >
         {[1, 2, 3, 4].map((v, i) => (
           <Image
             key={i}
-            className="cursor-pointer z-20"
+            className="object-cover cursor-pointer z-20"
             src="https://via.placeholder.com/50x50"
             alt="product"
-            layout="responsive"
             width={50}
             height={50}
           />

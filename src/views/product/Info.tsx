@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+import CartQuantityButtons from '@/components/common/CartQuantityButtons';
 import { addToCart } from '@/redux/features/cartSlice';
 import { useAppDispatch } from '@/redux/hooks';
 import { ProductTypes } from '@/types/product.types';
@@ -7,19 +8,19 @@ import { AiFillStar, AiOutlineCheckCircle } from 'react-icons/ai';
 import StarRatings from 'react-star-ratings';
 
 const Info: FC<{ data: ProductTypes }> = ({ data }) => {
-  const [countItem, setCountItem] = useState<number>(1);
+  const [quantity, setQuantity] = useState<number>(1);
   const dispatch = useAppDispatch();
 
-  // const increment = () => {
-  //   setCountItem(parseFloat(countItem) + 1);
-  // };
-  // const decrement = () => {
-  //   countItem > 1 && setCountItem(parseInt(countItem) - 1);
-  // };
+  const increment = () => {
+    setQuantity(parseFloat(quantity) + 1);
+  };
+  const decrement = () => {
+    quantity > 1 && setQuantity(parseInt(quantity) - 1);
+  };
 
   //add to cart
   const addItems = () => {
-    const quantity = countItem;
+    const itemQuantity = quantity;
     dispatch(addToCart({ data, quantity }));
   };
 
@@ -91,12 +92,11 @@ const Info: FC<{ data: ProductTypes }> = ({ data }) => {
           {/* quantity */}
           <div>
             Quantity:
-            {/* <CartQuantityButtons
-              quantity={data?.minQuantity}
-              countItem={countItem}
+            <CartQuantityButtons
+              quantity={quantity}
               increment={increment}
               decrement={decrement}
-            /> */}
+            />
           </div>
         </div>
         {/* add to cart */}

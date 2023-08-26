@@ -2,14 +2,12 @@ import { FC } from 'react';
 
 interface CartQuantityButtonsProps {
   quantity: number;
-  countItem: number;
   increment: () => void;
   decrement: () => void;
 }
 
 const CartQuantityButtons: FC<CartQuantityButtonsProps> = ({
   quantity,
-  countItem,
   increment,
   decrement,
 }) => {
@@ -37,10 +35,9 @@ const CartQuantityButtons: FC<CartQuantityButtonsProps> = ({
       <div className="relative w-10 h-full flex justify-center items-center">
         <input
           step="0.01"
-          maxLength={quantity}
           className="w-10 outline-none border-none h-10 text-black overflow-hidden pl-2 rounded-full"
           type="number"
-          value={countItem}
+          value={quantity}
           readOnly
         />
       </div>
