@@ -1,11 +1,10 @@
-import { serverProductionUrl } from '@/global.variables';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { ProductDetailsApi, ProductListApi } from './types';
 
 const ProductApi = createApi({
   reducerPath: 'ProductApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: serverProductionUrl,
+    baseUrl: 'http://localhost:4093/auth/serverProductionUrl',
     headers: {},
   }),
 

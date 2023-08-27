@@ -12,8 +12,10 @@ export default function Home() {
   // const products = data?.data.products ?? [];
 
   return (
-    <main className="min-h-screen max-w-[1300px] w-full m-auto mt-10">
-      <HeroSection />
+    <main className="min-h-screen w-full m-auto mt-10">
+      <div className="w-full max-w-[1201px] mx-auto">
+        <HeroSection />
+      </div>
       <ProductsFeed>
         {/* {isLoading && (
           <>

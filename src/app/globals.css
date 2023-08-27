@@ -1,3 +1,24 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/**swiper js custom style**/
+.swiper-button-prev {
+  left: 6pxpx !important;
+}
+.swiper-button-next {
+  right: 6px !important;
+}
+.swiper-button-prev,
+.swiper-button-next {
+  background: #f3f9fb !important;
+  width: 86px !important;
+  height: 86px !important;
+  border-radius: 50% !important;
+  border: solid 8px white !important;
+  z-index: 10;
+}
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  font-size: 20px !important;
+}
