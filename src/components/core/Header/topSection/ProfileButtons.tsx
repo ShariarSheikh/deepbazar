@@ -79,7 +79,7 @@ const ProfileButtons = () => {
 
       <button
         onClick={handleCart}
-        className="flex items-center w-full max-w-[160px] min-w-[160px] relative"
+        className="flex items-center w-full relative"
       >
         <FiShoppingCart size={24} className="text-primary" />
         {cartTotalQuantity > 10 && (

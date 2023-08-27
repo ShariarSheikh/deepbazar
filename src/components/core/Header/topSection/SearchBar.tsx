@@ -65,7 +65,7 @@ const SearchBar = () => {
 
   // HTML
   return (
-    <div className="flex-1 relative w-full max-w-[507px]">
+    <div className="relative w-full max-w-[507px]">
       <form className="w-full flex items-center justify-between h-[48px] bg-[#F3F9FB] rounded-[10px] relative">
         <FiSearch className="text-primary absolute left-[16px] z-0" />
         <input

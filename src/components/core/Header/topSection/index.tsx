@@ -45,7 +45,7 @@ const RenderUiForDesktop = () => {
   return (
     <div className="hidden w-full h-full lg:block">
       <div className="w-full bg-[#F5F5F5]">
-        <div className="h-[42px] max-w-[1366px] text-[#666666] font-light mx-auto flex items-center justify-between">
+        <div className="h-[42px] max-w-[1201px] text-[#666666] font-light mx-auto flex items-center justify-between">
           <h1 className="text-sm">Welcome to worldwide DeepBazar!</h1>
           <div className="flex space-x-4">
             <button>
@@ -71,14 +71,17 @@ const RenderUiForDesktop = () => {
       </div>
 
       <div className="border-b border-[#EDEDED]">
-        <div className="max-w-[1366px] h-full min-h-[90px] mx-auto flex items-center justify-between w-full">
+        <div className="max-w-[1201px] h-full min-h-[90px] mx-auto flex items-center justify-between w-full">
           <div className="flex items-center">
             <HamburgerMenuIcon open={open} setOpen={setOpen} />
             <Logo />
             <DeliveryLocation />
           </div>
-          <SearchBar />
-          <ProfileButtons />
+
+          <div className="w-full max-w-[780px] flex items-center justify-end">
+            <SearchBar />
+            <ProfileButtons />
+          </div>
         </div>
       </div>
     </div>
