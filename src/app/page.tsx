@@ -1,6 +1,7 @@
 'use client';
 
 import ProductsFeed from '@/components/common/ProductFeed';
+import CategorySection from '@/views/home/CategorySection';
 import HeroSection from '@/views/home/HeroSection';
 
 //---------------------------------------------------------
@@ -15,6 +16,7 @@ export default function Home() {
     <main className="min-h-screen w-full m-auto mt-10">
       <div className="w-full max-w-[1201px] mx-auto">
         <HeroSection />
+        <CategorySection />
       </div>
       <ProductsFeed>
         {/* {isLoading && (
