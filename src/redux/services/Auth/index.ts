@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react';
 import { LoginSendData, RegisterSendData } from './types';
 

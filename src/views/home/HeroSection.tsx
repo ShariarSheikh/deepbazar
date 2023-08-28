@@ -1,9 +1,9 @@
-import useWindowSize from '@/hooks/useWindowSize';
 import { useRouter } from 'next/navigation';
-import { Autoplay, Navigation, Pagination } from 'swiper';
+import 'swiper/css';
 import 'swiper/css/navigation';
+import { Autoplay, Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/swiper.css';
+
 //---------------------------------------
 
 //---------------------------------------
@@ -11,7 +11,6 @@ import 'swiper/swiper.css';
 const HeroSection = () => {
   //HOOKS
   const router = useRouter();
-  const { width } = useWindowSize();
 
   return (
     <div className="w-full relative h-[316px] bg-slate-100">

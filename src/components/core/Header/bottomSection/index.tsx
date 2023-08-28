@@ -1,6 +1,5 @@
-import { useAppDispatch } from '@/redux/hooks';
 import Link from 'next/link';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import { RiArrowDropDownLine } from 'react-icons/ri';
 import { categoryList } from '..';
 
@@ -60,9 +59,7 @@ const RenderDropdownLinks = () => {
 };
 
 const BottomSection = () => {
-  const router = useRouter();
   const pathname = usePathname();
-  const dispatch = useAppDispatch();
 
   return (
     <nav className="w-full hidden lg:block px-4 2xl:px-0 h-10 py-6 border-b border-gray-300">

@@ -20,9 +20,7 @@ import CartQuantityButtons from './CartQuantityButtons';
 const ItemsList = ({ cartItems }: { cartItems: CartData[] }) => {
   return (
     <div className="w-full max-h-[100vh] h-full overflow-y-scroll pb-4 px-3">
-      {cartItems?.map(item => (
-        <Item data={item} key={item.product_id} />
-      ))}
+      {cartItems?.map(item => <Item data={item} key={item.product_id} />)}
     </div>
   );
 };

@@ -8,17 +8,15 @@ import {
   removeItem,
 } from '@/redux/features/cartSlice';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
 
 const Order = () => {
-  const { cartItems, cartTotalAmount, cartTotalQuantity } = useAppSelector(
+  const { cartItems, cartTotalAmount } = useAppSelector(
     state => state.cartSlice
   );
 
   const dispatch = useAppDispatch();
-  const router = useRouter();
 
   // useEffect(() => {
   //   cartTotalQuantity <= 0 && router.replace('/');
@@ -60,9 +58,7 @@ export default Order;
 const ItemsList = ({ data }: { data: CartData[] }) => {
   return (
     <div className="w-full max-h-[100vh] h-full pb-4 px-3">
-      {data?.map(item => (
-        <Item data={item} key={item.product_id} />
-      ))}
+      {data?.map(item => <Item data={item} key={item.product_id} />)}
     </div>
   );
 };
