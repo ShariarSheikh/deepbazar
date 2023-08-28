@@ -92,7 +92,6 @@ const Item = ({ data }: { data: CartData }) => {
 
         <div>
           <CartQuantityButtons
-            countItem={countItem}
             increment={increment}
             decrement={decrement}
             quantity={cartQuantity}

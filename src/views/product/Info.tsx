@@ -12,10 +12,10 @@ const Info: FC<{ data: ProductTypes }> = ({ data }) => {
   const dispatch = useAppDispatch();
 
   const increment = () => {
-    setQuantity(parseFloat(quantity) + 1);
+    setQuantity(quantity + 1);
   };
   const decrement = () => {
-    quantity > 1 && setQuantity(parseInt(quantity) - 1);
+    quantity > 1 && setQuantity(quantity - 1);
   };
 
   //add to cart

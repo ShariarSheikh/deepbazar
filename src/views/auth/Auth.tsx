@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import { FC, useState } from 'react';
 import byPd from '../../assets/bypd.png';
 import manFly from '../../assets/manfly.png';
@@ -18,19 +19,24 @@ const Auth: FC = () => {
       <section className="w-full flex flex-col lg:flex-row justify-between">
         <div className="w-[60%] h-[440px] hidden lg:block relative overflow-hidden">
           <div className="w-full flex items-start justify-start">
-            <AuthContent isBuyer={isBuyer} isNewUser={isNewUser} />
+            <AuthContent
+              activeNewUserHandler={activeNewUserHandler}
+              activeOldUserHandler={activeOldUserHandler}
+              isBuyer={isBuyer}
+              isNewUser={isNewUser}
+            />
           </div>
-          <div
+          <motion.div
             style={{
               backgroundImage: `url(${isBuyer ? byPd.src : manFly.src})`,
               backgroundSize: 'contain',
               backgroundRepeat: 'no-repeat',
               width: ' 100%',
               height: ' 390px',
+              position: 'absolute',
               top: '-13px',
               right: '-257px',
             }}
-            className=""
           />
         </div>
         <div className="w-[40%] flex flex-col items-center">
@@ -81,13 +87,18 @@ const Auth: FC = () => {
 
 export default Auth;
 
+interface AuthContentProps {
+  isBuyer: boolean;
+  isNewUser: boolean;
+  activeNewUserHandler: () => void;
+  activeOldUserHandler: () => void;
+}
 const AuthContent = ({
   isBuyer,
   isNewUser,
-}: {
-  isBuyer: boolean;
-  isNewUser: boolean;
-}) => {
+  activeNewUserHandler,
+  activeOldUserHandler,
+}: AuthContentProps) => {
   return (
     <div>
       {isBuyer ? (
@@ -107,7 +118,10 @@ const AuthContent = ({
           <p>
             Already have an account?
             <br />
-            <span className="ml-[2px] text-primary cursor-pointer hover:underline">
+            <span
+              onClick={activeOldUserHandler}
+              className="ml-[2px] text-primary cursor-pointer hover:underline"
+            >
               Sign In Here!
             </span>
           </p>
@@ -118,7 +132,10 @@ const AuthContent = ({
             If you {"don't"} an account <br />
             <span>
               you can
-              <span className="ml-[2px] text-primary cursor-pointer hover:underline">
+              <span
+                onClick={activeNewUserHandler}
+                className="ml-[2px] text-primary cursor-pointer hover:underline"
+              >
                 Sign Up Here!
               </span>
             </span>
