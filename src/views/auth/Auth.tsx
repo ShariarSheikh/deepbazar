@@ -1,9 +1,11 @@
 import { FC, useState } from 'react';
+import byPd from '../../assets/bypd.png';
+import manFly from '../../assets/manfly.png';
 import Login from './Login';
 import SignUp from './SignUp';
 
 const Auth: FC = () => {
-  const [isBuyer, setIsBuyer] = useState<boolean>(false);
+  const [isBuyer, setIsBuyer] = useState<boolean>(true);
   const [isNewUser, setIsNewUser] = useState<boolean>(false);
 
   const authTypeSeller = () => setIsBuyer(false);
@@ -14,10 +16,22 @@ const Auth: FC = () => {
   return (
     <div className="w-full">
       <section className="w-full flex flex-col lg:flex-row justify-between">
-        <div className="w-[60%] hidden lg:block">
-          <div className="w-full h-full flex items-start justify-start">
+        <div className="w-[60%] h-[440px] hidden lg:block relative overflow-hidden">
+          <div className="w-full flex items-start justify-start">
             <AuthContent isBuyer={isBuyer} isNewUser={isNewUser} />
           </div>
+          <div
+            style={{
+              backgroundImage: `url(${isBuyer ? byPd.src : manFly.src})`,
+              backgroundSize: 'contain',
+              backgroundRepeat: 'no-repeat',
+              width: ' 100%',
+              height: ' 390px',
+              top: '-13px',
+              right: '-257px',
+            }}
+            className=""
+          />
         </div>
         <div className="w-[40%] flex flex-col items-center">
           <h1 className="text-primary text-[25px] font-poppins font-bold">
@@ -78,14 +92,14 @@ const AuthContent = ({
     <div>
       {isBuyer ? (
         <h1 className="text-[50px] font-semibold font-poppins leading-tight text-primary">
-          Sign In And Buy
+          Buy Your Favorite Products
           <br />
-          Your Favorite Products
+          On DeepBazar
         </h1>
       ) : (
         <h1 className="text-[50px] font-semibold font-poppins leading-tight text-primary">
-          Sign Up And <br />
-          Sell Your Products
+          Sell Your Products <br />
+          On DeepBazar
         </h1>
       )}
       {isNewUser ? (

@@ -32,7 +32,7 @@ const Login: FC<IProps> = ({ activeNewUserHandler }) => {
         />
       </div>
 
-      <button className="flex justify-end w-full mt-[10px]">
+      <button className="flex justify-end w-full mt-[10px] cursor-default">
         <Link
           href="/recover-password"
           className="text-[12px] text-gray-400 hover:underline"
@@ -59,13 +59,13 @@ const Login: FC<IProps> = ({ activeNewUserHandler }) => {
       </button>
 
       <div className="flex items-center justify-between mt-[20px]">
-        <div className="w-[30%] flex items-center justify-center cursor-pointer  h-[42px] rounded-[4px] border border-[#e5e5e6]">
+        <div className="w-[30%] flex items-center justify-center cursor-pointer hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:border-transparent h-[42px] rounded-[4px] border border-[#e5e5e6]">
           <FcGoogle />
         </div>
-        <div className="w-[30%] flex items-center justify-center cursor-pointer  h-[42px] rounded-[4px] border border-[#e5e5e6]">
+        <div className="w-[30%] flex items-center justify-center cursor-pointer hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:border-transparent h-[42px] rounded-[4px] border border-[#e5e5e6]">
           <FaApple />
         </div>
-        <div className="w-[30%] flex items-center justify-center cursor-pointer  h-[42px] rounded-[4px] border border-[#e5e5e6]">
+        <div className="w-[30%] flex items-center justify-center cursor-pointer hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:border-transparent h-[42px] rounded-[4px] border border-[#e5e5e6]">
           <FaFacebookF color="#4267B2" />
         </div>
       </div>

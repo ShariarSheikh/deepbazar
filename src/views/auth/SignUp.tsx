@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { FC, FormEvent } from 'react';
 import { FaApple, FaFacebookF } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc';
@@ -45,16 +44,7 @@ const SignUp: FC<IProps> = ({ activeOldUserHandler }) => {
         />
       </div>
 
-      <button className="flex justify-end w-full mt-[10px]">
-        <Link
-          href="/recover-password"
-          className="text-[12px] text-gray-400 hover:underline"
-        >
-          Recover Password?
-        </Link>
-      </button>
-
-      <button className="shadow-[0_10px_30px_rgba(8,_112,_184,_0.7)] active:scale-95 duration-150 flex justify-center items-center w-full mt-[10px] bg-primary h-[42px] rounded-[6px] text-white text-[13px]">
+      <button className="shadow-[0_10px_30px_rgba(8,_112,_184,_0.7)] active:scale-95 duration-150 flex justify-center items-center w-full mt-[25px] bg-primary h-[42px] rounded-[6px] text-white text-[13px]">
         Sign Up
       </button>
       <div className="flex items-center justify-between w-full mt-[20px]">
