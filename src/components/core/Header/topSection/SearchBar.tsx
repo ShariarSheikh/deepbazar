@@ -1,3 +1,4 @@
+import { categories } from '@/views/home/CategorySection';
 import { AnimatePresence, motion } from 'framer-motion';
 import { usePathname } from 'next/navigation';
 import { ChangeEvent, useEffect, useRef, useState } from 'react';
@@ -74,37 +75,6 @@ const SearchBar = () => {
               >
                 <AiOutlineUnorderedList className="text-primary font-bold text-xl group-hover:scale-110 active:scale-95 transform ease-out transition duration-200" />
               </button>
-              {isShowCategory && (
-                <ClickAwayListener onClickAway={hideCategoryHandler}>
-                  <motion.div
-                    initial={{ opacity: 0, y: -20, x: -110 }}
-                    animate={{ opacity: 1, y: -10, x: -110 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    transition={{ type: 'spring', damping: 30, stiffness: 400 }}
-                    className="h-full w-full mt-2 z-50 right-0 relative bg-[#ffffff] border border-[#EDEDED] text-gray-400 max-w-[140px] min-w-[140px] min-h-[160px] rounded-[10px]"
-                  >
-                    <div className="w-full h-full overflow-hidden">
-                      <ul className="mt-[8px] w-full">
-                        <li className="text-[14px] font-poppins cursor-pointer w-full h-[25px] mb-[5px] flex items-center pl-[8px] hover:underline">
-                          Mobile
-                        </li>
-                        <li className="text-[14px] font-poppins cursor-pointer w-full h-[25px] mb-[5px] flex items-center pl-[8px] hover:underline">
-                          Watch
-                        </li>
-                        <li className="text-[14px] font-poppins cursor-pointer w-full h-[25px] mb-[5px] flex items-center pl-[8px] hover:underline">
-                          Laptop
-                        </li>
-                        <li className="text-[14px] font-poppins cursor-pointer w-full h-[25px] mb-[5px] flex items-center pl-[8px] hover:underline">
-                          Camera
-                        </li>
-                        <li className="text-[14px] font-poppins cursor-pointer w-full h-[25px] mb-[5px] flex items-center pl-[8px] hover:underline">
-                          Audio
-                        </li>
-                      </ul>
-                    </div>
-                  </motion.div>
-                </ClickAwayListener>
-              )}
             </div>
           </form>
 
@@ -148,6 +118,70 @@ const SearchBar = () => {
                 </p>
               </div>
             </motion.div>
+          )}
+
+          {isShowCategory && (
+            <ClickAwayListener onClickAway={hideCategoryHandler}>
+              <motion.div
+                initial={{ opacity: 0, y: -20, x: 0 }}
+                animate={{ opacity: 1, y: -10, x: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ type: 'spring', damping: 30, stiffness: 400 }}
+                className="h-full w-full mt-2 z-50 right-0 relative bg-[#ffffff] border border-[#EDEDED] text-gray-400 max-w-[507px] min-h-[315px] rounded-[10px]"
+              >
+                <div className="w-full h-full">
+                  <h1 className="text-black text-opacity-80 text-[20px] font-poppins font-medium border-b pb-[10px] mt-[20px] pl-[15px]">
+                    Categories
+                  </h1>
+                  <ul className="mt-[8px] w-full flex flex-wrap justify-between gap-2 items-center p-[12px]">
+                    {categories.map(category => (
+                      <li
+                        key={category.id}
+                        className="h-[58px] w-[49%] rounded-[6px] flex items-center p-2 justify-start bg-[#F3F9FB] group cursor-pointer hover:bg-[#e9f4f8] duration-150"
+                      >
+                        <div className="w-[50px] h-[50px] rounded-[6px] overflow-hidden">
+                          <img
+                            className="w-full h-full object-cover"
+                            src={category.bgImgUrl}
+                            alt={category.catName}
+                          />
+                        </div>
+                        <div className="ml-[4px]">
+                          <h1 className="text-primary">{category.catName}</h1>
+                          <p className="text-[12px] text-gray-500">
+                            {category.totalItems} Item Available
+                          </p>
+                        </div>
+                      </li>
+                    ))}
+                    {/* <li className="h-[58px] rounded-[6px] flex items-center p-2 justify-start">
+                      <div className='w-[50px] h-[50px] rounded-[6px]'>
+                          <img src="" alt="" />
+                      </div>
+                      <h1></h1>
+                    </li>
+                    <li className="h-[58px] rounded-[6px] flex items-center p-2 justify-start">
+                      <div className='w-[50px] h-[50px] rounded-[6px]'>
+                          <img src="" alt="" />
+                      </div>
+                      <h1></h1>
+                    </li>
+                    <li className="h-[58px] rounded-[6px] flex items-center p-2 justify-start">
+                      <div className='w-[50px] h-[50px] rounded-[6px]'>
+                          <img src="" alt="" />
+                      </div>
+                      <h1></h1>
+                    </li>
+                    <li className="h-[58px] rounded-[6px] flex items-center p-2 justify-start">
+                      <div className='w-[50px] h-[50px] rounded-[6px]'>
+                          <img src="" alt="" />
+                      </div>
+                      <h1></h1>
+                    </li> */}
+                  </ul>
+                </div>
+              </motion.div>
+            </ClickAwayListener>
           )}
         </div>
       </ClickAwayListener>
