@@ -1,6 +1,5 @@
 import { useRouter } from 'next/navigation';
-import 'swiper/css';
-import 'swiper/css/navigation';
+import { FC } from 'react';
 import { Autoplay, Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -8,7 +7,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 
 //---------------------------------------
 
-const HeroSection = () => {
+const HeroSection: FC = () => {
   //HOOKS
   const router = useRouter();
 

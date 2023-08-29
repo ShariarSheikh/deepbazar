@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  font-family: 'Poppins';
+}
+
 /**swiper js custom style**/
 .swiper-button-prev {
   left: 6pxpx !important;
@@ -21,4 +25,8 @@
 .swiper-button-prev::after,
 .swiper-button-next::after {
   font-size: 20px !important;
+}
+
+.swiper-scrollbar-drag {
+  background: #008ecc !important;
 }

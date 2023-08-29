@@ -1,64 +1,64 @@
-import { addToCart } from '@/redux/features/cartSlice';
-import { addToFavorite } from '@/redux/features/favoriteCartSlice';
-import { useAppDispatch } from '@/redux/hooks';
-import { ProductTypes } from '@/types/product.types';
-import Link from 'next/link';
-import { AiFillHeart } from 'react-icons/ai';
-import { FiShoppingCart } from 'react-icons/fi';
+import { SmartPhonesData } from '@/fakeDB/smartPhones';
+import { FC } from 'react';
+import { AiOutlineHeart } from 'react-icons/ai';
+import { FaRegStar, FaStar, FaStarHalfAlt } from 'react-icons/fa';
 
-const ProductCart = ({ data }: { data: ProductTypes }) => {
-  const dispatch = useAppDispatch();
+//---------------------------------------
+interface IProps {
+  isInsideSlider: boolean;
+  data: SmartPhonesData;
+}
+//---------------------------------------
 
-  const addCartItems = () => {
-    const quantity = 1;
-    dispatch(addToCart({ data, quantity }));
-  };
-
+const ProductCart: FC<IProps> = ({ isInsideSlider, data }) => {
   return (
     <div
-      className="bg-white relative md:w-[32%] lg:w-[24%] max-w-[316px] w-[48%] h-[260px] xl:min-h-[380px] max-h-[380px]
-   flex flex-col justify-between mb-5 md:mb-7 rounded-md xl:mb-12 hover:shadow-2xl transition-all duration-200 group md:ml-2"
+      style={{
+        maxWidth: isInsideSlider ? 277 : '23%',
+      }}
+      className="w-full h-[444px] bg-white relative"
     >
-      <div className="w-full h-[180px] md:h-[290px] relative overflow-hidden p-2">
-        <Link href={`/product/${data._id}`} passHref>
-          <img
-            className="h-full w-full object-cover cursor-pointer rounded-md"
-            src={'https://via.placeholder.com/289x274'}
-            alt={data.title}
-          />
-        </Link>
-
-        {/* add to cart */}
-        <div className="absolute bottom-1 right-1 lg:bottom-2 lg:right-2 w-10 h-10 xl:w-14 xl:h-12 lg:hidden group-hover:block cursor-pointer">
-          <div
-            className="w-full h-full flex justify-center items-center border bg-white border-gray-400 rounded-lg active:scale-110 transition duration-200"
-            onClick={() => addCartItems()}
-          >
-            <FiShoppingCart className="xl:w-6 w-4 h-4 xl:h-6" />
-          </div>
-        </div>
+      <div className="w-full h-[303px] rounded-[6px] relative overflow-hidden bg-[#f5f6f6] group cursor-pointer">
+        <img
+          src={data.images.cardSizeUrl}
+          alt="product image"
+          className="w-full h-full group-hover:scale-110 duration-150"
+        />
       </div>
-
-      <div className="flex h-[80px] xl:h-[90px] flex-col items-center w-full py-3">
-        <h2 className="text-gray-600 sm:text-xl font-normal cursor-default line-clamp-1">
-          {data.title}
-        </h2>
-        <p className="font-semibold text-roboto mt-1 text-yellow-600">
-          <span className="font-medium text-sm pl-1 ">{data.price}</span>
+      <div>
+        <div className="w-full flex items-center justify-between cursor-default">
+          <h1 className="w-full max-w-[70%] mt-[16px] mb-[12px] text-[18px] line-clamp-1 pr-1">
+            {data.title}
+          </h1>
+          <p className="text-[18px] font-bold">
+            <span className="text-[13px]">$</span>
+            {data.price}
+          </p>
+        </div>
+        <p className="text-[12px] mb-[5px] text-gray-500 line-clamp-1">
+          {data.description}
         </p>
+        <div className="flex items-center mb-[10px]">
+          <div className="flex items-center space-x-1">
+            <FaStar className="text-primary text-[12px]" />
+            <FaStar className="text-primary text-[12px]" />
+            <FaStar className="text-primary text-[12px]" />
+            <FaStarHalfAlt className="text-primary text-[12px]" />
+            <FaRegStar className="text-primary text-[12px]" />
+          </div>
+          <p className="text-[10px] font-medium text-gray-500 pt-[5px] ml-[8px]">
+            ({data.reviews.total})
+          </p>
+        </div>
+        <div className="w-full flex justify-start">
+          <button className="text-sm active:scale-95 duration-150 font-medium w-[120px] h-[38px] rounded-[50px] border border-[#008ECC] hover:bg-primary text-primary hover:text-white">
+            Add to Cart
+          </button>
+        </div>
       </div>
 
-      {/* bonus  */}
-
-      <div className="absolute top-0 w-full h-10 px-2 mt-2">
-        <div className="w-full h-full flex justify-end items-center">
-          <div
-            onClick={() => dispatch(addToFavorite(data))}
-            className="w-10 h-full flex justify-center items-center cursor-pointer bg-white border border-red-200 rounded-full active:scale-110 transition duration-200"
-          >
-            <AiFillHeart className="xl:w-6 w-4 h-4 xl:h-6 text-red-500" />
-          </div>
-        </div>
+      <div className="absolute active:scale-75 duration-150 bg-white group hover:bg-[#def5ff] overflow-hidden right-[10px] top-[10px] w-[40px] h-[40px] rounded-[50%] flex items-center justify-center">
+        <AiOutlineHeart className="text-primary font-medium text-[20px] group-hover:scale-110 duration-150" />
       </div>
     </div>
   );

@@ -146,7 +146,7 @@ const SearchBar = () => {
                             alt={category.catName}
                           />
                         </div>
-                        <div className="ml-[4px]">
+                        <div className="ml-[8px]">
                           <h1 className="text-primary">{category.catName}</h1>
                           <p className="text-[12px] text-gray-500">
                             {category.totalItems} Item Available
