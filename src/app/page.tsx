@@ -6,6 +6,7 @@ import BestDealsSection from '@/views/home/BestDealsSection';
 import CategorySection from '@/views/home/CategorySection';
 import HeroSection from '@/views/home/HeroSection';
 import ProductFeedsHome from '@/views/home/ProductFeedsHome';
+import SponsoredItem from '@/views/home/SponsoredItem';
 import { SwiperSlide } from 'swiper/react';
 
 //---------------------------------------------------------
@@ -90,7 +91,7 @@ export default function Home() {
             },
           }}
           isSlider
-          title="SmartPhones For You!"
+          title="Smart Phones For You!"
           navigationComp={null}
         >
           {smartPhones.map(phoneData => (
@@ -103,6 +104,7 @@ export default function Home() {
         <br />
         <br />
       </div>
+      <SponsoredItem />
       <br />
       <br />
       <br />

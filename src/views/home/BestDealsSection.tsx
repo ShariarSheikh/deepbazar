@@ -24,9 +24,9 @@ const BestDealsSection: FC<IProps> = ({ data, productPageLink }) => {
     <section className="w-full relative mt-[60px] min-h-[500px]">
       <div className="w-full flex items-center justify-between">
         <div className="flex items-center">
-          <h1 className="text-[28px] font-bold">Best Deals</h1>
+          <h1 className="text-[28px] font-bold">FlashSale</h1>
           <div className="flex items-center">
-            <p className="text-[14px] ml-[24px] mr-[12px]">Deals ends in</p>
+            <p className="text-[14px] ml-[24px] mr-[12px]">Ending In</p>
             <div className="h-[30px] px-[10px] bg-primary text-white flex items-center justify-center">
               <p>12d : 21h : 56m : 23s</p>
             </div>
