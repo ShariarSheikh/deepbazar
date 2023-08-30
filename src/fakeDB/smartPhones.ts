@@ -81,9 +81,9 @@ const smartPhones: SmartPhonesData[] = [
     _id: 4,
     images: {
       cardSizeUrl:
-        'https://i.pinimg.com/originals/8b/06/29/8b062905bcd44b0d9164b46cc309a251.jpg',
+        'https://uploads-ssl.webflow.com/63e857eaeaf853471d5335ff/63e8c4e4aed3c6720e446aa1_airpod%20max-min.png',
       displayUrl:
-        'https://i.pinimg.com/originals/8b/06/29/8b062905bcd44b0d9164b46cc309a251.jpg',
+        'https://uploads-ssl.webflow.com/63e857eaeaf853471d5335ff/63e8c4e4aed3c6720e446aa1_airpod%20max-min.png',
       commentUrl: '',
       defaultUrl: '',
     },
@@ -101,9 +101,9 @@ const smartPhones: SmartPhonesData[] = [
     _id: 5,
     images: {
       cardSizeUrl:
-        'https://i.pinimg.com/originals/8b/06/29/8b062905bcd44b0d9164b46cc309a251.jpg',
+        'https://uploads-ssl.webflow.com/63e857eaeaf853471d5335ff/63e8c4e4aed3c6720e446aa1_airpod%20max-min.png',
       displayUrl:
-        'https://i.pinimg.com/originals/8b/06/29/8b062905bcd44b0d9164b46cc309a251.jpg',
+        'https://uploads-ssl.webflow.com/63e857eaeaf853471d5335ff/63e8c4e4aed3c6720e446aa1_airpod%20max-min.png',
       commentUrl: '',
       defaultUrl: '',
     },
@@ -121,9 +121,9 @@ const smartPhones: SmartPhonesData[] = [
     _id: 6,
     images: {
       cardSizeUrl:
-        'https://i.pinimg.com/originals/8b/06/29/8b062905bcd44b0d9164b46cc309a251.jpg',
+        'https://uploads-ssl.webflow.com/63e857eaeaf853471d5335ff/63e8c4e4aed3c6720e446aa1_airpod%20max-min.png',
       displayUrl:
-        'https://i.pinimg.com/originals/8b/06/29/8b062905bcd44b0d9164b46cc309a251.jpg',
+        'https://uploads-ssl.webflow.com/63e857eaeaf853471d5335ff/63e8c4e4aed3c6720e446aa1_airpod%20max-min.png',
       commentUrl: '',
       defaultUrl: '',
     },
@@ -141,9 +141,9 @@ const smartPhones: SmartPhonesData[] = [
     _id: 7,
     images: {
       cardSizeUrl:
-        'https://i.pinimg.com/originals/8b/06/29/8b062905bcd44b0d9164b46cc309a251.jpg',
+        'https://uploads-ssl.webflow.com/63e857eaeaf853471d5335ff/63e8c4e4aed3c6720e446aa1_airpod%20max-min.png',
       displayUrl:
-        'https://i.pinimg.com/originals/8b/06/29/8b062905bcd44b0d9164b46cc309a251.jpg',
+        'https://uploads-ssl.webflow.com/63e857eaeaf853471d5335ff/63e8c4e4aed3c6720e446aa1_airpod%20max-min.png',
       commentUrl: '',
       defaultUrl: '',
     },
@@ -161,9 +161,9 @@ const smartPhones: SmartPhonesData[] = [
     _id: 8,
     images: {
       cardSizeUrl:
-        'https://i.pinimg.com/originals/8b/06/29/8b062905bcd44b0d9164b46cc309a251.jpg',
+        'https://uploads-ssl.webflow.com/63e857eaeaf853471d5335ff/63e8c4e4aed3c6720e446aa1_airpod%20max-min.png',
       displayUrl:
-        'https://i.pinimg.com/originals/8b/06/29/8b062905bcd44b0d9164b46cc309a251.jpg',
+        'https://uploads-ssl.webflow.com/63e857eaeaf853471d5335ff/63e8c4e4aed3c6720e446aa1_airpod%20max-min.png',
       commentUrl: '',
       defaultUrl: '',
     },
@@ -181,9 +181,9 @@ const smartPhones: SmartPhonesData[] = [
     _id: 9,
     images: {
       cardSizeUrl:
-        'https://i.pinimg.com/originals/8b/06/29/8b062905bcd44b0d9164b46cc309a251.jpg',
+        'https://uploads-ssl.webflow.com/63e857eaeaf853471d5335ff/63e8c4e4aed3c6720e446aa1_airpod%20max-min.png',
       displayUrl:
-        'https://i.pinimg.com/originals/8b/06/29/8b062905bcd44b0d9164b46cc309a251.jpg',
+        'https://uploads-ssl.webflow.com/63e857eaeaf853471d5335ff/63e8c4e4aed3c6720e446aa1_airpod%20max-min.png',
       commentUrl: '',
       defaultUrl: '',
     },
@@ -201,9 +201,9 @@ const smartPhones: SmartPhonesData[] = [
     _id: 10,
     images: {
       cardSizeUrl:
-        'https://i.pinimg.com/originals/8b/06/29/8b062905bcd44b0d9164b46cc309a251.jpg',
+        'https://uploads-ssl.webflow.com/63e857eaeaf853471d5335ff/63e8c4e4aed3c6720e446aa1_airpod%20max-min.png',
       displayUrl:
-        'https://i.pinimg.com/originals/8b/06/29/8b062905bcd44b0d9164b46cc309a251.jpg',
+        'https://uploads-ssl.webflow.com/63e857eaeaf853471d5335ff/63e8c4e4aed3c6720e446aa1_airpod%20max-min.png',
       commentUrl: '',
       defaultUrl: '',
     },
@@ -221,9 +221,9 @@ const smartPhones: SmartPhonesData[] = [
     _id: 11,
     images: {
       cardSizeUrl:
-        'https://i.pinimg.com/originals/8b/06/29/8b062905bcd44b0d9164b46cc309a251.jpg',
+        'https://uploads-ssl.webflow.com/63e857eaeaf853471d5335ff/63e8c4e4aed3c6720e446aa1_airpod%20max-min.png',
       displayUrl:
-        'https://i.pinimg.com/originals/8b/06/29/8b062905bcd44b0d9164b46cc309a251.jpg',
+        'https://uploads-ssl.webflow.com/63e857eaeaf853471d5335ff/63e8c4e4aed3c6720e446aa1_airpod%20max-min.png',
       commentUrl: '',
       defaultUrl: '',
     },
@@ -241,9 +241,9 @@ const smartPhones: SmartPhonesData[] = [
     _id: 12,
     images: {
       cardSizeUrl:
-        'https://i.pinimg.com/originals/8b/06/29/8b062905bcd44b0d9164b46cc309a251.jpg',
+        'https://uploads-ssl.webflow.com/63e857eaeaf853471d5335ff/63e8c4e4aed3c6720e446aa1_airpod%20max-min.png',
       displayUrl:
-        'https://i.pinimg.com/originals/8b/06/29/8b062905bcd44b0d9164b46cc309a251.jpg',
+        'https://uploads-ssl.webflow.com/63e857eaeaf853471d5335ff/63e8c4e4aed3c6720e446aa1_airpod%20max-min.png',
       commentUrl: '',
       defaultUrl: '',
     },
@@ -261,9 +261,9 @@ const smartPhones: SmartPhonesData[] = [
     _id: 13,
     images: {
       cardSizeUrl:
-        'https://i.pinimg.com/originals/8b/06/29/8b062905bcd44b0d9164b46cc309a251.jpg',
+        'https://uploads-ssl.webflow.com/63e857eaeaf853471d5335ff/63e8c4e4aed3c6720e446aa1_airpod%20max-min.png',
       displayUrl:
-        'https://i.pinimg.com/originals/8b/06/29/8b062905bcd44b0d9164b46cc309a251.jpg',
+        'https://uploads-ssl.webflow.com/63e857eaeaf853471d5335ff/63e8c4e4aed3c6720e446aa1_airpod%20max-min.png',
       commentUrl: '',
       defaultUrl: '',
     },
@@ -281,9 +281,9 @@ const smartPhones: SmartPhonesData[] = [
     _id: 14,
     images: {
       cardSizeUrl:
-        'https://i.pinimg.com/originals/8b/06/29/8b062905bcd44b0d9164b46cc309a251.jpg',
+        'https://uploads-ssl.webflow.com/63e857eaeaf853471d5335ff/63e8c4e4aed3c6720e446aa1_airpod%20max-min.png',
       displayUrl:
-        'https://i.pinimg.com/originals/8b/06/29/8b062905bcd44b0d9164b46cc309a251.jpg',
+        'https://uploads-ssl.webflow.com/63e857eaeaf853471d5335ff/63e8c4e4aed3c6720e446aa1_airpod%20max-min.png',
       commentUrl: '',
       defaultUrl: '',
     },
@@ -301,9 +301,9 @@ const smartPhones: SmartPhonesData[] = [
     _id: 15,
     images: {
       cardSizeUrl:
-        'https://i.pinimg.com/originals/8b/06/29/8b062905bcd44b0d9164b46cc309a251.jpg',
+        'https://uploads-ssl.webflow.com/63e857eaeaf853471d5335ff/63e8c4e4aed3c6720e446aa1_airpod%20max-min.png',
       displayUrl:
-        'https://i.pinimg.com/originals/8b/06/29/8b062905bcd44b0d9164b46cc309a251.jpg',
+        'https://uploads-ssl.webflow.com/63e857eaeaf853471d5335ff/63e8c4e4aed3c6720e446aa1_airpod%20max-min.png',
       commentUrl: '',
       defaultUrl: '',
     },
@@ -321,9 +321,9 @@ const smartPhones: SmartPhonesData[] = [
     _id: 16,
     images: {
       cardSizeUrl:
-        'https://i.pinimg.com/originals/8b/06/29/8b062905bcd44b0d9164b46cc309a251.jpg',
+        'https://uploads-ssl.webflow.com/63e857eaeaf853471d5335ff/63e8c4e4aed3c6720e446aa1_airpod%20max-min.png',
       displayUrl:
-        'https://i.pinimg.com/originals/8b/06/29/8b062905bcd44b0d9164b46cc309a251.jpg',
+        'https://uploads-ssl.webflow.com/63e857eaeaf853471d5335ff/63e8c4e4aed3c6720e446aa1_airpod%20max-min.png',
       commentUrl: '',
       defaultUrl: '',
     },

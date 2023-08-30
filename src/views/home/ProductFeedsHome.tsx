@@ -17,6 +17,7 @@ interface IProps {
       keyword: string;
     };
   };
+  navigationComp: ReactElement | null;
 }
 //---------------------------------------------
 
@@ -25,6 +26,7 @@ const ProductFeedsHome: FC<IProps> = ({
   children,
   isSlider,
   productPageLink,
+  navigationComp,
 }) => {
   if (isSlider)
     return (
@@ -76,7 +78,8 @@ const ProductFeedsHome: FC<IProps> = ({
           </button>
         </Link>
       </div>
-      <div className="mt-[40px] flex items-center jus flex-wrap">
+      {navigationComp}
+      <div className="mt-[40px] flex items-center justify-between gap-y-10 flex-wrap">
         {children}
       </div>
     </section>

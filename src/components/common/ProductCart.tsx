@@ -1,22 +1,23 @@
 import { SmartPhonesData } from '@/fakeDB/smartPhones';
 import { FC } from 'react';
 import { AiOutlineHeart } from 'react-icons/ai';
-import { FaRegStar, FaStar, FaStarHalfAlt } from 'react-icons/fa';
+import ReviewStar from './ReviewStar';
 
 //---------------------------------------
 interface IProps {
   isInsideSlider: boolean;
+  isInsideGrid?: boolean;
   data: SmartPhonesData;
 }
 //---------------------------------------
 
-const ProductCart: FC<IProps> = ({ isInsideSlider, data }) => {
+const ProductCart: FC<IProps> = ({ isInsideSlider, data, isInsideGrid }) => {
   return (
     <div
       style={{
-        maxWidth: isInsideSlider ? 277 : '23%',
+        maxWidth: isInsideSlider ? 277 : isInsideGrid ? '100%' : '23%',
       }}
-      className="w-full h-[444px] bg-white relative"
+      className="w-full h-[450px] bg-white relative"
     >
       <div className="w-full h-[303px] rounded-[6px] relative overflow-hidden bg-[#f5f6f6] group cursor-pointer">
         <img
@@ -38,18 +39,10 @@ const ProductCart: FC<IProps> = ({ isInsideSlider, data }) => {
         <p className="text-[12px] mb-[5px] text-gray-500 line-clamp-1">
           {data.description}
         </p>
-        <div className="flex items-center mb-[10px]">
-          <div className="flex items-center space-x-1">
-            <FaStar className="text-primary text-[12px]" />
-            <FaStar className="text-primary text-[12px]" />
-            <FaStar className="text-primary text-[12px]" />
-            <FaStarHalfAlt className="text-primary text-[12px]" />
-            <FaRegStar className="text-primary text-[12px]" />
-          </div>
-          <p className="text-[10px] font-medium text-gray-500 pt-[5px] ml-[8px]">
-            ({data.reviews.total})
-          </p>
-        </div>
+        <ReviewStar
+          containerStyles={{ marginBottom: 10 }}
+          reviews={data.reviews}
+        />
         <div className="w-full flex justify-start">
           <button className="text-sm active:scale-95 duration-150 font-medium w-[120px] h-[38px] rounded-[50px] border border-[#008ECC] hover:bg-primary text-primary hover:text-white">
             Add to Cart
