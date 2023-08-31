@@ -57,7 +57,7 @@ const HamburgerMenuIcon: FC<HamburgerMenuIconProps> = ({ open, setOpen }) => {
           )}
         </button>
 
-        {!open && (
+        {open && (
           <ClickAwayListener onClickAway={() => setOpen(false)}>
             <motion.div
               initial={{ opacity: 0, y: -20 }}

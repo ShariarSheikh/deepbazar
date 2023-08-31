@@ -13,7 +13,7 @@ const Category = () => {
             href={{
               pathname: '/shop',
               query: {
-                keyword: 'watch',
+                category: 'watch',
               },
             }}
           >
@@ -26,7 +26,7 @@ const Category = () => {
             href={{
               pathname: '/shop',
               query: {
-                keyword: 'smart-phone',
+                category: 'smart-phone',
               },
             }}
           >
@@ -39,7 +39,7 @@ const Category = () => {
             href={{
               pathname: '/shop',
               query: {
-                keyword: 'laptop',
+                category: 'laptop',
               },
             }}
           >
@@ -52,7 +52,7 @@ const Category = () => {
             href={{
               pathname: '/shop',
               query: {
-                keyword: 'camera',
+                category: 'camera',
               },
             }}
           >
@@ -65,7 +65,7 @@ const Category = () => {
             href={{
               pathname: '/shop',
               query: {
-                keyword: 'audio',
+                category: 'audio',
               },
             }}
           >

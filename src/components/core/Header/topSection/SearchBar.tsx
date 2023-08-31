@@ -1,5 +1,6 @@
 import { categories } from '@/views/home/CategorySection';
 import { AnimatePresence, motion } from 'framer-motion';
+import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { ChangeEvent, useEffect, useRef, useState } from 'react';
 import ClickAwayListener from 'react-click-away-listener';
@@ -61,7 +62,7 @@ const SearchBar = () => {
             <input
               className="flex-1 pl-[36px] outline-none text-[14px] bg-transparent z-10"
               type="text"
-              placeholder="Search category, product name and more..."
+              placeholder="Search product name and more..."
               ref={searchInputRef}
               value={searchInput}
               onChange={onSearchHandler}
@@ -134,24 +135,32 @@ const SearchBar = () => {
                   </h1>
                   <ul className="mt-[8px] w-full flex flex-wrap justify-between gap-2 items-center p-[12px]">
                     {categories.map(category => (
-                      <li
+                      <Link
                         key={category.id}
-                        className="h-[58px] w-[49%] rounded-[6px] flex items-center p-2 justify-start bg-[#F3F9FB] group cursor-pointer hover:bg-[#e9f4f8] duration-150"
+                        href={{
+                          pathname: '/shop',
+                          query: {
+                            category: category.catPath,
+                          },
+                        }}
+                        className="h-[58px] w-[49%]"
                       >
-                        <div className="w-[50px] h-[50px] rounded-[6px] overflow-hidden">
-                          <img
-                            className="w-full h-full object-cover"
-                            src={category.bgImgUrl}
-                            alt={category.catName}
-                          />
-                        </div>
-                        <div className="ml-[8px]">
-                          <h1 className="text-primary">{category.catName}</h1>
-                          <p className="text-[12px] text-gray-500">
-                            {category.totalItems} Item Available
-                          </p>
-                        </div>
-                      </li>
+                        <li className="w-full h-full rounded-[6px] flex items-center p-2 justify-start bg-[#F3F9FB] group cursor-pointer hover:bg-[#e9f4f8] duration-150">
+                          <div className="w-[50px] h-[50px] rounded-[6px] overflow-hidden">
+                            <img
+                              className="w-full h-full object-cover"
+                              src={category.bgImgUrl}
+                              alt={category.catName}
+                            />
+                          </div>
+                          <div className="ml-[8px]">
+                            <h1 className="text-primary">{category.catName}</h1>
+                            <p className="text-[12px] text-gray-500">
+                              {category.totalItems} Item Available
+                            </p>
+                          </div>
+                        </li>
+                      </Link>
                     ))}
                   </ul>
                 </div>

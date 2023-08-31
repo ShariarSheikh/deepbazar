@@ -34,7 +34,7 @@ const ProductFeedsHome: FC<IProps> = ({
         <div className="w-full flex items-center justify-between">
           <h1 className="text-[28px] font-bold">{title}</h1>
           <Link href={productPageLink}>
-            <button className="text-[28px] font-bold flex items-center space-x-1 hover:underline">
+            <button className="text-[28px] text-primary font-bold flex items-center space-x-1 hover:underline">
               <p>More</p> <MdKeyboardArrowRight className="text-primary" />
             </button>
           </Link>

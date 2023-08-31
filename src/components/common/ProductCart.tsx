@@ -31,7 +31,7 @@ const ProductCart: FC<IProps> = ({ isInsideSlider, data, isInsideGrid }) => {
           <h1 className="w-full max-w-[70%] mt-[16px] mb-[12px] text-[18px] line-clamp-1 pr-1">
             {data.title}
           </h1>
-          <p className="text-[18px] font-bold">
+          <p className="text-[18px] font-bold text-primary">
             <span className="text-[13px]">$</span>
             {data.price}
           </p>

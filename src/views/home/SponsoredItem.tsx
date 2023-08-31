@@ -9,7 +9,7 @@ const SponsoredItem: FC = () => {
         <p className="text-[24px]">
           Apple M1 Max Chip. 32GB Unified Memory, 1TB SSD Storage
         </p>
-        <button className="relative uppercase active:scale-95 duration-150 flex items-center space-x-3 mt-[21px] border rounded-[6px] h-[48px] px-[16px] group">
+        <button className="relative bg-primary text-white uppercase active:scale-95 duration-150 flex items-center space-x-3 mt-[21px] border rounded-[6px] h-[48px] px-[16px] group">
           <p>Shop Now</p>
           <BsArrowRightShort className="group-hover:animate-bounce" />
         </button>

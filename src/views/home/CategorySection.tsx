@@ -19,7 +19,7 @@ const CategorySection = () => {
             href={{
               pathname: '/shop',
               query: {
-                keyword: category.catPath,
+                category: category.catPath,
               },
             }}
             className="w-full max-w-[20%] h-[220px]"

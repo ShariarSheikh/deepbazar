@@ -33,7 +33,7 @@ const BestDealsSection: FC<IProps> = ({ data, productPageLink }) => {
           </div>
         </div>
         <Link href={productPageLink}>
-          <button className="text-[28px] font-bold flex items-center space-x-1 hover:underline">
+          <button className="text-[28px] text-primary font-bold flex items-center space-x-1 hover:underline">
             <p>More</p> <MdKeyboardArrowRight className="text-primary" />
           </button>
         </Link>
@@ -87,7 +87,7 @@ const BestDealsSection: FC<IProps> = ({ data, productPageLink }) => {
                 <h1 className="line-clamp-1 text-[16px]">{item.title}</h1>
                 <div className="flex items-center justify-between">
                   <ReviewStar reviews={item.reviews} />
-                  <p className="text-[18px] font-bold">
+                  <p className="text-[18px] font-bold text-primary">
                     <span className="text-[13px]">$</span>
                     {item.price}
                   </p>
