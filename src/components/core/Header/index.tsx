@@ -14,7 +14,7 @@ const Header = () => {
   const { userData } = useAppSelector(state => state.loginSlice);
 
   return (
-    <header className="w-full">
+    <header className="w-full sticky top-0 z-30 bg-white">
       <TopSection />
       {/* <BottomSection /> */}
       <CartSidebar />

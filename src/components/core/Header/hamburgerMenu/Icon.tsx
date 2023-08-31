@@ -1,4 +1,5 @@
 import { AnimatePresence, motion } from 'framer-motion';
+import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import {
   ChangeEvent,
@@ -8,8 +9,14 @@ import {
   useEffect,
   useRef,
 } from 'react';
+import ClickAwayListener from 'react-click-away-listener';
+import { AiFillHome, AiFillProject, AiOutlineHeart } from 'react-icons/ai';
+import { BiSolidOffer } from 'react-icons/bi';
+import { BsShop } from 'react-icons/bs';
 import { CiMenuFries } from 'react-icons/ci';
-import { IoCloseOutline } from 'react-icons/io5';
+import { FaSellcast } from 'react-icons/fa';
+import { FiPhoneCall, FiShoppingCart } from 'react-icons/fi';
+import { GiDeerTrack } from 'react-icons/gi';
 import { TfiClose } from 'react-icons/tfi';
 
 interface HamburgerMenuIconProps {
@@ -50,46 +57,94 @@ const HamburgerMenuIcon: FC<HamburgerMenuIconProps> = ({ open, setOpen }) => {
           )}
         </button>
 
-        {open && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: -10 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ type: 'spring', damping: 30, stiffness: 400 }}
-            className="h-full w-full mt-2 z-50  relative bg-[#ffffff] border border-[#EDEDED] text-gray-400 max-w-[200px] min-w-[200px] min-h-[243px] rounded-[10px]"
-            ref={resultContainerRef}
-            onClick={e => hideResult(e.currentTarget)}
-          >
-            <div
-              role="presentation"
+        {!open && (
+          <ClickAwayListener onClickAway={() => setOpen(false)}>
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: -10 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ type: 'spring', damping: 30, stiffness: 400 }}
+              className="h-full w-full mt-2 z-50 min-h-[calc(100vh-150px)] relative bg-[#ffffff] border border-[#EDEDED] text-gray-400 max-w-[200px] min-w-[200px] rounded-[10px]"
+              ref={resultContainerRef}
               onClick={e => hideResult(e.currentTarget)}
-              className="absolute cursor-pointer active:scale-95 right-[4px] top-1 rounded-full bg-opacity-10 w-7 h-7 flex items-center justify-center duration-150"
             >
-              <IoCloseOutline className="w-5 h-5" />
-            </div>
-            <div className="w-full h-full overflow-hidden">
-              <ul className="mt-[35px] w-full">
-                <li className="text-[14px] font-poppins cursor-pointer w-full h-[25px] mb-[8px] flex items-center pl-[8px] hover:underline">
-                  Home
-                </li>
-                <li className="text-[14px] font-poppins cursor-pointer w-full h-[25px] mb-[8px] flex items-center pl-[8px] hover:underline">
-                  Category
-                </li>
-                <li className="text-[14px] font-poppins cursor-pointer w-full h-[25px] mb-[8px] flex items-center pl-[8px] hover:underline">
-                  Sell On DeepBazar
-                </li>
-                <li className="text-[14px] font-poppins cursor-pointer w-full h-[25px] mb-[8px] flex items-center pl-[8px] hover:underline">
-                  Buy On DeepBazar
-                </li>
-                <li className="text-[14px] font-poppins cursor-pointer w-full h-[25px] mb-[8px] flex items-center pl-[8px] hover:underline">
-                  Contact
-                </li>
-              </ul>
-              <p className="text-center text-gray-400 text-[12px] mt-[23px]">
-                © DeepBazar 2023
-              </p>
-            </div>
-          </motion.div>
+              <div className="w-full h-full flex flex-col justify-between overflow-hidden">
+                <ul className="mt-[10px] w-full">
+                  <Link href="/">
+                    <li className="text-[14px] w-full h-[36px] mb-[3px] flex items-center pl-[8px] hover:bg-[#F3F9FB]">
+                      <AiFillHome /> <p className="ml-[8px] pt-[2px]">Home</p>
+                    </li>
+                  </Link>
+                  <Link href="/all-product">
+                    <li className="text-[14px] w-full h-[36px] mb-[3px] flex items-center pl-[8px] hover:bg-[#F3F9FB]">
+                      <BsShop />
+                      <p className="ml-[8px] pt-[2px]">All Products</p>
+                    </li>
+                  </Link>
+                  <Link href="/best-offer">
+                    <li className="text-[14px] w-full h-[36px] mb-[3px] flex items-center pl-[8px] hover:bg-[#F3F9FB]">
+                      <BiSolidOffer />
+                      <p className="ml-[8px] pt-[2px]">Best Offers</p>
+                    </li>
+                  </Link>
+                  <Link href="/take-order">
+                    <li className="text-[14px] w-full h-[36px] mb-[3px] flex items-center pl-[8px] hover:bg-[#F3F9FB]">
+                      <GiDeerTrack />
+                      <p className="ml-[8px] pt-[2px]">Take Order</p>
+                    </li>
+                  </Link>
+                  <Link href="/cart">
+                    <li className="text-[14px] w-full h-[36px] mb-[3px] flex items-center pl-[8px] hover:bg-[#F3F9FB]">
+                      <FiShoppingCart />
+                      <p className="ml-[8px] pt-[2px]">Cart</p>
+                    </li>
+                  </Link>
+                  <Link href="/favorite">
+                    <li className="text-[14px] w-full h-[36px] mb-[3px] flex items-center pl-[8px] hover:bg-[#F3F9FB]">
+                      <AiOutlineHeart />
+                      <p className="ml-[8px] pt-[2px]">Favorite</p>
+                    </li>
+                  </Link>
+                  <Link href="/contact">
+                    <li className="text-[14px] w-full h-[36px] mb-[3px] flex items-center pl-[8px] hover:bg-[#F3F9FB]">
+                      <FiPhoneCall />
+                      <p className="ml-[8px] pt-[2px]">Contact</p>
+                    </li>
+                  </Link>
+                  <Link
+                    href={{
+                      pathname: '/auth',
+                      query: {
+                        keyword: 'seller',
+                      },
+                    }}
+                  >
+                    <li className="text-[14px] w-full h-[36px] mb-[3px] flex items-center pl-[8px] hover:bg-[#F3F9FB]">
+                      <FaSellcast />
+                      <p className="ml-[8px] pt-[2px]">Sell On DeepBazar</p>
+                    </li>
+                  </Link>
+                </ul>
+
+                <div>
+                  <div className="w-[180px] mx-auto h-[200px] mb-[20px] rounded-[6px] overflow-hidden">
+                    <img
+                      src="https://i.ibb.co/KNSg6rq/Screenshot-2.png"
+                      alt="best product"
+                    />
+                  </div>
+                  <div className="h-[80px] border-t border-gray-300 pt-[23px]">
+                    <Link href="/auth">
+                      <li className="text-[14px] w-full h-[36px] mb-[3px] flex items-center pl-[8px] hover:bg-[#F3F9FB]">
+                        <AiFillProject />
+                        <p className="ml-[8px] pt-[2px]">Sign Up/Sign In</p>
+                      </li>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </ClickAwayListener>
         )}
       </div>
     </AnimatePresence>

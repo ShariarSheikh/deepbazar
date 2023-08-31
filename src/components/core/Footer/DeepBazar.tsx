@@ -41,7 +41,7 @@ const DeepBazar = () => {
               alt="shariar"
             />
           </div> */}
-          <p className="mt-[4px] font-bold underline text-sm md:text-base">
+          <p className="mt-[4px] font-bold underline text-sm md:text-base cursor-pointer">
             Created by <a href="http://shariar.vercel.app"> Shariar </a>
           </p>
         </div>

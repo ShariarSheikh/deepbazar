@@ -17,9 +17,9 @@ const MenuList = () => {
               All Products
             </li>
           </Link>
-          <Link href="/all-offers">
+          <Link href="/best-offers">
             <li className="mb-2 cursor-pointer hover:underline duration-200">
-              All Offers
+              Best Offers
             </li>
           </Link>
           <Link href="/track-order">
@@ -30,6 +30,18 @@ const MenuList = () => {
           <Link href="/cart">
             <li className="mb-2 cursor-pointer hover:underline duration-200">
               Cart
+            </li>
+          </Link>
+          <Link
+            href={{
+              pathname: '/auth',
+              query: {
+                keyword: 'seller',
+              },
+            }}
+          >
+            <li className="mb-2 cursor-pointer hover:underline duration-200">
+              Sell On DeepBazar
             </li>
           </Link>
           <Link href="/auth">

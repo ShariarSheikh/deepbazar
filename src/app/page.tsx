@@ -13,8 +13,6 @@ import { SwiperSlide } from 'swiper/react';
 
 //---------------------------------------------------------
 export default function Home() {
-  // const { data, isLoading } = useProductListQuery();
-
   return (
     <main className="min-h-screen w-full m-auto mt-10">
       <div className="w-full max-w-[1201px] mx-auto">
@@ -22,13 +20,13 @@ export default function Home() {
         <CategorySection />
 
         <br />
-
+        <br />
         <BestDealsSection
           data={smartPhones.slice(0, 9)}
           productPageLink={{
             pathname: '/shop',
             query: {
-              keyword: 'smartPhones',
+              keyword: 'flash-sale',
             },
           }}
         />
@@ -36,8 +34,6 @@ export default function Home() {
         <br />
         <br />
         <br />
-        <br />
-
         <ProductFeedsHome
           productPageLink={{
             pathname: '/shop',
@@ -83,11 +79,16 @@ export default function Home() {
         <br />
         <br />
         <br />
+        <SponsoredItem />
+        <br />
+        <br />
+        <br />
+        <br />
         <ProductFeedsHome
           productPageLink={{
             pathname: '/shop',
             query: {
-              keyword: 'smartPhones',
+              keyword: 'smart-phones',
             },
           }}
           isSlider
@@ -103,12 +104,8 @@ export default function Home() {
         <br />
         <br />
         <br />
+        <br />
       </div>
-      <SponsoredItem />
-      <br />
-      <br />
-      <br />
-      <br />
     </main>
   );
 }

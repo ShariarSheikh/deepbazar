@@ -78,7 +78,7 @@ const RenderUiForDesktop = () => {
             <DeliveryLocation />
           </div>
 
-          <div className="w-full max-w-[780px] flex items-center justify-end">
+          <div className="w-full max-w-[828px] flex items-center justify-end">
             <SearchBar />
             <ProfileButtons />
           </div>

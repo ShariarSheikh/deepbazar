@@ -4,8 +4,7 @@ import { usePathname } from 'next/navigation';
 import { ChangeEvent, useEffect, useRef, useState } from 'react';
 import ClickAwayListener from 'react-click-away-listener';
 import { AiOutlineUnorderedList } from 'react-icons/ai';
-import { FiSearch } from 'react-icons/fi';
-import { IoCloseOutline } from 'react-icons/io5';
+import { FiArrowUpLeft, FiSearch } from 'react-icons/fi';
 
 //-------------------------------------------------------
 
@@ -23,7 +22,10 @@ const SearchBar = () => {
   const resultContainerRef = useRef(null);
 
   // CATEGORY HANDLERS---------------------------------------
-  const showCategoryHandler = (): void => setIsShowCategory(true);
+  const showCategoryHandler = (): void => {
+    setIsShowResult(false);
+    setIsShowCategory(true);
+  };
   const hideCategoryHandler = (): void => setIsShowCategory(false);
   // CATEGORY HANDLERS---------------------------------------
 
@@ -53,7 +55,7 @@ const SearchBar = () => {
   return (
     <AnimatePresence>
       <ClickAwayListener onClickAway={() => setIsShowResult(false)}>
-        <div className="relative w-full max-w-[507px] h-[48px]">
+        <div className="relative w-full max-w-[556px] h-[48px]">
           <form className="w-full flex items-center justify-between h-[48px] bg-[#F3F9FB] rounded-[10px] relative">
             <FiSearch className="text-primary absolute left-[16px] z-0" />
             <input
@@ -84,38 +86,35 @@ const SearchBar = () => {
               animate={{ opacity: 1, y: -10 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ type: 'spring', damping: 30, stiffness: 400 }}
-              className="h-full w-full mt-2 z-50  relative bg-[#ffffff] border border-[#EDEDED] text-gray-400 max-w-[507px] min-w-[200px] min-h-[243px] rounded-[10px]"
+              className="h-full w-full mt-2 z-50  relative bg-[#ffffff] border border-[#EDEDED] text-gray-400 max-w-[556px] min-w-[200px] min-h-[370px] overflow-hidden rounded-[10px]"
               ref={resultContainerRef}
               onClick={e => hideResult(e.currentTarget)}
             >
-              <div
-                role="presentation"
-                onClick={e => hideResult(e.currentTarget)}
-                className="absolute cursor-pointer active:scale-95 right-[4px] top-1 rounded-full bg-opacity-10 w-7 h-7 flex items-center justify-center duration-150"
-              >
-                <IoCloseOutline className="w-5 h-5" />
-              </div>
-              <div className="w-full h-full overflow-hidden">
-                <ul className="mt-[35px] w-full">
-                  <li className="text-[14px] font-poppins cursor-pointer w-full h-[25px] mb-[8px] flex items-center pl-[8px] hover:underline">
-                    Home
+              <div className="w-full h-full">
+                <ul className="mt-[35px] w-full h-full p-[10px]">
+                  <h1 className="text-[#91929D] text-[14px]">Your searches</h1>
+                  <li className=" w-full h-[40px] mb-[3px] pl-[8px] flex items-center justify-between text-[#23263B] hover:bg-[#F3F9FB] rounded-[6px] cursor-pointer">
+                    <div className="flex items-center h-full">
+                      <FiSearch className="mr-[8px] text-[20px]" />
+                      <h1 className="text-[14px] pt-[3px]">Motorola Edge 20</h1>
+                    </div>
+                    <FiArrowUpLeft className="ml-[8px] text-[20px]" />
                   </li>
-                  <li className="text-[14px] font-poppins cursor-pointer w-full h-[25px] mb-[8px] flex items-center pl-[8px] hover:underline">
-                    Category
+                  <li className=" w-full h-[40px] mb-[3px] pl-[8px] flex items-center justify-between text-[#23263B] hover:bg-[#F3F9FB] rounded-[6px] cursor-pointer">
+                    <div className="flex items-center h-full">
+                      <FiSearch className="mr-[8px] text-[20px]" />
+                      <h1 className="text-[14px] pt-[3px]">Motorola Edge 20</h1>
+                    </div>
+                    <FiArrowUpLeft className="ml-[8px] text-[20px]" />
                   </li>
-                  <li className="text-[14px] font-poppins cursor-pointer w-full h-[25px] mb-[8px] flex items-center pl-[8px] hover:underline">
-                    Sell On DeepBazar
-                  </li>
-                  <li className="text-[14px] font-poppins cursor-pointer w-full h-[25px] mb-[8px] flex items-center pl-[8px] hover:underline">
-                    Buy On DeepBazar
-                  </li>
-                  <li className="text-[14px] font-poppins cursor-pointer w-full h-[25px] mb-[8px] flex items-center pl-[8px] hover:underline">
-                    Contact
+                  <li className=" w-full h-[40px] mb-[3px] pl-[8px] flex items-center justify-between text-[#23263B] hover:bg-[#F3F9FB] rounded-[6px] cursor-pointer">
+                    <div className="flex items-center h-full">
+                      <FiSearch className="mr-[8px] text-[20px]" />
+                      <h1 className="text-[14px] pt-[3px]">Motorola Edge 20</h1>
+                    </div>
+                    <FiArrowUpLeft className="ml-[8px] text-[20px]" />
                   </li>
                 </ul>
-                <p className="text-center text-gray-400 text-[12px] mt-[23px]">
-                  © DeepBazar 2023
-                </p>
               </div>
             </motion.div>
           )}
@@ -154,30 +153,6 @@ const SearchBar = () => {
                         </div>
                       </li>
                     ))}
-                    {/* <li className="h-[58px] rounded-[6px] flex items-center p-2 justify-start">
-                      <div className='w-[50px] h-[50px] rounded-[6px]'>
-                          <img src="" alt="" />
-                      </div>
-                      <h1></h1>
-                    </li>
-                    <li className="h-[58px] rounded-[6px] flex items-center p-2 justify-start">
-                      <div className='w-[50px] h-[50px] rounded-[6px]'>
-                          <img src="" alt="" />
-                      </div>
-                      <h1></h1>
-                    </li>
-                    <li className="h-[58px] rounded-[6px] flex items-center p-2 justify-start">
-                      <div className='w-[50px] h-[50px] rounded-[6px]'>
-                          <img src="" alt="" />
-                      </div>
-                      <h1></h1>
-                    </li>
-                    <li className="h-[58px] rounded-[6px] flex items-center p-2 justify-start">
-                      <div className='w-[50px] h-[50px] rounded-[6px]'>
-                          <img src="" alt="" />
-                      </div>
-                      <h1></h1>
-                    </li> */}
                   </ul>
                 </div>
               </motion.div>
