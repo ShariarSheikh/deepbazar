@@ -99,7 +99,7 @@ const HamburgerMenuIcon: FC<HamburgerMenuIconProps> = ({ open, setOpen }) => {
                       <p className="ml-[8px] pt-[2px]">Cart</p>
                     </li>
                   </Link>
-                  <Link href="/favorite">
+                  <Link href="/profile/favorite">
                     <li className="text-[14px] w-full h-[36px] mb-[3px] flex items-center pl-[8px] hover:bg-[#F3F9FB]">
                       <AiOutlineHeart />
                       <p className="ml-[8px] pt-[2px]">Favorite</p>
@@ -127,12 +127,14 @@ const HamburgerMenuIcon: FC<HamburgerMenuIconProps> = ({ open, setOpen }) => {
                 </ul>
 
                 <div>
-                  <div className="w-[180px] mx-auto h-[200px] mb-[20px] rounded-[6px] overflow-hidden">
-                    <img
-                      src="https://i.ibb.co/KNSg6rq/Screenshot-2.png"
-                      alt="best product"
-                    />
-                  </div>
+                  <Link href="/flash-sale">
+                    <div className="w-[180px] mx-auto h-[200px] mb-[20px] rounded-[6px] overflow-hidden">
+                      <img
+                        src="https://i.ibb.co/KNSg6rq/Screenshot-2.png"
+                        alt="best product"
+                      />
+                    </div>
+                  </Link>
                   <div className="h-[80px] border-t border-gray-300 pt-[23px]">
                     <Link href="/auth">
                       <li className="text-[14px] w-full h-[36px] mb-[3px] flex items-center pl-[8px] hover:bg-[#F3F9FB]">
