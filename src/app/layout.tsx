@@ -8,6 +8,9 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/scrollbar';
 
+//SKELETON
+import 'react-loading-skeleton/dist/skeleton.css';
+
 export const metadata = {
   title: 'DeepBazar - Electronics eCommerce Website In Bangladesh',
   description: 'Biggest E-commerce website in bangladesh',

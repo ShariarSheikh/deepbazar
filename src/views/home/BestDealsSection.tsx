@@ -40,18 +40,38 @@ const BestDealsSection: FC<IProps> = ({ data, productPageLink }) => {
       </div>
       <div className="mt-[40px] flex h-full max-h-[592px] overflow-hidden">
         <div className="h-full min-h-[592px] w-[320px] px-[18px] pb-[18px]">
-          <div className="w-full h-[268px] overflow-hidden rounded-[10px] bg-[#f5f6f6] group cursor-pointer">
-            <img
-              className="w-full h-full group-hover:scale-110 duration-150"
-              src={firstItem.images.cardSizeUrl}
-              alt={firstItem.title}
-            />
-          </div>
+          <Link
+            href={{
+              pathname: '/product',
+              query: {
+                category: 'watch',
+                productId: firstItem._id,
+              },
+            }}
+          >
+            <div className="w-full h-[268px] overflow-hidden rounded-[10px] bg-[#f5f6f6] group cursor-pointer">
+              <img
+                className="w-full h-full group-hover:scale-110 duration-150"
+                src={firstItem.images.cardSizeUrl}
+                alt={firstItem.title}
+              />
+            </div>
+          </Link>
           <div className="mt-[10px]">
             <ReviewStar reviews={firstItem.reviews} />
-            <h1 className="line-clamp-2 text-[16px] mt-[6px]">
-              {firstItem.title}
-            </h1>
+            <Link
+              href={{
+                pathname: '/product',
+                query: {
+                  category: 'watch',
+                  productId: firstItem._id,
+                },
+              }}
+            >
+              <h1 className="line-clamp-2 text-[16px] mt-[6px]">
+                {firstItem.title}
+              </h1>
+            </Link>
             <div className="mt-[12px] flex items-center w-full space-x-2 text-[16px]">
               <span className="text-gray-600 font-normal">
                 <del>${firstItem.discountPrice}</del>
@@ -76,15 +96,35 @@ const BestDealsSection: FC<IProps> = ({ data, productPageLink }) => {
         <div className="w-full flex flex-wrap gap-3 items-center">
           {data.slice(1).map(item => (
             <div key={item._id} className="w-full max-w-[24%] h-[290px]">
-              <div className="w-full h-[188px] overflow-hidden rounded-[10px] bg-[#f5f6f6] group cursor-pointer">
-                <img
-                  className="w-full h-full group-hover:scale-110 duration-150"
-                  src={item.images.cardSizeUrl}
-                  alt={item.title}
-                />
-              </div>
+              <Link
+                href={{
+                  pathname: '/product',
+                  query: {
+                    category: 'watch',
+                    productId: item._id,
+                  },
+                }}
+              >
+                <div className="w-full h-[188px] overflow-hidden rounded-[10px] bg-[#f5f6f6] group cursor-pointer">
+                  <img
+                    className="w-full h-full group-hover:scale-110 duration-150"
+                    src={item.images.cardSizeUrl}
+                    alt={item.title}
+                  />
+                </div>
+              </Link>
               <div className="mt-[8px] px-3">
-                <h1 className="line-clamp-1 text-[16px]">{item.title}</h1>
+                <Link
+                  href={{
+                    pathname: '/product',
+                    query: {
+                      category: 'watch',
+                      productId: item._id,
+                    },
+                  }}
+                >
+                  <h1 className="line-clamp-1 text-[16px]">{item.title}</h1>
+                </Link>
                 <div className="flex items-center justify-between">
                   <ReviewStar reviews={item.reviews} />
                   <p className="text-[18px] font-bold text-primary">

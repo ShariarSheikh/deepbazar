@@ -1,16 +1,22 @@
 import { LoadingLayout } from '@/components/common/loading';
-import { useProductDetailsByIdQuery } from '@/redux/services/Product';
+import { SmartPhonesData } from '@/fakeDB/smartPhones';
+import { FC } from 'react';
 import DisplayImage from './DisplayImage';
 import Info from './Info';
-import ProductDescription from './ProductDescription';
-import FetchRelatedProducts from './RelatedProducts';
 
-const Product = ({ productId }: { productId: string }) => {
-  const { data, isLoading } = useProductDetailsByIdQuery(productId);
+//-------------------------------------------------
+interface IProps {
+  data: SmartPhonesData;
+  isLoading: boolean;
+}
+//-------------------------------------------------
+
+const Product: FC<IProps> = ({ data, isLoading }) => {
+  console.log(data);
 
   return (
     <div>
-      <div className="w-full flex flex-col lg:flex-row justify-between mt-4 transition-all duration-200">
+      <div className="w-full flex flex-col lg:flex-row justify-between transition-all duration-200">
         {/* for loading */}
         {isLoading && (
           <div className="grid gap-4 lg:grid-cols-2 w-full max-w-7xl mx-auto">
@@ -23,18 +29,18 @@ const Product = ({ productId }: { productId: string }) => {
           </div>
         )}
 
-        {data?.data.product._id && (
+        {data?._id && (
           <>
-            <DisplayImage />
-            <Info data={data.data.product} />
+            <DisplayImage images={data?.images} />
+            <Info data={data} />
           </>
         )}
       </div>
-      <ProductDescription description={data?.data.product.description ?? ''} />
-      <FetchRelatedProducts
+      {/* <ProductDescription description={data?.data.product.description ?? ''} /> */}
+      {/* <FetchRelatedProducts
         isLoading={isLoading}
         products={data?.data.product.related_products || []}
-      />
+      /> */}
     </div>
   );
 };

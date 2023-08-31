@@ -87,10 +87,10 @@ const HamburgerMenuIcon: FC<HamburgerMenuIconProps> = ({ open, setOpen }) => {
                       <p className="ml-[8px] pt-[2px]">Best Offers</p>
                     </li>
                   </Link>
-                  <Link href="/take-order">
+                  <Link href="/track-order">
                     <li className="text-[14px] w-full h-[36px] mb-[3px] flex items-center pl-[8px] hover:bg-[#F3F9FB]">
                       <GiDeerTrack />
-                      <p className="ml-[8px] pt-[2px]">Take Order</p>
+                      <p className="ml-[8px] pt-[2px]">Track Order</p>
                     </li>
                   </Link>
                   <Link href="/cart">

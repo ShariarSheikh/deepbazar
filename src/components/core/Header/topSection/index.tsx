@@ -57,15 +57,21 @@ const RenderUiForDesktop = () => {
               </Link>
             </button>
             <span className="bg-[#D9D9D9] h-[18px] w-[1px]" />
-            <button className="flex items-center">
-              <FaCaravan className="text-primary" />
-              <p className="ml-[6px] text-sm">Track your order</p>
-            </button>
+
+            <Link href="/track-order">
+              <button className="flex items-center">
+                <FaCaravan className="text-primary" />
+                <p className="ml-[6px] text-sm">Track your order</p>
+              </button>
+            </Link>
             <span className="bg-[#D9D9D9] h-[18px] w-[1px]" />
-            <button className="flex items-center">
-              <MdLocalOffer className="text-primary" />
-              <p className="ml-[6px] text-sm">All Offers</p>
-            </button>
+
+            <Link href="/best-offer">
+              <button className="flex items-center">
+                <MdLocalOffer className="text-primary" />
+                <p className="ml-[6px] text-sm">Best Offers</p>
+              </button>
+            </Link>
           </div>
         </div>
       </div>

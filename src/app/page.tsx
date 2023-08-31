@@ -36,13 +36,13 @@ export default function Home() {
         <br />
         <ProductFeedsHome
           productPageLink={{
-            pathname: '/shop',
+            pathname: '/all-product',
             query: {
               keyword: 'watch',
             },
           }}
           isSlider={false}
-          title="Discount Items For You!"
+          title="Just For You!"
           navigationComp={
             <div className="w-full py-[40px]">
               <div className="w-full flex items-center space-x-4">

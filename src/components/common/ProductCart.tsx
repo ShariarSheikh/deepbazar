@@ -1,4 +1,5 @@
 import { SmartPhonesData } from '@/fakeDB/smartPhones';
+import Link from 'next/link';
 import { FC } from 'react';
 import { AiOutlineHeart } from 'react-icons/ai';
 import ReviewStar from './ReviewStar';
@@ -19,18 +20,39 @@ const ProductCart: FC<IProps> = ({ isInsideSlider, data, isInsideGrid }) => {
       }}
       className="w-full h-[450px] bg-white relative"
     >
-      <div className="w-full h-[303px] rounded-[6px] relative overflow-hidden bg-[#f5f6f6] group cursor-pointer">
-        <img
-          src={data.images.cardSizeUrl}
-          alt="product image"
-          className="w-full h-full group-hover:scale-110 duration-150"
-        />
-      </div>
+      <Link
+        href={{
+          pathname: '/product',
+          query: {
+            category: 'watch',
+            productId: data._id,
+          },
+        }}
+      >
+        <div className="w-full h-[303px] rounded-[6px] relative overflow-hidden bg-[#f5f6f6] group cursor-pointer">
+          <img
+            src={data.images.cardSizeUrl}
+            alt="product image"
+            className="w-full h-full group-hover:scale-110 duration-150"
+          />
+        </div>
+      </Link>
       <div>
         <div className="w-full flex items-center justify-between cursor-default">
-          <h1 className="w-full max-w-[70%] mt-[16px] mb-[12px] text-[18px] line-clamp-1 pr-1">
-            {data.title}
-          </h1>
+          <Link
+            href={{
+              pathname: '/product',
+              query: {
+                category: 'watch',
+                productId: data._id,
+              },
+            }}
+            className="w-full max-w-[70%]"
+          >
+            <h1 className=" mt-[16px] mb-[12px] text-[18px] line-clamp-1 pr-1">
+              {data.title}
+            </h1>
+          </Link>
           <p className="text-[18px] font-bold text-primary">
             <span className="text-[13px]">$</span>
             {data.price}

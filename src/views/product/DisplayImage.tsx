@@ -1,54 +1,39 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import Image from 'next/image';
-import { FC, useRef, useState } from 'react';
+import { FC } from 'react';
 
-const DisplayImage: FC = () => {
-  const [displayImg, setDisplayImg] = useState<string>(
-    'https://via.placeholder.com/400x400'
-  );
-  const displayImageContainerRef = useRef<HTMLDivElement>(null);
+interface IProps {
+  images: {
+    cardSizeUrl: string;
+    displayUrl: string;
+    commentUrl: string;
+    defaultUrl: string;
+  };
+}
 
-  // const displayImageWidth = displayImageContainerRef.current?.offsetWidth;
-  // const displayImageHeight = displayImageContainerRef.current?.offsetHeight;
-
-  // useEffect(() => {
-  //   if (!displayImageHeight)
-  //     return setDisplayImg('https://via.placeholder.com/400x400');
-
-  //   return setDisplayImg(
-  //     `https://via.placeholder.com/${displayImageWidth}x${displayImageHeight}`
-  //   );
-  // }, [displayImageHeight, displayImageWidth]);
-
+const DisplayImage: FC<IProps> = ({ images }) => {
   return (
-    <div className="relative w-full lg:w-[47%] max-w-[768px] m-auto flex flex-col-reverse min-h-[450px] max-h-[450px]">
-      {/* images list */}
+    <div className="relative w-full bg-white max-w-[370px] min-h-[436px] max-h-[435px]">
       <div
-        className={`w-full h-[50px] flex flex-row space-x-2 overflow-hidden mt-6`}
+        className={`w-full h-full max-h-[370px] relative bg-[#f5f6f6] rounded-[6px] overflow-hidden`}
       >
-        {[1, 2, 3, 4].map((v, i) => (
-          <Image
-            key={i}
-            className="object-cover cursor-pointer z-20"
-            src="https://via.placeholder.com/50x50"
-            alt="product"
-            width={50}
-            height={50}
-          />
-        ))}
+        <img
+          className="w-full h-full object-contain bg-gray-100"
+          src={images.displayUrl}
+          alt="main picture"
+        />
       </div>
 
-      {/* selected img */}
       <div
-        ref={displayImageContainerRef}
-        className={`w-full max-w-[582px] h-full min-h-[400px] lg:pl-[20px] relative`}
+        className={`w-full bg-[#f5f6f6] h-[50px] flex flex-row space-x-2 overflow-hidden mt-2 px-2 rounded-[6px]`}
       >
-        <Image
-          className="w-full h-full object-contain bg-gray-100"
-          src={displayImg}
-          alt="main picture"
-          layout="fill"
-        />
+        {[1, 2, 3, 4].map((v, i) => (
+          <img
+            key={i}
+            className="object-cover cursor-pointer w-[50px] h-[50px] rounded-[6px] hover:scale-110 duration-150"
+            src={images.displayUrl}
+            alt="product"
+          />
+        ))}
       </div>
     </div>
   );
