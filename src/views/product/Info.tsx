@@ -27,8 +27,9 @@ const Info: FC<{ data: SmartPhonesData }> = ({ data }) => {
     <div
       className={`w-full ml-[20px] min-h-[436px] m-auto mt-10 lg:mt-0 rounded-[6px] flex flex-row overflow-hidden text-gray-600`}
     >
-      <div className="w-[60%] h-full">
+      <div className="w-[60%] h-full pr-[10px]">
         <h1 className="text-3xl font-semibold uppercase">{data?.title}</h1>
+        <p className="text-base text-gray-500 pt-[3px]">{data.description}</p>
         <div className="mt-3 flex items-center space-x-3">
           <div className="flex items-center space-x-1">
             <ReviewStar reviews={data.reviews} />

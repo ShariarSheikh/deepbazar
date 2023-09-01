@@ -4,7 +4,7 @@ const nextConfig = {
     appDir: true,
   },
   images: {
-    domains: ['via.placeholder.com'],
+    domains: ['via.placeholder.com', 'images.unsplash.com'],
   },
   eslint: {
     ignoreDuringBuilds: true,
