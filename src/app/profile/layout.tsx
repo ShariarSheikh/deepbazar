@@ -12,11 +12,13 @@ const ProfileLayout: FC<IProps> = ({ children }) => {
   const segment = useSelectedLayoutSegment();
 
   return (
-    <section className="w-full max-w-[1201px] mx-auto min-h-[60vh]">
-      <Breadcrumb segment={segment} />
+    <section className="w-full max-w-[1190px] px-[10px] mx-auto min-h-[60vh]">
       <div className="w-full flex">
-        <Sidebar />
-        <div className="w-full ml-[20px]">{children}</div>
+        <div className="w-full max-w-[290px] max-h-[460px] sticky top-[133px]">
+          <Breadcrumb segment={segment} />
+          <Sidebar />
+        </div>
+        <div className="w-full ml-[20px] h-[200vh] pt-[43px]">{children}</div>
       </div>
     </section>
   );
