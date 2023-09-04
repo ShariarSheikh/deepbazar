@@ -48,7 +48,7 @@ const Order: FC<IProps> = ({ orders, mode }) => {
         </header>
       )}
 
-      <div className="w-full h-full bg-white mt-10 rounded-[16px] shadow-md">
+      <div className="w-full h-full bg-white mt-10 rounded-[6px] shadow-md">
         {mode !== 'overview' && (
           <div className="w-full flex py-5 px-5">
             <SearchBar />
@@ -60,6 +60,12 @@ const Order: FC<IProps> = ({ orders, mode }) => {
               setIsOpenDateFilter={setIsOpenDateFilter}
               filterProductBasedOnDate={filterProductBasedOnDate}
             />
+          </div>
+        )}
+
+        {mode === 'overview' && (
+          <div className="bg-white h-10 rounded-t-[6px] pt-[10px] px-2">
+            <h1 className="text-gray-600 font-medium">My Orders</h1>
           </div>
         )}
 
