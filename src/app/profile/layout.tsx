@@ -18,7 +18,9 @@ const ProfileLayout: FC<IProps> = ({ children }) => {
           <Breadcrumb segment={segment} />
           <Sidebar />
         </div>
-        <div className="w-full ml-[20px] h-[200vh] pt-[43px]">{children}</div>
+        <div className="w-full ml-[20px] p-3 bg-[#f3f9fb] mt-[48px] rounded-[6px]">
+          {children}
+        </div>
       </div>
     </section>
   );
