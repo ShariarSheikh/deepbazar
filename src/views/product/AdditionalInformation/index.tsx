@@ -1,10 +1,14 @@
-import { Suspense, useState } from 'react';
+import { FC, Suspense, useState } from 'react';
 import Description from './Description';
 import QuestionAndAns from './QuestionAndAns';
 import Reviews from './Reviews';
 import Specification from './Specification';
 
 //-------------------------------------------------
+interface IProps {
+  productSpecification: string;
+}
+
 enum ComponentTypeEnum {
   Specification = 'Specification',
   Description = 'Description',
@@ -13,7 +17,9 @@ enum ComponentTypeEnum {
 }
 //-------------------------------------------------
 
-function AdditionalInformation(): JSX.Element {
+const AdditionalInformation: FC<IProps> = ({
+  productSpecification,
+}): JSX.Element => {
   const [componentType, setComponentType] = useState<ComponentTypeEnum>(
     ComponentTypeEnum.Reviews
   );
@@ -85,7 +91,7 @@ function AdditionalInformation(): JSX.Element {
           }
         >
           {componentType === ComponentTypeEnum.Specification ? (
-            <Specification />
+            <Specification productSpecification={productSpecification} />
           ) : null}
           {componentType === ComponentTypeEnum.Reviews ? <Reviews /> : null}
           {componentType === ComponentTypeEnum.Description ? (
@@ -96,6 +102,6 @@ function AdditionalInformation(): JSX.Element {
       </div>
     </div>
   );
-}
+};
 
 export default AdditionalInformation;

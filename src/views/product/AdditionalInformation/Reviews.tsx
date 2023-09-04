@@ -13,8 +13,8 @@ function Reviews(): JSX.Element {
           <h2 className="text-[16px] text-gray-600 font-semibold">
             Average rating
           </h2>
-          <h1 className="text-[48px] font-extrabold">4/5</h1>
-          <div className="flex items-center">
+          <h1 className="text-[48px] font-extrabold text-primary">4/5</h1>
+          <div className="flex items-center text-primary">
             <AiFillStar className="fill-warningMain w-[28px] h-[28px]" />
             <AiFillStar className="fill-warningMain w-[28px] h-[28px]" />
             <AiFillStar className="fill-warningMain w-[28px] h-[28px]" />
@@ -30,8 +30,8 @@ function Reviews(): JSX.Element {
               <h1 className="text-gray-800 font-semibold text-[14px] min-w-[42px]">
                 5 Star
               </h1>
-              <div className="mx-[16px] w-full relative h-[4px] rounded-md bg-gray-500 max-w-[340px]">
-                <div className="absolute left-0 w-[30%] rounded-md h-full bg-primaryMain" />
+              <div className="mx-[16px] w-full relative h-[4px] rounded-md bg-gray-300 max-w-[340px]">
+                <div className="absolute left-0 w-[30%] rounded-md h-full bg-primary" />
               </div>
               <h1 className="text-[14px] text-gray-600">25.k</h1>
             </li>
@@ -40,8 +40,8 @@ function Reviews(): JSX.Element {
               <h1 className="text-gray-800 font-semibold text-[14px] min-w-[42px]">
                 4 Star
               </h1>
-              <div className="mx-[16px] w-full relative h-[4px] rounded-md bg-gray-500 max-w-[340px]">
-                <div className="absolute left-0 w-[23%] rounded-md h-full bg-primaryMain" />
+              <div className="mx-[16px] w-full relative h-[4px] rounded-md bg-gray-300 max-w-[340px]">
+                <div className="absolute left-0 w-[23%] rounded-md h-full bg-primary" />
               </div>
               <h1 className="text-[14px] text-gray-600">1.1k</h1>
             </li>
@@ -50,8 +50,8 @@ function Reviews(): JSX.Element {
               <h1 className="text-gray-800 font-semibold text-[14px] min-w-[42px]">
                 3 Star
               </h1>
-              <div className="mx-[16px] w-full relative h-[4px] rounded-md bg-gray-500 max-w-[340px]">
-                <div className="absolute left-0 w-[60%] rounded-md h-full bg-primaryMain" />
+              <div className="mx-[16px] w-full relative h-[4px] rounded-md bg-gray-300 max-w-[340px]">
+                <div className="absolute left-0 w-[60%] rounded-md h-full bg-primary" />
               </div>
               <h1 className="text-[14px] text-gray-600">8.2k</h1>
             </li>
@@ -60,8 +60,8 @@ function Reviews(): JSX.Element {
               <h1 className="text-gray-800 font-semibold text-[14px] min-w-[42px]">
                 2 Star
               </h1>
-              <div className="mx-[16px] w-full relative h-[4px] rounded-md bg-gray-500 max-w-[340px]">
-                <div className="absolute left-0 w-[19%] rounded-md h-full bg-primaryMain" />
+              <div className="mx-[16px] w-full relative h-[4px] rounded-md bg-gray-300 max-w-[340px]">
+                <div className="absolute left-0 w-[19%] rounded-md h-full bg-primary" />
               </div>
               <h1 className="text-[14px] text-gray-600">73.9k</h1>
             </li>
@@ -69,8 +69,8 @@ function Reviews(): JSX.Element {
               <h1 className="text-gray-800 font-semibold text-[14px] min-w-[42px]">
                 1 Star
               </h1>
-              <div className="mx-[16px] w-full relative h-[4px] rounded-md bg-gray-500 max-w-[340px]">
-                <div className="absolute left-0 w-[16%] rounded-md h-full bg-primaryMain" />
+              <div className="mx-[16px] w-full relative h-[4px] rounded-md bg-gray-300 max-w-[340px]">
+                <div className="absolute left-0 w-[16%] rounded-md h-full bg-primary" />
               </div>
               <h1 className="text-[14px] text-gray-600">2.6k</h1>
             </li>
@@ -104,7 +104,7 @@ function UserReview({ review }: { review: ReviewDataType }) {
             src={review.profileUrl}
             fill
             alt="user picture"
-            className="object-fill"
+            className="object-cover"
           />
         </div>
         <h1 className="text-[14px] font-semibold mt-[16px]">{review.name}</h1>
@@ -112,7 +112,7 @@ function UserReview({ review }: { review: ReviewDataType }) {
       </div>
 
       <div className="ml-[16px] pr-8">
-        <div className="flex items-center">
+        <div className="flex items-center text-primary">
           <AiFillStar className="fill-warningMain w-[19px] h-[19px]" />
           <AiFillStar className="fill-warningMain w-[19px] h-[19px]" />
           <AiFillStar className="fill-warningMain w-[19px] h-[19px]" />
@@ -120,8 +120,8 @@ function UserReview({ review }: { review: ReviewDataType }) {
           <AiFillStar className="w-[19px] h-[19px] fill-gray-400" />
         </div>
         <div className="py-[8px] flex items-center space-x-2">
-          <MdVerified className="fill-successMain" />
-          <h3 className="text-successMain text-[12px]">Verified purchase</h3>
+          <MdVerified className="text-green-500" />
+          <h3 className="text-green-500 text-[12px]">Verified purchase</h3>
         </div>
         <p className="text-[14px] mt-[8px]">{review.comment}</p>
         <button
@@ -142,7 +142,7 @@ function UserReview({ review }: { review: ReviewDataType }) {
             </div>
             <button
               onClick={replayThisReview}
-              className="font-semibold text-white rounded-[8px] py-[6px] px-[16px] bg-primaryMain hover:bg-primaryDark active:scale-95 duration-200"
+              className="font-semibold text-white rounded-[8px] py-[6px] px-[16px] bg-primary active:scale-95 duration-200"
             >
               Submit
             </button>
@@ -165,7 +165,7 @@ const reviewsData: ReviewDataType[] = [
   {
     id: 1,
     profileUrl:
-      'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
+      'https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80',
     name: 'Shariar Sheikh',
     createdAt: '09 Aug 2022',
     comment:

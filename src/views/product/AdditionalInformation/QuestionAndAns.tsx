@@ -34,7 +34,7 @@ function UserQanList({ list }: { list: UserQnaListProps }) {
     <li key={list.id} className="w-full mb-[40px]">
       <div className="flex w-full">
         <div>
-          <RiQuestionnaireFill className="fill-secondaryMain" />
+          <RiQuestionnaireFill className="text-[#FF4646]" />
         </div>
         <div className="ml-[12px] w-full">
           <h1 className="text-[14px]">{list.question}</h1>
@@ -50,7 +50,7 @@ function UserQanList({ list }: { list: UserQnaListProps }) {
             Reply This Review
           </button>
           {list.ans ? (
-            <div className="w-full rounded-[8px] bg-gray-500 bg-opacity-[8%] py-[16px] px-[12px]">
+            <div className="w-full rounded-[8px] bg-[#f3f9fb] py-[16px] px-[12px]">
               <p className="text-[16px] text-gray-600">{list.ans}</p>
             </div>
           ) : null}

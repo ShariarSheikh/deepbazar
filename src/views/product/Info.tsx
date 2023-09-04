@@ -5,6 +5,7 @@ import { SmartPhonesData } from '@/fakeDB/smartPhones';
 import { useAppDispatch } from '@/redux/hooks';
 import { FC, useState } from 'react';
 import { AiOutlineHeart } from 'react-icons/ai';
+import SellerAndDeliveryInfo from './SellerAndDeliveryInfo';
 
 const Info: FC<{ data: SmartPhonesData }> = ({ data }) => {
   const [quantity, setQuantity] = useState<number>(1);
@@ -71,14 +72,15 @@ const Info: FC<{ data: SmartPhonesData }> = ({ data }) => {
             Add to Cart
           </button>
 
-          <button className="active:scale-75 duration-150 bg-white group hover:bg-[#def5ff] border-2 border-[#def5ff] w-[40px] h-[40px] rounded-[50%] flex items-center justify-center">
+          <button className="active:scale-75 duration-150 bg-white group hover:bg-[#def5ff] border-2 border-[#def5ff] h-[40px] px-[20px] rounded-[6px] flex items-center justify-center">
+            <span className="mr-[4px] text-primary">45</span>
             <AiOutlineHeart className="text-primary font-medium text-[20px] group-hover:scale-110 duration-150" />
           </button>
         </div>
       </div>
 
-      <div className="w-[30%] h-full bg-indigo-300">
-        <h1>hello world!</h1>
+      <div className="w-[30%] h-full">
+        <SellerAndDeliveryInfo />
       </div>
     </div>
   );
