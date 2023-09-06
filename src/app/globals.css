@@ -1,0 +1,64 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: 'Poppins';
+}
+
+/**swiper js custom style**/
+.swiper-button-prev {
+  left: 6pxpx !important;
+}
+.swiper-button-next {
+  right: 6px !important;
+}
+.swiper-button-prev,
+.swiper-button-next {
+  background: #f3f9fb !important;
+  width: 86px !important;
+  height: 86px !important;
+  border-radius: 50% !important;
+  border: solid 8px white !important;
+  z-index: 10;
+}
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  font-size: 20px !important;
+}
+
+.swiper-scrollbar-drag {
+  background: #008ecc !important;
+}
+
+/* custom animation  */
+.leftRight_shake_animation_on_hover:hover {
+  animation: shakeAnimation 2s ease-in-out 2s 1 normal forwards;
+}
+@keyframes shakeAnimation {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  10%,
+  30%,
+  50%,
+  70% {
+    transform: translateX(-10px);
+  }
+
+  20%,
+  40%,
+  60% {
+    transform: translateX(10px);
+  }
+
+  80% {
+    transform: translateX(8px);
+  }
+
+  90% {
+    transform: translateX(-8px);
+  }
+}
