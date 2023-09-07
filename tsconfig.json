@@ -22,16 +22,6 @@
       "@/*": ["./src/*"]
     }
   },
-<<<<<<< HEAD
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    ".next/types/**/*.ts",
-    "src/views/profile/wishlist"
-  ],
-=======
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
->>>>>>> origin/master
   "exclude": ["node_modules"]
 }

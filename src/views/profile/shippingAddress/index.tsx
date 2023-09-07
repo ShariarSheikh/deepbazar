@@ -10,10 +10,10 @@ const ShippingAddress: FC = () => {
         <h1 className="text-gray-600 font-medium">My Shipping Address</h1>
       </header>
 
-      <div className="w-full h-full p-5 bg-white mt-10 rounded-[6px] shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]">
+      <div className="w-full h-full p-5 bg-white mt-10 rounded-[6px]">
         {/* if not wishlist_item exits  */}
 
-        <div className="flex items-center flex-wrap justify-between">
+        <div className="flex items-center flex-wrap justify-between gap-y-4">
           <div className="w-[48%] bg-white border border-gray-200 rounded-[6px] p-2 h-[120px]">
             <h1 className="text-base">Name: Shariar Sheikh</h1>
             <p className="text-sm text-[#757575] line-clamp-1">
@@ -22,17 +22,22 @@ const ShippingAddress: FC = () => {
             <p className="text-sm text-[#757575] line-clamp-2">
               Kuliarchar, Kishoreganj, Dhaka
             </p>
-            <div className="flex items-center justify-end space-x-4 text-sm mt-[20px]">
-              <button className="flex items-center text-primary space-x-1 active:scale-95 duration-150">
-                <FiEdit /> <span>Edit</span>
+            <div className="w-full flex items-center justify-between mt-[20px]">
+              <button className="text-green-600 text-sm font-medium">
+                Active
               </button>
-              <button className="flex items-center text-red-500 space-x-1 active:scale-95 duration-150">
-                <MdDeleteOutline /> <span>Delete</span>
-              </button>
+              <div className="flex items-center justify-end space-x-4 text-sm">
+                <button className="flex items-center text-primary space-x-1 active:scale-95 duration-150">
+                  <FiEdit /> <span>Edit</span>
+                </button>
+                <button className="flex items-center text-red-500 space-x-1 active:scale-95 duration-150">
+                  <MdDeleteOutline /> <span>Delete</span>
+                </button>
+              </div>
             </div>
           </div>
 
-          <div className="w-[48%] bg-white border border-gray-200 rounded-[6px] p-2 h-[120px] shadow-[5px_5px_0px_0px_rgba(109,40,217)]">
+          <div className="w-[49%] bg-white border border-gray-200 rounded-[6px] p-2 h-[120px]">
             <h1 className="text-base">Name: Shariar Sheikh</h1>
             <p className="text-sm text-[#757575] line-clamp-1">
               01304802278, shariar.dev@gmail.com
@@ -40,13 +45,64 @@ const ShippingAddress: FC = () => {
             <p className="text-sm text-[#757575] line-clamp-2">
               Kuliarchar, Kishoreganj, Dhaka
             </p>
-            <div className="flex items-center justify-end space-x-4 text-sm mt-[20px]">
-              <button className="flex items-center text-primary space-x-1 active:scale-95 duration-150">
-                <FiEdit /> <span>Edit</span>
+            <div className="w-full flex items-center justify-between mt-[20px]">
+              <button className="text-yellow-600 text-sm font-medium">
+                Click To Active
               </button>
-              <button className="flex items-center text-red-500 space-x-1 active:scale-95 duration-150">
-                <MdDeleteOutline /> <span>Delete</span>
+              <div className="flex items-center justify-end space-x-4 text-sm">
+                <button className="flex items-center text-primary space-x-1 active:scale-95 duration-150">
+                  <FiEdit /> <span>Edit</span>
+                </button>
+                <button className="flex items-center text-red-500 space-x-1 active:scale-95 duration-150">
+                  <MdDeleteOutline /> <span>Delete</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div className="w-[49%] bg-white border border-gray-200 rounded-[6px] p-2 h-[120px]">
+            <h1 className="text-base">Name: Shariar Sheikh</h1>
+            <p className="text-sm text-[#757575] line-clamp-1">
+              01304802278, shariar.dev@gmail.com
+            </p>
+            <p className="text-sm text-[#757575] line-clamp-2">
+              Kuliarchar, Kishoreganj, Dhaka
+            </p>
+            <div className="w-full flex items-center justify-between mt-[20px]">
+              <button className="text-yellow-600 text-sm font-medium">
+                Click To Active
               </button>
+              <div className="flex items-center justify-end space-x-4 text-sm">
+                <button className="flex items-center text-primary space-x-1 active:scale-95 duration-150">
+                  <FiEdit /> <span>Edit</span>
+                </button>
+                <button className="flex items-center text-red-500 space-x-1 active:scale-95 duration-150">
+                  <MdDeleteOutline /> <span>Delete</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div className="w-[49%] bg-white border border-gray-200 rounded-[6px] p-2 h-[120px]">
+            <h1 className="text-base">Name: Shariar Sheikh</h1>
+            <p className="text-sm text-[#757575] line-clamp-1">
+              01304802278, shariar.dev@gmail.com
+            </p>
+            <p className="text-sm text-[#757575] line-clamp-2">
+              Kuliarchar, Kishoreganj, Dhaka
+            </p>
+            <div className="w-full flex items-center justify-between mt-[20px]">
+              <button className="text-yellow-600 text-sm font-medium">
+                Click To Active
+              </button>
+              <div className="flex items-center justify-end space-x-4 text-sm">
+                <button className="flex items-center text-primary space-x-1 active:scale-95 duration-150">
+                  <FiEdit /> <span>Edit</span>
+                </button>
+                <button className="flex items-center text-red-500 space-x-1 active:scale-95 duration-150">
+                  <MdDeleteOutline /> <span>Delete</span>
+                </button>
+              </div>
             </div>
           </div>
         </div>
