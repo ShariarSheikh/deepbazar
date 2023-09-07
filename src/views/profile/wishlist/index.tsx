@@ -60,7 +60,7 @@ const Wishlist: React.FC = () => {
         <h1 className="text-gray-600 font-medium">My Wishlist</h1>
       </header>
 
-      <div className="w-full h-full p-5 bg-white mt-10 rounded-[6px] shadow-md">
+      <div className="w-full h-full p-5 bg-white mt-10 rounded-[6px] shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]">
         {WishlistData.length > 0 &&
           WishlistData?.map(({ id, img, title, amount }) => (
             <div

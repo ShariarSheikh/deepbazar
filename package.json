@@ -1,17 +1,8 @@
 {
   "name": "deepbazar-v1",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev -p 4093",
-    "build": "next build",
-    "start": "next start -p 4093",
-    "lint": "eslint . --ext .ts,.tsx",
-    "lint:fix": "eslint . --ext .ts,.tsx --fix",
-    "prettier": "prettier --check .",
-    "prettier:fix": "prettier --write .",
-    "prepare": "husky install"
-  },
+  "version": "1.0.0",
+  "description": "This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).",
+  "main": "next.config.js",
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",
     "@types/node": "20.5.7",
@@ -53,5 +44,17 @@
     "postcss": "^8.4.28",
     "prettier": "^3.0.2",
     "tailwindcss": "^3.3.3"
-  }
+  },
+  "scripts": {
+    "dev": "next dev -p 4093",
+    "build": "next build",
+    "start": "next start -p 4093",
+    "lint": "eslint . --ext .ts,.tsx",
+    "lint:fix": "eslint . --ext .ts,.tsx --fix",
+    "prettier": "prettier --check .",
+    "prettier:fix": "prettier --write .",
+    "prepare": "husky install"
+  },
+  "author": "",
+  "license": "ISC"
 }
