@@ -24,28 +24,26 @@ export default [
         id: 101,
         name: 'Dhaka',
         cities: [
-          [
-            {
-              id: 8001,
-              name: 'Dhaka Kotwali',
-            },
-            {
-              id: 8002,
-              name: 'Tejgaon',
-            },
-            {
-              id: 8003,
-              name: 'Gulshan',
-            },
-            {
-              id: 8004,
-              name: 'Banani',
-            },
-            {
-              id: 8005,
-              name: 'Paltan',
-            },
-          ],
+          {
+            id: 8001,
+            name: 'Dhaka Kotwali',
+          },
+          {
+            id: 8002,
+            name: 'Tejgaon',
+          },
+          {
+            id: 8003,
+            name: 'Gulshan',
+          },
+          {
+            id: 8004,
+            name: 'Banani',
+          },
+          {
+            id: 8005,
+            name: 'Paltan',
+          },
         ],
       },
       {

@@ -4,6 +4,9 @@
   "description": "This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).",
   "main": "next.config.js",
   "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/material": "^5.14.8",
     "@reduxjs/toolkit": "^1.9.5",
     "@types/node": "20.5.7",
     "@types/react": "18.2.21",

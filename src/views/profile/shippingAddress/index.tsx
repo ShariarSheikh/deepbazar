@@ -1,16 +1,28 @@
+import { useRouter } from 'next/navigation';
 import { FC } from 'react';
+import { BiPlus } from 'react-icons/bi';
 import { CiLocationOn } from 'react-icons/ci';
 import { FiEdit } from 'react-icons/fi';
 import { MdDeleteOutline } from 'react-icons/md';
 
 const ShippingAddress: FC = () => {
+  const route = useRouter();
+
+  const addNewHandler = () => route.push('/profile/shipping-address/add-new');
   return (
-    <div className="max-w-full px-[34px] py-0">
-      <header className="">
+    <div className="w-full h-full p-5 max-w-[1080px] mx-auto pt-3">
+      <header className="flex items-center justify-between">
         <h1 className="text-gray-600 font-medium">My Shipping Address</h1>
+        <button
+          onClick={addNewHandler}
+          className="px-[16px] py-[6px] border border-primary flex items-center rounded-[6px] text-primary hover:text-white font-bold text-sm hover:bg-primary active:scale-95 duration-200"
+        >
+          <BiPlus className="ml-2" />
+          <span>Add New</span>
+        </button>
       </header>
 
-      <div className="w-full h-full p-5 bg-white mt-10 rounded-[6px]">
+      <div className="w-full h-full p-5 bg-white mt-10 rounded-[6px] shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]">
         {/* if not wishlist_item exits  */}
 
         <div className="flex items-center flex-wrap justify-between gap-y-4">

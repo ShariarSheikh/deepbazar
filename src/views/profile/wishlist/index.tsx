@@ -55,7 +55,7 @@ const WishlistData: WishlistUserPanel[] = [
 
 const Wishlist: React.FC = () => {
   return (
-    <div className="max-w-full px-[34px] py-0">
+    <div className="w-full h-full p-5 max-w-[1080px] mx-auto pt-3">
       <header className="">
         <h1 className="text-gray-600 font-medium">My Wishlist</h1>
       </header>
