@@ -1,5 +1,6 @@
+import Pagination from '@/components/common/Pagination';
 import Link from 'next/link';
-import React from 'react';
+import React, { useState } from 'react';
 import { AiOutlineDelete, AiOutlineHeart } from 'react-icons/ai';
 import { BsCart2 } from 'react-icons/bs';
 
@@ -54,6 +55,9 @@ const WishlistData: WishlistUserPanel[] = [
 ];
 
 const Wishlist: React.FC = () => {
+  const totalPages = 100;
+  const [currentPage, setCurrentPage] = useState(0);
+
   return (
     <div className="w-full h-full p-5 max-w-[1080px] mx-auto pt-3">
       <header className="">
@@ -113,6 +117,16 @@ const Wishlist: React.FC = () => {
             <button className="px-[16px] py-[6px] mt-6 flex items-center rounded-[6px] text-white font-bold text-sm bg-primary active:scale-95 duration-200">
               Go To Sopping
             </button>
+          </div>
+        )}
+
+        {WishlistData.length > 0 && (
+          <div className="h-[56px] rounded-b-[16px] flex items-center justify-center">
+            <Pagination
+              totalPages={totalPages}
+              currentPage={currentPage}
+              setCurrentPage={setCurrentPage}
+            />
           </div>
         )}
       </div>

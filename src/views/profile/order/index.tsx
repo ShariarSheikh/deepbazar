@@ -1,4 +1,3 @@
-import Pagination from '@/components/common/Pagination';
 import { FC, useState } from 'react';
 import { FiDownload } from 'react-icons/fi';
 import FilterWithCalender, {
@@ -21,8 +20,6 @@ interface IProps {
 }
 
 const Order: FC<IProps> = ({ orders, mode }) => {
-  const totalPages = 100;
-  const [currentPage, setCurrentPage] = useState(0);
   const [isOpenDateFilter, setIsOpenDateFilter] = useState<boolean>(false);
   const [isOpenCalender, setIsOpenCalender] = useState<boolean>(false);
 
@@ -116,13 +113,6 @@ const Order: FC<IProps> = ({ orders, mode }) => {
             </tr>
           ))}
         </table>
-        <div className="h-[56px] rounded-b-[16px] flex items-center justify-center">
-          <Pagination
-            totalPages={totalPages}
-            currentPage={currentPage}
-            setCurrentPage={setCurrentPage}
-          />
-        </div>
       </div>
     </div>
   );
