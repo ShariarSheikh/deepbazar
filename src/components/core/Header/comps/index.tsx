@@ -5,7 +5,6 @@ import { useEffect, useState } from 'react';
 import { CiLocationOn } from 'react-icons/ci';
 import { FaCaravan } from 'react-icons/fa';
 import { MdLocalOffer } from 'react-icons/md';
-import HamburgerMenu from '../hamburgerMenu';
 import HamburgerMenuIcon from '../hamburgerMenu/Icon';
 import DeliveryLocation from './DeliveryLocation';
 import Logo from './Logo';
@@ -26,7 +25,7 @@ const RenderUiForMobile = () => {
 
   return (
     <div className="w-full lg:hidden">
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between pt-[8px]">
         <HamburgerMenuIcon open={open} setOpen={setOpen} />
         <Logo />
         <ProfileButtons />
@@ -34,7 +33,6 @@ const RenderUiForMobile = () => {
       <div className="w-full mt-4">
         <SearchBar />
       </div>
-      <HamburgerMenu isOpenMenu={open} />
     </div>
   );
 };
