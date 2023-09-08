@@ -10,6 +10,7 @@ import { MdDeleteOutline, MdVerified } from 'react-icons/md';
 const ProfileReviews: FC = () => {
   const totalPages = 100;
   const [currentPage, setCurrentPage] = useState(0);
+
   return (
     <div className="w-full h-full p-5 max-w-[1080px] mx-auto pt-3">
       <header className="">
