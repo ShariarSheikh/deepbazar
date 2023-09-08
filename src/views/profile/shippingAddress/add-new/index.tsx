@@ -100,7 +100,7 @@ const AddNewShippingAddress: FC = () => {
                 Phone Number
               </label>
               <input
-                type="text"
+                type="tel"
                 className="bg-gray-50 border border-gray-300 text-gray-700 text-sm rounded-[6px] focus:outline-blue-500 block w-full p-2.5"
                 placeholder="Phone Number"
                 required
@@ -121,6 +121,7 @@ const AddNewShippingAddress: FC = () => {
                     width: '100%',
                     maxHeight: 41,
                     borderRadius: '6px',
+                    background: '#f9fafb',
                     padding: '2px',
                     ':hover': {
                       outline: 'none',
@@ -155,6 +156,7 @@ const AddNewShippingAddress: FC = () => {
                     width: '100%',
                     maxHeight: 41,
                     borderRadius: '6px',
+                    background: '#f9fafb',
                     padding: '2px',
                     ':hover': {
                       outline: 'none',
@@ -191,6 +193,7 @@ const AddNewShippingAddress: FC = () => {
                     width: '100%',
                     maxHeight: 41,
                     borderRadius: '6px',
+                    background: '#f9fafb',
                     padding: '2px',
                     ':hover': {
                       outline: 'none',
@@ -210,6 +213,28 @@ const AddNewShippingAddress: FC = () => {
                 //@ts-expect-error
                 onChange={(_event, value: string) => selectThanaHandler(value)}
               />
+            </div>
+          </div>
+
+          <div className="flex items-center justify-between mt-[30px]">
+            <div className="w-[48%]">
+              <label
+                htmlFor=""
+                className="block mb-2 text-sm font-medium text-gray-700"
+              >
+                Address
+              </label>
+              <input
+                type="text"
+                className="bg-gray-50 border border-gray-300 text-gray-700 text-sm rounded-[6px] focus:outline-blue-500 block w-full p-2.5"
+                placeholder="Street, Apartment, unit, building, floor, etc"
+                required
+              />
+            </div>
+            <div className="w-[48%] pt-[24px]">
+              <button className="h-[41px] w-full rounded-[6px] flex items-center justify-center mt-[5px] bg-primary text-white font-medium active:scale-95 duration-150">
+                Add
+              </button>
             </div>
           </div>
         </form>

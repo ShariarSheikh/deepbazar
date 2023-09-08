@@ -25,7 +25,7 @@ const Sidebar: FC = () => {
         <li className="w-full h-[38px] mb-1">
           <Link
             href="/profile"
-            className="text-gray-600 w-full h-[38px] flex items-center space-x-2 border-l-2 px-1 border-transparent hover:border-primary hover:bg-[#e1f6ff] duration-150"
+            className="text-gray-600 w-full h-[38px] flex items-center space-x-2 border-l-2 pl-[15px] border-transparent hover:border-primary hover:bg-[#e1f6ff] duration-150"
           >
             <RxDashboard size={16} />
             <span className="font-normal text-sm">Overview</span>
@@ -35,7 +35,7 @@ const Sidebar: FC = () => {
         <li className="w-full h-[38px] mb-1">
           <Link
             href="/profile/order"
-            className="w-full text-gray-600 h-[38px] flex items-center space-x-2 border-l-2 px-1 border-transparent hover:border-primary hover:bg-[#e1f6ff] duration-150"
+            className="w-full text-gray-600 h-[38px] flex items-center space-x-2 border-l-2 pl-[15px] border-transparent hover:border-primary hover:bg-[#e1f6ff] duration-150"
           >
             <FaClipboardList size={16} />
             <span className="font-normal text-sm">Order</span>
@@ -45,7 +45,7 @@ const Sidebar: FC = () => {
         <li className="w-full h-[38px] mb-1">
           <Link
             href="/profile/wishlist"
-            className="w-full text-gray-600 h-[38px] flex items-center space-x-2 border-l-2 px-1 border-transparent hover:border-primary hover:bg-[#e1f6ff] duration-150"
+            className="w-full text-gray-600 h-[38px] flex items-center space-x-2 border-l-2 pl-[15px] border-transparent hover:border-primary hover:bg-[#e1f6ff] duration-150"
           >
             <AiOutlineHeart size={16} />
             <span className="font-normal text-sm">My Wishlist</span>
@@ -55,7 +55,7 @@ const Sidebar: FC = () => {
         <li className="w-full h-[38px] mb-1">
           <Link
             href="/profile/shipping-address"
-            className="w-full text-gray-600 h-[38px] flex items-center space-x-2 border-l-2 px-1 border-transparent hover:border-primary hover:bg-[#e1f6ff] duration-150"
+            className="w-full text-gray-600 h-[38px] flex items-center space-x-2 border-l-2 pl-[15px] border-transparent hover:border-primary hover:bg-[#e1f6ff] duration-150"
           >
             <CiLocationOn size={16} />
             <span className="font-normal text-sm">Shipping Address</span>
@@ -65,7 +65,7 @@ const Sidebar: FC = () => {
         <li className="w-full h-[38px] mb-1">
           <Link
             href="/profile/reviews"
-            className="w-full text-gray-600 h-[38px] flex items-center space-x-2 border-l-2 px-1 border-transparent hover:border-primary hover:bg-[#e1f6ff] duration-150"
+            className="w-full text-gray-600 h-[38px] flex items-center space-x-2 border-l-2 pl-[15px] border-transparent hover:border-primary hover:bg-[#e1f6ff] duration-150"
           >
             <AiOutlineStar size={16} />
             <span className="font-normal text-sm">My Reviews</span>
@@ -75,7 +75,7 @@ const Sidebar: FC = () => {
         <li className="w-full h-[38px] mb-1">
           <Link
             href="/profile/question-answer"
-            className="w-full text-gray-600 h-[38px] flex items-center space-x-2 border-l-2 px-1 border-transparent hover:border-primary hover:bg-[#e1f6ff] duration-150"
+            className="w-full text-gray-600 h-[38px] flex items-center space-x-2 border-l-2 pl-[15px] border-transparent hover:border-primary hover:bg-[#e1f6ff] duration-150"
           >
             <AiOutlineQuestionCircle size={16} />
             <span className="font-normal text-sm">My Question & Answer</span>
@@ -85,7 +85,7 @@ const Sidebar: FC = () => {
         <li className="w-full h-[38px] mb-1">
           <Link
             href="/profile/account"
-            className="w-full text-gray-600 h-[38px] flex items-center space-x-2 border-l-2 px-1 border-transparent hover:border-primary hover:bg-[#e1f6ff] duration-150"
+            className="w-full text-gray-600 h-[38px] flex items-center space-x-2 border-l-2 pl-[15px] border-transparent hover:border-primary hover:bg-[#e1f6ff] duration-150"
           >
             <IoSettingsOutline size={16} />
             <span className="font-normal text-sm">Account Settings</span>
