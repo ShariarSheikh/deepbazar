@@ -26,7 +26,7 @@ const ShippingAddress: FC = () => {
         {/* if not wishlist_item exits  */}
 
         <div className="flex items-center flex-wrap justify-between gap-y-4">
-          <div className="w-[48%] bg-white border border-gray-200 rounded-[6px] p-2 h-[120px]">
+          <div className="w-[49%] bg-white border border-gray-200 rounded-[6px] p-2 h-[120px]">
             <h1 className="text-base">Name: Shariar Sheikh</h1>
             <p className="text-sm text-[#757575] line-clamp-1">
               01304802278, shariar.dev@gmail.com
