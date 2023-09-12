@@ -25,7 +25,8 @@ interface HamburgerMenuIconProps {
 }
 
 const HamburgerMenuIcon: FC<HamburgerMenuIconProps> = ({ open, setOpen }) => {
-  const toggleMenu = () => setOpen(prevState => !prevState);
+  const openMenu = () => setOpen(true);
+  const closeMenu = () => setOpen(false);
 
   const resultContainerRef = useRef(null);
   const pathname = usePathname();
@@ -47,7 +48,7 @@ const HamburgerMenuIcon: FC<HamburgerMenuIconProps> = ({ open, setOpen }) => {
     <AnimatePresence>
       <div className="relative w-[48px] h-[48px]">
         <button
-          onClick={toggleMenu}
+          onClick={open ? closeMenu : openMenu}
           className="flex items-center cursor-pointer justify-center min-w-[48px] max-w-[48px] h-[48px] bg-[#F3F9FB] active:scale-95 duration-150 rounded-[10px]"
         >
           {open ? (
@@ -58,7 +59,7 @@ const HamburgerMenuIcon: FC<HamburgerMenuIconProps> = ({ open, setOpen }) => {
         </button>
 
         {open && (
-          <ClickAwayListener onClickAway={() => setOpen(false)}>
+          <ClickAwayListener onClickAway={closeMenu}>
             <motion.div
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: -10 }}

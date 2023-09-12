@@ -5,8 +5,9 @@ import { useEffect, useState } from 'react';
 import { CiLocationOn } from 'react-icons/ci';
 import { FaCaravan } from 'react-icons/fa';
 import { MdLocalOffer } from 'react-icons/md';
-import HamburgerMenuIcon from '../hamburgerMenu/Icon';
 import DeliveryLocation from './DeliveryLocation';
+
+import HamburgerMenuIcon from './Icon';
 import Logo from './Logo';
 import ProfileButtons from './ProfileButtons';
 import SearchBar from './SearchBar';
@@ -28,9 +29,9 @@ const RenderUiForMobile = () => {
       <div className="flex items-center justify-between pt-[8px]">
         <HamburgerMenuIcon open={open} setOpen={setOpen} />
         <Logo />
-        <ProfileButtons />
+        {/* <ProfileButtons /> */}
       </div>
-      <div className="w-full mt-4">
+      <div className="w-full mt-2 pb-[5px]">
         <SearchBar />
       </div>
     </div>

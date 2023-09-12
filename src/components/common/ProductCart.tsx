@@ -7,18 +7,16 @@ import ReviewStar from './ReviewStar';
 //---------------------------------------
 interface IProps {
   isInsideSlider: boolean;
-  isInsideGrid?: boolean;
   data: SmartPhonesData;
 }
 //---------------------------------------
 
-const ProductCart: FC<IProps> = ({ isInsideSlider, data, isInsideGrid }) => {
+const ProductCart: FC<IProps> = ({ isInsideSlider, data }) => {
   return (
     <div
-      style={{
-        maxWidth: isInsideSlider ? 277 : isInsideGrid ? '100%' : '23%',
-      }}
-      className="w-full h-[450px] bg-white relative"
+      className={`w-full h-[300px] md:h-[450px] bg-white relative ${
+        isInsideSlider ? 'max-w-full' : 'max-w-[48%] md:max-w-[277px]'
+      }`}
     >
       <Link
         href={{
@@ -29,7 +27,7 @@ const ProductCart: FC<IProps> = ({ isInsideSlider, data, isInsideGrid }) => {
           },
         }}
       >
-        <div className="w-full h-[303px] rounded-[6px] relative overflow-hidden bg-[#f5f6f6] group cursor-pointer">
+        <div className="w-full h-[140px] md:h-[303px] rounded-[6px] relative overflow-hidden bg-[#f5f6f6] group cursor-pointer">
           <img
             src={data.images.cardSizeUrl}
             alt="product image"
@@ -38,7 +36,7 @@ const ProductCart: FC<IProps> = ({ isInsideSlider, data, isInsideGrid }) => {
         </div>
       </Link>
       <div>
-        <div className="w-full flex items-center justify-between cursor-default">
+        <div className="w-full flex md:flex-row flex-col items-center justify-between cursor-default">
           <Link
             href={{
               pathname: '/product',
@@ -47,18 +45,18 @@ const ProductCart: FC<IProps> = ({ isInsideSlider, data, isInsideGrid }) => {
                 productId: data._id,
               },
             }}
-            className="w-full max-w-[70%]"
+            className="w-full md:max-w-[70%]"
           >
-            <h1 className=" mt-[16px] mb-[12px] text-[18px] line-clamp-1 pr-1">
+            <h1 className="md:mt-[16px] md:mb-[12px] text-sm md:text-[18px] line-clamp-1 pr-1">
               {data.title}
             </h1>
           </Link>
-          <p className="text-[18px] font-bold text-primary">
+          <p className="text-sm md:text-[18px] font-bold text-primary">
             <span className="text-[13px]">$</span>
             {data.price}
           </p>
         </div>
-        <p className="text-[12px] mb-[5px] text-gray-500 line-clamp-1">
+        <p className="text-[12px] mb-[5px] text-gray-500 line-clamp-2 md:line-clamp-1">
           {data.description}
         </p>
         <ReviewStar

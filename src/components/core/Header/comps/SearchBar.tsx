@@ -143,7 +143,7 @@ const SearchBar = () => {
                             category: category.catPath,
                           },
                         }}
-                        className="h-[58px] w-[49%]"
+                        className="h-[58px] w-[48%]"
                       >
                         <li className="w-full h-full rounded-[6px] flex items-center p-2 justify-start bg-[#F3F9FB] group cursor-pointer hover:bg-[#e9f4f8] duration-150">
                           <div className="w-[50px] h-[50px] rounded-[6px] overflow-hidden">
@@ -154,14 +154,28 @@ const SearchBar = () => {
                             />
                           </div>
                           <div className="ml-[8px]">
-                            <h1 className="text-primary">{category.catName}</h1>
-                            <p className="text-[12px] text-gray-500">
+                            <h1 className="text-primary text-[12px] md:text-base line-clamp-1 md:list-none">
+                              {category.catName}
+                            </h1>
+                            <p className="text-[10px] md:text-[12px] text-gray-500">
                               {category.totalItems} Item Available
                             </p>
                           </div>
                         </li>
                       </Link>
                     ))}
+                    <Link
+                      href={{
+                        pathname: '/shop',
+                      }}
+                      className="h-[58px] w-[48%]"
+                    >
+                      <li className="w-full h-full rounded-[6px] flex items-center p-2 justify-center bg-[#F3F9FB] cursor-pointer hover:bg-[#e9f4f8] duration-150">
+                        <h1 className="text-primary text-[12px] md:text-base line-clamp-1 md:list-none underline">
+                          More...
+                        </h1>
+                      </li>
+                    </Link>
                   </ul>
                 </div>
               </motion.div>

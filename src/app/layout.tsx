@@ -1,4 +1,3 @@
-import Footer from '@/components/core/Footer';
 import Header from '@/components/core/Header';
 import { Providers } from '@/redux/provider';
 import './globals.css';
@@ -9,6 +8,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/scrollbar';
 
 //SKELETON
+import Footer from '@/components/core/Footer';
 import 'react-loading-skeleton/dist/skeleton.css';
 
 export const metadata = {
@@ -57,7 +57,7 @@ export default function RootLayout({
       <body>
         <Providers>
           <Header />
-          {children}
+          <div className="min-h-[20vh] px-4">{children}</div>
           <Footer />
         </Providers>
       </body>

@@ -16,12 +16,21 @@ body {
 .swiper-button-prev,
 .swiper-button-next {
   background: #f3f9fb !important;
-  width: 86px !important;
-  height: 86px !important;
+  width: 46px !important;
+  height: 46px !important;
   border-radius: 50% !important;
   border: solid 8px white !important;
   z-index: 10;
 }
+@media (min-width:768){
+  .swiper-button-prev,
+.swiper-button-next {
+  width: 86px !important;
+  height: 86px !important;
+}
+}
+
+
 .swiper-button-prev::after,
 .swiper-button-next::after {
   font-size: 20px !important;

@@ -21,25 +21,27 @@ interface IProps {
 const BestDealsSection: FC<IProps> = ({ data, productPageLink }) => {
   const firstItem = data[3] || {};
   return (
-    <section className="w-full relative mt-[60px] min-h-[500px]">
+    <section className="w-full relative mt-[40px] md:mt-[60px] min-h-[500px]">
       <div className="w-full flex items-center justify-between">
         <div className="flex items-center">
-          <h1 className="text-[28px] font-bold">FlashSale</h1>
+          <h1 className="text-sm md:text-[28px] font-bold">FlashSale</h1>
           <div className="flex items-center">
-            <p className="text-[14px] ml-[24px] mr-[12px]">Ending In</p>
+            {/* <p className="text-[10px] md:text-[14px] ml-[24px] mr-[12px]">
+              Ending In
+            </p>
             <div className="h-[30px] px-[10px] bg-primary text-white flex items-center justify-center">
               <p>12d : 21h : 56m : 23s</p>
-            </div>
+            </div> */}
           </div>
         </div>
         <Link href={productPageLink}>
-          <button className="text-[28px] text-primary font-bold flex items-center space-x-1 hover:underline">
+          <button className="text-sm md:text-[28px] text-primary font-bold flex items-center space-x-1 hover:underline">
             <p>More</p> <MdKeyboardArrowRight className="text-primary" />
           </button>
         </Link>
       </div>
-      <div className="mt-[40px] flex h-full max-h-[592px] overflow-hidden">
-        <div className="h-full min-h-[592px] w-[320px] px-[18px] pb-[18px]">
+      <div className="mt-[24px] md:mt-[40px] flex flex-col md:flex-row h-full md:max-h-[592px] overflow-hidden">
+        <div className="h-full min-h-[520px] md:min-h-[592px] w-[100%] md:w-[320px] md:px-[18px] pb-[18px]">
           <Link
             href={{
               pathname: '/product',
@@ -93,9 +95,12 @@ const BestDealsSection: FC<IProps> = ({ data, productPageLink }) => {
             </div>
           </div>
         </div>
-        <div className="w-full flex flex-wrap gap-3 items-center">
+        <div className="w-full flex flex-wrap gap-2 md:gap-3 items-center">
           {data.slice(1).map(item => (
-            <div key={item._id} className="w-full max-w-[24%] h-[290px]">
+            <div
+              key={item._id}
+              className="w-full max-w-[48%] md:max-w-[24%] h-[290px]"
+            >
               <Link
                 href={{
                   pathname: '/product',
@@ -105,7 +110,7 @@ const BestDealsSection: FC<IProps> = ({ data, productPageLink }) => {
                   },
                 }}
               >
-                <div className="w-full h-[188px] overflow-hidden rounded-[10px] bg-[#f5f6f6] group cursor-pointer">
+                <div className="w-full h-[133px] md:h-[188px] overflow-hidden rounded-[10px] bg-[#f5f6f6] group cursor-pointer">
                   <img
                     className="w-full h-full group-hover:scale-110 duration-150"
                     src={item.images.cardSizeUrl}
@@ -113,7 +118,7 @@ const BestDealsSection: FC<IProps> = ({ data, productPageLink }) => {
                   />
                 </div>
               </Link>
-              <div className="mt-[8px] px-3">
+              <div className="mt-[4px] px-3">
                 <Link
                   href={{
                     pathname: '/product',
@@ -123,9 +128,11 @@ const BestDealsSection: FC<IProps> = ({ data, productPageLink }) => {
                     },
                   }}
                 >
-                  <h1 className="line-clamp-1 text-[16px]">{item.title}</h1>
+                  <h1 className="line-clamp-1 text-sm md:text-[16px]">
+                    {item.title}
+                  </h1>
                 </Link>
-                <div className="flex items-center justify-between">
+                <div className="flex flex-col md:flex-row items-center justify-between">
                   <ReviewStar reviews={item.reviews} />
                   <p className="text-[18px] font-bold text-primary">
                     <span className="text-[13px]">$</span>

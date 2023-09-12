@@ -6,7 +6,6 @@ import BestDealsSection from '@/views/home/BestDealsSection';
 import CategorySection from '@/views/home/CategorySection';
 import HeroSection from '@/views/home/HeroSection';
 import ProductFeedsHome from '@/views/home/ProductFeedsHome';
-import SponsoredItem from '@/views/home/SponsoredItem';
 import { SwiperSlide } from 'swiper/react';
 
 //---------------------------------------------------------
@@ -18,9 +17,6 @@ export default function Home() {
       <div className="w-full max-w-[1201px] mx-auto">
         <HeroSection />
         <CategorySection />
-
-        <br />
-        <br />
         <BestDealsSection
           data={smartPhones.slice(0, 9)}
           productPageLink={{
@@ -30,10 +26,6 @@ export default function Home() {
             },
           }}
         />
-
-        <br />
-        <br />
-        <br />
         <ProductFeedsHome
           productPageLink={{
             pathname: '/all-product',
@@ -44,21 +36,21 @@ export default function Home() {
           isSlider={false}
           title="Just For You!"
           navigationComp={
-            <div className="w-full py-[40px]">
-              <div className="w-full flex items-center space-x-4">
-                <button className="rounded-[100px] h-[43px] border border-[#c5c5c5] px-[23px] text-sm font-semibold">
+            <div className="w-full pt-[16px] pb-[40px] md:pt-[40px]">
+              <div className="w-full flex-wrap flex items-center justify-start md:space-x-4">
+                <button className="rounded-[100px] h-[35px] md:h-[43px] border border-[#c5c5c5] px-[10px] md:px-[23px] text-[12px] md:text-sm font-medium md:font-semibold ml-[5px] mb-[5px]">
                   Watch
                 </button>
-                <button className="rounded-[100px] h-[43px] border border-[#c5c5c5] px-[23px] text-sm font-semibold">
+                <button className="rounded-[100px] h-[35px] md:h-[43px] border border-[#c5c5c5] px-[10px] md:px-[23px] text-[12px] md:text-sm font-medium md:font-semibold ml-[5px] mb-[5px]">
                   Smart Phone
                 </button>
-                <button className="rounded-[100px] h-[43px] border border-[#c5c5c5] px-[23px] text-sm font-semibold">
+                <button className="rounded-[100px] h-[35px] md:h-[43px] border border-[#c5c5c5] px-[10px] md:px-[23px] text-[12px] md:text-sm font-medium md:font-semibold ml-[5px] mb-[5px]">
                   Laptop
                 </button>
-                <button className="rounded-[100px] h-[43px] border border-[#c5c5c5] px-[23px] text-sm font-semibold">
+                <button className="rounded-[100px] h-[35px] md:h-[43px] border border-[#c5c5c5] px-[10px] md:px-[23px] text-[12px] md:text-sm font-medium md:font-semibold ml-[5px] mb-[5px]">
                   Camera
                 </button>
-                <button className="rounded-[100px] h-[43px] border border-[#c5c5c5] px-[23px] text-sm font-semibold">
+                <button className="rounded-[100px] h-[35px] md:h-[43px] border border-[#c5c5c5] px-[10px] md:px-[23px] text-[12px] md:text-sm font-medium md:font-semibold ml-[5px] mb-[5px]">
                   Audio
                 </button>
               </div>
@@ -69,21 +61,13 @@ export default function Home() {
             {smartPhones.slice(0, 8).map(phoneData => (
               <ProductCart
                 key={phoneData._id}
-                isInsideSlider
+                isInsideSlider={false}
                 data={phoneData}
               />
             ))}
           </>
         </ProductFeedsHome>
-        <br />
-        <br />
-        <br />
-        <br />
-        <SponsoredItem />
-        <br />
-        <br />
-        <br />
-        <br />
+        {/* <SponsoredItem /> */}
         <ProductFeedsHome
           productPageLink={{
             pathname: '/shop',
@@ -101,8 +85,6 @@ export default function Home() {
             </SwiperSlide>
           ))}
         </ProductFeedsHome>
-        <br />
-        <br />
         <br />
         <br />
       </div>

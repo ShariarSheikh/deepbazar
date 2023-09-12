@@ -8,35 +8,43 @@ const CategorySection = () => {
   //HOOKS
 
   return (
-    <section className="w-full relative mt-[60px]">
-      <h1 className="text-[28px] font-bold font-poppins">
+    <section className="w-full relative mt-[40px] md:mt-[60px]">
+      <h1 className="text-sm md:text-[28px] font-bold">
         Shop Our Top Categories
       </h1>
-      <div className="w-full relative flex items-center space-x-4 justify-between mt-[40px]">
-        {categories.map(category => (
-          <Link
-            key={category.id}
-            href={{
-              pathname: '/shop',
-              query: {
-                category: category.catPath,
-              },
-            }}
-            className="w-full max-w-[20%] h-[220px]"
-          >
-            <div className="w-full h-full rounded-[10px] cursor-pointer group relative overflow-hidden [&>img]:hover:scale-110">
-              <img
-                src={category.bgImgUrl}
-                alt={category.catName}
-                className="w-full h-full duration-150 z-10 object-cover"
-              />
+      <div className="w-full relative flex flex-wrap md:flex-nowrap items-center gap-3 md:gap-0 md:space-x-4 justify-start md:justify-between mt-[24px] md:mt-[40px]">
+        {categories.map((category, index) => {
+          const isLastItem = index + 1 === categories.length;
+          return (
+            <Link
+              key={category.id}
+              href={{
+                pathname: '/shop',
+                query: {
+                  category: category.catPath,
+                },
+              }}
+              className={`w-full ${
+                isLastItem ? 'max-w-[63%]' : 'max-w-[30%]'
+              }  md:max-w-[20%] h-[126px] md:h-[220px]`}
+            >
+              <div className="w-full h-full rounded-[10px] cursor-pointer group relative overflow-hidden [&>img]:hover:scale-110">
+                <img
+                  src={category.bgImgUrl}
+                  alt={category.catName}
+                  className="w-full h-full duration-150 z-10"
+                  style={{
+                    objectFit: isLastItem ? 'fill' : 'cover',
+                  }}
+                />
 
-              <h1 className="pt-[20px] cursor-pointer absolute inset-0 text-[24px] font-poppins z-20 text-center font-medium text-white group">
-                {category.catName}
-              </h1>
-            </div>
-          </Link>
-        ))}
+                <h1 className="pt-[20px] cursor-pointer absolute inset-0 text-sm md:text-[24px] z-20 text-center font-medium text-white group">
+                  {category.catName}
+                </h1>
+              </div>
+            </Link>
+          );
+        })}
       </div>
     </section>
   );

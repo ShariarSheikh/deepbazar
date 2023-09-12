@@ -9,11 +9,10 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 //---------------------------------------
 
 const HeroSection: FC = () => {
-  //HOOKS
   const router = useRouter();
 
   return (
-    <div className="w-full relative h-[316px] bg-slate-100">
+    <div className="w-full relative h-[150px] max-h-[150px] md:h-[316px] md:max-h-[316px] bg-slate-100">
       <Swiper
         spaceBetween={30}
         centeredSlides={true}
@@ -26,7 +25,7 @@ const HeroSection: FC = () => {
         }}
         navigation={true}
         modules={[Autoplay, Pagination, Navigation]}
-        className="mySwiper h-full rounded-md"
+        className="mySwiper h-full rounded-[6px]"
       >
         {banners.map(banner => (
           <SwiperSlide key={banner.category}>
@@ -41,12 +40,12 @@ const HeroSection: FC = () => {
             >
               <div
                 onClick={() => router.push(`/shop/${banner.link}`)}
-                className="w-full min-h-[316px] max-w-[1201px] mx-auto cursor-pointer rounded-md max-h-[316px] relative group"
+                className="w-full min-h-[150px] md:min-h-[316px] max-w-[1201px] mx-auto cursor-pointer rounded-md max-h-[150px] md:max-h-[316px] relative group"
               >
                 <img
                   src={banner.bannerUrl}
                   alt="banner"
-                  className="w-full min-h-[316px] object-cover duration-300 transition-all"
+                  className="w-full min-h-[150px] md:min-h-[316px] object-fill md:object-cover duration-300 transition-all"
                 />
 
                 <div className="absolute inset-0 duration-200 transition-all" />
