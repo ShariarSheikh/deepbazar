@@ -20,13 +20,13 @@ const SignUp: FC<IProps> = ({ activeOldUserHandler }) => {
           type="text"
           value=""
           placeholder="First Name"
-          className="h-[42px] rounded-[6px] bg-[#F3F9FB] w-full max-w-[45%] px-2 outline-[#E5F8FE] text-[12px]"
+          className="h-[42px] rounded-[6px] bg-[#F3F9FB] w-full max-w-[48%] md:max-w-[45%] px-2 outline-[#E5F8FE] text-[12px]"
         />
         <input
           type="text"
           value=""
           placeholder="Last Name"
-          className="h-[42px] rounded-[6px] bg-[#F3F9FB] w-full max-w-[45%] px-2 outline-[#E5F8FE] text-[12px]"
+          className="h-[42px] rounded-[6px] bg-[#F3F9FB] w-full max-w-[48%] md:max-w-[45%] px-2 outline-[#E5F8FE] text-[12px]"
         />
       </div>
       <div className="w-full flex flex-col space-y-4 justify-center items-center mt-[18px]">
