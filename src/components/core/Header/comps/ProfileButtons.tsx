@@ -1,6 +1,6 @@
 import CartBadges from '@/components/common/CartBadge';
 import { showCartHandler } from '@/redux/features/cartSlice';
-import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import { useAppDispatch } from '@/redux/hooks';
 import Link from 'next/link';
 import { FiShoppingCart } from 'react-icons/fi';
 import { MdOutlinePersonOutline } from 'react-icons/md';
@@ -11,7 +11,7 @@ import { MdOutlinePersonOutline } from 'react-icons/md';
 
 const ProfileButtons = () => {
   //STATE
-  const { cartTotalQuantity } = useAppSelector(state => state.cartSlice);
+  // const { cartTotalQuantity } = useAppSelector(state => state.cartSlice);
 
   //HOOKS
   const dispatch = useAppDispatch();
@@ -37,9 +37,10 @@ const ProfileButtons = () => {
         className="flex items-center w-full relative"
       >
         <FiShoppingCart size={24} className="text-primary" />
-        {cartTotalQuantity > 10 && (
-          <CartBadges number={cartTotalQuantity || 6} />
-        )}
+        <div className="absolute right-[35px] -top-[7px] ">
+          <CartBadges number={6} />
+        </div>
+
         <p className="ml-[6px] text-[16px] font-bold text-[#666666]">Cart</p>
       </button>
     </div>

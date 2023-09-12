@@ -22,14 +22,13 @@ body {
   border: solid 8px white !important;
   z-index: 10;
 }
-@media (min-width:768){
+@media (min-width: 768) {
   .swiper-button-prev,
-.swiper-button-next {
-  width: 86px !important;
-  height: 86px !important;
+  .swiper-button-next {
+    width: 86px !important;
+    height: 86px !important;
+  }
 }
-}
-
 
 .swiper-button-prev::after,
 .swiper-button-next::after {

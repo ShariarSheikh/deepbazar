@@ -8,6 +8,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/scrollbar';
 
 //SKELETON
+import BottomNavigation from '@/components/core/BottomNavigation';
 import Footer from '@/components/core/Footer';
 import 'react-loading-skeleton/dist/skeleton.css';
 
@@ -58,6 +59,7 @@ export default function RootLayout({
         <Providers>
           <Header />
           <div className="min-h-[20vh] px-4">{children}</div>
+          <BottomNavigation />
           <Footer />
         </Providers>
       </body>
