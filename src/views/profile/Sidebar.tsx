@@ -24,7 +24,7 @@ const Sidebar: FC = () => {
       <ul className="mt-[18px] w-full">
         <li className="w-full h-[38px] mb-1">
           <Link
-            href="/profile"
+            href="/user"
             className="text-gray-600 w-full h-[38px] flex items-center space-x-2 border-l-2 pl-[15px] border-transparent hover:border-primary hover:bg-[#e1f6ff] duration-150"
           >
             <RxDashboard size={16} />
@@ -34,7 +34,7 @@ const Sidebar: FC = () => {
 
         <li className="w-full h-[38px] mb-1">
           <Link
-            href="/profile/order"
+            href="/user/order"
             className="w-full text-gray-600 h-[38px] flex items-center space-x-2 border-l-2 pl-[15px] border-transparent hover:border-primary hover:bg-[#e1f6ff] duration-150"
           >
             <FaClipboardList size={16} />
@@ -44,7 +44,7 @@ const Sidebar: FC = () => {
 
         <li className="w-full h-[38px] mb-1">
           <Link
-            href="/profile/wishlist"
+            href="/user/wishlist"
             className="w-full text-gray-600 h-[38px] flex items-center space-x-2 border-l-2 pl-[15px] border-transparent hover:border-primary hover:bg-[#e1f6ff] duration-150"
           >
             <AiOutlineHeart size={16} />
@@ -54,7 +54,7 @@ const Sidebar: FC = () => {
 
         <li className="w-full h-[38px] mb-1">
           <Link
-            href="/profile/shipping-address"
+            href="/user/shipping-address"
             className="w-full text-gray-600 h-[38px] flex items-center space-x-2 border-l-2 pl-[15px] border-transparent hover:border-primary hover:bg-[#e1f6ff] duration-150"
           >
             <CiLocationOn size={16} />
@@ -64,7 +64,7 @@ const Sidebar: FC = () => {
 
         <li className="w-full h-[38px] mb-1">
           <Link
-            href="/profile/reviews"
+            href="/user/reviews"
             className="w-full text-gray-600 h-[38px] flex items-center space-x-2 border-l-2 pl-[15px] border-transparent hover:border-primary hover:bg-[#e1f6ff] duration-150"
           >
             <AiOutlineStar size={16} />
@@ -74,7 +74,7 @@ const Sidebar: FC = () => {
 
         <li className="w-full h-[38px] mb-1">
           <Link
-            href="/profile/question-answer"
+            href="/user/question-answer"
             className="w-full text-gray-600 h-[38px] flex items-center space-x-2 border-l-2 pl-[15px] border-transparent hover:border-primary hover:bg-[#e1f6ff] duration-150"
           >
             <AiOutlineQuestionCircle size={16} />
@@ -84,7 +84,7 @@ const Sidebar: FC = () => {
 
         <li className="w-full h-[38px] mb-1">
           <Link
-            href="/profile/account"
+            href="/user/account"
             className="w-full text-gray-600 h-[38px] flex items-center space-x-2 border-l-2 pl-[15px] border-transparent hover:border-primary hover:bg-[#e1f6ff] duration-150"
           >
             <IoSettingsOutline size={16} />

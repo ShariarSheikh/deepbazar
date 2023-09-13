@@ -2,12 +2,12 @@ import { AnimatePresence, motion } from 'framer-motion';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import {
-  ChangeEvent,
-  Dispatch,
-  FC,
-  SetStateAction,
-  useEffect,
-  useRef,
+    ChangeEvent,
+    Dispatch,
+    FC,
+    SetStateAction,
+    useEffect,
+    useRef,
 } from 'react';
 import ClickAwayListener from 'react-click-away-listener';
 import { AiFillHome, AiFillProject, AiOutlineHeart } from 'react-icons/ai';
@@ -100,7 +100,7 @@ const HamburgerMenuIcon: FC<HamburgerMenuIconProps> = ({ open, setOpen }) => {
                       <p className="ml-[8px] pt-[2px]">Cart</p>
                     </li>
                   </Link>
-                  <Link href="/profile/favorite">
+                  <Link href="/user/favorite">
                     <li className="text-[14px] w-full h-[36px] mb-[3px] flex items-center pl-[8px] hover:bg-[#F3F9FB]">
                       <AiOutlineHeart />
                       <p className="ml-[8px] pt-[2px]">Favorite</p>

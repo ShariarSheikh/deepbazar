@@ -11,15 +11,15 @@ const Breadcrumb = ({ segment = '' }: { segment: string | null }) => {
         </div>
       </Link>
 
-      <Link href={`/profile`}>
+      <Link href={`/user`}>
         <div className="flex items-center">
           <IoIosArrowForward />
-          <span className="mt-[3px] ml-[3px]">Profile</span>
+          <span className="mt-[3px] ml-[3px]">User</span>
         </div>
       </Link>
 
       {segment && (
-        <Link href={`/profile/${segment}`}>
+        <Link href={`/user/${segment}`}>
           <div className="flex items-center text-primary">
             <IoIosArrowForward />
             <span className="mt-[3px] ml-[3px]">{segment}</span>

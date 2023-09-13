@@ -1,9 +1,13 @@
+'use client';
 import Pagination from '@/components/common/Pagination';
+import { NextPage } from 'next';
 import Link from 'next/link';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { AiOutlineDelete, AiOutlineHeart } from 'react-icons/ai';
 import { BsCart2 } from 'react-icons/bs';
 
+//-------------------------------------
+interface PageProps {}
 interface WishlistUserPanel {
   id: number;
   img: string;
@@ -13,6 +17,8 @@ interface WishlistUserPanel {
   star: number;
   reviews: number;
 }
+
+//-------------------------------------
 
 const WishlistData: WishlistUserPanel[] = [
   {
@@ -54,7 +60,7 @@ const WishlistData: WishlistUserPanel[] = [
   },
 ];
 
-const Wishlist: React.FC = () => {
+const Page: NextPage<PageProps> = () => {
   const totalPages = 100;
   const [currentPage, setCurrentPage] = useState(0);
 
@@ -134,4 +140,4 @@ const Wishlist: React.FC = () => {
   );
 };
 
-export default Wishlist;
+export default Page;

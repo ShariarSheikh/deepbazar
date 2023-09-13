@@ -47,7 +47,7 @@ const AddNewShippingAddress: FC = () => {
     <div className="w-full h-full p-5 max-w-[1080px] mx-auto pt-3">
       <header className="flex items-center space-x-2 text-gray-600 font-medium">
         <Link
-          href="/profile/shipping-address"
+          href="/user/shipping-address"
           className="hover:underline text-primary"
         >
           <h1>My Shipping Address</h1>

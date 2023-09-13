@@ -16,7 +16,7 @@ const Navigation: FC = () => {
     <header className="h-[48px] w-full flex items-center bg-white">
       <ul className="w-full flex items-center justify-start h-full">
         <Link
-          href="/profile/account"
+          href="/user/account"
           className={`text-[14px] font-semibold cursor-pointer h-full border-b-[2px] duration-150 pb-[8px] ${
             segment === null
               ? 'border-primary text-primary'
@@ -29,7 +29,7 @@ const Navigation: FC = () => {
         </Link>
 
         <Link
-          href="/profile/account/socialLinks"
+          href="/user/account/socialLinks"
           className={`text-[14px] font-semibold ml-[40px] cursor-pointer h-full border-b-[2px] duration-150 pb-[8px] ${
             segment === 'socialLinks'
               ? 'border-primary text-primary'
@@ -42,7 +42,7 @@ const Navigation: FC = () => {
         </Link>
 
         <Link
-          href="/profile/account/changePassword"
+          href="/user/account/changePassword"
           className={`text-[14px] font-semibold ml-[40px] cursor-pointer h-full border-b-[2px] duration-150 pb-[8px] ${
             segment === 'changePassword'
               ? 'border-primary text-primary'
