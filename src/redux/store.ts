@@ -3,7 +3,6 @@ import { configureStore } from '@reduxjs/toolkit';
 import cartSlice from './features/cartSlice';
 import favoriteCartSlice from './features/favoriteCartSlice';
 import loginSlice from './features/loginSlice';
-import userLocationSlice from './features/userLocationSlice';
 import ProductApi from './services/Product';
 
 export const store = configureStore({
@@ -11,7 +10,6 @@ export const store = configureStore({
     loginSlice: loginSlice,
     cartSlice: cartSlice,
     favoriteCartSlice: favoriteCartSlice,
-    userLocationSlice: userLocationSlice,
 
     //  API--------------------------------------
     [ProductApi.reducerPath]: ProductApi.reducer,

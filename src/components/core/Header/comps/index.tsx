@@ -94,7 +94,7 @@ const RenderUiForDesktop = () => {
 };
 
 // MAIN COMPONENT----------------------------------
-const TopSection = () => {
+const HeaderSection = () => {
   const { width } = useWindowSize();
 
   return (
@@ -107,4 +107,4 @@ const TopSection = () => {
   );
 };
 
-export default TopSection;
+export default HeaderSection;

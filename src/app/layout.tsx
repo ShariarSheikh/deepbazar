@@ -17,11 +17,11 @@ export const metadata = {
   description: 'Biggest E-commerce website in bangladesh',
 };
 
-export default function RootLayout({
-  children,
-}: {
+interface RootLayoutProps {
   children: React.ReactNode;
-}) {
+}
+
+export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
       <head>

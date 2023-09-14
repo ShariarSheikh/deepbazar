@@ -8,7 +8,7 @@ interface IProps {
   children: ReactNode;
 }
 
-const ProfileLayout: FC<IProps> = ({ children }) => {
+const UserLayout: FC<IProps> = ({ children }) => {
   const segment = useSelectedLayoutSegment();
 
   return (
@@ -26,4 +26,4 @@ const ProfileLayout: FC<IProps> = ({ children }) => {
   );
 };
 
-export default ProfileLayout;
+export default UserLayout;

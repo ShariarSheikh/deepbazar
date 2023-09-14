@@ -2,12 +2,12 @@ import { AnimatePresence, motion } from 'framer-motion';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import {
-    ChangeEvent,
-    Dispatch,
-    FC,
-    SetStateAction,
-    useEffect,
-    useRef,
+  ChangeEvent,
+  Dispatch,
+  FC,
+  SetStateAction,
+  useEffect,
+  useRef,
 } from 'react';
 import ClickAwayListener from 'react-click-away-listener';
 import { AiFillHome, AiFillProject, AiOutlineHeart } from 'react-icons/ai';
