@@ -67,7 +67,7 @@ const navLinks: SellerSidebarActionList[] = [
       },
     ],
     link: 'products',
-    height: 'h-[108px]',
+    height: 'h-[80px]',
     isExpend: false,
     searchText: `${
       (rootSearchTag.searchTag,

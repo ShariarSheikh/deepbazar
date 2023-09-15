@@ -9,6 +9,7 @@ const nextConfig = {
       'images.unsplash.com',
       'www.dropbox.com',
       'plus.unsplash.com',
+      'res.cloudinary.com',
     ],
   },
   eslint: {

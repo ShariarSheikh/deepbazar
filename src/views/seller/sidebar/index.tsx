@@ -88,17 +88,11 @@ function SellerSidebar() {
             }
             w-full pl-3 relative flex items-start justify-start`}
           >
-            {/* <Image
-              onClick={(): undefined | Promise<boolean> => {
-                if (pathname === '/') return undefined;
-                return push('/');
-              }}
-              width={ExpendSidebar ? 80 : 50}
-              height={ExpendSidebar ? 40 : 30}
-              src={logo}
-              alt="logo"
-            /> */}
-            <h1>DeepBazar</h1>
+            <h1 className="cursor-pointer font-bold text-lg sm:text-2xl text-primary">
+              <Link href="/" passHref>
+                DeepBazar
+              </Link>
+            </h1>
           </div>
 
           {/* navigation list */}

@@ -22,7 +22,7 @@ export function SearchResult({
       return <p className="text-[12px] text-gray-900">{text}</p>;
 
     const regex = new RegExp(searchText, 'ig');
-    const textWithHighlight = text.replace(regex, `<b>${searchText}</b>`);
+    const textWithHighlight = text.replace(regex, `<mark>${searchText}</mark>`);
 
     return (
       <Interweave
@@ -33,7 +33,7 @@ export function SearchResult({
   };
 
   return (
-    <div className="w-full h-auto bg-white pl-5 pr-1 py-8 rounded-lg shadow-dropdown">
+    <div className="w-full h-auto bg-white pl-5 pr-1 py-8 rounded-lg shadow-[0_8px_30px_rgb(0,0,0,0.12)]">
       <div className="w-full h-[427px] visible-scrollbar overflow-y-auto">
         {searchResult?.length === 0 ? (
           <div className="h-full w-full flex flex-col justify-center items-center">
