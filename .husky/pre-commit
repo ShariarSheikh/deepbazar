@@ -4,7 +4,7 @@
 echo '👀👀👀Testing and building this project before commiting👀👀👀'
 
 ## ---------------------------------------------------
-yarn lint:fix ||
+pnpm run lint:fix ||
 (
     echo 'Eslint file fixing failed'
     false 
@@ -13,7 +13,7 @@ echo "success ✅✅✅✅✅✅"
 
 
 ##----------------------------------------------------
-yarn lint ||
+pnpm run lint ||
 (
     echo 'Eslint check failed'
     false;
@@ -22,7 +22,7 @@ echo "success ✅✅✅✅✅✅"
 
 
 ##----------------------------------------------------
-yarn prettier:fix ||
+pnpm run prettier:fix ||
 (
     echo "Can't format code"
     false;
@@ -31,7 +31,7 @@ echo "success ✅✅✅✅✅✅"
 
 
 ##----------------------------------------------------
-yarn prettier ||
+pnpm run prettier ||
 (
     echo 'The format is disgusting'
     false;
@@ -42,7 +42,7 @@ echo "success ✅✅✅✅✅✅"
 #If everything passes... try to run build
 echo 'Your code looks good ---> trying to build it now👍👍👍👍👍👍'
 ##----------------------------------------------------
-yarn build ||
+pnpm run build ||
 (
     echo 'Your next build failed'
     false;

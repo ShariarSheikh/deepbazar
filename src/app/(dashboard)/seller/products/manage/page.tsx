@@ -73,16 +73,16 @@ export default function ManagePage() {
           </div>
 
           <div className="w-full h-full border-t border-gray-200 pt-5 min-h-[300px]">
-            <div className="flex justify-between items-center w-full h-[56px] px-[18px]">
+            <div className="flex justify-between items-center w-full h-[56px] px-[18px] bg-primaryLight">
               <h3 className="text-[13px] text-gray-600 font-semibold ml-[16px]">
                 Product
               </h3>
 
               <div className="flex items-center">
-                <h3 className="text-[13px] text-gray-600 font-semibold min-w-[200px]">
+                <h3 className="text-[13px] text-gray-600 font-semibold min-w-[96px]">
                   Create At
                 </h3>
-                <div className="w-full min-w-[200px]">
+                <div className="w-full min-w-[96px]">
                   <h3 className="text-[13px] text-gray-600 font-semibold">
                     Sell Price
                   </h3>

@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { AiOutlineDelete } from 'react-icons/ai';
 
 // assets
-import fileUploadImg from '../../../assets/illustration_upload.png';
+import fileUploadImg from '../../../assets/upload.png';
 
 //
 import RejectionFiles from './errors/RejectionFiles';
@@ -18,7 +18,7 @@ import { UploadProps } from './types';
 function Placeholder({ className }: { className: string }) {
   return (
     <div
-      className={`${className} w-full h-full  flex items-center justify-start p-2 rounded-[3px]`}
+      className={`${className} w-full h-full flex items-center justify-start p-2 overflow-hidden rounded-[6px] bg-gray-50`}
     >
       <div className="w-[44%] h-full">
         <Image src={fileUploadImg} alt="file-upload" />
@@ -79,7 +79,7 @@ export default function Upload({
       <div {...getRootProps()} className="w-full h-full">
         <input {...getInputProps()} />
         <Placeholder
-          className={`${placeholderClassName} border border-dashed borderColor`}
+          className={`${placeholderClassName} border border-dashed border-gray-200`}
         />
       </div>
 

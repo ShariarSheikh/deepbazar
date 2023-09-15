@@ -24,7 +24,7 @@ export const PATH_AUTH = {
 };
 
 //SELLER
-const ROOTS_SELLER = 'seller';
+const ROOTS_SELLER = '/seller';
 export const PATH_SELLER = {
   overview: path(ROOTS_SELLER, ''),
   category: path(ROOTS_SELLER, '/category'),

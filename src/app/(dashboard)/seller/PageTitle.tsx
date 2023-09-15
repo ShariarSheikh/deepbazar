@@ -3,7 +3,7 @@ import { FC, ReactElement } from 'react';
 //-------------------------------------------------
 interface IProps {
   pageName: string;
-  breadcrumb: ReactElement;
+  breadcrumb?: ReactElement;
 }
 //-------------------------------------------------
 
