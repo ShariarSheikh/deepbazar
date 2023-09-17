@@ -1,12 +1,14 @@
 import { FC, Suspense, useState } from 'react';
+import SvgSpinier from '../SvgSpinier';
 import Description from './Description';
-import QuestionAndAns from './QuestionAndAns';
+import QuestionAndAns from './QuestionAns';
 import Reviews from './Reviews';
 import Specification from './Specification';
 
 //-------------------------------------------------
 interface IProps {
-  productSpecification: string;
+  productId: number;
+  isEditable: boolean;
 }
 
 enum ComponentTypeEnum {
@@ -17,9 +19,8 @@ enum ComponentTypeEnum {
 }
 //-------------------------------------------------
 
-const AdditionalInformation: FC<IProps> = ({
-  productSpecification,
-}): JSX.Element => {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const ProductAdditionalInfo: FC<IProps> = ({ isEditable, productId }) => {
   const [componentType, setComponentType] = useState<ComponentTypeEnum>(
     ComponentTypeEnum.Reviews
   );
@@ -86,22 +87,26 @@ const AdditionalInformation: FC<IProps> = ({
         <Suspense
           fallback={
             <div className="w-full h-full flex flex-col justify-center items-center absolute inset-0 bg-white">
-              spiner icon
+              <SvgSpinier />
             </div>
           }
         >
           {componentType === ComponentTypeEnum.Specification ? (
-            <Specification productSpecification={productSpecification} />
+            <Specification specification={''} />
           ) : null}
-          {componentType === ComponentTypeEnum.Reviews ? <Reviews /> : null}
+          {componentType === ComponentTypeEnum.Reviews ? (
+            <Reviews isEditable={isEditable} />
+          ) : null}
           {componentType === ComponentTypeEnum.Description ? (
-            <Description />
+            <Description description={''} />
           ) : null}
-          {componentType === ComponentTypeEnum.QnA ? <QuestionAndAns /> : null}
+          {componentType === ComponentTypeEnum.QnA ? (
+            <QuestionAndAns isEditable={isEditable} />
+          ) : null}
         </Suspense>
       </div>
     </div>
   );
 };
 
-export default AdditionalInformation;
+export default ProductAdditionalInfo;

@@ -1,7 +1,7 @@
+import ProductAdditionalInfo from '@/components/common/ProductAdditionalInfo';
 import { LoadingLayout } from '@/components/common/loading';
 import { SmartPhonesData } from '@/fakeDB/smartPhones';
 import { FC } from 'react';
-import AdditionalInformation from './AdditionalInformation';
 import DisplayImage from './DisplayImage';
 import Info from './Info';
 
@@ -35,7 +35,7 @@ const Product: FC<IProps> = ({ data, isLoading }) => {
           </>
         )}
       </div>
-      <AdditionalInformation productSpecification={data?.description} />
+      <ProductAdditionalInfo isEditable={false} productId={data._id} />
     </div>
   );
 };

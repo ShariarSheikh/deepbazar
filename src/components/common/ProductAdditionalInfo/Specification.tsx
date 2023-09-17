@@ -1,16 +1,14 @@
 import { Interweave } from 'interweave';
 
-function Specification({
-  productSpecification,
-}: {
-  productSpecification: string;
-}): JSX.Element {
+interface IProps {
+  specification: string;
+}
+
+function Specification({ specification }: IProps): JSX.Element {
   return (
     <div className="p-[24px] w-full h-full">
-      {productSpecification?.trim() ? (
-        <div>
-          <Interweave content={productSpecification} />
-        </div>
+      {specification?.trim() ? (
+        <Interweave content={specification} />
       ) : (
         <div className="w-full h-full flex items-center justify-center pt-[86px]">
           <h1 className="text-gray-500">No Specification:</h1>

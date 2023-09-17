@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import CartQuantityButtons from '@/components/common/CartQuantityButtons';
-import ReviewStar from '@/components/common/ReviewStar';
+import RatingStar from '@/components/common/RatingStar';
 import { SmartPhonesData } from '@/fakeDB/smartPhones';
 import { useAppDispatch } from '@/redux/hooks';
 import { FC, useState } from 'react';
@@ -33,7 +33,7 @@ const Info: FC<{ data: SmartPhonesData }> = ({ data }) => {
         <p className="text-base text-gray-500 pt-[3px]">{data.description}</p>
         <div className="mt-3 flex items-center space-x-3">
           <div className="flex items-center space-x-1">
-            <ReviewStar reviews={data.reviews} />
+            <RatingStar reviews={data.reviews} />
             <p className="text-[12px] text-gray-500 pt-[3px]">Ratings</p>
           </div>
           <span className="bg-[#D9D9D9] h-[18px] w-[1px]" />

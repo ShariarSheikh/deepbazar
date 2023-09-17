@@ -10,7 +10,7 @@ interface IProps {
   containerStyles?: CSSProperties;
 }
 
-const ReviewStar: FC<IProps> = ({ reviews, containerStyles }) => {
+const RatingStar: FC<IProps> = ({ reviews, containerStyles }) => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { total, star } = reviews;
   return (
@@ -29,4 +29,4 @@ const ReviewStar: FC<IProps> = ({ reviews, containerStyles }) => {
   );
 };
 
-export default ReviewStar;
+export default RatingStar;

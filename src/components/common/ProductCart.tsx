@@ -2,7 +2,7 @@ import { SmartPhonesData } from '@/fakeDB/smartPhones';
 import Link from 'next/link';
 import { FC } from 'react';
 import { AiOutlineHeart } from 'react-icons/ai';
-import ReviewStar from './ReviewStar';
+import ReviewStar from './RatingStar';
 
 //---------------------------------------
 interface IProps {

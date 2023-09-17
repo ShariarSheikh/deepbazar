@@ -64,9 +64,10 @@ export default function NavHeader({ setShowSearchBar, isSticky }: IProps) {
               fill
               src={
                 userData?.profileImg ||
-                'https://www.dropbox.com/s/iv3vsr5k6ib2pqx/avatar_default.jpg?dl=1'
+                'https://plus.unsplash.com/premium_photo-1678197937465-bdbc4ed95815?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80'
               }
               alt="myImage"
+              className="object-cover"
             />
           </div>
           <PopUp setShow={setShowProfile} show={showProfile}>

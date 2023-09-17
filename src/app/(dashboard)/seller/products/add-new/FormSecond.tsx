@@ -44,7 +44,9 @@ function FormSecond({
           name="productCode"
           type="text"
           value={createProductState.productCode || ''}
-          onChange={onInputChange}
+          // onChange={onInputChange}
+          readOnly
+          disabled
           className="h-[56px] rounded-[8px] border borderColor w-full px-[14px] outline-none"
         />
       </div>

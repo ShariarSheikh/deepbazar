@@ -5,7 +5,11 @@ import { AiFillStar } from 'react-icons/ai';
 import { IoMdStarHalf } from 'react-icons/io';
 import { MdVerified } from 'react-icons/md';
 
-function Reviews(): JSX.Element {
+interface IProps {
+  isEditable: boolean;
+}
+
+function Reviews({ isEditable }: IProps): JSX.Element {
   return (
     <div className="w-full h-full relative">
       <div className="flex w-full h-full min-h-[238px] border-b borderColor">
@@ -80,7 +84,7 @@ function Reviews(): JSX.Element {
 
       <div className="w-full bg-white pb-[40px]">
         {reviewsData.map(review => (
-          <UserReview key={review.id} review={review} />
+          <UserReview key={review.id} review={review} isEditable={isEditable} />
         ))}
       </div>
     </div>
@@ -89,7 +93,12 @@ function Reviews(): JSX.Element {
 
 export default Reviews;
 
-function UserReview({ review }: { review: ReviewDataType }) {
+interface UserReviewProps {
+  review: ReviewDataType;
+  isEditable: boolean;
+}
+
+function UserReview({ review, isEditable }: UserReviewProps) {
   const [isOpenReply, setIsOpenReply] = useState<boolean>(false);
 
   const replayThisReview = (): void => {
@@ -124,30 +133,35 @@ function UserReview({ review }: { review: ReviewDataType }) {
           <h3 className="text-green-500 text-[12px]">Verified purchase</h3>
         </div>
         <p className="text-[14px] mt-[8px]">{review.comment}</p>
-        <button
-          onClick={replayThisReview}
-          className={`text-[14px] active:scale-95 duration-200 font-semibold mt-[8px] ${
-            isOpenReply ? 'text-gray-800' : 'text-primary'
-          }`}
-        >
-          Reply This Review
-        </button>
-        {isOpenReply ? (
+
+        {isEditable && (
           <>
-            <div className="mt-[8px]">
-              <textarea
-                placeholder="Write replay..."
-                className="min-h-[56px] max-h-[250px] px-[14px] py-3 rounded-[8px] border borderColor focus:border-2 outline-none w-full"
-              />
-            </div>
             <button
               onClick={replayThisReview}
-              className="font-semibold text-white rounded-[8px] py-[6px] px-[16px] bg-primary active:scale-95 duration-200"
+              className={`text-[14px] active:scale-95 duration-200 font-semibold mt-[8px] ${
+                isOpenReply ? 'text-gray-800' : 'text-primary'
+              }`}
             >
-              Submit
+              Reply This Review
             </button>
+            {isOpenReply ? (
+              <>
+                <div className="mt-[8px]">
+                  <textarea
+                    placeholder="Write replay..."
+                    className="min-h-[56px] max-h-[250px] px-[14px] py-3 rounded-[8px] border border-gray-200 focus:border-2 outline-none w-full"
+                  />
+                </div>
+                <button
+                  onClick={replayThisReview}
+                  className="font-semibold text-white rounded-[8px] py-[6px] px-[16px] bg-primary active:scale-95 duration-200"
+                >
+                  Submit
+                </button>
+              </>
+            ) : null}
           </>
-        ) : null}
+        )}
       </div>
     </div>
   );

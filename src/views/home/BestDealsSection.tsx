@@ -1,4 +1,4 @@
-import ReviewStar from '@/components/common/ReviewStar';
+import ReviewStar from '@/components/common/RatingStar';
 import { SmartPhonesData } from '@/fakeDB/smartPhones';
 import Link from 'next/link';
 import { FC } from 'react';
