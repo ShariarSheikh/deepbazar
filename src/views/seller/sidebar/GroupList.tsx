@@ -1,17 +1,11 @@
-import { MdKeyboardArrowDown, MdKeyboardArrowRight } from 'react-icons/md';
-
+import useActiveLink from '@/hooks/isActiveLink';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Dispatch, SetStateAction } from 'react';
-// icons
 import { BsDot } from 'react-icons/bs';
-// types
+import { MdKeyboardArrowDown, MdKeyboardArrowRight } from 'react-icons/md';
 import { SellerSidebarActionList } from './navLinks';
-//
-import useActiveLink from '@/hooks/isActiveLink';
 import { isMatchEndPoint } from './utils';
-
-//--------------------------------------------
 
 //--------------------------------------------
 interface IGroupList {
@@ -28,15 +22,12 @@ interface IGroupList {
 }
 //--------------------------------------------
 
-//--------------------------------------------
-
 function GroupList({
   data,
   handleGroup,
   ExpendSidebar,
   setExpendSidebar,
 }: IGroupList) {
-  // const [showOnHover, setShowOnHover] = useState<boolean>(false);
   const { id, text, Icon, child, link, height, isExpend } = data;
 
   const pathname = usePathname();
@@ -54,12 +45,6 @@ function GroupList({
     return setExpendSidebar(true);
   };
 
-  // const isShowGroupLinkWithHover = (isShow: boolean): void => {
-  //   setShowOnHover(isShow);
-  // };
-
-  // console.log(showOnHover);
-
   //
   return (
     <li role="presentation" key={id} className="w-fll relative mb-1">
@@ -70,7 +55,7 @@ function GroupList({
         className={`
           ${
             isParentsActive
-              ? 'bg-primaryMain bg-opacity-[8%] hover:bg-opacity-[12%] [&>span]:text-gray-800 [&>svg]:text-gray-800'
+              ? 'bg-primary bg-opacity-[8%] hover:bg-opacity-[12%] [&>span]:text-gray-800 [&>svg]:text-gray-800'
               : ''
           }
           ${
@@ -134,41 +119,6 @@ function GroupList({
           </li>
         ))}
       </ul>
-
-      {/* <AnimatePresence>
-        {showOnHover && !ExpendSidebar && (
-          <motion.div
-            key="modal"
-            initial={{ opacity: 0, x: 70 }}
-            animate={{ opacity: 1 }}
-            transition={{ type: 'spring', damping: 10, stiffness: 100 }}
-            exit={{ opacity: 0 }}
-            className="w-[181px] shadow-lg z-50 rounded-md bg-white absolute top-0 backdrop-blur-sm bg-white/80"
-          >
-            <ul className={`${height}`}>
-              {child.map((childAction) => (
-                <li
-                  key={childAction.id}
-                  className="text-start flex items-center pl-2 h-9 rounded-md hover:bg-primary-0 text-black-80 hover:bg-opacity-60 cursor-pointer text-sm"
-                >
-                  <Link
-                    passHref
-                    href={childAction.link}
-                    className={`rounded-md
-                      ${
-                        isMatchEndPoint(childAction.link, pathname)
-                          ? 'text-gray-800 font-medium duration-200 ease-in-out'
-                          : 'font-normal'
-                      }`}
-                  >
-                    {childAction.text}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </motion.div>
-        )}
-      </AnimatePresence> */}
     </li>
   );
 }

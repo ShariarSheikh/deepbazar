@@ -1,5 +1,5 @@
 'use client';
-import ProfileReviews from '@/views/profile/reviews';
+import ProfileReviews from '@/views/user/reviews';
 import { NextPage } from 'next';
 
 //-------------------------------------

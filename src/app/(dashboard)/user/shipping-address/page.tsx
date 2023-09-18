@@ -1,5 +1,5 @@
 'use client';
-import ShippingAddress from '@/views/profile/shippingAddress';
+import ShippingAddress from '@/views/user/shippingAddress';
 import { NextPage } from 'next';
 
 //-------------------------------------

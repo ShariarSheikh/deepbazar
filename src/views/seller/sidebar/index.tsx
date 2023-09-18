@@ -1,6 +1,8 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
+import { FiSettings } from 'react-icons/fi';
 import { MdKeyboardArrowDown, MdKeyboardArrowRight } from 'react-icons/md';
 import GroupList from './GroupList';
 import actionsList, { SellerSidebarActionList } from './navLinks';
@@ -69,57 +71,43 @@ function SellerSidebar() {
       </button>
 
       <aside
-        className={`
+        className={`w-full h-full overflow-y-auto
         ${
           ExpendSidebar
             ? 'invisible-scrollbar visible-scrollbar-onHover'
             : 'px-[2px] invisible-scrollbar pb-10'
         }
-         w-full h-full flex flex-col justify-between overflow-y-auto`}
-        aria-label="Sidebar"
+        `}
       >
-        <div className="mt-4 w-full max-w-[247px] mx-auto">
-          <div
-            className={`
+        <div className="w-full max-w-[247px] mx-auto flex flex-col justify-between">
+          <ul className="mt-6">
+            <div
+              className={`
             ${
               ExpendSidebar
                 ? 'rounded-3xl h-[50px]'
                 : 'rounded-full h-[60px] w-[60px]'
             }
             w-full pl-3 relative flex items-start justify-start`}
-          >
-            <h1 className="cursor-pointer font-bold text-lg sm:text-2xl text-primary">
-              <Link href="/" passHref>
-                DeepBazar
-              </Link>
-            </h1>
-          </div>
-
-          {/* navigation list */}
-          <ul className="mt-10">
-            {NavLinks.map(
-              ({
-                id,
-                Icon,
-                text,
-                type,
-                link,
-                child,
-                height,
-                isExpend,
-                searchText,
-              }) => {
-                // LINK
-                if (type === 'link' && link)
-                  return (
-                    <li key={id}>
-                      <Link
-                        href={link}
-                        passHref
-                        className={`
+            >
+              <h1 className="cursor-pointer font-bold text-lg sm:text-2xl text-primary">
+                <Link href="/" passHref>
+                  DeepBazar
+                </Link>
+              </h1>
+            </div>
+            {NavLinks.map(navLink => {
+              // Single LINK
+              if (navLink.type === 'link' && navLink.link && navLink.id !== 4)
+                return (
+                  <li key={navLink.id}>
+                    <Link
+                      href={navLink.link}
+                      passHref
+                      className={`
                       ${
-                        isMatchEndPoint(link, pathname)
-                          ? 'bg-primaryMain bg-opacity-[8%] [&>span]:text-gray-800 [&>svg]:text-gray-800 font-semibold'
+                        isMatchEndPoint(navLink.link, pathname)
+                          ? 'bg-primary bg-opacity-[8%] [&>span]:text-gray-800 [&>svg]:text-gray-800 font-semibold'
                           : ''
                       }
                       ${
@@ -127,63 +115,66 @@ function SellerSidebar() {
                           ? 'flex-row h-12 [&>span]:ml-[16px] text-sm rounded-md pl-[18px] pr-[12px]'
                           : 'flex-col justify-evenly w-[74px] h-[54px] [&>span]:text-[10px] rounded-lg'
                       }
-                      flex items-center hover:bg-primaryMain hover:bg-opacity-[10%] mb-1 group`}
-                      >
-                        <Icon className="text-gray-800 group-hover:text-gray-900 w-6 h-6" />
-                        <span className=" text-gray-800 text-center group-hover:text-gray-900 line-clamp-1">
-                          {text}
-                        </span>
-                      </Link>
-                    </li>
-                  );
-
-                // CONTAIN LIST
-                if (type === 'list')
-                  return (
-                    <GroupList
-                      key={id}
-                      setExpendSidebar={setExpendSidebar}
-                      data={{
-                        id,
-                        Icon,
-                        text,
-                        type,
-                        link,
-                        child,
-                        height,
-                        isExpend,
-                        searchText,
-                      }}
-                      handleGroup={handleGroup}
-                      ExpendSidebar={ExpendSidebar}
-                    />
-                  );
-
-                // onClick handle link
-                return (
-                  <li key={id}>
-                    <div className="h-12 flex items-center hover:bg-primary-0 hover:bg-opacity-60 pl-[18px] pr-[12px] rounded-md group">
-                      <Icon className="text-primary-60 group-hover:text-primary-main-80 w-6 h-6" />
-                      {isExpend && (
-                        <span className="ml-[16px] text-primary-60 group-hover:text-primary-main-80 text-sm">
-                          {text}
-                        </span>
-                      )}
-                    </div>
+                      flex items-center hover:bg-primary hover:bg-opacity-[10%] mb-1 group`}
+                    >
+                      <navLink.Icon className="text-gray-800 group-hover:text-gray-900 w-6 h-6" />
+                      <span className=" text-gray-800 text-center group-hover:text-gray-900 line-clamp-1">
+                        {navLink.text}
+                      </span>
+                    </Link>
                   </li>
                 );
-              }
-            )}
-          </ul>
-        </div>
 
-        {/* {ExpendSidebar && (
-          <div className="px-[10px]">
-            <div className="relative w-full h-40 my-10">
-              <Image src={sidebarBottomIllustration} alt="abc" />
+              // Group Link
+              if (navLink.type === 'list')
+                return (
+                  <GroupList
+                    key={navLink.id}
+                    setExpendSidebar={setExpendSidebar}
+                    data={navLink}
+                    handleGroup={handleGroup}
+                    ExpendSidebar={ExpendSidebar}
+                  />
+                );
+            })}
+          </ul>
+
+          <div className="w-full mt-8">
+            {ExpendSidebar && (
+              <div className="relative w-full h-[400px] overflow-hidden rounded-[6px]">
+                <Image
+                  src="https://i.ibb.co/0sf9GXN/Deep-Bazar.png"
+                  alt="abc"
+                  fill
+                />
+              </div>
+            )}
+
+            <div key={NavLinks[3].id} className="mt-[20px]">
+              <Link
+                href={NavLinks[3].link}
+                passHref
+                className={`
+                      ${
+                        isMatchEndPoint(NavLinks[3].link, pathname)
+                          ? 'bg-primary bg-opacity-[8%] [&>span]:text-gray-800 [&>svg]:text-gray-800 font-semibold'
+                          : ''
+                      }
+                      ${
+                        ExpendSidebar
+                          ? 'flex-row h-12 [&>span]:ml-[16px] text-sm rounded-md pl-[18px] pr-[12px]'
+                          : 'flex-col justify-evenly w-[74px] h-[54px] [&>span]:text-[10px] rounded-lg'
+                      }
+                      flex items-center hover:bg-primary hover:bg-opacity-[10%] mb-1 group`}
+              >
+                <FiSettings className="text-gray-800 group-hover:text-gray-900 w-6 h-6" />
+                <span className=" text-gray-800 text-center group-hover:text-gray-900 line-clamp-1">
+                  {NavLinks[3].text}
+                </span>
+              </Link>
             </div>
           </div>
-        )} */}
+        </div>
       </aside>
     </div>
   );

@@ -1,5 +1,5 @@
 'use client';
-import MyQuestionAnswer from '@/views/profile/question-answer';
+import MyQuestionAnswer from '@/views/user/question-answer';
 import { NextPage } from 'next';
 
 //-------------------------------------

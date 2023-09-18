@@ -1,11 +1,8 @@
 import { PATH_SELLER } from '@/utils/routes';
 import { IconType } from 'react-icons';
-import {
-  AiOutlineDashboard,
-  AiOutlineMessage,
-  AiOutlineShop,
-} from 'react-icons/ai';
-import { MdOutlineCategory, MdOutlineManageSearch } from 'react-icons/md';
+import { AiOutlineDashboard, AiOutlineShop } from 'react-icons/ai';
+import { FiSettings } from 'react-icons/fi';
+import { MdOutlineCategory } from 'react-icons/md';
 
 // SIDEBAR ACTION LIST
 type LinkType = 'list' | 'link' | 'handle';
@@ -86,20 +83,9 @@ const navLinks: SellerSidebarActionList[] = [
     link: PATH_SELLER.category,
     searchText: `${(rootSearchTag.searchTag, PATH_SELLER.category)}`,
   },
-  //
   {
     id: 4,
-    Icon: MdOutlineManageSearch,
-    type: 'link',
-    text: 'Manage Order',
-    child: [],
-    link: PATH_SELLER.orders,
-    searchText: `${(rootSearchTag.searchTag, PATH_SELLER.orders)}`,
-  },
-
-  {
-    id: 14,
-    Icon: AiOutlineMessage,
+    Icon: FiSettings,
     type: 'link',
     text: 'Account & Settings',
     child: [],

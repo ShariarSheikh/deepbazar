@@ -7,7 +7,7 @@ const nextConfig = {
     domains: [
       'via.placeholder.com',
       'images.unsplash.com',
-      'www.dropbox.com',
+      'i.ibb.co',
       'plus.unsplash.com',
       'res.cloudinary.com',
     ],

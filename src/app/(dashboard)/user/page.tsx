@@ -1,6 +1,6 @@
 'use client';
-import Order from '@/views/profile/order';
-import { orders } from '@/views/profile/order/utils';
+import Order from '@/views/user/order';
+import { orders } from '@/views/user/order/utils';
 import { NextPage } from 'next';
 
 //-------------------------------------
