@@ -12,7 +12,7 @@ export default function AccountSettingsPage() {
       </Head>
       <section className="w-full flex justify-between mt-[5px]">
         <div className="bg-white rounded-[16px] w-full max-w-[220px] h-[364px] flex flex-col items-center justify-center shadow-card">
-          <div className="w-[144px] h-[144px] flex items-center justify-center border borderColor border-dashed rounded-full">
+          <div className="w-[144px] h-[144px] flex items-center justify-center border border-gray-200 border-dashed rounded-full">
             <div className="w-[128px] h-[128px] rounded-full relative">
               <UploadAvatar
                 className="w-full h-full rounded-full"

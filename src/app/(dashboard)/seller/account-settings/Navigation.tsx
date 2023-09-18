@@ -16,7 +16,7 @@ const Navigation: FC = () => {
     <header className="h-[48px] w-full flex items-center bg-white">
       <ul className="w-full flex items-center justify-start h-full">
         <Link
-          href="/seller/account"
+          href="/seller/account-settings"
           className={`text-[14px] font-semibold cursor-pointer h-full border-b-[2px] duration-150 pb-[8px] ${
             segment === null
               ? 'border-primary text-primary'

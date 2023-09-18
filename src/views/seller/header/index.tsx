@@ -21,7 +21,11 @@ function SellerHeader() {
   }, []);
 
   return (
-    <header className={`w-full z-50 ${isStickyHeader ? 'sticky top-0' : ''}`}>
+    <header
+      className={`w-full z-50 shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] ${
+        isStickyHeader ? 'sticky top-[16px]' : ''
+      }`}
+    >
       <div className="w-full relative">
         <NavHeader
           isSticky={isStickyHeader}

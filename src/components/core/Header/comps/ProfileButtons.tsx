@@ -36,7 +36,7 @@ const ProfileButtons = () => {
               )}
             </div>
             <p className="pl-[5px] text-[16px] text-start font-bold text-[#666666] w-full max-w-[120px] line-clamp-1">
-              Shariar Sheikh adsfasdf
+              Shariar Sheikh
             </p>
           </button>
         </Link>

@@ -1,18 +1,7 @@
 /* eslint-disable no-new */
-import PopUp from '@/components/common/PopUp';
 import Image from 'next/image';
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { Dispatch, SetStateAction } from 'react';
 import { AiOutlineSearch } from 'react-icons/ai';
-import Profile from './Profile';
-
-interface IUser {
-  email: string;
-  password: string;
-  name: string;
-  profileImg: string;
-  token: string;
-  accessToken: string;
-}
 
 interface IProps {
   setShowSearchBar: Dispatch<SetStateAction<boolean>>;
@@ -20,25 +9,6 @@ interface IProps {
 }
 
 export default function NavHeader({ setShowSearchBar, isSticky }: IProps) {
-  const [showProfile, setShowProfile] = useState<boolean>(false);
-  const [userData, setUserData] = useState<IUser>({
-    email: '',
-    password: '',
-    name: '',
-    profileImg: '',
-    token: '',
-    accessToken: '',
-  });
-
-  useEffect(() => {
-    Notification.requestPermission();
-
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    const user = JSON.parse(localStorage.getItem('user'));
-    setUserData(user);
-  }, []);
-
   return (
     <div
       className={`duration-150 backdrop-blur-sm bg-white/80 ${
@@ -53,27 +23,26 @@ export default function NavHeader({ setShowSearchBar, isSticky }: IProps) {
         <AiOutlineSearch className="w-[20px] h-[20px] text-gray-600" />
       </div>
 
-      <div className="h-full space-x-4 flex items-center">
-        <div className="relative pr-10">
-          <div
-            role="presentation"
-            onClick={() => setShowProfile(prevState => !prevState)}
-            className="w-10 h-10 rounded-full overflow-hidden transition-all active:scale-95 cursor-pointer relative"
-          >
-            <Image
-              fill
-              src={
-                userData?.profileImg ||
-                'https://plus.unsplash.com/premium_photo-1678197937465-bdbc4ed95815?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80'
-              }
-              alt="myImage"
-              className="object-cover"
-            />
+      <div className="h-full space-x-4 flex items-center pr-5">
+        <button className="flex items-center w-full max-w-[160px] min-w-[160px]">
+          <div className="h-[40px] w-[40px] min-w-[40px] min-h-[40px] rounded-full overflow-hidden relative">
+            {true ? (
+              <Image
+                fill
+                src="https://plus.unsplash.com/premium_photo-1678197937465-bdbc4ed95815?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80"
+                alt="user picture"
+                className="object-cover"
+              />
+            ) : (
+              <div className="w-full h-full bg-primary text-white font-medium flex items-center justify-center">
+                {`Shariar Sheikh`.charAt(0)}
+              </div>
+            )}
           </div>
-          <PopUp setShow={setShowProfile} show={showProfile}>
-            <Profile user={userData} />
-          </PopUp>
-        </div>
+          <p className="pl-[5px] text-[16px] text-start font-bold text-[#666666] w-full max-w-[120px] line-clamp-1">
+            Shariar Sheikh
+          </p>
+        </button>
       </div>
     </div>
   );
