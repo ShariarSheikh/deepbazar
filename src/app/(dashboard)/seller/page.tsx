@@ -1,7 +1,6 @@
 'use client';
 import { PATH_SELLER } from '@/utils/routes';
 import { NextPage } from 'next';
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { BiCategoryAlt } from 'react-icons/bi';
 import { BsFillFilePersonFill, BsShop } from 'react-icons/bs';
@@ -47,7 +46,7 @@ const Page: NextPage<PageProps> = () => {
           </div>
         </li>
         <li
-          onClick={() => router.push(PATH_SELLER.category)}
+          onClick={() => router.push(PATH_SELLER.accountAndSettings)}
           className="w-full h-[255px] mt-[20px] rounded-[6px] border border-gray-200 flex bg-[#f0f8ff]"
         >
           <div className="h-full w-[180px] flex items-center justify-center">
@@ -57,32 +56,17 @@ const Page: NextPage<PageProps> = () => {
             <h1 className="text-2xl font-bold uppercase">Account</h1>
 
             <ul className="w-full flex items-center justify-center">
-              <Link
-                href="/seller/account-settings"
-                className={`text-[14px] font-semibold cursor-pointer h-full border-b-[2px] duration-150 pb-[8px] border-transparent text-gray-600`}
-              >
-                <li className="h-[48px] flex items-center">
-                  <BsFillFilePersonFill className="mr-[8px]" /> Profile
-                </li>
-              </Link>
+              <li className="h-[48px] flex items-center text-[14px] font-semibold border-b-[2px] duration-150 pb-[8px] border-transparent text-gray-600">
+                <BsFillFilePersonFill className="mr-[8px]" /> Profile
+              </li>
 
-              <Link
-                href="/seller/account-settings/socialLinks"
-                className={`text-[14px] font-semibold ml-[40px] cursor-pointer h-full border-b-[2px] duration-150 pb-[8px] border-transparent text-gray-600`}
-              >
-                <li className="flex items-center h-[48px]">
-                  <FaShareAlt className="mr-[8px]" /> Social Links
-                </li>
-              </Link>
+              <li className="flex items-center h-[48px] text-[14px] font-semibold ml-[40px] border-b-[2px] duration-150 pb-[8px] border-transparent text-gray-600">
+                <FaShareAlt className="mr-[8px]" /> Social Links
+              </li>
 
-              <Link
-                href="/seller/account-settings/changePassword"
-                className={`text-[14px] font-semibold ml-[40px] cursor-pointer h-full border-b-[2px] duration-150 pb-[8px] border-transparent text-gray-600`}
-              >
-                <li className="flex items-center h-[48px]">
-                  <RiKeyFill className="mr-[8px]" /> Change Password
-                </li>
-              </Link>
+              <li className="flex items-center h-[48px] text-[14px] font-semibold ml-[40px] border-b-[2px] duration-150 pb-[8px] border-transparent text-gray-600">
+                <RiKeyFill className="mr-[8px]" /> Change Password
+              </li>
             </ul>
           </div>
         </li>
