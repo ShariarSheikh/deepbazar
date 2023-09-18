@@ -29,7 +29,7 @@ const BottomNavigationComp: FC = () => {
     <nav className="block md:hidden fixed bottom-0 z-50 w-full bg-white rounded-t-[6px] shadow-[0_3px_10px_rgb(0,0,0,0.2)]">
       <div className="flex items-center justify-between h-[50px]">
         <button
-          onClick={() => router.push('/all-products')}
+          onClick={() => router.push('/shop')}
           style={
             segment === NavigationLinks.products
               ? {
@@ -46,7 +46,7 @@ const BottomNavigationComp: FC = () => {
           className="flex flex-col items-center justify-center h-full w-[30%] border-t-2"
         >
           <BsShop />
-          <span className="text-[10px]">Products</span>
+          <span className="text-[10px]">Shop</span>
         </button>
         <button
           onClick={() => router.push('/profile/wishlist')}

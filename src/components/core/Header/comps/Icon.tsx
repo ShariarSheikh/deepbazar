@@ -76,10 +76,10 @@ const HamburgerMenuIcon: FC<HamburgerMenuIconProps> = ({ open, setOpen }) => {
                       <AiFillHome /> <p className="ml-[8px] pt-[2px]">Home</p>
                     </li>
                   </Link>
-                  <Link href="/all-product">
+                  <Link href="/shop">
                     <li className="text-[14px] w-full h-[36px] mb-[3px] flex items-center pl-[8px] hover:bg-[#F3F9FB]">
                       <BsShop />
-                      <p className="ml-[8px] pt-[2px]">All Products</p>
+                      <p className="ml-[8px] pt-[2px]">Shop</p>
                     </li>
                   </Link>
                   <Link href="/best-offer">

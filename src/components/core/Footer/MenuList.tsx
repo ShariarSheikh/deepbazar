@@ -12,9 +12,9 @@ const MenuList = () => {
               Home
             </li>
           </Link>
-          <Link href="/all-products">
+          <Link href="/shop">
             <li className="mb-2 cursor-pointer hover:underline duration-200">
-              All Products
+              shop
             </li>
           </Link>
           <Link href="/best-offers">
