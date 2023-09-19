@@ -17,7 +17,7 @@ const SearchAndFilter = () => {
       <div className="h-12 flex items-center justify-between bg-white rounded-[6px">
         <form className="w-full max-w-[50%] border-b border-gray-200 flex items-center justify-between h-[48px] bg-transparent relative">
           <Input
-            className="flex-1 pl-[36px] h-full text-[14px] bg-transparent z-10 border-none"
+            className="flex-1 pl-[15px] h-full text-[14px] bg-transparent z-10 border-none"
             type="text"
             placeholder="Search product name and more..."
             value={searchInput}
@@ -54,7 +54,7 @@ const SearchAndFilter = () => {
 
         <div className="flex items-center space-x-1 text-sm">
           <h3 className="font-medium">342</h3>
-          <p className="text-[#0c648b]">Result found.</p>
+          <p className="text-[#d8eded]">Result found.</p>
         </div>
       </div>
     </div>

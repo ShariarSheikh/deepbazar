@@ -15,21 +15,13 @@ const ShopLayout: FC<IProps> = ({ children }) => {
   const category = searchParams.get('category');
 
   return (
-    <section className="w-full h-full bg-primaryLight">
-      <div className="w-full max-w-[1201px] mx-auto">
-        <Breadcrumb category={category} />
-      </div>
-      <div className="h-full w-full flex min-h-[60vh] max-w-[1201px] mx-auto">
-        <div
-          style={{
-            maxWidth: 280,
-          }}
-          className="w-full"
-        >
+    <section className="w-full h-auto bg-primaryLight">
+      <div className="w-full flex max-w-[1201px] mx-auto">
+        <div className="w-full max-w-[280px] sticky top-[133px] mb-[20px]">
+          <Breadcrumb category={category} />
           <Sidebar />
         </div>
-
-        <div className="w-full h-full px-4">
+        <div className="w-full h-full px-4 pt-1">
           <SearchAndFilter />
           {children}
         </div>

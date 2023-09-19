@@ -1,12 +1,12 @@
 'use client';
 
-import { useSelectedLayoutSegment } from 'next/navigation';
+import { useSelectedLayoutSegments } from 'next/navigation';
 import HeaderSection from './comps';
 
 const Header = () => {
-  const segment = useSelectedLayoutSegment();
+  const segments = useSelectedLayoutSegments();
   // IS PAGE IS SELLER PAGE THAN DON'T SHOW THE HEADER
-  if (segment === '(dashboard)') return null;
+  if (segments[1] === 'seller') return null;
 
   return (
     <header className="w-full sticky top-0 z-30 bg-white">

@@ -2,7 +2,7 @@ import { SmartPhonesData } from '@/fakeDB/smartPhones';
 import Link from 'next/link';
 import { FC } from 'react';
 import { AiOutlineHeart } from 'react-icons/ai';
-import ReviewStar from './RatingStar';
+import RatingStar from './RatingStar';
 
 //---------------------------------------
 interface IProps {
@@ -59,7 +59,7 @@ const ProductCart: FC<IProps> = ({ isInsideSlider, data }) => {
         <p className="text-[12px] mb-[5px] text-gray-500 line-clamp-2 md:line-clamp-1">
           {data.description}
         </p>
-        <ReviewStar
+        <RatingStar
           containerStyles={{ marginBottom: 10 }}
           reviews={data.reviews}
         />

@@ -6,7 +6,7 @@ import { BsArrowRight, BsCart2 } from 'react-icons/bs';
 
 export default function Sidebar() {
   return (
-    <div className="bg-white pt-4 px-4 rounded-[6px] border border-gray-200 border-dashed mb-4">
+    <div className="bg-white pt-4 px-4 rounded-[6px] border border-gray-200 border-dashed mb-4 max-w-[280px]">
       <h1 className="text-lg mb-[16px] font-medium">Category</h1>
       <ul className="border-b border-gray-200">
         {categories.map(category => (
