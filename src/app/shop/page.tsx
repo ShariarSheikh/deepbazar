@@ -12,7 +12,7 @@ export default function Page() {
   useEffect(() => {}, [category]);
 
   return (
-    <main className="min-h-[60vh] max-w-[1201px] w-full m-auto px-4 pb-4">
+    <main className="min-h-[60vh] w-full m-auto px-4 pb-4">
       <div className="">
         <h2>Hello world!</h2>
       </div>
