@@ -10,6 +10,7 @@ const nextConfig = {
       'i.ibb.co',
       'plus.unsplash.com',
       'res.cloudinary.com',
+      'img.freepik.com',
     ],
   },
   eslint: {

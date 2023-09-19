@@ -15,11 +15,11 @@ const ShopLayout: FC<IProps> = ({ children }) => {
   const category = searchParams.get('category');
 
   return (
-    <section className="w-full h-auto bg-primaryLight">
+    <section className="w-full h-full bg-primaryLight">
       <div className="w-full max-w-[1201px] mx-auto">
         <Breadcrumb category={category} />
       </div>
-      <div className="w-full flex min-h-[60vh] max-w-[1201px] mx-auto">
+      <div className="h-full w-full flex min-h-[60vh] max-w-[1201px] mx-auto">
         <div
           style={{
             maxWidth: 280,
