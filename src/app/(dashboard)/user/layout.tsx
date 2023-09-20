@@ -1,8 +1,8 @@
 'use client';
-import Breadcrumb from '@/views/user/Breadcrumb';
-import Sidebar from '@/views/user/Sidebar';
 import { useSelectedLayoutSegment } from 'next/navigation';
 import { FC, ReactNode } from 'react';
+import Breadcrumb from './Breadcrumb';
+import Sidebar from './Sidebar';
 
 interface IProps {
   children: ReactNode;

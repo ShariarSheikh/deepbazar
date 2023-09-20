@@ -40,7 +40,7 @@ export const PATH_SELLER = {
 const ROOTS_USER = '/user';
 export const PATH_USER = {
   overview: path(ROOTS_USER, ''),
-  category: path(ROOTS_USER, '/order'),
+  order: path(ROOTS_USER, '/order'),
   wishlist: path(ROOTS_USER, '/wishlist'),
   shippingAddress: path(ROOTS_USER, '/shipping-address'),
   newShippingAddress: path(ROOTS_USER, '/shipping-address/add-new'),

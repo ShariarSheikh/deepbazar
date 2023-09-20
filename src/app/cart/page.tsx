@@ -1,6 +1,6 @@
 'use client';
 
-import Order from '@/views/cart/Order';
+import Order from './Order';
 
 const CartPage = () => {
   return (

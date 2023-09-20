@@ -1,7 +1,7 @@
 'use client';
-import SellerHeader from '@/views/seller/header';
-import SellerSidebar from '@/views/seller/sidebar';
 import { FC, ReactNode, useState } from 'react';
+import SellerHeader from './header';
+import SellerSidebar from './sidebar';
 
 interface IProps {
   children: ReactNode;
