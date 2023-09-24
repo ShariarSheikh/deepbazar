@@ -43,6 +43,9 @@ const DeliveryLocation = () => {
 
   //SELECT LOCATION
   const setLocationHandler = (location: GetLocationData) => {
+    console.log('====================================');
+    console.log(location);
+    console.log('====================================');
     setMyLocation(location);
     setIsOpenList(false);
     setFilterList([]);
@@ -69,7 +72,7 @@ const DeliveryLocation = () => {
           setLocations(countries);
           setLoading(false);
           // SET DEFAULT LOCATION LENGTH (31)
-          setMyLocation(countries[31]);
+          setMyLocation(countries[56]);
         });
     }
     getLocations();
@@ -166,7 +169,7 @@ const DeliveryLocation = () => {
                         <div className="w-10 h-10 overflow-hidden">
                           <img
                             className="w-full h-full object-contain"
-                            src={location.country}
+                            src={location.imageUrl}
                             alt={location.country}
                           />
                         </div>

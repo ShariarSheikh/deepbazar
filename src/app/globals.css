@@ -93,3 +93,8 @@ body {
 .swiper-scrollbar-drag {
   background: #008ecc !important;
 }
+/* .swiper-wrapper{
+  display:flex;
+  flex-direction: row;
+  margin: 0 auto;
+} */

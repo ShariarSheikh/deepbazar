@@ -14,7 +14,6 @@ const HeroSection: FC = () => {
   return (
     <div className="w-full relative h-[150px] max-h-[150px] md:h-[316px] md:max-h-[316px] bg-slate-100">
       <Swiper
-        spaceBetween={30}
         centeredSlides={true}
         autoplay={{
           delay: 2500,

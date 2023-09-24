@@ -8,15 +8,15 @@
     "@emotion/styled": "^11.11.0",
     "@mui/material": "^5.14.8",
     "@reduxjs/toolkit": "^1.9.5",
-    "@types/node": "20.5.7",
-    "@types/react": "18.2.21",
+    "@types/node": "20.6.3",
+    "@types/react": "18.2.22",
     "@types/react-dom": "18.2.7",
     "axios": "^1.5.0",
     "draft-js": "^0.11.7",
     "framer-motion": "^10.16.1",
     "interweave": "^13.1.0",
     "js-cookie": "^3.0.5",
-    "next": "^13.4.19",
+    "next": "13.5.2",
     "numeral": "^2.0.6",
     "react": "18.2.0",
     "react-click-away-listener": "^2.2.3",
@@ -30,7 +30,8 @@
     "react-redux": "^8.1.2",
     "react-star-ratings": "^2.3.0",
     "react-tooltip": "^5.21.3",
-    "swiper": "^10.2.0",
+    "sharp": "^0.32.6",
+    "swiper": "^10.0.0",
     "tailwind-scrollbar-hide": "^1.1.7",
     "typescript": "5.2.2"
   },
@@ -66,6 +67,7 @@
     "prettier:fix": "prettier --write .",
     "prepare": "husky install"
   },
-  "author": "",
-  "license": "ISC"
+  "author": "ShariarSheikh <shariar.dev@gmail.com>",
+  "license": "ISC",
+  "repository": "https://github.com/ShariarSheikh/deepbazar.git"
 }

@@ -1,6 +1,5 @@
 import Header from '@/components/core/Header';
 import { Providers } from '@/redux/provider';
-import './globals.css';
 
 // SWIPER JS
 import 'swiper/css';
@@ -11,6 +10,8 @@ import 'swiper/css/scrollbar';
 import BottomNavigation from '@/components/core/BottomNavigation';
 import Footer from '@/components/core/Footer';
 import 'react-loading-skeleton/dist/skeleton.css';
+
+import './globals.css';
 
 export const metadata = {
   title: 'DeepBazar - Electronics eCommerce Website In Bangladesh',
