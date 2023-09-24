@@ -24,7 +24,7 @@ const HeroSection: FC = () => {
         }}
         navigation={true}
         modules={[Autoplay, Pagination, Navigation]}
-        className="mySwiper h-full rounded-[6px]"
+        className="mySwiper h-full rounded-[6px] overflow-hidden"
       >
         {banners.map(banner => (
           <SwiperSlide key={banner.category}>
