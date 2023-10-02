@@ -1,23 +1,21 @@
 import { Environment } from '@/global.variables';
 import { configureStore } from '@reduxjs/toolkit';
+import { api } from './services';
 import cartSlice from './features/cartSlice';
 import favoriteCartSlice from './features/favoriteCartSlice';
 import loginSlice from './features/loginSlice';
-import ProductApi from './services/Product';
 
 export const store = configureStore({
   reducer: {
-    loginSlice: loginSlice,
     cartSlice: cartSlice,
     favoriteCartSlice: favoriteCartSlice,
-
-    //  API--------------------------------------
-    [ProductApi.reducerPath]: ProductApi.reducer,
+    loginSlice: loginSlice,
+    [api.reducerPath]: api.reducer,
   },
 
   // Middleware----------------------------------
   middleware: getDefaultMiddleware =>
-    getDefaultMiddleware().concat(ProductApi.middleware),
+    getDefaultMiddleware().concat(api.middleware),
   devTools: Environment === 'development',
 });
 

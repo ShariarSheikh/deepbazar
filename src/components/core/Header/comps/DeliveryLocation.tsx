@@ -1,8 +1,8 @@
 import Input from '@/components/common/Input';
+import { Skeleton } from '@mui/material';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import ClickAwayListener from 'react-click-away-listener';
-import Skeleton from 'react-loading-skeleton';
 
 //---------------------------------------------------------
 interface GetLocationData {
@@ -43,9 +43,6 @@ const DeliveryLocation = () => {
 
   //SELECT LOCATION
   const setLocationHandler = (location: GetLocationData) => {
-    console.log('====================================');
-    console.log(location);
-    console.log('====================================');
     setMyLocation(location);
     setIsOpenList(false);
     setFilterList([]);
@@ -83,10 +80,15 @@ const DeliveryLocation = () => {
   if (loading && !myLocation.country)
     return (
       <div className="flex w-[133px] h-[38px] justify-between">
-        <Skeleton height={25} width={35} />
+        <Skeleton variant="rounded" height={25} width={35} />
         <div>
-          <Skeleton height={25} width={90} />
-          <Skeleton className="mt-[4px]" height={7} width={90} />
+          <Skeleton variant="rounded" height={25} width={90} />
+          <Skeleton
+            variant="rounded"
+            className="mt-[4px]"
+            height={7}
+            width={90}
+          />
         </div>
       </div>
     );

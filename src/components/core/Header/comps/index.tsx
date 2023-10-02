@@ -57,7 +57,7 @@ const RenderUiForDesktop = () => {
             </button>
             <span className="bg-[#D9D9D9] h-[18px] w-[1px]" />
 
-            <Link href="/track-order">
+            <Link href="/user/track-order">
               <button className="flex items-center">
                 <FaCaravan className="text-primary" />
                 <p className="ml-[6px] text-sm">Track your order</p>

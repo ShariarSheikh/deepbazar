@@ -1,2 +1,5 @@
-serverDevelopmentUrl= http://localhost:8000
-serverProductionUrl=
+NEXT_PUBLIC_serverDevelopmentUrl = 
+NEXT_PUBLIC_serverProductionUrl = 
+
+
+NEXT_PUBLIC_SERVER_API_ACCESS_KEY = 

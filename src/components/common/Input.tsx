@@ -8,7 +8,7 @@ import {
 } from 'react';
 import { AiFillEyeInvisible, AiOutlineEye } from 'react-icons/ai';
 
-interface IInput
+export interface CustomInput
   extends DetailedHTMLProps<
     InputHTMLAttributes<HTMLInputElement>,
     HTMLInputElement
@@ -24,7 +24,7 @@ function Input({
   className,
   placeholder,
   ...rest
-}: IInput) {
+}: CustomInput) {
   const [visiblePass, setVisiblePass] = useState<boolean>(false);
   const props = rest;
 
@@ -55,12 +55,12 @@ function Input({
         {visiblePass ? (
           <AiOutlineEye
             onClick={() => setVisiblePass(false)}
-            className="cursor-pointer active:scale-75 duration-200 hover:border-primary absolute right-3 top-1/3"
+            className="text-gray-600 cursor-pointer active:scale-75 duration-200 hover:border-primary absolute right-3 top-1/3"
           />
         ) : (
           <AiFillEyeInvisible
             onClick={() => setVisiblePass(true)}
-            className="cursor-pointer active:scale-75 duration-200 hover:border-primary absolute right-3 top-1/3"
+            className="text-gray-600 cursor-pointer active:scale-75 duration-200 hover:border-primary absolute right-3 top-1/3"
           />
         )}
       </div>

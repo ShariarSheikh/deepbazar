@@ -7,6 +7,7 @@ import {
 } from 'react-icons/ai';
 import { CiLocationOn } from 'react-icons/ci';
 import { FaClipboardList } from 'react-icons/fa';
+import { GiDeerTrack } from 'react-icons/gi';
 import { IoSettingsOutline } from 'react-icons/io5';
 import { RxDashboard } from 'react-icons/rx';
 
@@ -29,6 +30,16 @@ const Sidebar: FC = () => {
           >
             <RxDashboard size={16} />
             <span className="font-normal text-sm">Overview</span>
+          </Link>
+        </li>
+
+        <li className="w-full h-[38px] mb-1">
+          <Link
+            href="/user/track-order"
+            className="w-full text-gray-600 h-[38px] flex items-center space-x-2 border-l-2 pl-[15px] border-transparent hover:border-primary hover:bg-[#e1f6ff] duration-150"
+          >
+            <GiDeerTrack size={16} />
+            <span className="font-normal text-sm">Track Order</span>
           </Link>
         </li>
 

@@ -1,6 +1,6 @@
 import CartBadges from '@/components/common/CartBadge';
-import { showCartHandler } from '@/redux/features/cartSlice';
-import { useAppDispatch } from '@/redux/hooks';
+// import { showCartHandler } from '@/redux/features/cartSlice';
+// import { useAppDispatch } from '@/redux/hooks';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FiShoppingCart } from 'react-icons/fi';
@@ -11,9 +11,9 @@ import { MdOutlinePersonOutline } from 'react-icons/md';
 //-----------------------------------
 
 const ProfileButtons = () => {
-  const dispatch = useAppDispatch();
+  // const dispatch = useAppDispatch();
 
-  const handleCart = () => dispatch(showCartHandler());
+  // const handleCart = () => dispatch(showCartHandler());
   const isUser = true;
 
   return (
@@ -52,7 +52,7 @@ const ProfileButtons = () => {
       )}
 
       <button
-        onClick={handleCart}
+        // onClick={handleCart}
         className="flex items-center w-full relative"
       >
         <FiShoppingCart size={24} className="text-primary" />
