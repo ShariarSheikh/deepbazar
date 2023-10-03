@@ -7,7 +7,7 @@ import Link from 'next/link';
 //---------------------------------------
 
 const CategorySection = () => {
-  const { data, isSuccess } = useGetCategoryQuery();
+  const { data, isSuccess, isLoading } = useGetCategoryQuery();
 
   const loadingSkeleton = (
     <>
@@ -26,9 +26,9 @@ const CategorySection = () => {
       </h1>
 
       <div className="w-full relative flex flex-wrap md:flex-nowrap items-center gap-3 md:gap-0 md:space-x-4 justify-start md:justify-between mt-[24px] md:mt-[40px]">
-        {loadingSkeleton}
+        {isLoading && loadingSkeleton}
 
-        {!isSuccess &&
+        {isSuccess &&
           data?.data.map((category, index) => {
             const isLastItem = index + 1 === data.data.length;
             return (

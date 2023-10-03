@@ -28,8 +28,8 @@ const RenderUiForMobile = () => {
     <div className="w-full lg:hidden">
       <div className="flex items-center justify-between pt-[8px]">
         <HamburgerMenuIcon open={open} setOpen={setOpen} />
+        <DeliveryLocation />
         <Logo />
-        {/* <ProfileButtons /> */}
       </div>
       <div className="w-full mt-2 pb-[5px]">
         <SearchBar />

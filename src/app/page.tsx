@@ -2,11 +2,14 @@
 
 import ProductCart from '@/components/common/ProductCart';
 import smartPhones from '@/fakeDB/smartPhones';
-import BestDealsSection from '@/views/home/BestDealsSection';
+import NewArrivals from '@/views/home/NewArrivals';
 import CategorySection from '@/views/home/CategorySection';
 import HeroSection from '@/views/home/HeroSection';
-import ProductFeedsHome from '@/views/home/ProductFeedsHome';
+import FeaturedProducts from '@/views/home/FeaturedProducts';
+import SponsoredItem from '@/views/home/SponsoredItem';
+import { ProductSectionName } from '@/views/home/utils';
 import { SwiperSlide } from 'swiper/react';
+import JustForYou from '@/views/home/JustForYou';
 
 //---------------------------------------------------------
 
@@ -16,8 +19,10 @@ export default function Home() {
     <main className="min-h-screen w-full m-auto mt-10">
       <div className="w-full max-w-[1201px] mx-auto">
         <HeroSection />
+
         <CategorySection />
-        <BestDealsSection
+
+        <NewArrivals
           data={smartPhones.slice(0, 9)}
           productPageLink={{
             pathname: '/shop',
@@ -26,15 +31,15 @@ export default function Home() {
             },
           }}
         />
-        <ProductFeedsHome
+
+        <JustForYou
           productPageLink={{
-            pathname: '/all-product',
+            pathname: '/shop',
             query: {
               keyword: 'watch',
             },
           }}
-          isSlider={false}
-          title="Just For You!"
+          title={ProductSectionName.JustForYou}
           navigationComp={
             <div className="w-full pt-[16px] pb-[40px] md:pt-[40px]">
               <div className="w-full flex-wrap flex items-center justify-start md:space-x-4">
@@ -66,25 +71,25 @@ export default function Home() {
               />
             ))}
           </>
-        </ProductFeedsHome>
-        {/* <SponsoredItem /> */}
-        <ProductFeedsHome
+        </JustForYou>
+
+        <SponsoredItem />
+
+        <FeaturedProducts
           productPageLink={{
             pathname: '/shop',
             query: {
               keyword: 'smart-phones',
             },
           }}
-          isSlider
-          title="Smart Phones For You!"
-          navigationComp={null}
+          title={ProductSectionName.FeaturedProducts}
         >
           {smartPhones.map(phoneData => (
             <SwiperSlide key={phoneData._id}>
               <ProductCart isInsideSlider data={phoneData} />
             </SwiperSlide>
           ))}
-        </ProductFeedsHome>
+        </FeaturedProducts>
         <br />
         <br />
       </div>

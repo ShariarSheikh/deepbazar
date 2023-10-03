@@ -3,11 +3,6 @@ import { Providers } from '@/redux/provider';
 import BottomNavigation from '@/components/core/BottomNavigation';
 import Footer from '@/components/core/Footer';
 
-// SWIPER JS
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/scrollbar';
-
 import './globals.css';
 
 export const metadata = {

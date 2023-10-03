@@ -5,6 +5,7 @@ import { FC } from 'react';
 import { AiOutlineHeart } from 'react-icons/ai';
 import { BsCart2 } from 'react-icons/bs';
 import { MdKeyboardArrowRight } from 'react-icons/md';
+import { ProductSectionName } from './utils';
 
 //---------------------------------------------
 interface IProps {
@@ -24,15 +25,9 @@ const BestDealsSection: FC<IProps> = ({ data, productPageLink }) => {
     <section className="w-full relative mt-[40px] md:mt-[60px] min-h-[500px]">
       <div className="w-full flex items-center justify-between">
         <div className="flex items-center">
-          <h1 className="text-sm md:text-[28px] font-bold">FlashSale</h1>
-          <div className="flex items-center">
-            {/* <p className="text-[10px] md:text-[14px] ml-[24px] mr-[12px]">
-              Ending In
-            </p>
-            <div className="h-[30px] px-[10px] bg-primary text-white flex items-center justify-center">
-              <p>12d : 21h : 56m : 23s</p>
-            </div> */}
-          </div>
+          <h1 className="text-sm md:text-[28px] font-bold">
+            {ProductSectionName.NewArrivals}
+          </h1>
         </div>
         <Link href={productPageLink}>
           <button className="text-sm md:text-[28px] text-primary font-bold flex items-center space-x-1 hover:underline">

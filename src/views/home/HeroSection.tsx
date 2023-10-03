@@ -1,9 +1,9 @@
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { FC } from 'react';
-import { Autoplay, Navigation, Pagination } from 'swiper/modules';
-import { Swiper, SwiperSlide } from 'swiper/react';
 
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import { Carousel } from 'react-responsive-carousel';
 //---------------------------------------
 
 //---------------------------------------
@@ -13,21 +13,17 @@ const HeroSection: FC = () => {
 
   return (
     <div className="w-full relative h-[150px] max-h-[150px] md:h-[316px] md:max-h-[316px] bg-slate-100">
-      <Swiper
-        centeredSlides={true}
-        autoplay={{
-          delay: 2500,
-          disableOnInteraction: false,
-        }}
-        pagination={{
-          clickable: true,
-        }}
-        navigation={true}
-        modules={[Autoplay, Pagination, Navigation]}
-        className="mySwiper h-full rounded-[6px] overflow-hidden"
+      <Carousel
+        swipeable
+        autoPlay
+        infiniteLoop
+        showArrows
+        useKeyboardArrows
+        stopOnHover
+        emulateTouch
       >
         {banners.map(banner => (
-          <SwiperSlide key={banner.category}>
+          <div key={banner.category}>
             <Link
               href={{
                 pathname: '/shop',
@@ -50,9 +46,9 @@ const HeroSection: FC = () => {
                 <div className="absolute inset-0 duration-200 transition-all" />
               </div>
             </Link>
-          </SwiperSlide>
+          </div>
         ))}
-      </Swiper>
+      </Carousel>
     </div>
   );
 };

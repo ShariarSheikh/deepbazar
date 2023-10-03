@@ -29,6 +29,7 @@
     "react-icons": "^4.10.1",
     "react-paginate": "^8.2.0",
     "react-redux": "^8.1.2",
+    "react-responsive-carousel": "^3.2.23",
     "react-star-ratings": "^2.3.0",
     "react-tooltip": "^5.21.3",
     "sharp": "^0.32.6",

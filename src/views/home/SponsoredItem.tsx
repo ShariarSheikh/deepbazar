@@ -3,7 +3,7 @@ import { BsArrowRightShort } from 'react-icons/bs';
 
 const SponsoredItem: FC = () => {
   return (
-    <div className="h-[424px] w-full mx-auto max-w-[1201px] bg-[#f3f9fb] flex items-center justify-between px-[40px] rounded-[30px]">
+    <div className="mt-[60px] h-[424px] w-full mx-auto max-w-[1201px] bg-[#f3f9fb] flex items-center justify-between px-[40px] rounded-[30px]">
       <div className="max-w-[50%] w-full">
         <h1 className="text-[48px] font-bold">Macbook Pro</h1>
         <p className="text-[24px]">
