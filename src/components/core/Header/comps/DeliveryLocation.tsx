@@ -20,7 +20,7 @@ const DeliveryLocation = () => {
   const [filterList, setFilterList] = useState<GetLocationData[]>([]);
   const [searchInput, setSearchInput] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(true);
-  const [myLocation, setMyLocation] = useState<GetLocationData>({
+  const [defaultLocation, setDefaultLocation] = useState<GetLocationData>({
     imageUrl: '',
     cca2: '',
     capital: '',
@@ -43,13 +43,14 @@ const DeliveryLocation = () => {
 
   //SELECT LOCATION
   const setLocationHandler = (location: GetLocationData) => {
-    setMyLocation(location);
+    setDefaultLocation(location);
     setIsOpenList(false);
     setFilterList([]);
     setSearchInput('');
   };
 
   useEffect(() => {
+    if (locations?.length) return undefined;
     async function getLocations() {
       fetch('https://restcountries.com/v3.1/all')
         .then(res => res.json())
@@ -68,8 +69,8 @@ const DeliveryLocation = () => {
 
           setLocations(countries);
           setLoading(false);
-          // SET DEFAULT LOCATION LENGTH (31)
-          setMyLocation(countries[56]);
+          // SET DEFAULT LOCATION LENGTH (10) THE FIRST ONE
+          setDefaultLocation(countries[10]);
         });
     }
     getLocations();
@@ -77,7 +78,7 @@ const DeliveryLocation = () => {
     return () => {};
   }, []);
 
-  if (loading && !myLocation.country)
+  if (loading && !defaultLocation.country)
     return (
       <div className="flex w-[133px] h-[38px] justify-between">
         <Skeleton variant="rounded" height={25} width={35} />
@@ -104,15 +105,16 @@ const DeliveryLocation = () => {
           >
             <img
               className="w-[35px] h-[25px] object-contain"
-              src={myLocation?.imageUrl}
-              alt={myLocation?.country}
+              src={defaultLocation?.imageUrl}
+              alt={defaultLocation?.country}
             />
             <div className="flex flex-col ml-1 w-full">
               <span className="font-medium text-[13px] w-full line-clamp-1 leading-none text-primary">
-                {myLocation?.country}
+                {defaultLocation?.country}
               </span>
               <span className="text-gray-500 text-[10px] w-full line-clamp-1 leading-none">
-                {myLocation?.capital} <span>| {myLocation?.region}</span>
+                {defaultLocation?.capital}{' '}
+                <span>| {defaultLocation?.region}</span>
               </span>
             </div>
           </div>

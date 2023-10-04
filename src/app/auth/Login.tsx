@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import Link from 'next/link';
 import { FC } from 'react';
@@ -9,6 +10,8 @@ import * as Yup from 'yup';
 import { useLoginMutation } from '@/redux/services';
 import Button from '@/components/common/Button';
 import { useRouter } from 'next/navigation';
+import { useAppDispatch } from '@/redux/hooks';
+import { setCredentials } from '@/redux/features/authSlice';
 
 //-----------------------------------------------------------
 interface IProps {
@@ -37,16 +40,20 @@ const validationSchema = Yup.object().shape({
 //-----------------------------------------------------------
 
 const Login: FC<IProps> = ({ activeNewUserHandler }) => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [loginQuery, { error, isLoading, isError }] = useLoginMutation();
 
   const router = useRouter();
+  const dispatch = useAppDispatch();
 
   const handleSubmit = async (values: FormValues): Promise<void> => {
     const login = await loginQuery(values);
 
+    // console.log(login);
+    if (isError) return undefined;
+
+    // dispatch(setCredentials({accessToken}))
     //@ts-ignore
-    if (login?.data?.success) router.replace('/');
+    // if (login?.data?.success) router.replace('/');
   };
 
   return (
@@ -76,7 +83,7 @@ const Login: FC<IProps> = ({ activeNewUserHandler }) => {
 
         <Button className="flex justify-end w-full mt-[10px] cursor-default">
           <Link
-            href="/recover-password"
+            href="/auth/recover-password"
             className="text-[12px] text-gray-400 hover:underline"
           >
             Recover Password?

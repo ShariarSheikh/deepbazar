@@ -1,5 +1,6 @@
 'use client';
 
+import Button from '@/components/common/Button';
 import Input from '@/components/common/Input';
 
 export default function RecoverPassword() {
@@ -29,12 +30,12 @@ export default function RecoverPassword() {
                 className="w-full h-[42px] rounded-[6px] bg-[#F3F9FB] max-w-[320px] px-2 outline-[#E5F8FE] text-[12px]"
               />
 
-              <button
+              <Button
                 type="button"
                 className="w-full h-[42px] rounded-[6px] bg-primary text-white active:scale-95 duration-150 max-w-[320px] px-2 text-[12px]"
               >
                 Submit
-              </button>
+              </Button>
             </div>
           </form>
         </div>

@@ -1,8 +1,7 @@
-import { showLoginHandler } from '@/redux/features/loginSlice';
-import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+// import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import Cookies from 'js-cookie';
 import { useRouter } from 'next/navigation';
-import { FormEvent, useEffect, useState } from 'react';
+import { FormEvent, useState } from 'react';
 
 //--------------------------------------------------------------
 
@@ -83,27 +82,27 @@ const Login = () => {
 };
 
 const LoginSidebar = () => {
-  const { isShowLogin } = useAppSelector(state => state.loginSlice);
-  const dispatch = useAppDispatch();
+  // const { isShowLogin } = useAppSelector(state => state.loginSlice);
+  // const dispatch = useAppDispatch();
 
-  useEffect(() => {
-    document.body.style.overflow = isShowLogin ? 'hidden' : 'auto';
-  }, [isShowLogin]);
+  // useEffect(() => {
+  //   document.body.style.overflow = isShowLogin ? 'hidden' : 'auto';
+  // }, [isShowLogin]);
 
   return (
     <div
-      className={`fixed top-0 right-0 ${
-        isShowLogin ? 'w-full' : 'w-0'
-      } min-h-screen bg-black bg-opacity-60 z-30`}
+    // className={`fixed top-0 right-0 ${
+    //   isShowLogin ? 'w-full' : 'w-0'
+    // } min-h-screen bg-black bg-opacity-60 z-30`}
     >
       <div className="w-full min-h-screen flex justify-end items-center z-20">
         <div
-          className={`${
-            isShowLogin ? 'w-[400px]' : 'w-0'
-          } overflow-hidden relative rounded-md transition-all duration-200`}
+        // className={`${
+        //   isShowLogin ? 'w-[400px]' : 'w-0'
+        // } overflow-hidden relative rounded-md transition-all duration-200`}
         >
           <h1
-            onClick={() => dispatch(showLoginHandler())}
+            // onClick={() => dispatch(showLoginHandler())}
             className="cursor-pointer bg-white w-full flex justify-end py-3 pr-4"
           >
             <svg

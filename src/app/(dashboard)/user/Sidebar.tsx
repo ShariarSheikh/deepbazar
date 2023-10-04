@@ -13,7 +13,7 @@ import { RxDashboard } from 'react-icons/rx';
 
 const Sidebar: FC = () => {
   return (
-    <nav className="w-full max-w-[290px] max-h-[428px] rounded-[6px] bg-[#f3f9fb]">
+    <nav className="w-full max-w-[290px] max-h-[456px] rounded-[6px] bg-[#f3f9fb]">
       <div className="flex flex-col justify-center items-center pt-[18px] pb-[10px] border-b-2 border-gray-200">
         <img
           className="w-[60px] h-[60px] rounded-full object-cover"

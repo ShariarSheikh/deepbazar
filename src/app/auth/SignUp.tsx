@@ -7,7 +7,7 @@ import { CustomFormikInput, InputApiErrorMessage, RoleType } from './utils';
 import * as Yup from 'yup';
 import Button from '@/components/common/Button';
 import { useLoginMutation, useRegisterMutation } from '@/redux/services';
-import { CreateAccount } from '@/types/auth.types';
+import { Account } from '@/types/auth.types';
 
 import { useRouter } from 'next/navigation';
 
@@ -50,10 +50,11 @@ const SignUp: FC<IProps> = ({ activeOldUserHandler, role }) => {
   const [loginQuery, { isLoading: isLoadingLogin }] = useLoginMutation();
   const [registerQuery, { error, isLoading, isError }] = useRegisterMutation();
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const router = useRouter();
 
   const handleSubmit = async (values: FormValues): Promise<void> => {
-    const body: CreateAccount = {
+    const body: Account = {
       firstName: values.firstName,
       lastName: values.lastName,
       email: values.email,
@@ -81,8 +82,11 @@ const SignUp: FC<IProps> = ({ activeOldUserHandler, role }) => {
       password: body.password,
     });
 
+    // eslint-disable-next-line no-console
+    console.log(login);
+
     //@ts-ignore
-    if (login?.data?.success) router.replace('/');
+    // if (login?.data?.success) router.replace('/');
   };
 
   return (
