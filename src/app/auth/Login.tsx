@@ -1,17 +1,15 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable @typescript-eslint/ban-ts-comment */
+import Button from '@/components/common/Button';
+import { setCredentials } from '@/redux/features/authSlice';
+import { useAppDispatch } from '@/redux/hooks';
+import { useLoginMutation } from '@/redux/services/auth';
+import { Field, Form, Formik } from 'formik';
 import Link from 'next/link';
-import { FC } from 'react';
+import { useRouter } from 'next/navigation';
+import { FC, useEffect } from 'react';
 import { FaApple, FaFacebookF } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc';
-import { Field, Form, Formik } from 'formik';
-import { CustomFormikInput, InputApiErrorMessage } from './utils';
 import * as Yup from 'yup';
-import { useLoginMutation } from '@/redux/services';
-import Button from '@/components/common/Button';
-import { useRouter } from 'next/navigation';
-import { useAppDispatch } from '@/redux/hooks';
-import { setCredentials } from '@/redux/features/authSlice';
+import { CustomFormikInput, InputApiErrorMessage } from './utils';
 
 //-----------------------------------------------------------
 interface IProps {
@@ -40,21 +38,24 @@ const validationSchema = Yup.object().shape({
 //-----------------------------------------------------------
 
 const Login: FC<IProps> = ({ activeNewUserHandler }) => {
-  const [loginQuery, { error, isLoading, isError }] = useLoginMutation();
+  const [loginQuery, { data, error, isLoading, isError }] = useLoginMutation();
 
   const router = useRouter();
   const dispatch = useAppDispatch();
 
-  const handleSubmit = async (values: FormValues): Promise<void> => {
-    const login = await loginQuery(values);
+  const handleSubmit = (values: FormValues) => loginQuery(values);
+  useEffect(() => {
+    if (isLoading) return;
+    if (!data?.data.accessToken) return;
 
-    // console.log(login);
-    if (isError) return undefined;
-
-    // dispatch(setCredentials({accessToken}))
-    //@ts-ignore
-    // if (login?.data?.success) router.replace('/');
-  };
+    dispatch(
+      setCredentials({
+        accessToken: data?.data.accessToken,
+        refreshToken: data.data.refreshToken,
+      })
+    );
+    router.replace('/');
+  }, [data, isLoading, dispatch, router]);
 
   return (
     <Formik

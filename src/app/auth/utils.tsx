@@ -1,3 +1,4 @@
+'use client';
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import Input, { CustomInput } from '@/components/common/Input';
 import { FieldProps } from 'formik';

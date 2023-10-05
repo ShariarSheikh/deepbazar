@@ -1,15 +1,15 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
+import Button from '@/components/common/Button';
+import { setCredentials } from '@/redux/features/authSlice';
+import { useAppDispatch } from '@/redux/hooks';
+import { useLoginMutation, useRegisterMutation } from '@/redux/services/auth';
+import { Account } from '@/types/auth.types';
 import { Field, Form, Formik } from 'formik';
-import { FC } from 'react';
+import { useRouter } from 'next/navigation';
+import { FC, useEffect } from 'react';
 import { FaApple, FaFacebookF } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc';
-import { CustomFormikInput, InputApiErrorMessage, RoleType } from './utils';
 import * as Yup from 'yup';
-import Button from '@/components/common/Button';
-import { useLoginMutation, useRegisterMutation } from '@/redux/services';
-import { Account } from '@/types/auth.types';
-
-import { useRouter } from 'next/navigation';
+import { CustomFormikInput, InputApiErrorMessage, RoleType } from './utils';
 
 //------------------------------------------
 interface IProps {
@@ -47,11 +47,13 @@ const validationSchema = Yup.object().shape({
 //------------------------------------------
 
 const SignUp: FC<IProps> = ({ activeOldUserHandler, role }) => {
-  const [loginQuery, { isLoading: isLoadingLogin }] = useLoginMutation();
+  const [loginQuery, { isLoading: isLoadingLogin, data: loginData }] =
+    useLoginMutation();
   const [registerQuery, { error, isLoading, isError }] = useRegisterMutation();
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const router = useRouter();
+  const dispatch = useAppDispatch();
 
   const handleSubmit = async (values: FormValues): Promise<void> => {
     const body: Account = {
@@ -72,22 +74,28 @@ const SignUp: FC<IProps> = ({ activeOldUserHandler, role }) => {
         twitter: '',
       },
     };
-    const register = await registerQuery(body);
 
+    const register = await registerQuery(body);
     //@ts-ignore
     if (!register?.data?.success) return undefined;
-
-    const login = await loginQuery({
+    await loginQuery({
       email: body.email,
       password: body.password,
     });
-
-    // eslint-disable-next-line no-console
-    console.log(login);
-
-    //@ts-ignore
-    // if (login?.data?.success) router.replace('/');
   };
+
+  useEffect(() => {
+    if (isLoading) return;
+    if (!loginData?.data.accessToken) return;
+
+    dispatch(
+      setCredentials({
+        accessToken: loginData?.data.accessToken,
+        refreshToken: loginData.data.refreshToken,
+      })
+    );
+    router.replace('/');
+  }, [loginData, isLoading, dispatch, router]);
 
   return (
     <Formik

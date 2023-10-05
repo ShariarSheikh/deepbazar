@@ -8,9 +8,14 @@ import {
 } from 'react';
 
 import Input from '@/components/common/Input';
-import ReactDraftWysiwyg from '@/components/common/ReactDraftWysiwyg';
+// import ReactDraftWysiwyg from '@/components/common/ReactDraftWysiwyg';
 import { Upload } from '@/components/common/Upload';
 import { CreateProductStateInterface } from './types';
+import dynamic from 'next/dynamic';
+
+const ReactDraftWysiwyg = dynamic(
+  () => import('@/components/common/ReactDraftWysiwyg')
+);
 
 interface IProps {
   createProductState: CreateProductStateInterface;

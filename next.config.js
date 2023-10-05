@@ -1,3 +1,8 @@
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.NEXT_PUBLIC_ANALYZE === 'true',
+});
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
@@ -14,9 +19,18 @@ const nextConfig = {
     ignoreDuringBuilds: true,
   },
   output: 'standalone',
-  productionBrowserSourceMaps: false, // Disable source maps in development
-  optimizeFonts: false, // Disable font optimization
-  minify: false, // Disable minification
+
+  // // Custom configuration options
+  // webpack(config, { isServer }) {
+  //   if (!isServer) {
+  //     config.optimization.splitChunks.cacheGroups.myGroup = {
+  //       test: /[\\/]node_modules[\\/]/,
+  //       name: 'my-group',
+  //       chunks: 'all',
+  //     };
+  //   }
+  //   return config;
+  // },
 };
 
-module.exports = nextConfig;
+module.exports = withBundleAnalyzer(nextConfig);

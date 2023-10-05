@@ -1,8 +1,8 @@
-//---------------------------------------
-
-import { useGetCategoryQuery } from '@/redux/services';
+import { useGetCategoryQuery } from '@/redux/services/categoryApi';
 import { Skeleton } from '@mui/material';
 import Link from 'next/link';
+
+//---------------------------------------
 
 //---------------------------------------
 

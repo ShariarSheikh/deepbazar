@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { CiLocationOn } from 'react-icons/ci';
 import { FaCaravan } from 'react-icons/fa';
 import { MdLocalOffer } from 'react-icons/md';
-import DeliveryLocation from './DeliveryLocation';
+// import DeliveryLocation from './DeliveryLocation';
 
 import HamburgerMenuIcon from './Icon';
 import Logo from './Logo';
@@ -28,7 +28,7 @@ const RenderUiForMobile = () => {
     <div className="w-full lg:hidden">
       <div className="flex items-center justify-between pt-[8px]">
         <HamburgerMenuIcon open={open} setOpen={setOpen} />
-        <DeliveryLocation />
+        {/* <DeliveryLocation /> */}
         <Logo />
       </div>
       <div className="w-full mt-2 pb-[5px]">
@@ -80,7 +80,7 @@ const RenderUiForDesktop = () => {
           <div className="flex items-center">
             <HamburgerMenuIcon open={open} setOpen={setOpen} />
             <Logo />
-            <DeliveryLocation />
+            {/* <DeliveryLocation /> */}
           </div>
 
           <div className="w-full max-w-[828px] flex items-center justify-end">

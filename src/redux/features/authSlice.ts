@@ -1,18 +1,22 @@
 import { Account } from '@/types/auth.types';
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import Cookies from 'js-cookie';
 import { RootState } from '../store';
-// import Cookies from 'js-cookie';
+
+const refreshTokenLocal = Cookies.get('refreshToken') ?? '';
 
 //----------------------------------------------
 interface InitialStateProps {
-  accessToken: string;
-  user: Account;
+  accessToken?: string;
+  refreshToken?: string;
+  user?: Account;
 }
 
 const initialState: InitialStateProps = {
   //@ts-ignore
   user: null,
   accessToken: '',
+  refreshToken: refreshTokenLocal,
 };
 
 const authSlice = createSlice({
@@ -21,14 +25,21 @@ const authSlice = createSlice({
 
   reducers: {
     setCredentials: (state, action: PayloadAction<InitialStateProps>) => {
-      const { user, accessToken } = action.payload;
-      state.user = user;
-      state.accessToken = accessToken;
+      const { user, accessToken, refreshToken } = action.payload;
+      if (user?.email) state.user = user;
+      if (accessToken) state.accessToken = accessToken;
+      if (refreshToken) state.refreshToken = refreshToken;
+
+      //@ts-ignore
+      Cookies.set('refreshToken', refreshToken);
     },
+
     logout: state => {
       //@ts-ignore
       state.user = null;
       state.accessToken = '';
+      state.refreshToken = '';
+      Cookies.remove('refreshToken');
     },
   },
 });

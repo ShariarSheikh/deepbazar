@@ -1,15 +1,15 @@
 'use client';
 
-import ProductCart from '@/components/common/ProductCart';
-import smartPhones from '@/fakeDB/smartPhones';
-import NewArrivals from '@/views/home/NewArrivals';
+// import ProductCart from '@/components/common/ProductCart';
+// import smartPhones from '@/fakeDB/smartPhones';
+// import NewArrivals from '@/views/home/NewArrivals';
 import CategorySection from '@/views/home/CategorySection';
 import HeroSection from '@/views/home/HeroSection';
-import FeaturedProducts from '@/views/home/FeaturedProducts';
-import SponsoredItem from '@/views/home/SponsoredItem';
-import { ProductSectionName } from '@/views/home/utils';
-import { SwiperSlide } from 'swiper/react';
-import JustForYou from '@/views/home/JustForYou';
+// import FeaturedProducts from '@/views/home/FeaturedProducts';
+// import SponsoredItem from '@/views/home/SponsoredItem';
+// import { ProductSectionName } from '@/views/home/utils';
+// import { SwiperSlide } from 'swiper/react';
+// import JustForYou from '@/views/home/JustForYou';
 
 //---------------------------------------------------------
 
@@ -22,7 +22,7 @@ export default function Home() {
 
         <CategorySection />
 
-        <NewArrivals
+        {/* <NewArrivals
           data={smartPhones.slice(0, 9)}
           productPageLink={{
             pathname: '/shop',
@@ -30,9 +30,9 @@ export default function Home() {
               keyword: 'flash-sale',
             },
           }}
-        />
+        /> */}
 
-        <JustForYou
+        {/* <JustForYou
           productPageLink={{
             pathname: '/shop',
             query: {
@@ -89,7 +89,7 @@ export default function Home() {
               <ProductCart isInsideSlider data={phoneData} />
             </SwiperSlide>
           ))}
-        </FeaturedProducts>
+        </FeaturedProducts> */}
         <br />
         <br />
       </div>

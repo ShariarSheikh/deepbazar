@@ -4,6 +4,12 @@ export interface LoginAccount {
   email: string;
   password: string;
 }
+export interface LoginAccountReturnType {
+  data: {
+    refreshToken: string;
+    accessToken: string;
+  };
+}
 
 export interface Account {
   firstName: string;
