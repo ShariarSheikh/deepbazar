@@ -20,17 +20,23 @@ const nextConfig = {
   },
   output: 'standalone',
 
-  // // Custom configuration options
-  // webpack(config, { isServer }) {
-  //   if (!isServer) {
-  //     config.optimization.splitChunks.cacheGroups.myGroup = {
-  //       test: /[\\/]node_modules[\\/]/,
-  //       name: 'my-group',
-  //       chunks: 'all',
-  //     };
-  //   }
-  //   return config;
-  // },
+  experimental: {
+    turbo: {
+      rules: {
+        // Option format
+        '*.md': [
+          {
+            loader: '@mdx-js/loader',
+            options: {
+              format: 'md',
+            },
+          },
+        ],
+        // Option-less format
+        '*.mdx': ['@mdx-js/loader'],
+      },
+    },
+  },
 };
 
 module.exports = withBundleAnalyzer(nextConfig);

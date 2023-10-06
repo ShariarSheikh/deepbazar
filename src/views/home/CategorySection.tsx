@@ -1,5 +1,5 @@
+import Skeleton from '@/components/common/Skeleton';
 import { useGetCategoryQuery } from '@/redux/services/categoryApi';
-import { Skeleton } from '@mui/material';
 import Link from 'next/link';
 
 //---------------------------------------
@@ -11,11 +11,11 @@ const CategorySection = () => {
 
   const loadingSkeleton = (
     <>
-      <Skeleton variant="rounded" className="w-[30%] min-h-[200px]" />
-      <Skeleton variant="rounded" className="w-[30%] min-h-[200px]" />
-      <Skeleton variant="rounded" className="w-[30%] min-h-[200px]" />
-      <Skeleton variant="rounded" className="w-[30%] min-h-[200px]" />
-      <Skeleton variant="rounded" className="w-[30%] min-h-[200px]" />
+      <Skeleton />
+      <Skeleton />
+      <Skeleton />
+      <Skeleton />
+      <Skeleton />
     </>
   );
 

@@ -1,6 +1,4 @@
 import Image from 'next/image';
-import { Tooltip } from 'react-tooltip';
-import 'react-tooltip/dist/react-tooltip.css';
 import DownloadButton from './DownloadButton';
 import { fileData, fileFormat } from './utils';
 
@@ -38,7 +36,6 @@ function FileThumbnail({
       <div id={`myTooltip-${name}`}>
         {renderContent}
         {onDownload && <DownloadButton onDownload={onDownload} />}
-        <Tooltip anchorId={`myTooltip-${name}`} place="bottom" content={name} />
       </div>
     );
   }

@@ -1,9 +1,8 @@
 'use client';
 
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import shippingAddress from '@/fakeDB/shippingAddress';
-import Autocomplete from '@mui/material/Autocomplete';
-import TextField from '@mui/material/TextField';
 import { NextPage } from 'next';
 import Link from 'next/link';
 import { useState } from 'react';
@@ -118,7 +117,7 @@ const Page: NextPage<PageProps> = () => {
                 Select Division
               </label>
 
-              <Autocomplete
+              {/* <Autocomplete
                 id="division-id"
                 sx={{
                   '& .MuiInputBase-root': {
@@ -141,7 +140,7 @@ const Page: NextPage<PageProps> = () => {
                 onChange={(_event, value: string) =>
                   selectDivisionHandler(value)
                 }
-              />
+              /> */}
             </div>
           </div>
 
@@ -153,7 +152,7 @@ const Page: NextPage<PageProps> = () => {
               >
                 Select District
               </label>
-              <Autocomplete
+              {/* <Autocomplete
                 id="district-id"
                 sx={{
                   '& .MuiInputBase-root': {
@@ -181,7 +180,7 @@ const Page: NextPage<PageProps> = () => {
                 onChange={(_event, value: string) =>
                   selectDistrictHandler(value)
                 }
-              />
+              /> */}
             </div>
             <div className="w-[48%]">
               <label
@@ -190,7 +189,7 @@ const Page: NextPage<PageProps> = () => {
               >
                 Select Thana
               </label>
-              <Autocomplete
+              {/* <Autocomplete
                 id="thana-id"
                 sx={{
                   '& .MuiInputBase-root': {
@@ -216,7 +215,7 @@ const Page: NextPage<PageProps> = () => {
                 renderInput={params => <TextField {...params} />}
                 //@ts-expect-error
                 onChange={(_event, value: string) => selectThanaHandler(value)}
-              />
+              /> */}
             </div>
           </div>
 

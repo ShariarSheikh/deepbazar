@@ -1,5 +1,5 @@
 import Input from '@/components/common/Input';
-import { Skeleton } from '@mui/material';
+import Skeleton from '@/components/common/Skeleton';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import ClickAwayListener from 'react-click-away-listener';
@@ -81,15 +81,10 @@ const DeliveryLocation = () => {
   if (loading && !defaultLocation.country)
     return (
       <div className="flex w-[133px] h-[38px] justify-between">
-        <Skeleton variant="rounded" height={25} width={35} />
+        <Skeleton />
         <div>
-          <Skeleton variant="rounded" height={25} width={90} />
-          <Skeleton
-            variant="rounded"
-            className="mt-[4px]"
-            height={7}
-            width={90}
-          />
+          <Skeleton />
+          <Skeleton />
         </div>
       </div>
     );
