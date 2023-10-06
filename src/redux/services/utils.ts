@@ -52,11 +52,15 @@ export const baseQueryWithReAuth: BaseQueryWithReAuthType = async (
   extraOptions
 ) => {
   await mutex.waitForUnlock();
-
   let result = await baseQuery(args, api, extraOptions);
 
   //@ts-ignore
-  if (result?.error?.data && result?.error?.data?.message === 'Invalid Token') {
+  const invalidTokenIsTrue = result?.error?.data?.message === 'Invalid Token';
+  //@ts-ignore
+  const expireTokenIsTrue = result?.error?.data?.message === 'jwt expired';
+
+  //IF API GOT ERROR AND CHECK ERROR IS ONE OF THEM (INVALID TOKEN || EXPIRE TOKEN)
+  if (result?.error?.data && (expireTokenIsTrue || invalidTokenIsTrue)) {
     if (!mutex.isLocked()) {
       const release = await mutex.acquire();
 
@@ -65,19 +69,20 @@ export const baseQueryWithReAuth: BaseQueryWithReAuthType = async (
           {
             url: '/auth/refresh-token',
             method: 'POST',
-            body: JSON.stringify({
+            body: {
               //@ts-ignore
               refreshToken: api.getState().authSlice.refreshToken,
-            }),
+            },
           },
           api,
           extraOptions
         );
+
         //@ts-ignore
-        if (refreshResult.data?.accessToken) {
+        if (refreshResult?.data.data?.accessToken) {
           api.dispatch(
             //@ts-ignore
-            setCredentials({ accessToken: refreshResult.data.accessToken })
+            setCredentials({ accessToken: refreshResult.data.data.accessToken })
           );
 
           result = await baseQuery(args, api, extraOptions);

@@ -1,7 +1,6 @@
 'use client';
 
 import ProductAdditionalInfo from '@/components/common/ProductAdditionalInfo';
-import { LoadingLayout } from '@/components/common/loading';
 import smartPhones, { SmartPhonesData } from '@/fakeDB/smartPhones';
 import { NextPage } from 'next';
 import Link from 'next/link';
@@ -85,10 +84,10 @@ const Page: NextPage<PageProps> = () => {
         {isLoading && (
           <div className="grid gap-4 lg:grid-cols-2 w-full max-w-7xl mx-auto">
             <div className="lg:h-[400px] h-[300px] relative">
-              <LoadingLayout />
+              {/* <LoadingLayout /> */}
             </div>
             <div className="lg:h-[600px] h-[300px] relative">
-              <LoadingLayout />
+              {/* <LoadingLayout /> */}
             </div>
           </div>
         )}

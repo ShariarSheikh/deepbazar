@@ -12,12 +12,13 @@ export interface LoginAccountReturnType {
 }
 
 export interface Account {
+  _id?: string;
   firstName: string;
   lastName: string;
   email: string;
   password: string;
   imgUrl: string;
-  role: RoleType;
+  role: RoleType | RoleType[];
   isCustomAccount: boolean;
   address: string;
   zipCode: number;

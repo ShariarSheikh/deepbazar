@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   Account,
   LoginAccount,
@@ -16,7 +15,7 @@ export const auth = apiSlice.injectEndpoints({
       }),
     }),
 
-    register: builder.mutation<any, Account>({
+    register: builder.mutation<void, Account>({
       query: credential => ({
         url: '/auth/register',
         method: 'post',
@@ -24,9 +23,11 @@ export const auth = apiSlice.injectEndpoints({
       }),
     }),
 
-    profile: builder.query<{ data: Account; success: boolean }, void>({
-      query: () => ({ url: '/auth/profile' }),
-    }),
+    profile: builder.query<{ data: { user: Account }; success: boolean }, void>(
+      {
+        query: () => ({ url: '/auth/profile' }),
+      }
+    ),
   }),
 });
 

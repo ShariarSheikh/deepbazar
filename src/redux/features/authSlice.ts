@@ -4,6 +4,7 @@ import Cookies from 'js-cookie';
 import { RootState } from '../store';
 
 const refreshTokenLocal = Cookies.get('refreshToken') ?? '';
+const accessTokenLocal = Cookies.get('accessToken') ?? '';
 
 //----------------------------------------------
 interface InitialStateProps {
@@ -15,7 +16,7 @@ interface InitialStateProps {
 const initialState: InitialStateProps = {
   //@ts-ignore
   user: null,
-  accessToken: '',
+  accessToken: accessTokenLocal,
   refreshToken: refreshTokenLocal,
 };
 
@@ -26,12 +27,15 @@ const authSlice = createSlice({
   reducers: {
     setCredentials: (state, action: PayloadAction<InitialStateProps>) => {
       const { user, accessToken, refreshToken } = action.payload;
-      if (user?.email) state.user = user;
-      if (accessToken) state.accessToken = accessToken;
-      if (refreshToken) state.refreshToken = refreshToken;
-
-      //@ts-ignore
-      Cookies.set('refreshToken', refreshToken);
+      if (user?._id) state.user = user;
+      if (accessToken) {
+        state.accessToken = accessToken;
+        Cookies.set('accessToken', accessToken);
+      }
+      if (refreshToken) {
+        state.refreshToken = refreshToken;
+        Cookies.set('refreshToken', refreshToken);
+      }
     },
 
     logout: state => {
@@ -40,6 +44,7 @@ const authSlice = createSlice({
       state.accessToken = '';
       state.refreshToken = '';
       Cookies.remove('refreshToken');
+      Cookies.remove('accessToken');
     },
   },
 });

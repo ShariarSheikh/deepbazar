@@ -1,3 +1,6 @@
+import { DetailedHTMLProps, FC, HTMLAttributes } from 'react';
+import SvgSpinier from './SvgSpinier';
+
 export const LoadingProductCart = () => {
   return (
     <div
@@ -8,10 +11,16 @@ export const LoadingProductCart = () => {
   );
 };
 
-export const LoadingLayout = () => {
+//-----------------------------------------
+interface LoadingPageProps
+  extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {}
+export const LoadingPage: FC<LoadingPageProps> = props => {
   return (
-    <div className={`mb-5 pulse-animation bg-gray-200 w-full h-full`}>
-      <p className="opacity-0" />
+    <div
+      {...props}
+      className={`bg-white w-full min-h-[60vh] flex items-center justify-center`}
+    >
+      <SvgSpinier color="#008ECC" width={50} />
     </div>
   );
 };
