@@ -145,15 +145,15 @@ const SignUp: FC<IProps> = ({ activeOldUserHandler, role }) => {
         >
           Sign Up
         </Button>
-        <div className="flex items-center justify-between w-full mt-[20px]">
+        {/* <div className="flex items-center justify-between w-full mt-[20px]">
           <div className="h-[1px] w-[32%] bg-[#e5e5e6]"></div>
           <p className="text-[12px] text-gray-400">Or continue with</p>
           <div className="h-[1px] w-[32%] bg-[#e5e5e6]"></div>
-        </div>
+        </div> */}
 
         <Button
           onClick={activeOldUserHandler}
-          className="text-[12px] text-gray-400 mt-[10px] flex items-center space-x-1 cursor-text"
+          className="text-[12px] text-gray-400 mt-4 flex items-center space-x-1 cursor-text"
         >
           <p>Already have an account?</p>
           <p className="text-primary cursor-pointer hover:underline">Login</p>

@@ -1,10 +1,15 @@
+'use client';
+
 import Input from '@/components/common/Input';
+import { useAppSelector } from '@/redux/hooks';
 import { NextPage } from 'next';
 import { BsInstagram } from 'react-icons/bs';
 import { FaFacebookF, FaTwitter } from 'react-icons/fa';
 import { GrLinkedinOption } from 'react-icons/gr';
 
 const Page: NextPage = () => {
+  const user = useAppSelector(state => state.authSlice.user);
+
   return (
     <section>
       <div className="w-full rounded-[16px] shadow-card bg-white p-[24px] mt-[5px]">
@@ -13,6 +18,7 @@ const Page: NextPage = () => {
           <Input
             placeholder="Your facebook profile url"
             type="url"
+            value={user?.socialLinks?.facebook}
             className="ml-[15px] h-full w-full border-none outline-none"
             containerClassName="h-[38px] w-full"
           />
@@ -22,6 +28,7 @@ const Page: NextPage = () => {
           <Input
             placeholder="Your instagram profile url"
             type="url"
+            value={user?.socialLinks?.instagram}
             className="ml-[15px] h-full w-full border-none outline-none"
             containerClassName="h-[38px] w-full"
           />
@@ -31,6 +38,7 @@ const Page: NextPage = () => {
           <Input
             placeholder="Your linkedin profile url"
             type="url"
+            value={user?.socialLinks?.linkedin}
             className="ml-[15px] h-full w-full border-none outline-none"
             containerClassName="h-[38px] w-full"
           />
@@ -40,6 +48,7 @@ const Page: NextPage = () => {
           <Input
             placeholder="Your twitter profile url"
             type="url"
+            value={user?.socialLinks?.twitter}
             className="ml-[15px] h-full w-full border-none outline-none"
             containerClassName="h-[38px] w-full"
           />

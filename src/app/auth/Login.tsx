@@ -6,11 +6,8 @@ import { Field, Form, Formik } from 'formik';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { FC, useEffect } from 'react';
-import { FaApple, FaFacebookF } from 'react-icons/fa';
-import { FcGoogle } from 'react-icons/fc';
 import * as Yup from 'yup';
 import { CustomFormikInput, InputApiErrorMessage } from './utils';
-
 //-----------------------------------------------------------
 interface IProps {
   activeNewUserHandler: () => void;
@@ -101,32 +98,38 @@ const Login: FC<IProps> = ({ activeNewUserHandler }) => {
         >
           Sign In
         </Button>
-        <div className="flex items-center justify-between w-full mt-[20px]">
+        {/* <div className="flex items-center justify-between w-full mt-[20px]">
           <div className="h-[1px] w-[32%] bg-[#e5e5e6]"></div>
           <p className="text-[12px] text-gray-400">Or continue with</p>
           <div className="h-[1px] w-[32%] bg-[#e5e5e6]"></div>
-        </div>
+        </div> */}
 
         <Button
           onClick={activeNewUserHandler}
           type="button"
-          className="text-[12px] text-gray-400 mt-[10px] flex items-center space-x-1 cursor-text"
+          className="mt-4 text-[12px] text-gray-400 flex items-center space-x-1 cursor-text"
         >
           <p>New to DeepBazar?</p>
           <p className="text-primary cursor-pointer hover:underline">Sign Up</p>
         </Button>
 
-        <div className="flex items-center justify-between mt-[20px]">
-          <div className="w-[30%] flex items-center justify-center cursor-pointer hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:border-transparent h-[42px] rounded-[4px] border border-[#e5e5e6]">
+        {/* <div className="flex items-center justify-between mt-[20px]">
+          <Button
+            className="w-[30%] flex items-center justify-center cursor-pointer hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:border-transparent h-[42px] rounded-[4px] border border-[#e5e5e6]"
+          >
             <FcGoogle />
-          </div>
-          <div className="w-[30%] flex items-center justify-center cursor-pointer hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:border-transparent h-[42px] rounded-[4px] border border-[#e5e5e6]">
+          </Button>
+          <Button
+            className="w-[30%] flex items-center justify-center cursor-pointer hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:border-transparent h-[42px] rounded-[4px] border border-[#e5e5e6]"
+          >
             <FaApple />
-          </div>
-          <div className="w-[30%] flex items-center justify-center cursor-pointer hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:border-transparent h-[42px] rounded-[4px] border border-[#e5e5e6]">
+          </Button>
+          <Button
+            className="w-[30%] flex items-center justify-center cursor-pointer hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:border-transparent h-[42px] rounded-[4px] border border-[#e5e5e6]"
+          >
             <FaFacebookF color="#4267B2" />
-          </div>
-        </div>
+          </Button>
+        </div> */}
       </Form>
     </Formik>
   );

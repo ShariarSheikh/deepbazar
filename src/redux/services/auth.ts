@@ -1,5 +1,6 @@
 import {
   Account,
+  ChangePassword,
   LoginAccount,
   LoginAccountReturnType,
 } from '@/types/auth.types';
@@ -23,6 +24,17 @@ export const auth = apiSlice.injectEndpoints({
       }),
     }),
 
+    changePassword: builder.mutation<void, ChangePassword>({
+      query: credential => ({
+        url: `/auth/update-password/${credential.userId}`,
+        method: 'post',
+        body: {
+          oldPassword: credential.oldPassword,
+          newPassword: credential.newPassword,
+        },
+      }),
+    }),
+
     profile: builder.query<{ data: { user: Account }; success: boolean }, void>(
       {
         query: () => ({ url: '/auth/profile' }),
@@ -31,4 +43,9 @@ export const auth = apiSlice.injectEndpoints({
   }),
 });
 
-export const { useLoginMutation, useRegisterMutation, useProfileQuery } = auth;
+export const {
+  useLoginMutation,
+  useRegisterMutation,
+  useChangePasswordMutation,
+  useProfileQuery,
+} = auth;

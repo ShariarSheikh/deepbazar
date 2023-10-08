@@ -56,7 +56,7 @@ const SearchBar = () => {
   return (
     <AnimatePresence>
       <ClickAwayListener onClickAway={() => setIsShowResult(false)}>
-        <div className="relative w-full max-w-[556px] h-[48px]">
+        <div className="relative w-full max-w-full lg:max-w-[556px] h-[48px]">
           <form className="w-full flex items-center justify-between h-[48px] bg-[#F3F9FB] rounded-[10px] relative">
             <FiSearch className="text-primary absolute left-[16px] z-0" />
             <input

@@ -1,9 +1,10 @@
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import DeliveryLocation from './DeliveryLocation';
 import HamburgerMenuIcon from './Icon';
 import Logo from './Logo';
+import ProfileButtons from './ProfileButtons';
 import SearchBar from './SearchBar';
-import DeliveryLocation from './DeliveryLocation';
 
 //---------------------------------------------
 
@@ -22,6 +23,9 @@ export default function Mobile() {
       <div className="flex items-center justify-between pt-[8px]">
         <HamburgerMenuIcon open={open} setOpen={setOpen} />
         <DeliveryLocation />
+        <div className="hidden md:block">
+          <ProfileButtons />
+        </div>
         <Logo />
       </div>
       <div className="w-full mt-2 pb-[5px]">

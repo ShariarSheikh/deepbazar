@@ -18,8 +18,14 @@ const ProfileButtons = () => {
   const route = useRouter();
 
   const handleRouter = (afterPath: string = '') => {
+    //IF USER NOT LOGGED IN THEN REDIRECT TO AUTH PAGE
+    if (!user?._id && afterPath === 'wishlist') return route.push('/auth');
+
+    //REDIRECT TO USER PROFILE
     if (user?.role.includes(Role.USER))
       return route.push(`/user${afterPath && `/${afterPath}`}`);
+
+    //REDIRECT TO SELLER PROFILE
     if (user?.role.includes(Role.SELLER)) return route.push(`/seller`);
   };
 
@@ -53,7 +59,7 @@ const ProfileButtons = () => {
           <button className="flex items-center w-full max-w-[160px] min-w-[160px]">
             <MdOutlinePersonOutline size={24} className="text-primary" />
             <p className="ml-[6px] text-[16px] font-bold text-[#666666]">
-              Sign Up/Sign In
+              Login/SignUp
             </p>
           </button>
         </Link>
@@ -64,11 +70,13 @@ const ProfileButtons = () => {
         className="flex items-center w-full relative"
       >
         <AiOutlineHeart size={24} className="text-primary" />
-        <div className="absolute right-[35px] -top-[7px] ">
+        <div className="absolute right-[62px] -top-[7px] ">
           <CartBadges number={6} />
         </div>
 
-        <p className="ml-[6px] text-[16px] font-bold text-[#666666]">Cart</p>
+        <p className="ml-[6px] text-[16px] font-bold text-[#666666]">
+          Wishlist
+        </p>
       </button>
 
       <button

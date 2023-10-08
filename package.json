@@ -28,7 +28,6 @@
     "interweave": "^13.1.0",
     "js-cookie": "^3.0.5",
     "next": "13.5.2",
-    "next-auth": "^4.23.2",
     "numeral": "^2.0.6",
     "react": "18.2.0",
     "react-click-away-listener": "^2.2.3",

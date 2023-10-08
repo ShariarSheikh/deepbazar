@@ -1,10 +1,12 @@
+import { logout } from '@/redux/features/authSlice';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ChangeEvent, MutableRefObject } from 'react';
 import ClickAwayListener from 'react-click-away-listener';
 import { AiFillHome, AiFillProject, AiOutlineHeart } from 'react-icons/ai';
-import { BiSolidOffer } from 'react-icons/bi';
+import { BiLogOutCircle, BiSolidOffer } from 'react-icons/bi';
 import { BsShop } from 'react-icons/bs';
 import { FaSellcast } from 'react-icons/fa';
 import { FiPhoneCall, FiShoppingCart } from 'react-icons/fi';
@@ -21,6 +23,14 @@ export default function HamburgerMenu({
   resultContainerRef,
   closeMenu,
 }: HamburgerMenuProps) {
+  const user = useAppSelector(state => state.authSlice.user);
+
+  const dispatch = useAppDispatch();
+
+  const logOutHandle = () => {
+    dispatch(logout());
+  };
+
   return (
     <ClickAwayListener onClickAway={closeMenu}>
       <motion.div
@@ -28,7 +38,7 @@ export default function HamburgerMenu({
         animate={{ opacity: 1, y: -10 }}
         exit={{ opacity: 0, y: -10 }}
         transition={{ type: 'spring', damping: 30, stiffness: 400 }}
-        className="h-full w-full mt-2 z-50 min-h-[calc(100vh-150px)] relative bg-[#ffffff] border border-[#EDEDED] text-gray-400 max-w-[200px] min-w-[200px] rounded-[10px]"
+        className="h-full w-full mt-2 z-50 min-h-[calc(100vh-150px)] relative bg-[#ffffff] border border-[#EDEDED] text-gray-400 max-w-[200px] min-w-[200px] rounded-[10px] overflow-hidden"
         ref={resultContainerRef}
         onClick={e => hideResult(e.currentTarget)}
       >
@@ -75,19 +85,21 @@ export default function HamburgerMenu({
                 <p className="ml-[8px] pt-[2px]">Contact</p>
               </li>
             </Link>
-            <Link
-              href={{
-                pathname: '/auth',
-                query: {
-                  keyword: 'seller',
-                },
-              }}
-            >
-              <li className="text-[14px] w-full h-[36px] mb-[3px] flex items-center pl-[8px] hover:bg-[#F3F9FB]">
-                <FaSellcast />
-                <p className="ml-[8px] pt-[2px]">Sell On DeepBazar</p>
-              </li>
-            </Link>
+            {!user?._id && (
+              <Link
+                href={{
+                  pathname: '/auth',
+                  query: {
+                    keyword: 'seller',
+                  },
+                }}
+              >
+                <li className="text-[14px] w-full h-[36px] mb-[3px] flex items-center pl-[8px] hover:bg-[#F3F9FB]">
+                  <FaSellcast />
+                  <p className="ml-[8px] pt-[2px]">Sell On DeepBazar</p>
+                </li>
+              </Link>
+            )}
           </ul>
 
           <div>
@@ -101,12 +113,22 @@ export default function HamburgerMenu({
               </div>
             </Link>
             <div className="h-[80px] border-t border-gray-300 pt-[23px]">
-              <Link href="/auth">
-                <li className="text-[14px] w-full h-[36px] mb-[3px] flex items-center pl-[8px] hover:bg-[#F3F9FB]">
-                  <AiFillProject />
-                  <p className="ml-[8px] pt-[2px]">Sign Up/Sign In</p>
-                </li>
-              </Link>
+              {user?._id ? (
+                <button
+                  onClick={logOutHandle}
+                  className="w-full mx-auto max-w-[95%] pl-[8px] mb-[3px] h-[38px] border border-red-600 flex items-center rounded-[6px] text-red-600 hover:text-white font-bold text-sm hover:bg-red-600 active:scale-95 duration-200 group"
+                >
+                  <BiLogOutCircle className="text-red-600 group-hover:text-white mr-[4px]" />
+                  <span>LogOut</span>
+                </button>
+              ) : (
+                <Link href="/auth">
+                  <li className="text-[14px] w-full h-[36px] mb-[3px] flex items-center pl-[8px] hover:bg-[#F3F9FB]">
+                    <AiFillProject />
+                    <p className="ml-[8px] pt-[2px]">Login/SignUp</p>
+                  </li>
+                </Link>
+              )}
             </div>
           </div>
         </div>
