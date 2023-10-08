@@ -1,9 +1,10 @@
 'use client';
+import Button from '@/components/common/Button';
 import { NextPage } from 'next';
-import { useState } from 'react';
+import { useSearchParams } from 'next/navigation';
+import { useEffect, useState } from 'react';
 import Login from './Login';
 import SignUp from './SignUp';
-import Button from '@/components/common/Button';
 import { Role, RoleType } from './utils';
 
 //------------------------------------------------------------------
@@ -14,10 +15,20 @@ const Page: NextPage = () => {
   const [role, setRole] = useState<RoleType>(Role.USER);
   const [isNewUser, setIsNewUser] = useState<boolean>(false);
 
+  const keyword = useSearchParams().get('keyword');
+
   const authTypeSeller = () => setRole(Role.SELLER);
   const authTypeBuyer = () => setRole(Role.USER);
   const activeNewUserHandler = () => setIsNewUser(true);
   const activeOldUserHandler = () => setIsNewUser(false);
+
+  useEffect(() => {
+    if (!keyword) return undefined;
+    if (keyword === 'seller') {
+      setIsNewUser(true);
+      setRole(Role.SELLER);
+    }
+  }, [keyword]);
 
   const forNewUser = (
     <>

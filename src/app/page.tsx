@@ -3,8 +3,8 @@
 // import ProductCart from '@/components/common/ProductCart';
 // import smartPhones from '@/fakeDB/smartPhones';
 // import NewArrivals from '@/views/home/NewArrivals';
-import CategorySection from '@/views/home/CategorySection';
-import HeroSection from '@/views/home/HeroSection';
+// import CategorySection from '@/views/home/CategorySection';
+// import HeroSection from '@/views/home/HeroSection';
 // import FeaturedProducts from '@/views/home/FeaturedProducts';
 // import SponsoredItem from '@/views/home/SponsoredItem';
 // import { ProductSectionName } from '@/views/home/utils';
@@ -18,9 +18,9 @@ export default function Home() {
   return (
     <main className="min-h-screen w-full m-auto mt-10">
       <div className="w-full max-w-[1201px] mx-auto">
-        <HeroSection />
+        {/* <HeroSection /> */}
 
-        <CategorySection />
+        {/* <CategorySection /> */}
 
         {/* <NewArrivals
           data={smartPhones.slice(0, 9)}

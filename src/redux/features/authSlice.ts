@@ -15,7 +15,25 @@ interface InitialStateProps {
 
 const initialState: InitialStateProps = {
   //@ts-ignore
-  user: null,
+  user: {
+    _id: '',
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: '',
+    imgUrl: '',
+    role: [],
+    isCustomAccount: true,
+    address: '',
+    zipCode: 0,
+    bio: '',
+    socialLinks: {
+      facebook: '',
+      instagram: '',
+      linkedin: '',
+      twitter: '',
+    },
+  },
   accessToken: accessTokenLocal,
   refreshToken: refreshTokenLocal,
 };

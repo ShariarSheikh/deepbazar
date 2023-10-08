@@ -13,7 +13,7 @@ import { MdOutlinePersonOutline } from 'react-icons/md';
 //-----------------------------------
 
 const ProfileButtons = () => {
-  const { user, refreshToken } = useAppSelector(state => state.authSlice);
+  const { user } = useAppSelector(state => state.authSlice);
 
   const route = useRouter();
 
@@ -39,7 +39,7 @@ const ProfileButtons = () => {
                 className="object-cover"
               />
             ) : (
-              <div className="w-full h-full bg-primary text-white font-medium flex items-center justify-center">
+              <div className="w-full h-full bg-primary text-white font-medium flex items-center justify-center rounded-full">
                 {user.firstName.charAt(0)}
               </div>
             )}
@@ -49,16 +49,14 @@ const ProfileButtons = () => {
           </p>
         </button>
       ) : (
-        !!refreshToken && (
-          <Link href="/auth">
-            <button className="flex items-center w-full max-w-[160px] min-w-[160px]">
-              <MdOutlinePersonOutline size={24} className="text-primary" />
-              <p className="ml-[6px] text-[16px] font-bold text-[#666666]">
-                Sign Up/Sign In
-              </p>
-            </button>
-          </Link>
-        )
+        <Link href="/auth">
+          <button className="flex items-center w-full max-w-[160px] min-w-[160px]">
+            <MdOutlinePersonOutline size={24} className="text-primary" />
+            <p className="ml-[6px] text-[16px] font-bold text-[#666666]">
+              Sign Up/Sign In
+            </p>
+          </button>
+        </Link>
       )}
 
       <button

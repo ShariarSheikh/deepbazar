@@ -6,8 +6,6 @@ import { Account } from '@/types/auth.types';
 import { Field, Form, Formik } from 'formik';
 import { useRouter } from 'next/navigation';
 import { FC, useEffect } from 'react';
-import { FaApple, FaFacebookF } from 'react-icons/fa';
-import { FcGoogle } from 'react-icons/fc';
 import * as Yup from 'yup';
 import { CustomFormikInput, InputApiErrorMessage, RoleType } from './utils';
 
@@ -51,7 +49,6 @@ const SignUp: FC<IProps> = ({ activeOldUserHandler, role }) => {
     useLoginMutation();
   const [registerQuery, { error, isLoading, isError }] = useRegisterMutation();
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const router = useRouter();
   const dispatch = useAppDispatch();
 
@@ -162,7 +159,7 @@ const SignUp: FC<IProps> = ({ activeOldUserHandler, role }) => {
           <p className="text-primary cursor-pointer hover:underline">Login</p>
         </Button>
 
-        <div className="flex items-center justify-between mt-[20px]">
+        {/* <div className="flex items-center justify-between mt-[20px]">
           <div className="w-[30%] flex items-center justify-center cursor-pointer hover:shadow-lg h-[42px] rounded-[4px] border border-[#e5e5e6]">
             <FcGoogle />
           </div>
@@ -172,7 +169,7 @@ const SignUp: FC<IProps> = ({ activeOldUserHandler, role }) => {
           <div className="w-[30%] flex items-center justify-center cursor-pointer hover:shadow-lg h-[42px] rounded-[4px] border border-[#e5e5e6]">
             <FaFacebookF color="#4267B2" />
           </div>
-        </div>
+        </div> */}
       </Form>
     </Formik>
   );

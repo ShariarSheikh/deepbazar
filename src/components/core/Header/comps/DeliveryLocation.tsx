@@ -92,36 +92,39 @@ const DeliveryLocation = () => {
   return (
     <AnimatePresence>
       <ClickAwayListener onClickAway={() => setIsOpenList(false)}>
-        <div className="h-[38px] cursor-pointer mr-7 w-full bg-white max-w-[133px] rounded-sm relative">
-          <div
-            onBlur={() => setIsOpenList(false)}
-            onClick={() => setIsOpenList(!isOpenList)}
-            className="w-full h-full flex items-center px-1"
-          >
-            <img
-              className="w-[35px] h-[25px] object-contain"
-              src={defaultLocation?.imageUrl}
-              alt={defaultLocation?.country}
-            />
-            <div className="flex flex-col ml-1 w-full">
-              <span className="font-medium text-[13px] w-full line-clamp-1 leading-none text-primary">
-                {defaultLocation?.country}
-              </span>
-              <span className="text-gray-500 text-[10px] w-full line-clamp-1 leading-none">
-                {defaultLocation?.capital}{' '}
-                <span>| {defaultLocation?.region}</span>
-              </span>
+        <div className="h-[38px] max-w-[133px]">
+          <div className="h-[38px] overflow-hidden cursor-pointer mr-7 w-full bg-white rounded-sm relative">
+            <div
+              onBlur={() => setIsOpenList(false)}
+              onClick={() => setIsOpenList(!isOpenList)}
+              className="w-full h-[27px] flex items-center px-1"
+            >
+              <img
+                className="w-[35px] h-[25px] object-contain"
+                src={defaultLocation?.imageUrl}
+                alt={defaultLocation?.country}
+              />
+              <div className="flex flex-col ml-1 w-full">
+                <span className="font-medium text-[13px] w-full line-clamp-1 leading-none text-primary">
+                  {defaultLocation?.country}
+                </span>
+                <span className="text-gray-500 text-[10px] w-full line-clamp-1 leading-none">
+                  {defaultLocation?.capital}{' '}
+                  <span>| {defaultLocation?.region}</span>
+                </span>
+              </div>
             </div>
+            <p className="text-[10px] text-gray-500 px-3">
+              Chose your location
+            </p>
           </div>
-          <p className="text-[10px] text-gray-500 px-3">Chose your location</p>
-
           {isOpenList && (
             <motion.div
               initial={{ opacity: 0, y: -20, x: 0 }}
               animate={{ opacity: 1, y: -10, x: 0 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ type: 'spring', damping: 30, stiffness: 400 }}
-              className="h-full w-full cursor-default min-w-[320px] max-w-[360px] mt-2 z-50 right-0 relative bg-white border border-[#EDEDED] text-gray-400 min-h-[433px] rounded-[10px]"
+              className="h-full w-full cursor-default min-w-[320px] max-w-[360px] mt-2 z-50 right-[60px] lg:right-0 relative bg-white border border-[#EDEDED] text-gray-400 min-h-[433px] rounded-[10px]"
             >
               <div className="w-full h-full">
                 <h1 className="text-black text-opacity-80 text-[20px] font-medium border-b pb-[10px] mt-[20px] pl-[15px]">

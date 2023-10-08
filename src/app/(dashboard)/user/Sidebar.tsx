@@ -1,3 +1,4 @@
+import { useAppSelector } from '@/redux/hooks';
 import Link from 'next/link';
 import { FC } from 'react';
 import {
@@ -12,15 +13,24 @@ import { IoSettingsOutline } from 'react-icons/io5';
 import { RxDashboard } from 'react-icons/rx';
 
 const Sidebar: FC = () => {
+  const user = useAppSelector(state => state.authSlice.user);
   return (
-    <nav className="w-full max-w-[290px] max-h-[456px] rounded-[6px] bg-[#f3f9fb]">
+    <nav className="w-full max-w-[290px] max-h-[490px] overflow-hidden rounded-[6px] bg-[#f3f9fb]">
       <div className="flex flex-col justify-center items-center pt-[18px] pb-[10px] border-b-2 border-gray-200">
-        <img
-          className="w-[60px] h-[60px] rounded-full object-cover"
-          src="https://t3.ftcdn.net/jpg/02/99/04/20/360_F_299042079_vGBD7wIlSeNl7vOevWHiL93G4koMM967.jpg"
-          alt="user"
-        />
-        <h1 className="text-[18px] font-medium">Shariar Sheikh</h1>
+        {user?.imgUrl ? (
+          <img
+            className="w-[60px] h-[60px] rounded-full object-cover"
+            src={user.imgUrl}
+            alt="user"
+          />
+        ) : (
+          <div className="w-[60px] h-[60px] bg-primary rounded-full text-white font-medium flex items-center justify-center">
+            {user?.firstName.charAt(0)}
+          </div>
+        )}
+        <h1 className="text-[18px] font-medium w-full line-clamp-1 text-center">
+          {user?.firstName} {user?.lastName}
+        </h1>
       </div>
       <ul className="mt-[18px] w-full">
         <li className="w-full h-[38px] mb-1">

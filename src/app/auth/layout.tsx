@@ -10,18 +10,18 @@ interface IProps {
 
 const AuthLayout: FC<IProps> = ({ children }): ReactNode => {
   const [isInitialized, setIsInitialized] = useState<boolean>(false);
-  const user = useAppSelector(state => state.authSlice.user);
+  const accessToken = useAppSelector(state => state.authSlice.accessToken);
   const router = useRouter();
 
   useEffect(() => {
-    if (user?._id) return router.replace('/');
+    if (accessToken) router.replace('/');
 
-    setIsInitialized(false);
-  }, [user, router]);
+    setIsInitialized(true);
+  }, [accessToken, router]);
 
   if (!isInitialized) return <LoadingPage />;
 
-  return children;
+  return !accessToken ? children : null;
 };
 
 export default AuthLayout;
