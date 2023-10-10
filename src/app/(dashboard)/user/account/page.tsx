@@ -117,7 +117,7 @@ const Page: NextPage = () => {
           </div>
         </div>
         <p className="text-[12px] text-gray-600 mt-[24px] max-w-[148px] w-full text-center">
-          Allowed *.jpeg, *.jpg, *.png, *.webp Max size of 3.1 MB
+          Allowed *.svg *.jpeg, *.jpg, *.png, *.webp Max size of 3.1 MB
         </p>
       </div>
 
