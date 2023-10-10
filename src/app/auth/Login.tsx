@@ -7,7 +7,8 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { FC, useEffect } from 'react';
 import * as Yup from 'yup';
-import { CustomFormikInput, InputApiErrorMessage } from './utils';
+import { InputApiErrorMessage } from './utils';
+import { CustomFormikInput } from '@/components/common/FormikCustomInput';
 //-----------------------------------------------------------
 interface IProps {
   activeNewUserHandler: () => void;
@@ -41,6 +42,7 @@ const Login: FC<IProps> = ({ activeNewUserHandler }) => {
   const dispatch = useAppDispatch();
 
   const handleSubmit = (values: FormValues) => loginQuery(values);
+
   useEffect(() => {
     if (isLoading) return;
     if (!data?.data.accessToken) return;

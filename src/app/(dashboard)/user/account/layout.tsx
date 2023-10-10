@@ -1,12 +1,14 @@
 'use client';
 import { logout } from '@/redux/features/authSlice';
-import { useAppDispatch } from '@/redux/hooks';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import Link from 'next/link';
-import { useSelectedLayoutSegment } from 'next/navigation';
+import { useRouter, useSelectedLayoutSegment } from 'next/navigation';
 import { FC } from 'react';
 import { BiLogOutCircle } from 'react-icons/bi';
 import { IoIosArrowForward } from 'react-icons/io';
 import Navigation from './Navigation';
+import { Role } from '@/app/auth/utils';
+import { LoadingPage } from '@/components/common/loading';
 
 //-------------------------------------------------
 interface IProps {
@@ -15,12 +17,20 @@ interface IProps {
 //-------------------------------------------------
 
 const AccountSettingLayout: FC<IProps> = ({ children }) => {
+  const user = useAppSelector(state => state.authSlice.user);
   const segment = useSelectedLayoutSegment();
   const dispatch = useAppDispatch();
+  const router = useRouter();
 
   const logOutHandle = () => {
     dispatch(logout());
   };
+
+  if (user?.role.includes(Role.SELLER)) {
+    router.replace(`/seller`);
+    return <LoadingPage />;
+  }
+
   return (
     <section className="w-full h-full p-5 mx-auto pt-3">
       <header className="flex items-center justify-between mb-3">

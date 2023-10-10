@@ -31,6 +31,26 @@ export interface Account {
   };
 }
 
+export interface UpdateAccount {
+  _id?: string;
+  firstName?: string;
+  lastName?: string;
+  email: string;
+  password?: string;
+  imgUrl?: string;
+  role: RoleType | RoleType[];
+  isCustomAccount?: boolean;
+  address?: string;
+  zipCode?: number;
+  bio?: string;
+  socialLinks: {
+    facebook?: string;
+    instagram?: string;
+    linkedin?: string;
+    twitter?: string;
+  };
+}
+
 export interface ChangePassword {
   userId: string;
   oldPassword: string;

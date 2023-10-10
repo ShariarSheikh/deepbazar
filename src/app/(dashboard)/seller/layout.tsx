@@ -2,13 +2,26 @@
 import { FC, ReactNode, useState } from 'react';
 import SellerHeader from './header';
 import SellerSidebar from './sidebar';
+import { useAppSelector } from '@/redux/hooks';
+import { useRouter } from 'next/navigation';
+import { Role } from '@/app/auth/utils';
+import { LoadingPage } from '@/components/common/loading';
 
 interface IProps {
   children: ReactNode;
 }
 
 const SellerLayout: FC<IProps> = ({ children }) => {
+  const { user } = useAppSelector(state => state.authSlice);
   const [expendSidebar, setExpendSidebar] = useState<boolean>(true);
+
+  const router = useRouter();
+
+  if (user?.role.includes(Role.USER)) {
+    router.replace(`/user`);
+    return <LoadingPage />;
+  }
+
   return (
     <section className="w-full h-auto bg-primaryLight">
       <div className="w-full flex min-h-screen max-w-[1366px] mx-auto">
