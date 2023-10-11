@@ -1,7 +1,9 @@
 'use client';
 
+import { Role } from '@/app/auth/utils';
 import CartBadges from '@/components/common/CartBadge';
 import { useAppSelector } from '@/redux/hooks';
+import Image from 'next/image';
 import { useRouter, useSelectedLayoutSegment } from 'next/navigation';
 import { FC } from 'react';
 import { AiFillHome, AiOutlineHeart } from 'react-icons/ai';
@@ -21,9 +23,20 @@ enum NavigationLinks {
 
 const BottomNavigationComp: FC = () => {
   const { cartTotalQuantity } = useAppSelector(state => state.cartSlice);
+  const { user } = useAppSelector(state => state.authSlice);
 
   const segment = useSelectedLayoutSegment();
   const router = useRouter();
+
+  const handleRouter = () => {
+    if (!user?._id) return router.push('/auth');
+
+    //REDIRECT TO USER PROFILE
+    if (user?.role.includes(Role.USER)) return router.push(`/user`);
+
+    //REDIRECT TO SELLER PROFILE
+    if (user?.role.includes(Role.SELLER)) return router.push(`/seller`);
+  };
 
   return (
     <nav className="block md:hidden fixed bottom-0 z-50 w-full bg-white rounded-t-[6px] shadow-[0_3px_10px_rgb(0,0,0,0.2)]">
@@ -49,7 +62,7 @@ const BottomNavigationComp: FC = () => {
           <span className="text-[10px]">Shop</span>
         </button>
         <button
-          onClick={() => router.push('/profile/wishlist')}
+          onClick={() => router.push('/user/wishlist')}
           style={
             segment === NavigationLinks.favorite
               ? {
@@ -113,7 +126,7 @@ const BottomNavigationComp: FC = () => {
           </div>
         </button>
         <button
-          onClick={() => router.push('/auth')}
+          onClick={handleRouter}
           style={
             segment === NavigationLinks.login
               ? {
@@ -129,8 +142,32 @@ const BottomNavigationComp: FC = () => {
           }
           className="flex flex-col items-center justify-center h-full w-[30%] border-t-2"
         >
-          <GoPerson />
-          <span className="text-[10px]">Login</span>
+          {user?._id ? (
+            <>
+              <div className="h-[20px] w-[20px] min-w-[20px] min-h-[20px] rounded-full overflow-hidden relative">
+                {user.imgUrl ? (
+                  <Image
+                    fill
+                    src={user.imgUrl}
+                    alt="user picture"
+                    className="object-cover"
+                  />
+                ) : (
+                  <div className="w-full h-full bg-primary text-white font-medium flex items-center justify-center rounded-full">
+                    {user.firstName.charAt(0)}
+                  </div>
+                )}
+              </div>
+              <p className="pl-[5px] text-[10px] text-start font-bold w-full max-w-[72px] line-clamp-1">
+                {user.firstName}
+              </p>
+            </>
+          ) : (
+            <>
+              <GoPerson />
+              <span className="text-[10px]">Login</span>
+            </>
+          )}
         </button>
       </div>
     </nav>
