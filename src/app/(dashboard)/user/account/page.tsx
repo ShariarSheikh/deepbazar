@@ -1,7 +1,10 @@
 'use client';
 import Button from '@/components/common/Button';
 import CustomModal from '@/components/common/CustomModal';
-import { CustomFormikInput } from '@/components/common/FormikCustomInput';
+import {
+  CustomFormikInput,
+  InputApiErrorMessage,
+} from '@/components/common/FormikCustomInput';
 import Input from '@/components/common/Input';
 import { UploadAvatar } from '@/components/common/Upload';
 import { logout, setCredentials } from '@/redux/features/authSlice';
@@ -25,8 +28,8 @@ const validationSchema = Yup.object().shape({
 });
 
 const Page: NextPage = () => {
-  const [updateAccount, account] = useUpdateAccountMutation();
-  const [deleteAccount, { isSuccess, isLoading }] = useDeleteAccountMutation();
+  const [updateAccount, updateAccountReturnResult] = useUpdateAccountMutation();
+  const [deleteAccount, deleteAccountReturnResult] = useDeleteAccountMutation();
   const user = useAppSelector(state => state.authSlice.user);
   const [email, setEmail] = useState<string>('');
   const [profileImg, setProfileImg] = useState<string>('');
@@ -81,11 +84,15 @@ const Page: NextPage = () => {
 
   // USE-EFFECT-------------------------------------------
   useEffect(() => {
-    if (!isSuccess) return;
+    if (!deleteAccountReturnResult.isSuccess) return;
     dispatch(logout());
 
     return () => undefined;
-  }, [isSuccess, isLoading, dispatch]);
+  }, [
+    deleteAccountReturnResult.isSuccess,
+    deleteAccountReturnResult.isLoading,
+    dispatch,
+  ]);
 
   useEffect(() => {
     if (user?.bio) setBio(user.bio);
@@ -95,11 +102,21 @@ const Page: NextPage = () => {
   }, [user?.imgUrl, user?.bio, dispatch]);
 
   useEffect(() => {
-    if (!account.isSuccess && account.data?.data?.user?._id) return;
-    dispatch(setCredentials({ user: account.data?.data?.user }));
+    if (
+      !updateAccountReturnResult.isSuccess &&
+      updateAccountReturnResult.data?.data?.user?._id
+    )
+      return;
+    dispatch(
+      setCredentials({ user: updateAccountReturnResult.data?.data?.user })
+    );
 
     return () => undefined;
-  }, [account.data, account.isSuccess, dispatch]);
+  }, [
+    updateAccountReturnResult.data,
+    updateAccountReturnResult.isSuccess,
+    dispatch,
+  ]);
 
   return (
     <section className="w-full flex justify-between mt-[5px] pb-10">
@@ -128,78 +145,94 @@ const Page: NextPage = () => {
         validationSchema={validationSchema}
         className="w-full bg-white p-[24px] rounded-[16px] ml-[24px] shadow-card"
       >
-        <Form className="w-full flex gap-3 flex-wrap">
-          <div className="w-full flex items-center justify-between">
-            <div className="w-[48%]">
-              <Field
-                component={CustomFormikInput}
-                placeholder="First Name"
-                name="firstName"
-                className="h-full w-full rounded-[8px]"
-                containerClassName="w-[49%] h-[48px]"
-              />
+        <></>
+
+        <Form>
+          {updateAccountReturnResult.isError
+            ? InputApiErrorMessage(
+                //@ts-expect-error
+                updateAccountReturnResult.error?.data?.message
+              )
+            : null}
+          {deleteAccountReturnResult.isError
+            ? InputApiErrorMessage(
+                //@ts-expect-error
+                deleteAccountReturnResult.error?.data?.message
+              )
+            : null}
+          <div className="w-full flex gap-3 flex-wrap">
+            <div className="w-full flex items-center justify-between">
+              <div className="w-[48%]">
+                <Field
+                  component={CustomFormikInput}
+                  placeholder="First Name"
+                  name="firstName"
+                  className="h-full w-full rounded-[8px]"
+                  containerClassName="w-[49%] h-[48px]"
+                />
+              </div>
+              <div className="w-[48%]">
+                <Field
+                  component={CustomFormikInput}
+                  placeholder="Last Name"
+                  name="lastName"
+                  className="h-full w-full rounded-[8px]"
+                  containerClassName="w-[49%] h-[48px]"
+                />
+              </div>
             </div>
-            <div className="w-[48%]">
-              <Field
-                component={CustomFormikInput}
-                placeholder="Last Name"
-                name="lastName"
-                className="h-full w-full rounded-[8px]"
-                containerClassName="w-[49%] h-[48px]"
-              />
+            <Field
+              component={CustomFormikInput}
+              placeholder="Email"
+              value={user?.email}
+              readOnly
+              className="h-full w-full rounded-[8px]"
+              containerClassName="w-[49%] h-[48px]"
+            />
+
+            <Field
+              component={CustomFormikInput}
+              placeholder="Address"
+              name="address"
+              className="h-full w-full rounded-[8px] px-3"
+              containerClassName="w-[49%] h-[48px]"
+            />
+
+            <Field
+              component={CustomFormikInput}
+              placeholder="Zip Code"
+              name="zipCode"
+              className="h-full w-full rounded-[8px]"
+              containerClassName="w-[49%] h-[48px]"
+            />
+
+            <textarea
+              value={bio}
+              onChange={e => setBio(e.target.value)}
+              className="bg-gray-50 text-sm p-3 min-h-[104px] max-h-[200px] rounded-[8px] border border-gray-200 w-full mt-[14px]"
+              placeholder="About"
+            />
+
+            <div className="flex items-center justify-between w-full mt-[14px]">
+              <Button
+                onClick={openModal}
+                type="button"
+                className="bg-red-600 rounded-[6px] active:scale-95 duration-150 text-white font-bold text-[14px] px-[16px] py-[6px]"
+              >
+                Delete Account
+              </Button>
+
+              <Button
+                disabled={updateAccountReturnResult.isLoading}
+                isLoading={updateAccountReturnResult.isLoading}
+                loadingColor="white"
+                loadingSpinnerSize={40}
+                type="submit"
+                className="bg-primary rounded-[6px] active:scale-95 duration-150 text-white font-bold text-[14px] px-[16px] py-[6px]"
+              >
+                Save Changes
+              </Button>
             </div>
-          </div>
-          <Field
-            component={CustomFormikInput}
-            placeholder="Email"
-            value={user?.email}
-            readOnly
-            className="h-full w-full rounded-[8px]"
-            containerClassName="w-[49%] h-[48px]"
-          />
-
-          <Field
-            component={CustomFormikInput}
-            placeholder="Address"
-            name="address"
-            className="h-full w-full rounded-[8px] px-3"
-            containerClassName="w-[49%] h-[48px]"
-          />
-
-          <Field
-            component={CustomFormikInput}
-            placeholder="Zip Code"
-            name="zipCode"
-            className="h-full w-full rounded-[8px]"
-            containerClassName="w-[49%] h-[48px]"
-          />
-
-          <textarea
-            value={bio}
-            onChange={e => setBio(e.target.value)}
-            className="bg-gray-50 text-sm p-3 min-h-[104px] max-h-[200px] rounded-[8px] border border-gray-200 w-full mt-[14px]"
-            placeholder="About"
-          />
-
-          <div className="flex items-center justify-between w-full mt-[14px]">
-            <Button
-              onClick={openModal}
-              type="button"
-              className="bg-red-600 rounded-[6px] active:scale-95 duration-150 text-white font-bold text-[14px] px-[16px] py-[6px]"
-            >
-              Delete Account
-            </Button>
-
-            <Button
-              disabled={account.isLoading}
-              isLoading={account.isLoading}
-              loadingColor="white"
-              loadingSpinnerSize={40}
-              type="submit"
-              className="bg-primary rounded-[6px] active:scale-95 duration-150 text-white font-bold text-[14px] px-[16px] py-[6px]"
-            >
-              Save Changes
-            </Button>
           </div>
         </Form>
       </Formik>
@@ -223,12 +256,12 @@ const Page: NextPage = () => {
             className="h-full w-full rounded-[8px]"
           />
           <Button
-            disabled={isLoading}
-            isLoading={isLoading}
+            disabled={deleteAccountReturnResult.isLoading}
+            isLoading={deleteAccountReturnResult.isLoading}
             loadingColor="white"
             loadingSpinnerSize={40}
             onClick={deleteAccountHandler}
-            className="bg-red-600 mt-[16px] rounded-[6px] active:scale-95 duration-150 text-white font-bold text-[14px] px-[16px] py-[6px]"
+            className="bg-red-600 mt-[16px] max-w-[134.89px] w-full rounded-[6px] active:scale-95 duration-150 text-white font-bold text-[14px] h-[33px]"
           >
             Confirm Delete
           </Button>

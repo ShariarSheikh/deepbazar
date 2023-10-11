@@ -7,8 +7,10 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { FC, useEffect } from 'react';
 import * as Yup from 'yup';
-import { InputApiErrorMessage } from './utils';
-import { CustomFormikInput } from '@/components/common/FormikCustomInput';
+import {
+  CustomFormikInput,
+  InputApiErrorMessage,
+} from '@/components/common/FormikCustomInput';
 //-----------------------------------------------------------
 interface IProps {
   activeNewUserHandler: () => void;

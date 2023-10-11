@@ -7,8 +7,11 @@ import { Field, Form, Formik } from 'formik';
 import { useRouter } from 'next/navigation';
 import { FC, useEffect } from 'react';
 import * as Yup from 'yup';
-import { InputApiErrorMessage, RoleType } from './utils';
-import { CustomFormikInput } from '@/components/common/FormikCustomInput';
+import { RoleType } from './utils';
+import {
+  CustomFormikInput,
+  InputApiErrorMessage,
+} from '@/components/common/FormikCustomInput';
 
 //------------------------------------------
 interface IProps {

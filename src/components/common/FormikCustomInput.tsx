@@ -1,6 +1,7 @@
 import Input, { CustomInput } from '@/components/common/Input';
 import { FieldProps } from 'formik';
 import { FC } from 'react';
+import { BiSolidErrorCircle } from 'react-icons/bi';
 
 interface CustomFormikInputProps extends FieldProps {
   customInputProps: CustomInput;
@@ -26,5 +27,11 @@ export const CustomFormikInput: FC<CustomFormikInputProps> = ({
           : form.errors[field.name]}
       </div>
     )}
+  </div>
+);
+
+export const InputApiErrorMessage = (message: string) => (
+  <div className="w-full h-[35px] rounded-[6px] bg-[#ff555536] space-x-2 pl-[4px] mb-[17px] flex items-center text-[13px] text-red-600">
+    <BiSolidErrorCircle size={20} /> <span>{message}</span>
   </div>
 );
