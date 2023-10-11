@@ -13,12 +13,7 @@ import { FaFacebookF, FaTwitter } from 'react-icons/fa';
 import { GrLinkedinOption } from 'react-icons/gr';
 import * as Yup from 'yup';
 
-const condition = Yup.string()
-  .matches(
-    /((https?):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/,
-    'Enter correct url!'
-  )
-  .optional();
+const condition = Yup.string().url().optional();
 const validationSchema = Yup.object().shape({
   facebook: condition,
   instagram: condition,
@@ -68,56 +63,56 @@ const Page: NextPage = () => {
   ]);
 
   return (
-    <section>
+    <section className="w-full rounded-[16px] shadow-card bg-white p-[24px] mt-[5px]">
       <Formik
         initialValues={initialValues}
         onSubmit={handleSubmit}
         validationSchema={validationSchema}
-        className="w-full rounded-[16px] shadow-card bg-white p-[24px] mt-[5px]"
+        className="mb-[30px]"
       >
         <Form>
-          <div className="relative h-[41px] rounded-[8px] border border-gray-200 bg-gray-50 flex items-center px-[20px] mb-[24px]">
+          <div className="relative h-[61px] rounded-[8px] border border-gray-200 bg-gray-50 flex items-center px-[20px] mb-[24px]">
             <FaFacebookF />
             <Field
               component={CustomFormikInput}
               name="facebook"
               placeholder="Your facebook profile url"
               type="url"
-              className="ml-[15px] h-full w-full border-none outline-none"
-              containerClassName="h-[38px] w-full"
+              className="ml-[15px] h-full w-full"
+              containerClassName="h-[41px] w-full min-w-["
             />
           </div>
-          <div className="relative h-[41px] rounded-[8px] border border-gray-200 bg-gray-50 flex items-center px-[20px] mb-[24px]">
+          <div className="relative h-[61px] rounded-[8px] border border-gray-200 bg-gray-50 flex items-center px-[20px] mb-[24px]">
             <BsInstagram />
             <Field
               component={CustomFormikInput}
               name="instagram"
               placeholder="Your instagram profile url"
               type="url"
-              className="ml-[15px] h-full w-full border-none outline-none"
-              containerClassName="h-[38px] w-full"
+              className="ml-[15px] h-full w-full"
+              containerClassName="h-[41px] w-full"
             />
           </div>
-          <div className="relative h-[41px] rounded-[8px] border border-gray-200 bg-gray-50 flex items-center px-[20px] mb-[24px]">
+          <div className="relative h-[61px] rounded-[8px] border border-gray-200 bg-gray-50 flex items-center px-[20px] mb-[24px]">
             <GrLinkedinOption />
             <Field
               component={CustomFormikInput}
               name="linkedin"
               placeholder="Your linkedin profile url"
               type="url"
-              className="ml-[15px] h-full w-full border-none outline-none"
-              containerClassName="h-[38px] w-full"
+              className="ml-[15px] h-full w-full"
+              containerClassName="h-[41px] w-full"
             />
           </div>
-          <div className="relative h-[41px] rounded-[8px] border border-gray-200 bg-gray-50 flex items-center px-[20px] mb-[24px]">
+          <div className="relative h-[61px] rounded-[8px] border border-gray-200 bg-gray-50 flex items-center px-[20px] mb-[24px]">
             <FaTwitter />
             <Field
               component={CustomFormikInput}
               name="twitter"
               placeholder="Your twitter profile url"
               type="url"
-              className="ml-[15px] h-full w-full border-none outline-none"
-              containerClassName="h-[38px] w-full"
+              className="ml-[15px] h-full w-full"
+              containerClassName="h-[41px] w-full"
             />
           </div>
 
