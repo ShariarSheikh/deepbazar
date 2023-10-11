@@ -145,21 +145,17 @@ const Page: NextPage = () => {
         validationSchema={validationSchema}
         className="w-full bg-white p-[24px] rounded-[16px] ml-[24px] shadow-card"
       >
-        <></>
-
         <Form>
-          {updateAccountReturnResult.isError
-            ? InputApiErrorMessage(
-                //@ts-expect-error
-                updateAccountReturnResult.error?.data?.message
-              )
-            : null}
-          {deleteAccountReturnResult.isError
-            ? InputApiErrorMessage(
-                //@ts-expect-error
-                deleteAccountReturnResult.error?.data?.message
-              )
-            : null}
+          {updateAccountReturnResult.isError &&
+            InputApiErrorMessage(
+              //@ts-expect-error
+              updateAccountReturnResult.error?.data?.message
+            )}
+          {deleteAccountReturnResult.isError &&
+            InputApiErrorMessage(
+              //@ts-expect-error
+              deleteAccountReturnResult.error?.data?.message
+            )}
           <div className="w-full flex gap-3 flex-wrap">
             <div className="w-full flex items-center justify-between">
               <div className="w-[48%]">
