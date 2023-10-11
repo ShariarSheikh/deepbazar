@@ -1,7 +1,7 @@
 import { AlertType, removeAlert } from '@/redux/features/alertSlice';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { AnimatePresence, motion } from 'framer-motion';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   AiFillInfoCircle,
   AiFillWarning,
@@ -20,6 +20,7 @@ const alertVariants = {
 
 const AlertMessage = () => {
   const alert = useAppSelector(state => state.alertSlice);
+  const [count, setCount] = useState<number>(10);
   const dispatch = useAppDispatch();
 
   const onClose = () => {
@@ -37,6 +38,21 @@ const AlertMessage = () => {
       return <GrValidate className={className} size={24} />;
   };
 
+  useEffect(() => {
+    if (!alert.isAlert) return;
+
+    const interval = setInterval(() => {
+      if (count === 0) return dispatch(removeAlert());
+
+      if (count > 0) setCount(count - 1);
+      else clearInterval(interval);
+    }, 1000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, [alert.isAlert, dispatch, count]);
+
   return (
     <AnimatePresence>
       {alert.isAlert && (
@@ -52,12 +68,18 @@ const AlertMessage = () => {
             <div className="flex items-center space-x-2">
               {iconFilter(alert.type, 'mr-[10px]')} {alert.message || ''}
             </div>
-            <Button
-              onClick={onClose}
-              className="w-[30px] h-[30px] rounded-full bg-primaryLight bg-opacity-70 active:scale-95 duration-150 flex items-center justify-center text-black"
-            >
-              <AiOutlineCloseCircle size={20} className="text-primary" />
-            </Button>
+
+            <div className="flex items-center">
+              <p className="text-[12px] text-white mr-[20px] font-semibold">
+                {count}
+              </p>
+              <Button
+                onClick={onClose}
+                className="w-[30px] h-[30px] rounded-full bg-primaryLight bg-opacity-70 active:scale-95 duration-150 flex items-center justify-center text-black"
+              >
+                <AiOutlineCloseCircle size={20} className="text-primary" />
+              </Button>
+            </div>
           </motion.div>
         </motion.div>
       )}
