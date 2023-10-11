@@ -12,12 +12,14 @@ export interface AlertState {
   isAlert: boolean;
   message: string;
   type: AlertType;
+  isPermanent: boolean;
 }
 
 const initialState: AlertState = {
   isAlert: false,
   type: AlertType.Info,
-  message: 'Hello People',
+  message: '',
+  isPermanent: false,
 };
 
 const alertSlice = createSlice({
@@ -27,11 +29,18 @@ const alertSlice = createSlice({
   reducers: {
     showAlert: (
       state,
-      action: PayloadAction<{ message: string; type: AlertType }>
+      action: PayloadAction<{
+        message: string;
+        type: AlertType;
+        isPermanent?: boolean;
+      }>
     ) => {
       state.isAlert = true;
       state.message = action.payload.message;
       state.type = action.payload.type;
+      if (action.payload?.isPermanent) {
+        state.isPermanent = true;
+      }
     },
 
     removeAlert: state => {
