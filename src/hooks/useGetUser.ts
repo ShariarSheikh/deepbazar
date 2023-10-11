@@ -1,3 +1,4 @@
+import { AlertType, showAlert } from '@/redux/features/alertSlice';
 import { setCredentials } from '@/redux/features/authSlice';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { useProfileQuery } from '@/redux/services/auth';
@@ -22,5 +23,15 @@ export default function useFetchUser() {
     if (!isSuccess && data?.data?.user?._id) return;
 
     dispatch(setCredentials({ user: data?.data?.user }));
+
+    if (!data?.data?.user.verified) {
+      dispatch(
+        showAlert({
+          message: 'Please Verify your email address! Check your mailbox',
+          type: AlertType.Warning,
+          isPermanent: true,
+        })
+      );
+    }
   }, [isSuccess, data, dispatch]);
 }

@@ -55,7 +55,7 @@ const SocialLinks: FC = () => {
   useEffect(() => {
     if (
       !updateAccountReturnResult.isSuccess &&
-      updateAccountReturnResult.data?.data?.user?._id
+      !updateAccountReturnResult.data?.data?.user?._id
     )
       return undefined;
 

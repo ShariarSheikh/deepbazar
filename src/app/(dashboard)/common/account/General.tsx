@@ -85,6 +85,14 @@ const GeneralPage: FC = () => {
   // USE-EFFECT-------------------------------------------
   useEffect(() => {
     if (!deleteAccountReturnResult.isSuccess) return;
+
+    dispatch(
+      showAlert({
+        message: 'Your account has been deleted successfully!',
+        type: AlertType.Info,
+      })
+    );
+
     dispatch(logout());
 
     return () => undefined;
@@ -104,7 +112,7 @@ const GeneralPage: FC = () => {
   useEffect(() => {
     if (
       !updateAccountReturnResult.isSuccess &&
-      updateAccountReturnResult.data?.data?.user?._id
+      !updateAccountReturnResult.data?.data?.user?._id
     )
       return undefined;
 

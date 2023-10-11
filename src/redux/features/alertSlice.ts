@@ -40,11 +40,14 @@ const alertSlice = createSlice({
       state.type = action.payload.type;
       if (action.payload?.isPermanent) {
         state.isPermanent = true;
+      } else {
+        state.isPermanent = false;
       }
     },
 
     removeAlert: state => {
       state.isAlert = false;
+      state.isPermanent = false;
       state.message = '';
     },
   },

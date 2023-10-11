@@ -19,6 +19,7 @@ export interface Account {
   password: string;
   imgUrl: string;
   role: RoleType | RoleType[];
+  verified?: boolean;
   isCustomAccount: boolean;
   address: string;
   zipCode: number;

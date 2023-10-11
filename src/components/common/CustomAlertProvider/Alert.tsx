@@ -39,7 +39,7 @@ const AlertMessage = () => {
   };
 
   useEffect(() => {
-    if (!alert.isAlert) return;
+    if (!alert.isAlert || alert.isPermanent) return undefined;
 
     const interval = setInterval(() => {
       if (count === 0) return dispatch(removeAlert());
@@ -56,7 +56,7 @@ const AlertMessage = () => {
   return (
     <AnimatePresence>
       {alert.isAlert && (
-        <motion.div className="w-full flex items-center justify-center z-[100000] px-5 relative">
+        <motion.div className="z-[100000] w-full flex items-center justify-center px-5 relative">
           <motion.div
             initial={{ opacity: 0, y: -100 }}
             animate={alertVariants[alert.type]}
@@ -70,9 +70,11 @@ const AlertMessage = () => {
             </div>
 
             <div className="flex items-center">
-              <p className="text-[12px] text-white mr-[20px] font-semibold">
-                {count}
-              </p>
+              {!alert.isPermanent && (
+                <p className="text-[12px] text-white mr-[20px] font-semibold">
+                  {count}
+                </p>
+              )}
               <Button
                 onClick={onClose}
                 className="w-[30px] h-[30px] rounded-full bg-primaryLight bg-opacity-70 active:scale-95 duration-150 flex items-center justify-center text-black"
