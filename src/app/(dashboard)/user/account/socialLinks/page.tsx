@@ -79,7 +79,7 @@ const Page: NextPage = () => {
               placeholder="Your facebook profile url"
               type="url"
               className="ml-[15px] h-full w-full"
-              containerClassName="h-[41px] w-full min-w-["
+              containerClassName="h-full w-full min-w-[61px]"
             />
           </div>
           <div className="relative h-[61px] rounded-[8px] border border-gray-200 bg-gray-50 flex items-center px-[20px] mb-[24px]">
@@ -90,7 +90,7 @@ const Page: NextPage = () => {
               placeholder="Your instagram profile url"
               type="url"
               className="ml-[15px] h-full w-full"
-              containerClassName="h-[41px] w-full"
+              containerClassName="h-full w-full min-w-[61px]"
             />
           </div>
           <div className="relative h-[61px] rounded-[8px] border border-gray-200 bg-gray-50 flex items-center px-[20px] mb-[24px]">
@@ -101,7 +101,7 @@ const Page: NextPage = () => {
               placeholder="Your linkedin profile url"
               type="url"
               className="ml-[15px] h-full w-full"
-              containerClassName="h-[41px] w-full"
+              containerClassName="h-full w-full min-w-[61px]"
             />
           </div>
           <div className="relative h-[61px] rounded-[8px] border border-gray-200 bg-gray-50 flex items-center px-[20px] mb-[24px]">
@@ -112,7 +112,7 @@ const Page: NextPage = () => {
               placeholder="Your twitter profile url"
               type="url"
               className="ml-[15px] h-full w-full"
-              containerClassName="h-[41px] w-full"
+              containerClassName="h-full w-full min-w-[61px]"
             />
           </div>
 
