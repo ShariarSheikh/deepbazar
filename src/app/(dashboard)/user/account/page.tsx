@@ -128,13 +128,13 @@ const Page: NextPage = () => {
               file={profileImg}
               thumbnail
               accept={{ 'image/*': ['.svg', '.png', '.jpeg', '.webp', '.jpg'] }}
-              maxSize={20097152}
+              maxSize={1024 * 1024 * 5} // 5 MB
               onDrop={profileImageHandler}
             />
           </div>
         </div>
         <p className="text-[12px] text-gray-600 mt-[24px] max-w-[148px] w-full text-center">
-          Allowed *.svg *.jpeg, *.jpg, *.png, *.webp Max size of 3.1 MB
+          Allowed *.svg *.jpeg, *.jpg, *.png, *.webp Max size of 5 MB
         </p>
       </div>
 
@@ -213,7 +213,7 @@ const Page: NextPage = () => {
               <Button
                 onClick={openModal}
                 type="button"
-                className="bg-red-600 rounded-[6px] active:scale-95 duration-150 text-white font-bold text-[14px] px-[16px] py-[6px]"
+                className="bg-red-600 rounded-[6px] active:scale-95 duration-150 text-white font-bold text-[14px] w-[134px] h-[33px]"
               >
                 Delete Account
               </Button>
@@ -224,7 +224,7 @@ const Page: NextPage = () => {
                 loadingColor="white"
                 loadingSpinnerSize={40}
                 type="submit"
-                className="bg-primary rounded-[6px] active:scale-95 duration-150 text-white font-bold text-[14px] px-[16px] py-[6px]"
+                className="bg-primary rounded-[6px] active:scale-95 duration-150 text-white font-bold text-[14px] w-[134px] h-[33px]"
               >
                 Save Changes
               </Button>

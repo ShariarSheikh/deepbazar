@@ -1,7 +1,10 @@
 'use client';
 
 import Button from '@/components/common/Button';
-import { CustomFormikInput } from '@/components/common/FormikCustomInput';
+import {
+  CustomFormikInput,
+  InputApiErrorMessage,
+} from '@/components/common/FormikCustomInput';
 import { setCredentials } from '@/redux/features/authSlice';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { useUpdateAccountMutation } from '@/redux/services/auth';
@@ -41,7 +44,11 @@ const Page: NextPage = () => {
       // @ts-ignore
       userId: user?._id,
       // @ts-ignore
-      user: values,
+      user: {
+        socialLinks: {
+          ...values,
+        },
+      },
     });
   };
 
@@ -71,6 +78,11 @@ const Page: NextPage = () => {
         className="mb-[30px]"
       >
         <Form>
+          {updateAccountReturnResult.isError &&
+            InputApiErrorMessage(
+              //@ts-expect-error
+              updateAccountReturnResult.error?.data?.message
+            )}
           <div className="relative h-[61px] rounded-[8px] border border-gray-200 bg-gray-50 flex items-center pl-[20px] mb-[24px]">
             <FaFacebookF />
             <Field
@@ -78,8 +90,8 @@ const Page: NextPage = () => {
               name="facebook"
               placeholder="Your facebook profile url"
               type="url"
-              className="ml-[15px] h-full w-full"
-              containerClassName="h-full w-full min-w-[61px]"
+              className="h-full w-full border-none"
+              containerClassName="ml-[15px] h-full w-full min-w-[61px]"
             />
           </div>
           <div className="relative h-[61px] rounded-[8px] border border-gray-200 bg-gray-50 flex items-center pl-[20px] mb-[24px]">
@@ -89,8 +101,8 @@ const Page: NextPage = () => {
               name="instagram"
               placeholder="Your instagram profile url"
               type="url"
-              className="ml-[15px] h-full w-full"
-              containerClassName="h-full w-full min-w-[61px]"
+              className="h-full w-full border-none"
+              containerClassName="ml-[15px] h-full w-full min-w-[61px]"
             />
           </div>
           <div className="relative h-[61px] rounded-[8px] border border-gray-200 bg-gray-50 flex items-center pl-[20px] mb-[24px]">
@@ -100,8 +112,8 @@ const Page: NextPage = () => {
               name="linkedin"
               placeholder="Your linkedin profile url"
               type="url"
-              className="ml-[15px] h-full w-full"
-              containerClassName="h-full w-full min-w-[61px]"
+              className="h-full w-full border-none"
+              containerClassName="ml-[15px] h-full w-full min-w-[61px]"
             />
           </div>
           <div className="relative h-[61px] rounded-[8px] border border-gray-200 bg-gray-50 flex items-center pl-[20px] mb-[24px]">
@@ -111,8 +123,8 @@ const Page: NextPage = () => {
               name="twitter"
               placeholder="Your twitter profile url"
               type="url"
-              className="ml-[15px] h-full w-full"
-              containerClassName="h-full w-full min-w-[61px]"
+              className="h-full w-full border-none"
+              containerClassName="ml-[15px] h-full w-full min-w-[61px]"
             />
           </div>
 
@@ -123,7 +135,7 @@ const Page: NextPage = () => {
               loadingColor="white"
               loadingSpinnerSize={40}
               type="submit"
-              className="bg-primary rounded-[6px] active:scale-95 duration-150 text-white font-bold text-[14px] px-[16px] py-[6px]"
+              className="bg-primary rounded-[6px] active:scale-95 duration-150 text-white font-bold text-[14px] w-[134px] h-[33px]"
             >
               Save Changes
             </Button>

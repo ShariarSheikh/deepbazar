@@ -3,8 +3,11 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import Cookies from 'js-cookie';
 import { RootState } from '../store';
 
-const refreshTokenLocal = Cookies.get('refreshToken') ?? '';
-const accessTokenLocal = Cookies.get('accessToken') ?? '';
+const refreshTokenCookiesName = 'depBazRft';
+const accessTokenCookiesName = 'depBazAcT';
+
+const refreshTokenLocal = Cookies.get(refreshTokenCookiesName) ?? '';
+const accessTokenLocal = Cookies.get(accessTokenCookiesName) ?? '';
 
 //----------------------------------------------
 interface InitialStateProps {
@@ -48,11 +51,11 @@ const authSlice = createSlice({
       if (user?._id) state.user = user;
       if (accessToken) {
         state.accessToken = accessToken;
-        Cookies.set('accessToken', accessToken);
+        Cookies.set(accessTokenCookiesName, accessToken);
       }
       if (refreshToken) {
         state.refreshToken = refreshToken;
-        Cookies.set('refreshToken', refreshToken);
+        Cookies.set(refreshTokenCookiesName, refreshToken);
       }
     },
 
@@ -61,8 +64,8 @@ const authSlice = createSlice({
       state.user = null;
       state.accessToken = '';
       state.refreshToken = '';
-      Cookies.remove('refreshToken');
-      Cookies.remove('accessToken');
+      Cookies.remove(refreshTokenCookiesName);
+      Cookies.remove(accessTokenCookiesName);
     },
   },
 });

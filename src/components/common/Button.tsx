@@ -26,7 +26,7 @@ const Button: FC<CustomButtonProps> = ({
         disabled
         type="button"
         {...props}
-        className={`flex items-center justify-center ${className} active:scale-100 cursor-wait`}
+        className={`flex items-center justify-center ${className} active:scale-100 cursor-wait overflow-hidden`}
       >
         <SvgSpinier style={{ width: loadingSpinnerSize }} fill={loadingColor} />
       </button>
