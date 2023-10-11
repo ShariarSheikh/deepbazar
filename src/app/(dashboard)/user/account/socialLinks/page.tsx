@@ -71,7 +71,7 @@ const Page: NextPage = () => {
         className="mb-[30px]"
       >
         <Form>
-          <div className="relative h-[61px] rounded-[8px] border border-gray-200 bg-gray-50 flex items-center px-[20px] mb-[24px]">
+          <div className="relative h-[61px] rounded-[8px] border border-gray-200 bg-gray-50 flex items-center pl-[20px] mb-[24px]">
             <FaFacebookF />
             <Field
               component={CustomFormikInput}
@@ -82,7 +82,7 @@ const Page: NextPage = () => {
               containerClassName="h-full w-full min-w-[61px]"
             />
           </div>
-          <div className="relative h-[61px] rounded-[8px] border border-gray-200 bg-gray-50 flex items-center px-[20px] mb-[24px]">
+          <div className="relative h-[61px] rounded-[8px] border border-gray-200 bg-gray-50 flex items-center pl-[20px] mb-[24px]">
             <BsInstagram />
             <Field
               component={CustomFormikInput}
@@ -93,7 +93,7 @@ const Page: NextPage = () => {
               containerClassName="h-full w-full min-w-[61px]"
             />
           </div>
-          <div className="relative h-[61px] rounded-[8px] border border-gray-200 bg-gray-50 flex items-center px-[20px] mb-[24px]">
+          <div className="relative h-[61px] rounded-[8px] border border-gray-200 bg-gray-50 flex items-center pl-[20px] mb-[24px]">
             <GrLinkedinOption />
             <Field
               component={CustomFormikInput}
@@ -104,7 +104,7 @@ const Page: NextPage = () => {
               containerClassName="h-full w-full min-w-[61px]"
             />
           </div>
-          <div className="relative h-[61px] rounded-[8px] border border-gray-200 bg-gray-50 flex items-center px-[20px] mb-[24px]">
+          <div className="relative h-[61px] rounded-[8px] border border-gray-200 bg-gray-50 flex items-center pl-[20px] mb-[24px]">
             <FaTwitter />
             <Field
               component={CustomFormikInput}
