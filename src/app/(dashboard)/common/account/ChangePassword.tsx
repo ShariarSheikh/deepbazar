@@ -47,7 +47,8 @@ const ChangePassword: FC = () => {
   };
 
   useEffect(() => {
-    if (!isSuccess) return;
+    if (!isSuccess && !isLoading) return undefined;
+
     dispatch(
       showAlert({
         message: 'Your password updated successfully!',
@@ -57,7 +58,7 @@ const ChangePassword: FC = () => {
     router.replace('/user');
 
     return () => undefined;
-  }, [isSuccess]);
+  }, [isSuccess, isLoading]);
 
   return (
     <section className="py-[30px]">

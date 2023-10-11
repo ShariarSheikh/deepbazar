@@ -106,7 +106,7 @@ const GeneralPage: FC = () => {
       !updateAccountReturnResult.isSuccess &&
       updateAccountReturnResult.data?.data?.user?._id
     )
-      return;
+      return undefined;
 
     dispatch(
       setCredentials({ user: updateAccountReturnResult.data?.data?.user })
