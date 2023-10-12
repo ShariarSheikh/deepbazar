@@ -1,7 +1,6 @@
 'use client';
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 import shippingAddress from '@/fakeDB/shippingAddress';
 import { NextPage } from 'next';
 import Link from 'next/link';
@@ -47,7 +46,7 @@ const Page: NextPage<PageProps> = () => {
   };
 
   return (
-    <div className="w-full h-full p-5 max-w-[1080px] mx-auto pt-3">
+    <div className="w-full h-full p-1 md:p-5 max-w-[1080px] mx-auto pt-3">
       <header className="flex items-center space-x-2 text-gray-600 font-medium">
         <Link
           href="/user/shipping-address"
@@ -61,7 +60,7 @@ const Page: NextPage<PageProps> = () => {
         </div>
       </header>
 
-      <div className="w-full h-full p-5 bg-white mt-10 rounded-[6px] shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]">
+      <div className="w-full h-full p-1 md:p-5 bg-white mt-3 md:mt-10 rounded-[6px] shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]">
         <form className="w-full">
           <div className="flex items-center justify-between">
             <div className="w-[48%]">

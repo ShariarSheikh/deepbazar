@@ -15,7 +15,7 @@ const DashboardLayout: FC<IProps> = ({ children }) => {
   const router = useRouter();
 
   useEffect(() => {
-    if (!accessToken) router.replace('/auth');
+    if (!accessToken) router.replace('/');
     setIsInitialized(true);
   }, [accessToken, router]);
 

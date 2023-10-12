@@ -65,17 +65,17 @@ const Page: NextPage<PageProps> = () => {
   const [currentPage, setCurrentPage] = useState(0);
 
   return (
-    <div className="w-full h-full p-5 max-w-[1080px] mx-auto pt-3">
+    <div className="w-full h-full md:p-5 max-w-[1080px] mx-auto pt-3">
       <header className="">
         <h1 className="text-gray-600 font-medium">My Wishlist</h1>
       </header>
 
-      <div className="w-full h-full p-5 bg-white mt-10 rounded-[6px] shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]">
+      <div className="w-full h-full p-1 md:p-5 bg-white mt-3 md:mt-10 rounded-[6px] shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]">
         {WishlistData.length > 0 &&
           WishlistData?.map(({ id, img, title, amount }) => (
             <div
               key={id}
-              className="relative flex justify-start pb-6 mt-[10px] border-b-[#f2f3f5] border-b border-solid"
+              className="relative flex flex-col md:flex-row justify-start pb-6 mt-[10px] border-b-[#f2f3f5] border-b border-solid"
             >
               <Link href="/shop">
                 <div className="overflow-hidden relative w-32 h-32 rounded-[6px]">
@@ -86,7 +86,7 @@ const Page: NextPage<PageProps> = () => {
                   />
                 </div>
               </Link>
-              <div className="w-full max-w-[472px] ml-6">
+              <div className="w-full max-w-[472px] md:ml-6">
                 <Link href="/shop">
                   <h1 className="w-full font-medium line-clamp-2 text-[#3d3d3f] text-lg">
                     {title}
@@ -97,7 +97,7 @@ const Page: NextPage<PageProps> = () => {
                   <p className="text-xl">{amount}</p>
                 </div>
               </div>
-              <div className="flex flex-row space-x-2 items-center absolute ml-[73px] right-2.5 bottom-[35px]">
+              <div className="flex flex-row space-x-2 items-center absolute ml-[73px] right-2.5 bottom-[24px] md:bottom-[35px]">
                 <button className="cursor-pointer h-8 w-8 flex items-center justify-center rounded-full active:scale-95 duration-150 text-white bg-red-500">
                   <AiOutlineDelete className="w-auto h-auto ml-0 mt-0" />
                 </button>
