@@ -72,6 +72,7 @@ const Login: FC<IProps> = ({ activeNewUserHandler }) => {
             type="text"
             name="email"
             placeholder="Enter your email"
+            containerStyle={{ marginBottom: '16px' }}
             component={CustomFormikInput}
           />
 

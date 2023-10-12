@@ -20,15 +20,15 @@ const Page: NextPage<PageProps> = () => {
 
   return (
     <section className="w-full">
-      <div className="w-full h-full p-5 max-w-[1080px] mx-auto pt-3">
+      <div className="w-full h-full p-1 md:p-5 max-w-[1080px] mx-auto pt-2 md:pt-3">
         <header className="">
           <h1 className="text-gray-600 font-medium">My Question & Answer</h1>
         </header>
 
-        <div className="w-full h-full p-5 bg-white mt-10 rounded-[6px] shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]">
+        <div className="w-full h-full p-1 md:p-5 bg-white mt-2 md:mt-10 rounded-[6px] shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]">
           {
             <>
-              <div className="w-full flex flex-row border border-gray-200 pb-2 mb-[20px] rounded-[6px]">
+              <div className="w-full flex flex-col md:flex-row border border-gray-200 pb-2 mb-[20px] rounded-[6px]">
                 <Link
                   href={{
                     pathname: '/product',
@@ -40,7 +40,7 @@ const Page: NextPage<PageProps> = () => {
                 >
                   <div className="relative w-[123px] h-[123px] min-w-[123px] min-h-[123px] rounded-[6px] overflow-hidden">
                     <Image
-                      src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1999&q=80"
+                      src="https://images.unsplash.com/photo-1586880244386-8b3e34c8382c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1287&q=80"
                       fill
                       alt="user picture"
                       className="object-cover"
@@ -50,7 +50,7 @@ const Page: NextPage<PageProps> = () => {
 
                 <div className="ml-[16px] pr-8">
                   <div className="">
-                    <div className="pt-[8px] flex items-center font-medium">
+                    <div className="pt-[8px] flex items-start font-medium">
                       <RiQuestionnaireFill className="text-[#FF4646] mr-[8px]" />
                       <span className="ml-[6px]">Me: </span>
                       <span>XL Size is available for this jacket?</span>
@@ -83,7 +83,7 @@ const Page: NextPage<PageProps> = () => {
                 </div>
               </div>
 
-              <div className="w-full flex flex-row border border-gray-200 pb-2 mb-[20px] rounded-[6px]">
+              <div className="w-full flex flex-col md:flex-row border border-gray-200 pb-2 mb-[20px] rounded-[6px]">
                 <Link
                   href={{
                     pathname: '/product',
@@ -95,7 +95,7 @@ const Page: NextPage<PageProps> = () => {
                 >
                   <div className="relative w-[123px] h-[123px] min-w-[123px] min-h-[123px] rounded-[6px] overflow-hidden">
                     <Image
-                      src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1999&q=80"
+                      src="https://images.unsplash.com/photo-1586880244386-8b3e34c8382c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1287&q=80"
                       fill
                       alt="user picture"
                       className="object-cover"

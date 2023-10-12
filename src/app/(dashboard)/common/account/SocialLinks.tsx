@@ -77,7 +77,7 @@ const SocialLinks: FC = () => {
   ]);
 
   return (
-    <section className="w-full rounded-[16px] shadow-card bg-white p-[24px] mt-[5px]">
+    <section className="w-full rounded-[16px] shadow-card bg-white p-1 md:p-[24px] mt-[5px]">
       <Formik
         initialValues={initialValues}
         onSubmit={handleSubmit}
