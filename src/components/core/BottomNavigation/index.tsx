@@ -55,7 +55,7 @@ const BottomNavigationComp: FC = () => {
             className="object-cover"
           />
         ) : (
-          <div className="w-full h-full bg-primary text-white font-medium flex items-center justify-center rounded-full">
+          <div className="text-sm w-full h-full bg-primary text-white flex items-center justify-center rounded-full">
             {user.firstName.charAt(0)}
           </div>
         )}

@@ -13,7 +13,7 @@ export const CustomFormikInput: FC<CustomFormikInputProps> = ({
   customInputProps,
   ...props
 }) => (
-  <div className="w-full min-h-[60px] max-h-[72px]">
+  <div className="w-full max-h-[72px]">
     <Input {...field} {...customInputProps} {...props} />
     {form?.touched[field.name] && form?.errors[field.name] && (
       <div className="text-[11px] text-red-700 px-[3px] pt-[4px] pb-2">
