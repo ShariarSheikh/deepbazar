@@ -14,20 +14,25 @@ export default function useFetchUser() {
 
   const dispatch = useAppDispatch();
 
-  if (isNotFetchProfile) dispatch(setProfileLoading(true));
-
+  // IF TOKEN EXITS
   useEffect(() => {
     if (!refreshToken) return;
-
     setIsNotFetchProfile(false);
   }, [refreshToken, dispatch]);
 
+  // UPDATE USER PROFILE LOADING STATE
+  useEffect(() => {
+    if (isLoading) dispatch(setProfileLoading(true));
+    if (!isLoading) dispatch(setProfileLoading(false));
+
+    return () => undefined;
+  }, [isLoading, dispatch]);
+
+  // IF USER EXITS THEN UPDATE FETCH
   useEffect(() => {
     if (!isLoading && !data?.data?.user?._id) return;
 
     dispatch(setCredentials({ user: data?.data?.user }));
-    dispatch(setProfileLoading(false));
-
     // USER EXITS BUT NOT VERIFIED THEN SHOW THE ALERT
     if (!data?.data?.user.verified && data?.data?.user?._id) {
       dispatch(

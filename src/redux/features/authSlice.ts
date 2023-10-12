@@ -71,6 +71,8 @@ const authSlice = createSlice({
       state.refreshToken = '';
       Cookies.remove(refreshTokenCookiesName);
       Cookies.remove(accessTokenCookiesName);
+
+      // store.dispatch(removeAlert());
     },
   },
 });

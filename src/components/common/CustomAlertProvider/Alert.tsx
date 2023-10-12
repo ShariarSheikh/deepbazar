@@ -11,6 +11,17 @@ import { BiSolidErrorCircle } from 'react-icons/bi';
 import { GrValidate } from 'react-icons/gr';
 import Button from '../Button';
 
+const iconFilter = (type: AlertType, className: string) => {
+  if (type === AlertType.Info)
+    return <AiFillInfoCircle className={className} size={24} />;
+  if (type === AlertType.Warning)
+    return <AiFillWarning className={className} size={24} />;
+  if (type === AlertType.Error)
+    return <BiSolidErrorCircle className={className} size={24} />;
+  if (type === AlertType.Success)
+    return <GrValidate className={className} size={24} />;
+};
+
 const alertVariants = {
   Info: { opacity: 1, y: 0, backgroundColor: '#2196F3', color: 'white' }, // Blue for Info
   Error: { opacity: 1, y: 0, backgroundColor: '#f44336', color: 'white' }, // Red for Error
@@ -19,23 +30,13 @@ const alertVariants = {
 };
 
 const AlertMessage = () => {
+  const { user } = useAppSelector(state => state.authSlice);
   const alert = useAppSelector(state => state.alertSlice);
   const [count, setCount] = useState<number>(10);
   const dispatch = useAppDispatch();
 
   const onClose = () => {
     dispatch(removeAlert());
-  };
-
-  const iconFilter = (type: AlertType, className: string) => {
-    if (type === AlertType.Info)
-      return <AiFillInfoCircle className={className} size={24} />;
-    if (type === AlertType.Warning)
-      return <AiFillWarning className={className} size={24} />;
-    if (type === AlertType.Error)
-      return <BiSolidErrorCircle className={className} size={24} />;
-    if (type === AlertType.Success)
-      return <GrValidate className={className} size={24} />;
   };
 
   useEffect(() => {
@@ -52,6 +53,10 @@ const AlertMessage = () => {
       clearInterval(interval);
     };
   }, [alert.isAlert, dispatch, count]);
+
+  useEffect(() => {
+    if (!user?._id) dispatch(removeAlert());
+  }, [user?._id]);
 
   return (
     <AnimatePresence>
