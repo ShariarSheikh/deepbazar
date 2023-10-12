@@ -39,37 +39,38 @@ const BottomNavigationComp: FC = () => {
     if (user?.role.includes(Role.SELLER)) return router.push(`/seller`);
   };
 
-  const profile = isLoading ? (
-    <div className="flex flex-col w-[72px] h-[38px] justify-center items-center">
-      <Skeleton circle height={20} width={20} />
-      <Skeleton className="mt-1" height={12} width={60} />
-    </div>
-  ) : user?._id ? (
-    <div className="flex flex-col justify-center items-center">
-      <div className="h-[20px] w-[20px] min-w-[20px] min-h-[20px] rounded-full overflow-hidden relative">
-        {user.imgUrl ? (
-          <Image
-            fill
-            src={user.imgUrl}
-            alt="user picture"
-            className="object-cover"
-          />
-        ) : (
-          <div className="w-full h-full bg-primary text-white font-medium flex items-center justify-center rounded-full">
-            {user.firstName.charAt(0)}
-          </div>
-        )}
+  const profile =
+    isLoading || !user?._id ? (
+      <div className="flex flex-col w-[72px] h-[38px] justify-center items-center">
+        <Skeleton circle height={20} width={20} />
+        <Skeleton className="mt-1" height={12} width={60} />
       </div>
-      <p className="text-[10px] text-start w-full max-w-[72px] line-clamp-1">
-        {user.firstName}
-      </p>
-    </div>
-  ) : (
-    <>
-      <GoPerson />
-      <span className="text-[10px]">Login</span>
-    </>
-  );
+    ) : user?._id ? (
+      <div className="flex flex-col justify-center items-center">
+        <div className="h-[20px] w-[20px] min-w-[20px] min-h-[20px] rounded-full overflow-hidden relative">
+          {user.imgUrl ? (
+            <Image
+              fill
+              src={user.imgUrl}
+              alt="user picture"
+              className="object-cover"
+            />
+          ) : (
+            <div className="w-full h-full bg-primary text-white font-medium flex items-center justify-center rounded-full">
+              {user.firstName.charAt(0)}
+            </div>
+          )}
+        </div>
+        <p className="text-[10px] text-start w-full max-w-[72px] line-clamp-1">
+          {user.firstName}
+        </p>
+      </div>
+    ) : (
+      <>
+        <GoPerson />
+        <span className="text-[10px]">Login</span>
+      </>
+    );
 
   return (
     <nav className="block md:hidden fixed bottom-0 z-50 w-full bg-white rounded-t-[6px] shadow-[0_3px_10px_rgb(0,0,0,0.2)]">
