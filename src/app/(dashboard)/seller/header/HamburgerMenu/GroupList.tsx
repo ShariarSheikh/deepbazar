@@ -1,7 +1,6 @@
 import useActiveLink from '@/hooks/isActiveLink';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Dispatch, SetStateAction } from 'react';
 import { BsDot } from 'react-icons/bs';
 import { MdKeyboardArrowDown, MdKeyboardArrowRight } from 'react-icons/md';
 import { SellerSidebarActionList } from './navLinks';
@@ -10,7 +9,6 @@ import { isMatchEndPoint } from './utils';
 //--------------------------------------------
 interface IGroupList {
   data: SellerSidebarActionList;
-  ExpendSidebar: boolean;
   handleGroup: ({
     text,
     isExpend,
@@ -18,16 +16,10 @@ interface IGroupList {
     text: string;
     isExpend?: boolean;
   }) => void;
-  setExpendSidebar: Dispatch<SetStateAction<boolean>>;
 }
 //--------------------------------------------
 
-function GroupList({
-  data,
-  handleGroup,
-  ExpendSidebar,
-  setExpendSidebar,
-}: IGroupList) {
+function GroupList({ data, handleGroup }: IGroupList) {
   const { id, text, Icon, child, link, height, isExpend } = data;
 
   const pathname = usePathname();
@@ -37,12 +29,7 @@ function GroupList({
   });
 
   const openGroupLink = (): void => {
-    if (ExpendSidebar) {
-      return handleGroup({ text, isExpend: !isExpend });
-    }
-
-    handleGroup({ text, isExpend: true });
-    return setExpendSidebar(true);
+    handleGroup({ text, isExpend: !isExpend });
   };
 
   //
@@ -58,29 +45,19 @@ function GroupList({
               ? 'bg-primary bg-opacity-[8%] hover:bg-opacity-[12%] [&>span]:text-gray-800 [&>svg]:text-gray-800'
               : ''
           }
-          ${
-            ExpendSidebar
-              ? 'flex-row h-12 [&>span]:ml-[16px] text-sm rounded-md pl-[18px] pr-[12px]'
-              : 'flex-col justify-evenly w-[74px] min-h-[54px] [&>span]:text-[10px] rounded-lg'
-          }
-          w-full flex cursor-pointer items-center group relative
+          flex-row h-12 [&>span]:ml-[16px] text-sm rounded-md pl-[18px] pr-[12px] w-full flex cursor-pointer items-center group relative
           `}
       >
         <Icon className="text-gray-800 group-hover:text-gray-800 w-6 h-6" />
         <span
-          className={`${ExpendSidebar ? 'justify-between' : 'justify-center'}
-          text-gray-800 group-hover:text-gray-800 flex items-center w-full `}
+          className={`justify-between text-gray-800 group-hover:text-gray-800 flex items-center w-full `}
         >
           {text}
 
           {isExpend ? (
-            <MdKeyboardArrowDown
-              className={`${ExpendSidebar ? '' : 'absolute top-1/3 right-2'}`}
-            />
+            <MdKeyboardArrowDown className={`absolute top-1/3 right-2`} />
           ) : (
-            <MdKeyboardArrowRight
-              className={`${ExpendSidebar ? '' : 'absolute top-1/3 right-2'}`}
-            />
+            <MdKeyboardArrowRight className={`absolute top-1/3 right-2`} />
           )}
         </span>
       </div>

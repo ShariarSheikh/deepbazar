@@ -16,33 +16,37 @@ const Page: NextPage<PageProps> = () => {
   const router = useRouter();
 
   return (
-    <section className="w-full h-full bg-white max-w-[1080px] p-5 mt-10 rounded-[16px] shadow-md">
+    <section className="w-full h-full bg-white max-w-[1080px] p-1 md:p-5 mt-3 md:mt-10 rounded-[16px] shadow-md">
       <PageTitle pageName="Dashboard" />
 
-      <ul className="mt-[8px] w-full flex flex-wrap justify-between gap-2 items-center p-[12px]">
+      <ul className="mt-[8px] w-full flex flex-col md:flex-row flex-wrap justify-between gap-2 items-center p-[12px]">
         <li
           onClick={() => router.push(PATH_SELLER.products.manage)}
-          className="max-w-[48%] w-full h-[300px] rounded-[6px] border border-gray-200 flex bg-[#bee6f3]"
+          className="max-w-full md:max-w-[48%] w-full h-[120px] md:h-[300px] rounded-[6px] border border-gray-200 flex bg-[#bee6f3]"
         >
           <div className="h-full w-[180px] flex items-center justify-center">
-            <BsShop className="w-20 h-20" />
+            <BsShop className="w-12 md:w-20 h-12 md:h-20" />
           </div>
           <div className="flex flex-col justify-center items-center">
-            <h1 className="text-2xl font-bold uppercase">Total Products</h1>
-            <p className="text-4xl mt-2 font-semibold">36</p>
+            <h1 className="text-lg md:text-2xl font-bold uppercase">
+              Total Products
+            </h1>
+            <p className="text-2xl md:text-4xl mt-2 font-semibold">36</p>
           </div>
         </li>
 
         <li
           onClick={() => router.push(PATH_SELLER.category)}
-          className="max-w-[48%] w-full h-[300px] rounded-[6px] border border-gray-200 flex bg-[#bef3e7]"
+          className="max-w-full md:max-w-[48%] w-full h-[120px] md:h-[300px] rounded-[6px] border border-gray-200 flex bg-[#bef3e7]"
         >
           <div className="h-full w-[180px] flex items-center justify-center">
-            <BiCategoryAlt className="w-20 h-20" />
+            <BiCategoryAlt className="w-12 md:w-20 h-12 md:h-20" />
           </div>
           <div className="flex flex-col justify-center items-center">
-            <h1 className="text-2xl font-bold uppercase">View Category</h1>
-            <p className="text-4xl mt-2 font-semibold">Total 5</p>
+            <h1 className="text-lg md:text-2xl font-bold uppercase">
+              View Category
+            </h1>
+            <p className="text-2xl md:text-4xl mt-2 font-semibold">Total 5</p>
           </div>
         </li>
         <li
@@ -55,7 +59,7 @@ const Page: NextPage<PageProps> = () => {
           <div className="flex flex-col justify-center items-start">
             <h1 className="text-2xl font-bold uppercase">Account</h1>
 
-            <ul className="w-full flex items-center justify-center">
+            <ul className="w-full flex flex-col md:flex-row items-center justify-center">
               <li className="h-[48px] flex items-center text-[14px] font-semibold border-b-[2px] duration-150 pb-[8px] border-transparent text-gray-600">
                 <BsFillFilePersonFill className="mr-[8px]" /> Profile
               </li>

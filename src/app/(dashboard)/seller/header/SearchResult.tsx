@@ -1,5 +1,5 @@
 import { Interweave } from 'interweave';
-import { SellerSidebarActionList } from '../sidebar/navLinks';
+import { SellerSidebarActionList } from './HamburgerMenu/navLinks';
 
 // -------------------------------------------------- SEARCH BAR RESULT
 

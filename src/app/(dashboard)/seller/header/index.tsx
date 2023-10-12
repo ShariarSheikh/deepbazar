@@ -5,7 +5,7 @@ import SearchBar from './SearchBar';
 //--------------------------------------
 //--------------------------------------
 
-function SellerHeader() {
+function Header() {
   const [showSearchBar, setShowSearchBar] = useState<boolean>(false);
   const [isStickyHeader, setIsStickyHeader] = useState<boolean>(false);
 
@@ -27,15 +27,11 @@ function SellerHeader() {
       }`}
     >
       <div className="w-full relative">
-        <NavHeader
-          isSticky={isStickyHeader}
-          setShowSearchBar={setShowSearchBar}
-        />
-
+        <NavHeader setShowSearchBar={setShowSearchBar} />
         <SearchBar isShow={showSearchBar} setIsShow={setShowSearchBar} />
       </div>
     </header>
   );
 }
 
-export default SellerHeader;
+export default Header;
