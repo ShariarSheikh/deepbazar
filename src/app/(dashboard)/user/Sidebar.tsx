@@ -1,7 +1,9 @@
+import useWindowSize from '@/hooks/useWindowSize';
 import { useAppSelector } from '@/redux/hooks';
 import Link from 'next/link';
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
 import {
+  AiOutlineClose,
   AiOutlineHeart,
   AiOutlineQuestionCircle,
   AiOutlineStar,
@@ -11,8 +13,64 @@ import { FaClipboardList } from 'react-icons/fa';
 import { GiDeerTrack } from 'react-icons/gi';
 import { IoSettingsOutline } from 'react-icons/io5';
 import { RxDashboard } from 'react-icons/rx';
+import Breadcrumb from './Breadcrumb';
+import { usePathname, useSelectedLayoutSegment } from 'next/navigation';
+import { AnimatePresence } from 'framer-motion';
+import Button from '@/components/common/Button';
+import { FiMenu } from 'react-icons/fi';
+import CustomModal from '@/components/common/CustomModal';
 
 const Sidebar: FC = () => {
+  const [isMenu, setIsMenu] = useState<boolean>(false);
+
+  const pathname = usePathname();
+  const { width } = useWindowSize();
+  const segment = useSelectedLayoutSegment();
+
+  useEffect(() => {
+    setIsMenu(false);
+  }, [pathname]);
+
+  return (
+    <>
+      {width >= 768 ? (
+        <div className="w-full max-w-[290px] lg:max-h-[460px] sticky top-[133px] mb-[20px]">
+          <Breadcrumb segment={segment} />
+          <Nav />
+        </div>
+      ) : (
+        <AnimatePresence>
+          <div className="w-full relative mt-[20px] ml-1">
+            {!isMenu ? (
+              <Button
+                className="flex items-center text-primary space-x-1 uppercase"
+                onClick={() => setIsMenu(true)}
+              >
+                <FiMenu /> <span>Menu</span>
+              </Button>
+            ) : (
+              <Button
+                className="flex items-center text-primary space-x-1 uppercase"
+                onClick={() => setIsMenu(false)}
+              >
+                <AiOutlineClose /> <span>Close</span>
+              </Button>
+            )}
+            {isMenu && (
+              <CustomModal isOpen={isMenu} onClose={() => setIsMenu(false)}>
+                <Nav />
+              </CustomModal>
+            )}
+          </div>
+        </AnimatePresence>
+      )}
+    </>
+  );
+};
+
+export default Sidebar;
+
+const Nav = () => {
   const user = useAppSelector(state => state.authSlice.user);
   return (
     <nav className="w-full max-w-[290px] max-h-[490px] overflow-hidden rounded-[6px] bg-[#f3f9fb]">
@@ -116,5 +174,3 @@ const Sidebar: FC = () => {
     </nav>
   );
 };
-
-export default Sidebar;

@@ -57,10 +57,10 @@ const SearchBar = () => {
     <AnimatePresence>
       <ClickAwayListener onClickAway={() => setIsShowResult(false)}>
         <div className="relative w-full max-w-full lg:max-w-[556px] h-[48px]">
-          <form className="w-full flex items-center justify-between h-[48px] bg-[#F3F9FB] rounded-[10px] relative">
-            <FiSearch className="text-primary absolute left-[16px] z-0" />
+          <form className="w-full flex items-center justify-between h-[48px] bg-[#F3F9FB] rounded-[6px] relative">
+            <FiSearch className="text-primary absolute left-[16px] z-0 hidden md:block" />
             <input
-              className="flex-1 pl-[36px] outline-none text-[14px] bg-transparent z-10"
+              className="max-w-[90%] w-full md:flex-1 md:pl-[36px] outline-none text-[14px] bg-transparent z-10"
               type="text"
               placeholder="Search product name and more..."
               ref={searchInputRef}
