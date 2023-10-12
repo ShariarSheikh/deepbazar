@@ -63,10 +63,11 @@ const AlertMessage = () => {
             exit={{ opacity: 0, y: -100 }}
             transition={{ duration: 0.5 }}
             variants={alertVariants}
-            className="fixed top-0 max-w-[1201px] mx-auto flex items-center justify-between h-[48px] w-full  p-2 rounded-md overflow-hidden"
+            className="max-w-[1201px] mx-auto flex items-center justify-between min-h-[48px] w-full  p-2 rounded-md overflow-hidden"
           >
             <div className="flex items-center space-x-2">
-              {iconFilter(alert.type, 'mr-[10px]')} {alert.message || ''}
+              {iconFilter(alert.type, 'mr-[10px]')}{' '}
+              <p className="text-sm lg:text-base">{alert.message || ''}</p>
             </div>
 
             <div className="flex items-center">

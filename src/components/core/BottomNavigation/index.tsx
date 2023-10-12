@@ -45,7 +45,7 @@ const BottomNavigationComp: FC = () => {
       <Skeleton className="mt-1" height={12} width={60} />
     </div>
   ) : user?._id ? (
-    <>
+    <div className="flex flex-col justify-center items-center">
       <div className="h-[20px] w-[20px] min-w-[20px] min-h-[20px] rounded-full overflow-hidden relative">
         {user.imgUrl ? (
           <Image
@@ -60,10 +60,10 @@ const BottomNavigationComp: FC = () => {
           </div>
         )}
       </div>
-      <p className="pl-[5px] text-[10px] text-start font-bold w-full max-w-[72px] line-clamp-1">
+      <p className="text-[10px] text-start w-full max-w-[72px] line-clamp-1">
         {user.firstName}
       </p>
-    </>
+    </div>
   ) : (
     <>
       <GoPerson />
