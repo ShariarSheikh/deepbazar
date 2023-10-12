@@ -8,7 +8,7 @@ export default function useFetchUser() {
   const refreshToken = useAppSelector(state => state.authSlice.refreshToken);
   const [isNotFetchProfile, setIsNotFetchProfile] = useState<boolean>(true);
 
-  const { data, isSuccess } = useProfileQuery(undefined, {
+  const { data, isLoading } = useProfileQuery(undefined, {
     skip: isNotFetchProfile,
   });
 
@@ -23,7 +23,7 @@ export default function useFetchUser() {
   }, [refreshToken, dispatch]);
 
   useEffect(() => {
-    if (!isSuccess || !data?.data?.user?._id) return;
+    if (!isLoading && !data?.data?.user?._id) return;
 
     dispatch(setCredentials({ user: data?.data?.user }));
     dispatch(setProfileLoading(false));
@@ -38,5 +38,5 @@ export default function useFetchUser() {
         })
       );
     }
-  }, [isSuccess, data, dispatch]);
+  }, [isLoading, data, dispatch]);
 }
