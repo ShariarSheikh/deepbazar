@@ -28,7 +28,8 @@ export default function useFetchUser() {
     dispatch(setCredentials({ user: data?.data?.user }));
     dispatch(setProfileLoading(false));
 
-    if (!data?.data?.user.verified) {
+    // USER EXITS BUT NOT VERIFIED THEN SHOW THE ALERT
+    if (!data?.data?.user.verified && data?.data?.user?._id) {
       dispatch(
         showAlert({
           message: 'Please Verify your email address! Check your mailbox',
