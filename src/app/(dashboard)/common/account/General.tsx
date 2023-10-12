@@ -122,7 +122,7 @@ const GeneralPage: FC = () => {
 
     dispatch(
       showAlert({
-        message: 'Your password updated successfully!',
+        message: 'Your account updated successfully!',
         type: AlertType.Success,
       })
     );
