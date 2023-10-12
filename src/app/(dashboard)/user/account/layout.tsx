@@ -32,7 +32,7 @@ const AccountSettingLayout: FC<IProps> = ({ children }) => {
   }
 
   return (
-    <section className="w-full h-full p-5 mx-auto pt-3">
+    <section className="w-full h-full p-1 md:p-5 mx-auto pt-3">
       <header className="flex items-center justify-between mb-3">
         <h1 className="text-gray-600 font-medium">My Account</h1>
         <button
@@ -44,8 +44,8 @@ const AccountSettingLayout: FC<IProps> = ({ children }) => {
         </button>
       </header>
 
-      <div className="w-full h-full px-5 bg-white pt-10 rounded-[6px] shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]">
-        <h1 className="text-[24px] font-bold">Account & Settings</h1>
+      <div className="w-full h-full p-1 md:px-5 bg-white pt-10 rounded-[6px] shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]">
+        <h1 className="text-lg md:text-[24px] font-bold">Account & Settings</h1>
         <div className="mt-[5px] text-[14px] flex items-center h-8 space-x-3">
           <Link href={'/user'} className=" text-gray-900 hover:underline">
             Profile

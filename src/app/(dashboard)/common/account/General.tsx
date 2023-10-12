@@ -135,8 +135,8 @@ const GeneralPage: FC = () => {
   ]);
 
   return (
-    <section className="w-full flex justify-between mt-[5px] pb-10">
-      <div className="bg-white rounded-[16px] w-full max-w-[220px] h-[364px] flex flex-col items-center justify-center shadow-card">
+    <section className="w-full flex flex-col lg:flex-row items-center lg:items-start justify-between mt-[5px] pb-10">
+      <div className="bg-white rounded-[16px] w-full max-w-[220px] h-[264px] md:h-[364px] flex flex-col items-center justify-center shadow-card">
         <div className="w-[144px] h-[144px] flex items-center justify-center border borderColor border-dashed rounded-full">
           <div className="w-[128px] h-[128px] rounded-full relative">
             <UploadAvatar
