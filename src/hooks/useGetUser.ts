@@ -1,5 +1,5 @@
 import { AlertType, showAlert } from '@/redux/features/alertSlice';
-import { setCredentials } from '@/redux/features/authSlice';
+import { setCredentials, setProfileLoading } from '@/redux/features/authSlice';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { useProfileQuery } from '@/redux/services/auth';
 import { useEffect, useState } from 'react';
@@ -14,15 +14,19 @@ export default function useFetchUser() {
 
   const dispatch = useAppDispatch();
 
+  if (isNotFetchProfile) dispatch(setProfileLoading(true));
+
   useEffect(() => {
     if (!refreshToken) return;
+
     setIsNotFetchProfile(false);
-  }, [refreshToken]);
+  }, [refreshToken, dispatch]);
 
   useEffect(() => {
     if (!isSuccess && data?.data?.user?._id) return;
 
     dispatch(setCredentials({ user: data?.data?.user }));
+    dispatch(setProfileLoading(false));
 
     if (!data?.data?.user.verified) {
       dispatch(

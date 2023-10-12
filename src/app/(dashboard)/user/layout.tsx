@@ -23,13 +23,13 @@ const UserLayout: FC<IProps> = ({ children }) => {
   }
 
   return (
-    <section className="w-full h-auto max-w-[1190px] px-[10px] mx-auto min-h-[60vh]">
+    <section className="w-full h-auto max-w-[1190px] md:px-[10px] mx-auto min-h-[60vh]">
       <div className="w-full flex h-full">
-        <div className="w-full max-w-[290px] max-h-[460px] sticky top-[133px] mb-[20px]">
+        <div className="w-full max-w-[75px] md:max-w-[290px] lg:max-h-[460px] sticky top-[133px] mb-[20px]">
           <Breadcrumb segment={segment} />
           <Sidebar />
         </div>
-        <div className="w-full h-full ml-[20px] p-3 mt-[48px] rounded-[6px] mb-[20px]">
+        <div className="w-full h-full ml-[20px] md:p-3 mt-[48px] rounded-[6px] mb-[20px]">
           {children}
         </div>
       </div>

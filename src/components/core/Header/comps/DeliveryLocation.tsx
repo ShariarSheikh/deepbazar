@@ -81,10 +81,10 @@ const DeliveryLocation = () => {
   if (loading && !defaultLocation.country)
     return (
       <div className="flex w-[133px] h-[38px] justify-between">
-        <Skeleton />
+        <Skeleton height={25} width={35} />
         <div>
-          <Skeleton />
-          <Skeleton />
+          <Skeleton height={25} width={90} />
+          <Skeleton className="mt-[4px]" height={7} width={90} />
         </div>
       </div>
     );

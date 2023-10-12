@@ -14,10 +14,11 @@ interface InitialStateProps {
   accessToken?: string;
   refreshToken?: string;
   user?: Account;
+  isLoading?: boolean;
 }
 
 const initialState: InitialStateProps = {
-  //@ts-ignore
+  isLoading: false,
   user: {
     _id: '',
     firstName: '',
@@ -59,6 +60,10 @@ const authSlice = createSlice({
       }
     },
 
+    setProfileLoading: (state, action: PayloadAction<boolean>) => {
+      state.isLoading = action.payload;
+    },
+
     logout: state => {
       //@ts-ignore
       state.user = null;
@@ -70,7 +75,7 @@ const authSlice = createSlice({
   },
 });
 
-export const { setCredentials, logout } = authSlice.actions;
+export const { setCredentials, logout, setProfileLoading } = authSlice.actions;
 export default authSlice.reducer;
 
 export const selectCurrentUser = (state: RootState) => state.authSlice.user;

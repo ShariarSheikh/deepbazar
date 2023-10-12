@@ -26,68 +26,68 @@ const Page: NextPage<PageProps> = () => {
       <ul className="flex flex-wrap justify-between gap-2 items-center  w-full h-full p-5 bg-white mt-10 rounded-[6px] shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]">
         <li
           onClick={() => router.push(PATH_USER.order)}
-          className="max-w-[48%] w-full h-[300px] rounded-[6px] border border-gray-200 flex bg-[#bee6f3]"
+          className="max-w-[48%] w-full h-[130px] rounded-[6px] border border-gray-200 flex bg-[#81b0ff]"
         >
-          <div className="h-full w-[180px] flex items-center justify-center">
-            <FaClipboardList className="w-20 h-20" />
+          <div className="h-full w-[110px] flex items-center justify-center">
+            <FaClipboardList className="w-12 h-12" />
           </div>
           <div className="flex flex-col justify-center items-center">
-            <h1 className="text-2xl font-bold uppercase">Total Orders</h1>
-            <p className="text-4xl mt-2 font-semibold">36</p>
+            <h1 className="text-lg font-bold uppercase">Total Orders</h1>
+            <p className="text-[24px] mt-2 font-semibold">36</p>
           </div>
         </li>
 
         <li
           onClick={() => router.push(PATH_USER.wishlist)}
-          className="max-w-[48%] w-full h-[300px] rounded-[6px] border border-gray-200 flex bg-[#bef3e7]"
+          className="max-w-[48%] w-full h-[130px] rounded-[6px] text-white border border-gray-200 flex bg-[#0c103c]"
         >
           <div className="h-full w-[180px] flex items-center justify-center">
-            <AiOutlineHeart className="w-20 h-20" />
+            <AiOutlineHeart className="w-12 h-12" />
           </div>
           <div className="flex flex-col justify-center items-center">
-            <h1 className="text-2xl font-bold uppercase">Total Favorite</h1>
-            <p className="text-4xl mt-2 font-semibold">5</p>
+            <h1 className="text-lg font-bold uppercase">Total Favorite</h1>
+            <p className="text-[24px] mt-2 font-semibold">5</p>
           </div>
         </li>
 
         <li
           onClick={() => router.push(PATH_USER.shippingAddress)}
-          className="max-w-[48%] w-full h-[300px] rounded-[6px] border border-gray-200 flex bg-[#bef3e7]"
+          className="max-w-[48%] w-full h-[130px] rounded-[6px] border border-gray-200 flex bg-[#ee5858]"
         >
           <div className="h-full w-[180px] flex items-center justify-center">
-            <CiLocationOn className="w-20 h-20" />
+            <CiLocationOn className="w-12 h-12" />
           </div>
           <div className="flex flex-col justify-center items-center">
-            <h1 className="text-2xl font-bold uppercase">Shipping Address</h1>
-            <p className="text-4xl mt-2 font-semibold">Total 5</p>
+            <h1 className="text-lg font-bold uppercase">Shipping Address</h1>
+            <p className="text-[24px] mt-2 font-semibold">Total 5</p>
           </div>
         </li>
 
         <li
           onClick={() => router.push(PATH_USER.reviews)}
-          className="max-w-[48%] w-full h-[300px] rounded-[6px] border border-gray-200 flex bg-[#bef3e7]"
+          className="max-w-[48%] w-full h-[130px] rounded-[6px] border border-gray-200 flex bg-[#8458ee]"
         >
           <div className="h-full w-[180px] flex items-center justify-center">
-            <AiOutlineStar className="w-20 h-20" />
+            <AiOutlineStar className="w-12 h-12" />
           </div>
           <div className="flex flex-col justify-center items-center">
-            <h1 className="text-2xl font-bold uppercase">Total Reviews</h1>
-            <p className="text-4xl mt-2 font-semibold">50</p>
+            <h1 className="text-lg font-bold uppercase">Total Reviews</h1>
+            <p className="text-[24px] mt-2 font-semibold">50</p>
           </div>
         </li>
 
         <li
           onClick={() => router.push(PATH_USER.questionAnswer)}
-          className="max-w-[48%] w-full h-[300px] rounded-[6px] border border-gray-200 flex bg-[#bef3e7]"
+          className="max-w-[48%] w-full h-[130px] rounded-[6px] border border-gray-200 flex bg-[#f2f3f5]"
         >
           <div className="h-full w-[180px] flex items-center justify-center">
-            <AiOutlineQuestionCircle className="w-20 h-20" />
+            <AiOutlineQuestionCircle className="w-12 h-12" />
           </div>
           <div className="flex flex-col justify-center items-center">
-            <h1 className="text-2xl font-bold uppercase">
+            <h1 className="text-lg font-bold uppercase">
               Total Question & Answer
             </h1>
-            <p className="text-4xl mt-2 font-semibold">10</p>
+            <p className="text-[24px] mt-2 font-semibold">10</p>
           </div>
         </li>
 
@@ -96,10 +96,10 @@ const Page: NextPage<PageProps> = () => {
           className="w-full h-[255px] mt-[20px] rounded-[6px] border border-gray-200 flex bg-[#f0f8ff]"
         >
           <div className="h-full w-[180px] flex items-center justify-center">
-            <BiCategoryAlt className="w-20 h-20" />
+            <BiCategoryAlt className="w-12 h-12" />
           </div>
           <div className="flex flex-col justify-center items-start">
-            <h1 className="text-2xl font-bold uppercase">Account</h1>
+            <h1 className="text-lg font-bold uppercase">Account</h1>
 
             <ul className="w-full flex items-center justify-center">
               <li className="h-[48px] flex items-center text-[14px] font-semibold border-b-[2px] duration-150 pb-[8px] border-transparent text-gray-600">

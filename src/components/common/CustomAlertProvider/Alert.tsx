@@ -14,7 +14,7 @@ import Button from '../Button';
 const alertVariants = {
   Info: { opacity: 1, y: 0, backgroundColor: '#2196F3', color: 'white' }, // Blue for Info
   Error: { opacity: 1, y: 0, backgroundColor: '#f44336', color: 'white' }, // Red for Error
-  Warning: { opacity: 1, y: 0, backgroundColor: '#FFC107', color: 'white' }, // Amber for Warning
+  Warning: { opacity: 1, y: 0, backgroundColor: '#0d0740', color: 'white' }, // Amber for Warning
   Success: { opacity: 1, y: 0, backgroundColor: '#4CAF50', color: 'white' }, // Green for Success
 };
 
