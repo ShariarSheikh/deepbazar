@@ -5,7 +5,11 @@ import CartBadges from '@/components/common/CartBadge';
 import Skeleton from '@/components/common/Skeleton';
 import { useAppSelector } from '@/redux/hooks';
 import Image from 'next/image';
-import { useRouter, useSelectedLayoutSegment } from 'next/navigation';
+import {
+  useRouter,
+  useSelectedLayoutSegment,
+  useSelectedLayoutSegments,
+} from 'next/navigation';
 import { FC } from 'react';
 import { AiFillHome, AiOutlineHeart } from 'react-icons/ai';
 import { BsShop } from 'react-icons/bs';
@@ -14,7 +18,7 @@ import { GoPerson } from 'react-icons/go';
 
 //-----------------------------------------
 enum NavigationLinks {
-  products = 'all-product',
+  products = 'shop',
   favorite = 'user/wishlist',
   home = '',
   cart = 'cart',
@@ -27,6 +31,7 @@ const BottomNavigationComp: FC = () => {
   const { user, isLoading } = useAppSelector(state => state.authSlice);
 
   const segment = useSelectedLayoutSegment();
+  const segments = useSelectedLayoutSegments();
   const router = useRouter();
 
   const handleRouter = () => {
@@ -97,7 +102,7 @@ const BottomNavigationComp: FC = () => {
         <button
           onClick={() => router.push('/user/wishlist')}
           style={
-            segment === NavigationLinks.favorite
+            segments?.includes('wishlist')
               ? {
                   background: '#f3f9fb',
                   color: '#008ecc',
