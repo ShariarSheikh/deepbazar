@@ -23,7 +23,7 @@ export default function useFetchUser() {
   }, [refreshToken, dispatch]);
 
   useEffect(() => {
-    if (!isSuccess && data?.data?.user?._id) return;
+    if (!isSuccess || !data?.data?.user?._id) return;
 
     dispatch(setCredentials({ user: data?.data?.user }));
     dispatch(setProfileLoading(false));
