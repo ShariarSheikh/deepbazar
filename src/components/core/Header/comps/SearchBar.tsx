@@ -1,4 +1,4 @@
-import { categories } from '@/views/home/CategorySection';
+import { useGetCategoryQuery } from '@/redux/services/categoryApi';
 import { AnimatePresence, motion } from 'framer-motion';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -12,6 +12,7 @@ import { FiArrowUpLeft, FiSearch } from 'react-icons/fi';
 //-------------------------------------------------------
 
 const SearchBar = () => {
+  const { data, isSuccess, isLoading } = useGetCategoryQuery();
   //STATE
   const [searchInput, setSearchInput] = useState<string>('');
   const [isShowResult, setIsShowResult] = useState<boolean>(false);
@@ -133,50 +134,58 @@ const SearchBar = () => {
                   <h1 className="text-black text-opacity-80 text-[20px] font-poppins font-medium border-b pb-[10px] mt-[20px] pl-[15px]">
                     Categories
                   </h1>
-                  <ul className="mt-[8px] w-full flex flex-wrap justify-between gap-2 items-center p-[12px]">
-                    {categories.map(category => (
+
+                  {isLoading ? (
+                    <span className="text-center p-4 text-sm text-gray-600">
+                      Loading...
+                    </span>
+                  ) : (
+                    <ul className="mt-[8px] w-full flex flex-wrap justify-between gap-2 items-center p-[12px]">
+                      {isSuccess &&
+                        data?.data.map(category => (
+                          <Link
+                            key={category._id}
+                            href={{
+                              pathname: '/shop',
+                              query: {
+                                category: category.pageUrl,
+                              },
+                            }}
+                            className="h-[58px] w-[48%]"
+                          >
+                            <li className="w-full h-full rounded-[6px] flex items-center p-2 justify-start bg-[#F3F9FB] group cursor-pointer hover:bg-[#e9f4f8] duration-150">
+                              <div className="w-[50px] h-[50px] rounded-[6px] overflow-hidden">
+                                <img
+                                  className="w-full h-full object-cover"
+                                  src={category.imgUrl}
+                                  alt={category.name}
+                                />
+                              </div>
+                              <div className="ml-[8px]">
+                                <h1 className="text-primary text-[12px] md:text-base line-clamp-1 md:list-none">
+                                  {category.name}
+                                </h1>
+                                <p className="text-[10px] md:text-[12px] text-gray-500">
+                                  {category.totalItems} Item Available
+                                </p>
+                              </div>
+                            </li>
+                          </Link>
+                        ))}
                       <Link
-                        key={category.id}
                         href={{
                           pathname: '/shop',
-                          query: {
-                            category: category.catPath,
-                          },
                         }}
                         className="h-[58px] w-[48%]"
                       >
-                        <li className="w-full h-full rounded-[6px] flex items-center p-2 justify-start bg-[#F3F9FB] group cursor-pointer hover:bg-[#e9f4f8] duration-150">
-                          <div className="w-[50px] h-[50px] rounded-[6px] overflow-hidden">
-                            <img
-                              className="w-full h-full object-cover"
-                              src={category.bgImgUrl}
-                              alt={category.catName}
-                            />
-                          </div>
-                          <div className="ml-[8px]">
-                            <h1 className="text-primary text-[12px] md:text-base line-clamp-1 md:list-none">
-                              {category.catName}
-                            </h1>
-                            <p className="text-[10px] md:text-[12px] text-gray-500">
-                              {category.totalItems} Item Available
-                            </p>
-                          </div>
+                        <li className="w-full h-full rounded-[6px] flex items-center p-2 justify-center bg-[#F3F9FB] cursor-pointer hover:bg-[#e9f4f8] duration-150">
+                          <h1 className="text-primary text-[12px] md:text-base line-clamp-1 md:list-none underline">
+                            More...
+                          </h1>
                         </li>
                       </Link>
-                    ))}
-                    <Link
-                      href={{
-                        pathname: '/shop',
-                      }}
-                      className="h-[58px] w-[48%]"
-                    >
-                      <li className="w-full h-full rounded-[6px] flex items-center p-2 justify-center bg-[#F3F9FB] cursor-pointer hover:bg-[#e9f4f8] duration-150">
-                        <h1 className="text-primary text-[12px] md:text-base line-clamp-1 md:list-none underline">
-                          More...
-                        </h1>
-                      </li>
-                    </Link>
-                  </ul>
+                    </ul>
+                  )}
                 </div>
               </motion.div>
             </ClickAwayListener>

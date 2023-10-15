@@ -46,7 +46,7 @@ function SellerSidebar() {
 
   //
   return (
-    <div className="h-full pl-2 pr-[2px] py-3 bg-white duration-200 w-full relative shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]">
+    <div className="h-full min-h-[567px] max-h-[567px] pl-2 pr-[2px] py-3 bg-white duration-200 w-full relative shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]">
       <aside
         className={`w-full h-full overflow-y-auto invisible-scrollbar visible-scrollbar-onHover`}
       >

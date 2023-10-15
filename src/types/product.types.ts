@@ -1,3 +1,5 @@
+import { ProductSectionNameType } from '@/app/(dashboard)/seller/products/add-new/utils';
+
 export interface ProductRelated {
   product_id: number;
   title: string;
@@ -6,27 +8,37 @@ export interface ProductRelated {
 }
 
 export interface ProductTypes {
-  product_id: string;
+  _id: string;
   title: string;
-  description: string;
+  productCode: string;
+  category: string[];
+  productSectionName: ProductSectionNameType;
+  sellerId: string;
+  ratings: {
+    star: number;
+    totalReviews: number;
+  };
+  totalAnswers: number;
+  totalWishlist: number;
+
   price: number;
-  images: string[];
-  categories: string[];
-  inventory: {
-    stock: number;
-    availability: boolean;
-  };
-  attributes: {
-    color: string;
-    size: string;
-  };
-  reviews: {
-    average_rating: number;
-    total_reviews: number;
-  };
-  related_products: ProductRelated[];
-  product_url: string;
-  _id?: string;
-  createdAt: Date;
-  updatedAt: Date;
+  discountPrice?: number;
+  discountPercent?: number;
+
+  offerText?: string;
+  inStock: boolean;
+
+  images: Array<{
+    isDefault: boolean;
+    defaultImg: string;
+    cardImg: string;
+    displayImg: string;
+    commentImg: string;
+  }>;
+
+  description: string;
+  specification?: string;
+  tags: string[];
+  createdAt?: Date;
+  updatedAt?: Date;
 }

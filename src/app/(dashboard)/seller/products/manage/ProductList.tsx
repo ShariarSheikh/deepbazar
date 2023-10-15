@@ -115,7 +115,7 @@ function ProductList({ product }: ProductListProps): JSX.Element {
   return (
     <div
       key={product.id}
-      className="flex justify-between items-center w-full h-[64px] px-[18px] hover:shadow-card group active:shadow-z1 duration-200"
+      className="min-w-[440px] flex justify-between items-center w-full h-[64px] px-[18px] hover:shadow-card group active:shadow-z1 duration-200"
     >
       <div className="min-h-[56px] max-w-[264px] w-full cursor-pointer">
         <Link href={`${product.id}`} passHref className="w-full h-full">

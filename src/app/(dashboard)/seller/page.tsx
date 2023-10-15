@@ -16,13 +16,13 @@ const Page: NextPage<PageProps> = () => {
   const router = useRouter();
 
   return (
-    <section className="w-full h-full bg-white max-w-[1080px] p-1 md:p-5 mt-3 md:mt-10 rounded-[16px] shadow-md">
+    <section className="w-full h-full">
       <PageTitle pageName="Dashboard" />
 
       <ul className="mt-[8px] w-full flex flex-col md:flex-row flex-wrap justify-between gap-2 items-center p-[12px]">
         <li
           onClick={() => router.push(PATH_SELLER.products.manage)}
-          className="max-w-full md:max-w-[48%] w-full h-[120px] md:h-[300px] rounded-[6px] border border-gray-200 flex bg-[#bee6f3]"
+          className="max-w-full md:max-w-[48%] w-full h-[120px] md:h-[220px] rounded-[6px] border border-gray-200 flex bg-[#bee6f3]"
         >
           <div className="h-full w-[180px] flex items-center justify-center">
             <BsShop className="w-12 md:w-20 h-12 md:h-20" />
@@ -37,7 +37,7 @@ const Page: NextPage<PageProps> = () => {
 
         <li
           onClick={() => router.push(PATH_SELLER.category)}
-          className="max-w-full md:max-w-[48%] w-full h-[120px] md:h-[300px] rounded-[6px] border border-gray-200 flex bg-[#bef3e7]"
+          className="max-w-full md:max-w-[48%] w-full h-[120px] md:h-[220px] rounded-[6px] border border-gray-200 flex bg-[#bef3e7]"
         >
           <div className="h-full w-[180px] flex items-center justify-center">
             <BiCategoryAlt className="w-12 md:w-20 h-12 md:h-20" />

@@ -78,7 +78,7 @@ const cartSlice = createSlice({
       action: PayloadAction<{ data: ProductTypes; quantity: number }>
     ) => {
       const itemIndex = state.cartItems.findIndex(
-        item => item.product_id === action.payload.data.product_id
+        item => item._id === action.payload.data._id
       );
 
       if (itemIndex >= 0) {
@@ -100,7 +100,7 @@ const cartSlice = createSlice({
     },
     removeItem: (state, action: PayloadAction<{ id: string }>) => {
       const newCartItems = state.cartItems.filter(
-        item => item.product_id !== action.payload.id
+        item => item._id !== action.payload.id
       );
 
       state.cartItems = newCartItems;
@@ -115,14 +115,14 @@ const cartSlice = createSlice({
       action: PayloadAction<{ data: ProductTypes; quantity: number }>
     ) => {
       const itemIndex = state.cartItems.findIndex(
-        item => item.product_id === action.payload.data.product_id
+        item => item._id === action.payload.data._id
       );
 
       if (state.cartItems[itemIndex].cartQuantity > 1) {
         state.cartItems[itemIndex].cartQuantity -= action.payload.quantity;
       } else if (state.cartItems[itemIndex].cartQuantity === 1) {
         state.cartItems = state.cartItems.filter(
-          item => item.product_id !== action.payload.data.product_id
+          item => item._id !== action.payload.data._id
         );
       }
 
