@@ -34,6 +34,7 @@ export interface ProductTypes {
     cardImg: string;
     displayImg: string;
     commentImg: string;
+    publicId: string;
   }>;
 
   description: string;

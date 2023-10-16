@@ -22,14 +22,14 @@ const SellerLayout: FC<IProps> = ({ children }) => {
   }
 
   return (
-    <section className="w-full h-auto bg-[#f5f5f5]">
+    <section className="w-full h-auto bg-[#f5f5f5] mb-4">
       <div className="w-full min-h-screen max-w-[1080px] mx-auto md:px-4">
         <Header />
         <div className="w-full lg:flex lg:flex-row lg:space-x-6">
           <div className="lg:block hidden pt-[35px] max-w-[247px] min-w-[247px]">
             <SellerSidebar />
           </div>
-          <div className="w-full bg-white p-1 md:p-5 mt-3 md:mt-[35px] rounded-[6px] shadow-md">
+          <div className="w-full h-full bg-white px-3 md:p-5 mt-3 md:mt-[35px] rounded-[6px] shadow-md">
             {children}
           </div>
         </div>

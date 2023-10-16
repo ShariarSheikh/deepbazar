@@ -35,6 +35,7 @@ function Placeholder({ className }: { className: string }) {
             thorough your Device. Accepted file type (.svg .png .jpeg .webp
             .jpg)
           </p>
+          <span className="text-sm">Maximum File Size: 2MB</span>
         </div>
       </div>
     </div>
@@ -54,7 +55,6 @@ export default function Upload({
   onDelete,
   files,
   thumbnail = true,
-  onUpload,
   onRemove,
   onRemoveAll,
   className,
@@ -92,6 +92,7 @@ export default function Upload({
             <SingleFilePreview file={file} />
             {onDelete && (
               <button
+                type="button"
                 className="absolute w-7 h-7 top-[12px] right-[12px] bg-primaryLight bg-opacity-40 rounded-full flex justify-center items-center"
                 onClick={onDelete}
               >
@@ -99,14 +100,6 @@ export default function Upload({
               </button>
             )}
           </div>
-          {onUpload && (
-            <button
-              className="bg-primaryMain mt-3 text-white hover:bg-primaryDark rounded-[8px] text-[14px] font-bold px-[16px] py-[6px]"
-              onClick={onUpload}
-            >
-              Upload file
-            </button>
-          )}
         </div>
       )}
 
@@ -124,14 +117,6 @@ export default function Upload({
                 onClick={onRemoveAll}
               >
                 Remove all
-              </button>
-            )}
-            {onUpload && (
-              <button
-                className="bg-primaryMain text-white hover:bg-primaryDark rounded-[8px] text-[14px] font-bold px-[16px] py-[6px]"
-                onClick={onUpload}
-              >
-                Upload files
               </button>
             )}
           </div>

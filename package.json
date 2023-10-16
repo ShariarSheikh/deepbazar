@@ -25,6 +25,7 @@
     "@types/react-dom": "18.2.7",
     "async-mutex": "^0.4.0",
     "draft-js": "^0.11.7",
+    "draftjs-to-html": "^0.9.1",
     "formik": "^2.4.5",
     "framer-motion": "^10.16.1",
     "interweave": "^13.1.0",
@@ -52,6 +53,7 @@
   "devDependencies": {
     "@next/eslint-plugin-next": "^13.4.19",
     "@types/draft-js": "^0.11.12",
+    "@types/draftjs-to-html": "^0.8.2",
     "@types/js-cookie": "^3.0.3",
     "@types/numeral": "^2.0.2",
     "@types/react-autocomplete": "^1.8.7",

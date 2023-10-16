@@ -20,7 +20,7 @@ export default function NavHeader({ setShowSearchBar }: IProps) {
   return (
     <AnimatePresence>
       <div
-        className={`duration-150 bg-primary rounded-[6px] h-[65px] w-full flex items-center justify-between relative z-50 text-white`}
+        className={`duration-150 bg-primary h-[65px] w-full flex items-center justify-between relative z-50 text-white`}
       >
         <div className="flex items-center pl-4 relative">
           <div className="block lg:hidden">
@@ -68,10 +68,10 @@ export default function NavHeader({ setShowSearchBar }: IProps) {
           )}
         </div>
 
-        <div className="h-full space-x-4 flex items-center md:pr-5">
+        <div className="h-full space-x-4 flex items-center pr-1 md:pr-2">
           <Link
             href="/seller/account-settings"
-            className="cursor-pointer flex items-center w-full max-w-[95px] md:max-w-[160px] min-w-[95px] md:min-w-[160px]"
+            className="cursor-pointer flex items-center w-full max-w-[95px] md:max-w-[160px] min-w-[95px]"
           >
             <div className="h-[40px] w-[40px] min-w-[40px] min-h-[40px] rounded-full overflow-hidden relative">
               {user?.imgUrl ? (

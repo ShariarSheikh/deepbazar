@@ -6,7 +6,7 @@ import FormFirst from './FormFirst';
 import { Form, Formik } from 'formik';
 import { ProductTypes } from '@/types/product.types';
 import Button from '@/components/common/Button';
-import { EditorState } from 'draft-js';
+import { EditorState, convertToRaw } from 'draft-js';
 import { AiOutlineClose } from 'react-icons/ai';
 import Input from '@/components/common/Input';
 import { useGetCategoryQuery } from '@/redux/services/categoryApi';
@@ -20,17 +20,23 @@ import {
   initialState,
   productTags,
 } from './utils';
-import { useAppSelector } from '@/redux/hooks';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import { useCreateProductMutation } from '@/redux/services/productApi';
+import { InputApiErrorMessage } from '@/components/common/FormikCustomInput';
+import { AlertType, showAlert } from '@/redux/features/alertSlice';
+import createFormData from '@/utils/createFormData';
 //-----------------------------------------------------------------------
 
 //-----------------------------------------------------------------------
 
 export default function CreateProduct() {
   const getCategory = useGetCategoryQuery();
+  const [createProduct, { isLoading, data, isError, error }] =
+    useCreateProductMutation();
 
   //STATE--------------------------------------------------------------------------
   const { user } = useAppSelector(state => state.authSlice);
-  const [displayImage, setDisplayImage] = useState<null>(null);
+  const [images, setImages] = useState<File[]>([]);
   const [editorState, setEditorState] = useState({
     productSpecification: EditorState.createEmpty(),
     productDescription: EditorState.createEmpty(),
@@ -50,6 +56,9 @@ export default function CreateProduct() {
   const [discountPrice, setDiscountPrice] = useState<number>(0);
   const [priceError, setPriceError] = useState<string>('');
   const [imageError, setImageError] = useState<string>('');
+
+  // USE HOOK
+  const dispatch = useAppDispatch();
 
   //HANDLERS--------------------------------------------------------------------------
   //HANDLERS--------------------------------------------------------------------------
@@ -114,25 +123,57 @@ export default function CreateProduct() {
   };
 
   // CREATE HANDLER
-  const onSubmit = (values: ProductTypes): void => {
-    if (!displayImage) return setImageError('Please Select product image');
+  const onSubmit = async (values: ProductTypes): Promise<void> => {
+    if (images?.length === 0)
+      return setImageError('Please Select product image');
     if (imageError) setImageError('');
 
-    //@ts-expect-error
-    values.specification = editorState.productSpecification;
-    //@ts-expect-error
-    values.description = editorState.productDescription;
-    values.productSectionName = productSection;
-    values.tags = selectedTags;
-    values.price = price;
-    values.discountPrice = discountPrice;
-    values.discountPercent = discountPercent;
-    values.images = [displayImage];
-    //@ts-expect-error
-    values.sellerId = user?._id;
+    const formData = new FormData();
 
-    // console.log(values);
+    // formData.append('category', category);
+    createFormData(formData, 'title', values.title);
+    createFormData(formData, 'productCode', values.productCode);
+    // createFormData(formData, 'images', [displayImage]);
+
+    images?.forEach(file => formData.append('images', file, file.name));
+
+    createFormData(formData, 'price', price);
+    createFormData(formData, 'discountPrice', discountPrice);
+    createFormData(formData, 'discountPercent', discountPercent);
+
+    createFormData(formData, 'productSectionName', productSection);
+    createFormData(formData, 'sellerId', user?._id);
+
+    createFormData(formData, 'offerText', values.offerText);
+    createFormData(formData, 'inStock', inStock);
+    createFormData(formData, 'category', [productCategory]);
+    createFormData(formData, 'tags', selectedTags);
+
+    createFormData(
+      formData,
+      'description',
+      JSON.stringify(
+        convertToRaw(editorState.productDescription.getCurrentContent())
+      )
+    );
+
+    createFormData(
+      formData,
+      'specification',
+      JSON.stringify(
+        convertToRaw(editorState.productSpecification.getCurrentContent())
+      )
+    );
+
+    //@ts-expect-error
+    await createProduct(formData);
   };
+  // const rawContentState = convertToRaw(
+  //   editorState.productDescription.getCurrentContent()
+  // );
+  // const markup = draftToHtml(rawContentState);
+
+  // console.log(markup);
 
   //USE-EFFECT--------------------------------------------------------------------------
   useEffect(() => {
@@ -145,12 +186,33 @@ export default function CreateProduct() {
     productCategoryHandler('Watch');
   }, []);
 
+  useEffect(() => {
+    if (!isLoading) return undefined;
+
+    // eslint-disable-next-line no-console
+    console.log(data);
+
+    dispatch(
+      showAlert({
+        message: 'Your new product has been created congrucutaion',
+        type: AlertType.Success,
+      })
+    );
+  }, [isLoading, data]);
+  // eslint-disable-next-line no-console
+  console.log(error);
+
   return (
     <section className="w-full h-full md:p-5 max-w-[660px] mx-auto">
       <div className="w-full h-full">
         <PageTitle pageName="Create New Product" />
+        {isError &&
+          InputApiErrorMessage(
+            //@ts-expect-error
+            error?.data?.message
+          )}
         <Formik initialValues={initialState} onSubmit={onSubmit}>
-          <Form className="w-full h-full flex flex-col gap-5 justify-between rounded-[16px] pb-[40px] relative">
+          <Form className="w-full h-full flex flex-col gap-5 justify-between rounded-[16px] relative">
             <div className="h-[56px] flex items-center justify-start space-x-2 mt-2">
               <CheckBox
                 name="isStock"
@@ -249,8 +311,8 @@ export default function CreateProduct() {
             </div>
 
             <FormFirst
-              displayImage={displayImage}
-              setDisplayImage={setDisplayImage}
+              images={images}
+              setImages={setImages}
               editorState={editorState}
               setEditorState={setEditorState}
             />
@@ -316,6 +378,10 @@ export default function CreateProduct() {
             </div>
 
             <Button
+              disabled={isLoading}
+              isLoading={isLoading}
+              loadingColor="white"
+              loadingSpinnerSize={40}
               type="submit"
               className="w-full rounded-[8px] h-[48px] bg-primary text-white flex items-center justify-center font-bold mt-[20px] active:scale-95 duration-200 hover:bg-primaryDark"
             >

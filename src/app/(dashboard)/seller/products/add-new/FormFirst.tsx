@@ -11,8 +11,8 @@ const ReactDraftWysiwyg = dynamic(
 );
 
 interface IProps {
-  displayImage: null;
-  setDisplayImage: Dispatch<SetStateAction<null>>;
+  images: File[];
+  setImages: Dispatch<SetStateAction<File[]>>;
 
   editorState: {
     productSpecification: EditorState;
@@ -28,8 +28,8 @@ interface IProps {
 }
 
 function FormFirst({
-  displayImage,
-  setDisplayImage,
+  images,
+  setImages,
 
   editorState,
   setEditorState,
@@ -37,23 +37,28 @@ function FormFirst({
   //
   const displayImageHandler = useCallback(
     (acceptedFiles: File[]) => {
-      const newFiles = acceptedFiles.slice(0, 1).map(file =>
+      const value = images.length > 0 ? images : [];
+      const newFiles = acceptedFiles.map(file =>
         Object.assign(file, {
           preview: URL.createObjectURL(file),
         })
       );
-      // @ts-ignore
-      setDisplayImage(newFiles[0]);
+      setImages([...value, ...newFiles]);
     },
-    [setDisplayImage, displayImage]
+    [images, setImages]
   );
 
-  const removeDisplayImage = (): void => {
-    setDisplayImage(null);
+  const removeDisplayImage = (inputFile: File | string) => {
+    const filtered = images && images?.filter(file => file !== inputFile);
+    setImages(filtered);
+  };
+
+  const removeAllDetailsImage = () => {
+    setImages([]);
   };
 
   return (
-    <div className="w-full max-w-[700px] h-full pt-5 pb-10 min-h-[300px] bg-white">
+    <div className="w-full max-w-[700px] h-full min-h-[300px] bg-white">
       <div>
         <Field
           placeholder="Product Name *"
@@ -131,18 +136,20 @@ function FormFirst({
 
       <div className="mt-[24px]">
         <h1 className="text-[14px] text-gray-600 font-semibold mb-2">
-          Display Image *
+          Display Image * (Maximum 2 File)
         </h1>
         <Upload
           thumbnail
-          multiple={false}
-          maxSize={20097152}
+          multiple
+          maxFiles={2}
+          maxSize={2 * 1024 * 1024} // Limit to 2MB (2 * 1024 * 1024 bytes)
+          files={images}
           onDrop={displayImageHandler}
-          onDelete={removeDisplayImage}
-          file={displayImage}
+          onRemove={removeDisplayImage}
+          onRemoveAll={removeAllDetailsImage}
+          accept={{ 'image/*': ['.svg', '.png', '.jpeg', '.webp', '.jpg'] }}
           placeholderClassName="min-h-[240px]"
-          className="bg-gray-200"
-          onUpload={() => {}}
+          className="border border-gray-200 rounded-[6px]"
         />
       </div>
     </div>
