@@ -25,6 +25,8 @@ import { useCreateProductMutation } from '@/redux/services/productApi';
 import { InputApiErrorMessage } from '@/components/common/FormikCustomInput';
 import { AlertType, showAlert } from '@/redux/features/alertSlice';
 import createFormData from '@/utils/createFormData';
+import { useRouter } from 'next/navigation';
+import { PATH_SELLER } from '@/utils/routes';
 //-----------------------------------------------------------------------
 
 //-----------------------------------------------------------------------
@@ -59,6 +61,7 @@ export default function CreateProduct() {
 
   // USE HOOK
   const dispatch = useAppDispatch();
+  const router = useRouter();
 
   //HANDLERS--------------------------------------------------------------------------
   //HANDLERS--------------------------------------------------------------------------
@@ -168,19 +171,13 @@ export default function CreateProduct() {
     //@ts-expect-error
     await createProduct(formData);
   };
-  // const rawContentState = convertToRaw(
-  //   editorState.productDescription.getCurrentContent()
-  // );
-  // const markup = draftToHtml(rawContentState);
-
-  // console.log(markup);
 
   //USE-EFFECT--------------------------------------------------------------------------
   useEffect(() => {
     if (!getCategory.isSuccess) return;
 
     setProductCategory(getCategory?.data?.data[0].name);
-  }, [getCategory.isSuccess]);
+  }, [getCategory.isSuccess, dispatch]);
 
   useEffect(() => {
     productCategoryHandler('Watch');
@@ -189,18 +186,14 @@ export default function CreateProduct() {
   useEffect(() => {
     if (!isLoading) return undefined;
 
-    // eslint-disable-next-line no-console
-    console.log(data);
-
     dispatch(
       showAlert({
         message: 'Your new product has been created congrucutaion',
         type: AlertType.Success,
       })
     );
-  }, [isLoading, data]);
-  // eslint-disable-next-line no-console
-  console.log(error);
+    router.replace(PATH_SELLER.products.manage);
+  }, [isLoading, data, dispatch]);
 
   return (
     <section className="w-full h-full md:p-5 max-w-[660px] mx-auto">
