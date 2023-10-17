@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { IoIosArrowForward } from 'react-icons/io';
-import ProductList, { pdList } from './ProductList';
+import ProductList from './ProductList';
 import { useGetSellerProductsQuery } from '@/redux/services/productApi';
 import { useAppSelector } from '@/redux/hooks';
 
@@ -27,7 +27,6 @@ export default function ManagePage() {
 
   // eslint-disable-next-line no-console
   console.log({ data, isLoading });
-
   return (
     <div className="w-full h-full">
       <header>
@@ -80,9 +79,11 @@ export default function ManagePage() {
                 </div>
               </div>
 
-              {pdList.slice(0, 7).map(product => (
-                <ProductList key={product.id} product={product} />
-              ))}
+              {!isLoading &&
+                data?.data?.length &&
+                data.data?.map(product => (
+                  <ProductList key={product._id} product={product} />
+                ))}
             </div>
           </div>
           <div className="px-[18px] w-full border-t borderColor h-[56px] flex items-center justify-center mt-[16px]">

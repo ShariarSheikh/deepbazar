@@ -1,4 +1,5 @@
 import { ProductSectionNameType } from '@/app/(dashboard)/seller/products/add-new/utils';
+import { ProductStatusType } from '@/views/home/utils';
 
 export interface ProductRelated {
   product_id: number;
@@ -43,4 +44,13 @@ export interface ProductTypes {
   tags: string[];
   createdAt?: Date;
   updatedAt?: Date;
+}
+
+export interface SellerProductList {
+  _id: string;
+  createdAt: Date;
+  price: number;
+  status: ProductStatusType;
+  imgUrl: string;
+  title: string;
 }
