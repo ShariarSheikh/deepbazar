@@ -7,16 +7,26 @@ import { useState } from 'react';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { IoIosArrowForward } from 'react-icons/io';
 import ProductList, { pdList } from './ProductList';
+import { useGetSellerProductsQuery } from '@/redux/services/productApi';
+import { useAppSelector } from '@/redux/hooks';
 
 //---------------------------------------------------------------------
 
 //---------------------------------------------------------------------
 
 export default function ManagePage() {
+  const { user } = useAppSelector(state => state.authSlice);
+  const { data, isLoading } = useGetSellerProductsQuery({
+    //@ts-expect-error
+    sellerId: user?._id,
+  });
   const totalPages = 10;
   const [currentPage, setCurrentPage] = useState(0);
 
   const isOrder = false;
+
+  // eslint-disable-next-line no-console
+  console.log({ data, isLoading });
 
   return (
     <div className="w-full h-full">

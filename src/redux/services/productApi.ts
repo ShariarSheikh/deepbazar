@@ -14,6 +14,13 @@ export const productApi = apiSlice.injectEndpoints({
       }),
     }),
 
+    getSellerProducts: builder.query<void, { sellerId: string }>({
+      query: credential => ({
+        url: `/product/seller-all-product/${credential.sellerId}`,
+        method: 'get',
+      }),
+    }),
+
     // register: builder.mutation<void, Account>({
     //   query: credential => ({
     //     url: '/auth/register',
@@ -59,4 +66,5 @@ export const productApi = apiSlice.injectEndpoints({
   }),
 });
 
-export const { useCreateProductMutation } = productApi;
+export const { useCreateProductMutation, useGetSellerProductsQuery } =
+  productApi;

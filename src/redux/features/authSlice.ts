@@ -27,6 +27,7 @@ const initialState: InitialStateProps = {
     password: '',
     imgUrl: '',
     role: [],
+    verified: false,
     isCustomAccount: true,
     address: '',
     zipCode: 0,
