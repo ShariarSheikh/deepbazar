@@ -68,12 +68,20 @@ const DeliveryLocation = () => {
           });
 
           setLocations(countries);
-          setLoading(false);
           // SET DEFAULT LOCATION LENGTH (10) THE FIRST ONE
-          setDefaultLocation(countries[10]);
+          filterDefaultLocation(countries);
         });
     }
     getLocations();
+
+    const filterDefaultLocation = (countries: GetLocationData[]) => {
+      const filterDefaultLocation = countries.find(
+        location => location.country === 'Bangladesh'
+      ) as GetLocationData;
+
+      setDefaultLocation(filterDefaultLocation);
+      setLoading(false);
+    };
 
     return () => {};
   }, []);

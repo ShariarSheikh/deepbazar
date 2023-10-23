@@ -20,7 +20,7 @@ interface PageProps {
 
 const Page: NextPage<PageProps> = () => {
   const [data, setData] = useState<SmartPhonesData>({
-    _id: 0,
+    _id: '',
     images: {
       cardSizeUrl: '',
       displayUrl: '',
@@ -47,9 +47,7 @@ const Page: NextPage<PageProps> = () => {
 
   useEffect(() => {
     if (!productId) return setIsLoading(true);
-    const productData = smartPhones.find(
-      item => item._id === Number(productId)
-    );
+    const productData = smartPhones.find(item => item._id === productId);
     if (!productData?._id) return undefined;
     setData(productData);
   }, [productId, category]);

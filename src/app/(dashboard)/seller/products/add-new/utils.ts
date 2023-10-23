@@ -22,7 +22,7 @@ export type ProductSectionNameType =
 export const initialState: ProductTypes = {
   title: '',
   productCode: uniqueCodeGenerator(),
-  category: [],
+  category: '',
   price: 0,
   discountPrice: 0,
   discountPercent: 0,
@@ -45,11 +45,6 @@ export const initialState: ProductTypes = {
 export function calculateDiscountedPrice(
   price: number,
   percentage: number
-): number | string {
-  if (typeof percentage !== 'number') return 'Invalid discount percentage';
-
-  const discountedPrice =
-    percentage <= 0 ? 0 : price * ((100 - percentage) / 100);
-
-  return discountedPrice;
+): number {
+  return percentage <= 0 ? 0 : price * ((100 - percentage) / 100);
 }

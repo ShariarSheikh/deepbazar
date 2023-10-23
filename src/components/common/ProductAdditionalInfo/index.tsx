@@ -7,8 +7,12 @@ import Specification from './Specification';
 
 //-------------------------------------------------
 interface IProps {
-  productId: number;
+  productId: string;
   isEditable: boolean;
+  specification?: string;
+  description?: string;
+  createReplyReviewsHandler?: () => void;
+  createReplyQuestionHandler?: () => void;
 }
 
 enum ComponentTypeEnum {
@@ -20,7 +24,17 @@ enum ComponentTypeEnum {
 //-------------------------------------------------
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const ProductAdditionalInfo: FC<IProps> = ({ isEditable, productId }) => {
+const ProductAdditionalInfo: FC<IProps> = ({
+  isEditable,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  productId,
+  specification,
+  description,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  createReplyReviewsHandler,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  createReplyQuestionHandler,
+}) => {
   const [componentType, setComponentType] = useState<ComponentTypeEnum>(
     ComponentTypeEnum.Reviews
   );
@@ -92,13 +106,13 @@ const ProductAdditionalInfo: FC<IProps> = ({ isEditable, productId }) => {
           }
         >
           {componentType === ComponentTypeEnum.Specification ? (
-            <Specification specification={''} />
+            <Specification specification={specification} />
           ) : null}
           {componentType === ComponentTypeEnum.Reviews ? (
             <Reviews isEditable={isEditable} />
           ) : null}
           {componentType === ComponentTypeEnum.Description ? (
-            <Description description={''} />
+            <Description description={description} />
           ) : null}
           {componentType === ComponentTypeEnum.QnA ? (
             <QuestionAndAns isEditable={isEditable} />

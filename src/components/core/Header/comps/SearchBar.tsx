@@ -74,7 +74,10 @@ const SearchBar = () => {
             <div className="w-[40px] h-[20px] relative">
               <button
                 type="button"
-                onClick={showCategoryHandler}
+                onClick={() => {
+                  if (isShowCategory) return undefined;
+                  showCategoryHandler();
+                }}
                 className="w-10 flex items-center justify-center cursor-pointer group"
               >
                 <AiOutlineUnorderedList className="text-primary font-bold text-xl group-hover:scale-110 active:scale-95 transform ease-out transition duration-200" />

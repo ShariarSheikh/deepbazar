@@ -22,6 +22,7 @@ export const PATH_SELLER = {
   products: {
     manage: path(ROOTS_SELLER, '/products/manage'),
     new: path(ROOTS_SELLER, '/products/add-new'),
+    edit: path(ROOTS_SELLER, '/products/edit'),
   },
 };
 

@@ -1,11 +1,11 @@
 import ReviewStar from '@/components/common/RatingStar';
 import { SmartPhonesData } from '@/fakeDB/smartPhones';
+import { ProductSectionName } from '@/types/product.types';
 import Link from 'next/link';
 import { FC } from 'react';
 import { AiOutlineHeart } from 'react-icons/ai';
 import { BsCart2 } from 'react-icons/bs';
 import { MdKeyboardArrowRight } from 'react-icons/md';
-import { ProductSectionName } from './utils';
 
 //---------------------------------------------
 interface IProps {

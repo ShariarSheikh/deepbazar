@@ -30,7 +30,7 @@ export const auth = apiSlice.injectEndpoints({
       { userId: string; user: UpdateAccount }
     >({
       query: credential => ({
-        url: `/auth/update/${credential.userId}`,
+        url: `/profile/update/${credential.userId}`,
         method: 'put',
         body: credential.user,
       }),
@@ -38,7 +38,7 @@ export const auth = apiSlice.injectEndpoints({
 
     changePassword: builder.mutation<void, ChangePassword>({
       query: credential => ({
-        url: `/auth/update-password/${credential.userId}`,
+        url: `/profile/update-password/${credential.userId}`,
         method: 'put',
         body: {
           oldPassword: credential.oldPassword,
@@ -49,14 +49,14 @@ export const auth = apiSlice.injectEndpoints({
 
     deleteAccount: builder.mutation<void, { userId: string }>({
       query: credential => ({
-        url: `/auth/delete/${credential.userId}`,
+        url: `/profile/delete/${credential.userId}`,
         method: 'delete',
       }),
     }),
 
     profile: builder.query<{ data: { user: Account }; success: boolean }, void>(
       {
-        query: () => ({ url: '/auth/profile' }),
+        query: () => ({ url: '/profile/get' }),
       }
     ),
   }),

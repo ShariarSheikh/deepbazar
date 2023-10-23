@@ -22,11 +22,11 @@ function Header() {
 
   return (
     <header
-      className={`w-full z-50 shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] ${
+      className={`w-full bg-primary z-50 shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] ${
         isStickyHeader ? 'sticky top-0' : ''
       }`}
     >
-      <div className="w-full relative">
+      <div className="w-full relative max-w-[1080px] mx-auto">
         <NavHeader setShowSearchBar={setShowSearchBar} />
         <SearchBar isShow={showSearchBar} setIsShow={setShowSearchBar} />
       </div>

@@ -1,14 +1,20 @@
 'use client';
-import Input from '@/components/common/Input';
 import Pagination from '@/components/common/Pagination';
 import { PATH_SELLER } from '@/utils/routes';
 import Link from 'next/link';
-import { useState } from 'react';
-import { AiOutlineSearch } from 'react-icons/ai';
+import { useEffect, useState } from 'react';
 import { IoIosArrowForward } from 'react-icons/io';
-import ProductList from './ProductList';
-import { useGetSellerProductsQuery } from '@/redux/services/productApi';
-import { useAppSelector } from '@/redux/hooks';
+import {
+  useDeleteProductMutation,
+  useGetSellerProductsQuery,
+} from '@/redux/services/productApi';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import { AlertType, showAlert } from '@/redux/features/alertSlice';
+import ProductListTable from './ProductListTable';
+import Button from '@/components/common/Button';
+import { FaRotateLeft } from 'react-icons/fa6';
+import Skeleton from '@/components/common/Skeleton';
+import { useRouter } from 'next/navigation';
 
 //---------------------------------------------------------------------
 
@@ -16,76 +22,110 @@ import { useAppSelector } from '@/redux/hooks';
 
 export default function ManagePage() {
   const { user } = useAppSelector(state => state.authSlice);
-  const { data, isLoading } = useGetSellerProductsQuery({
+  const [
+    deleteProduct,
+    { isLoading: isLoadingDelete, isSuccess: isSuccessDelete },
+  ] = useDeleteProductMutation();
+
+  const { data, isLoading, refetch } = useGetSellerProductsQuery({
     //@ts-expect-error
     sellerId: user?._id,
   });
+
   const totalPages = 10;
   const [currentPage, setCurrentPage] = useState(0);
 
-  const isOrder = false;
+  // USE HOOK
+  const dispatch = useAppDispatch();
+  const router = useRouter();
 
-  // eslint-disable-next-line no-console
-  console.log({ data, isLoading });
+  const deleteHandler = async (productId: string) => {
+    await deleteProduct({ productId: productId });
+  };
+
+  const editHandler = (productId: string) => {
+    router.push(`${PATH_SELLER.products.edit}/${productId}`);
+  };
+
+  const reFetchProductData = () => refetch();
+
+  useEffect(() => {
+    if (!isSuccessDelete) return;
+    reFetchProductData();
+
+    dispatch(
+      showAlert({
+        message: 'Your product deleted successfully',
+        type: AlertType.Success,
+      })
+    );
+
+    return () => undefined;
+  }, [isSuccessDelete, dispatch]);
+
   return (
     <div className="w-full h-full">
       <header>
-        <div>
+        <div className="flex w-full justify-between items-center">
           <h1 className="text-lg md:text-[24px] text-primary-100 font-bold">
             Product List
           </h1>
-          <div className="mt-[5px] text-[14px] flex items-center h-8 space-x-4">
-            <Link
-              href={PATH_SELLER.overview}
-              className=" text-primary-100 hover:underline"
-            >
-              Seller
-            </Link>
-            <IoIosArrowForward />
-            <span className="text-gray-600">Products / Manage Products</span>
-          </div>
+
+          <Button
+            onClick={reFetchProductData}
+            disabled={isLoadingDelete}
+            isLoading={isLoadingDelete}
+            loadingColor="white"
+            loadingSpinnerSize={40}
+            className="px-[16px] py-[6px] bg-primary flex items-center rounded-[8px] text-white font-bold text-sm active:scale-95 duration-200"
+          >
+            <FaRotateLeft className="mr-2" /> <span>Refresh</span>
+          </Button>
+        </div>
+        <div className="mt-[5px] text-[14px] flex items-center h-8 space-x-4">
+          <Link
+            href={PATH_SELLER.overview}
+            className=" text-primary-100 hover:underline"
+          >
+            Seller
+          </Link>
+          <IoIosArrowForward />
+          <span className="text-gray-600">Products / Manage Products</span>
         </div>
       </header>
 
-      {isOrder ? (
+      {isLoading ? (
         <>
-          <div className="w-full h-full bg-white mt-3 md:mt-10 rounded-[16px] shadow-md">
-            <div className="w-full flex md:py-5 md:px-5">
-              <div className="w-full flex items-center h-[56px] border borderColor rounded-md relative">
-                <AiOutlineSearch className="text-gray-500 w-6 h-6 ml-4" />
-                <Input
-                  className="w-full h-full border-none"
-                  containerClassName="w-full h-full"
-                  placeholder="Search product"
-                />
-              </div>
-            </div>
-
-            <div className="w-full h-full overflow-x-auto border-t border-gray-200 pt-5 min-h-[300px]">
-              <div className="overflow-x-auto min-w-[440px] flex justify-between items-center w-full h-[56px] px-[18px] bg-primaryLight">
-                <h3 className="text-[13px] text-gray-600 font-semibold ml-[16px]">
-                  Product
-                </h3>
-
-                <div className="flex items-center">
-                  <h3 className="text-[13px] text-gray-600 font-semibold min-w-[96px]">
-                    Create At
-                  </h3>
-                  <div className="w-full min-w-[96px]">
-                    <h3 className="text-[13px] text-gray-600 font-semibold">
-                      Sell Price
-                    </h3>
-                  </div>
-                </div>
-              </div>
-
-              {!isLoading &&
-                data?.data?.length &&
-                data.data?.map(product => (
-                  <ProductList key={product._id} product={product} />
-                ))}
-            </div>
+          <div className="flex items-center justify-between h-[48px] mt-3 md:mt-5">
+            <Skeleton width={40} height={40} />
+            <Skeleton width={74} height={20} className="ml-4" />
+            <Skeleton width={100} height={20} className="ml-8" />
+            <Skeleton width={54} height={20} className="ml-4" />
           </div>
+          <div className="flex items-center justify-between h-[48px] mt-2">
+            <Skeleton width={40} height={40} />
+            <Skeleton width={74} height={20} className="ml-4" />
+            <Skeleton width={100} height={20} className="ml-8" />
+            <Skeleton width={54} height={20} className="ml-4" />
+          </div>
+          <div className="flex items-center justify-between h-[48px] mt-2">
+            <Skeleton width={40} height={40} />
+            <Skeleton width={74} height={20} className="ml-4" />
+            <Skeleton width={100} height={20} className="ml-8" />
+            <Skeleton width={54} height={20} className="ml-4" />
+          </div>
+        </>
+      ) : null}
+
+      {!isLoading && data?.data?.length ? (
+        <>
+          <ProductListTable
+            deleteHandler={deleteHandler}
+            editHandler={editHandler}
+            products={data.data}
+            isLoadingDelete={isLoadingDelete}
+          />
+
           <div className="px-[18px] w-full border-t borderColor h-[56px] flex items-center justify-center mt-[16px]">
             <Pagination
               totalPages={totalPages}
@@ -94,7 +134,9 @@ export default function ManagePage() {
             />
           </div>
         </>
-      ) : (
+      ) : null}
+
+      {!isLoading && !data?.data.length ? (
         <div className="w-full flex flex-col items-center justify-center pb-6">
           <h2 className="p-10 text-gray-600 text-center">
             You don't have uploaded any product!
@@ -106,7 +148,7 @@ export default function ManagePage() {
             Create New
           </Link>
         </div>
-      )}
+      ) : null}
     </div>
   );
 }

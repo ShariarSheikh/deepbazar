@@ -32,12 +32,13 @@ import { PATH_SELLER } from '@/utils/routes';
 //-----------------------------------------------------------------------
 
 export default function CreateProduct() {
+  //GLOBAL SATE AND QUERY---------------------
   const getCategory = useGetCategoryQuery();
+  const { user } = useAppSelector(state => state.authSlice);
   const [createProduct, { isLoading, data, isError, error }] =
     useCreateProductMutation();
 
-  //STATE--------------------------------------------------------------------------
-  const { user } = useAppSelector(state => state.authSlice);
+  //PRODUCT STATES-----------------------
   const [images, setImages] = useState<File[]>([]);
   const [editorState, setEditorState] = useState({
     productSpecification: EditorState.createEmpty(),
@@ -56,6 +57,8 @@ export default function CreateProduct() {
   const [price, setPrice] = useState<number>(0);
   const [discountPercent, setDiscountPercent] = useState<number>(0);
   const [discountPrice, setDiscountPrice] = useState<number>(0);
+
+  //ERROR STATES----------------
   const [priceError, setPriceError] = useState<string>('');
   const [imageError, setImageError] = useState<string>('');
 
@@ -173,6 +176,7 @@ export default function CreateProduct() {
   };
 
   //USE-EFFECT--------------------------------------------------------------------------
+
   useEffect(() => {
     if (!getCategory.isSuccess) return;
 
@@ -364,7 +368,9 @@ export default function CreateProduct() {
                   },
                 }}
                 options={selectAbleTags.map(tag => tag)}
-                renderInput={params => <TextField {...params} />}
+                renderInput={params => (
+                  <TextField label="Select Tags" {...params} />
+                )}
                 //@ts-expect-error
                 onChange={(_event, value: string) => createTagHandler(value)}
               />

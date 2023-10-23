@@ -61,14 +61,14 @@ const AlertMessage = () => {
   return (
     <AnimatePresence>
       {alert.isAlert && (
-        <motion.div className="z-[100000] w-full flex items-center justify-center px-5 relative">
+        <motion.div className="z-[100000] fixed bottom-10 w-full px-5">
           <motion.div
             initial={{ opacity: 0, y: -100 }}
             animate={alertVariants[alert.type]}
-            exit={{ opacity: 0, y: -100 }}
-            transition={{ duration: 0.5 }}
+            exit={{ opacity: 0, y: 100 }}
+            transition={{ duration: 0.3 }}
             variants={alertVariants}
-            className="max-w-[1201px] mx-auto flex items-center justify-between min-h-[48px] w-full  p-2 rounded-md overflow-hidden"
+            className="max-w-[1080px] mx-auto flex items-center justify-between min-h-[48px] w-full  p-2 rounded-md overflow-hidden"
           >
             <div className="flex items-center space-x-2">
               {iconFilter(alert.type, 'mr-[10px]')}{' '}

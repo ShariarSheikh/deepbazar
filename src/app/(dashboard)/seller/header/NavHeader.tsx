@@ -20,13 +20,16 @@ export default function NavHeader({ setShowSearchBar }: IProps) {
   return (
     <AnimatePresence>
       <div
-        className={`duration-150 bg-primary h-[65px] w-full flex items-center justify-between relative z-50 text-white`}
+        className={`duration-150 h-[65px] w-full flex items-center justify-between relative z-50 text-white`}
       >
         <div className="flex items-center pl-4 relative">
           <div className="block lg:hidden">
             <Button
               className="flex items-center text-white space-x-1 uppercase"
-              onClick={() => setIsMenu(true)}
+              onClick={() => {
+                if (isMenu) return undefined;
+                setIsMenu(true);
+              }}
             >
               <FiMenu /> <span>{isMenu ? 'Close' : 'Menu'}</span>
             </Button>

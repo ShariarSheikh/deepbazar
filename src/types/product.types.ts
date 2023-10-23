@@ -1,6 +1,3 @@
-import { ProductSectionNameType } from '@/app/(dashboard)/seller/products/add-new/utils';
-import { ProductStatusType } from '@/views/home/utils';
-
 export interface ProductRelated {
   product_id: number;
   title: string;
@@ -8,11 +5,22 @@ export interface ProductRelated {
   image: string;
 }
 
+export interface ProductImage {
+  isDefault: boolean;
+  defaultImg: string;
+  cardImg: string;
+  displayImg: string;
+  commentImg: string;
+  smallImg: string;
+  publicId: string;
+}
+
 export interface ProductTypes {
   _id: string;
+  status: ProductStatusType;
   title: string;
   productCode: string;
-  category: string[];
+  category: string;
   productSectionName: ProductSectionNameType;
   sellerId: string;
   ratings: {
@@ -29,15 +37,7 @@ export interface ProductTypes {
   offerText?: string;
   inStock: boolean;
 
-  images: Array<{
-    isDefault: boolean;
-    defaultImg: string;
-    cardImg: string;
-    displayImg: string;
-    commentImg: string;
-    smallImg: string;
-    publicId: string;
-  }>;
+  images: ProductImage[];
 
   description: string;
   specification?: string;
@@ -54,3 +54,22 @@ export interface SellerProductList {
   imgUrl: string;
   title: string;
 }
+
+export const ProductStatus = {
+  Pending: 'Pending',
+  Approved: 'Active',
+  Testing: 'Testing',
+  Rejected: 'Rejected',
+} as const;
+
+export type ProductStatusType =
+  (typeof ProductStatus)[keyof typeof ProductStatus];
+
+export const ProductSectionName = {
+  NewArrivals: 'New Arrivals',
+  FeaturedProducts: 'Featured Products',
+  JustForYou: 'Just For You!',
+} as const;
+
+export type ProductSectionNameType =
+  (typeof ProductSectionName)[keyof typeof ProductSectionName];
