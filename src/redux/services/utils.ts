@@ -18,7 +18,7 @@ import { RootState } from '../store';
 
 //------------------------------------------------
 
-export const url = Environment !== 'development' ? serverDevUrl : serverProdUrl;
+export const url = Environment === 'development' ? serverDevUrl : serverProdUrl;
 
 export const baseQuery = fetchBaseQuery({
   baseUrl: url,

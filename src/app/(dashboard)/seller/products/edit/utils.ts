@@ -61,12 +61,6 @@ export const initialState: InitialState = {
   tags: [],
 };
 
-export const productSections = [
-  ProductSectionName.NewArrivals,
-  ProductSectionName.JustForYou,
-  ProductSectionName.FeaturedProducts,
-];
-
 interface AppendDataToForm {
   data: InitialState;
   sellerId: string;

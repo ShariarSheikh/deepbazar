@@ -16,7 +16,11 @@ import { useGetCategoryQuery } from '@/redux/services/categoryApi';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import CheckBox from '@/components/common/CheckBox';
-import { calculateDiscountedPrice, productTags } from '../../add-new/utils';
+import {
+  calculateDiscountedPrice,
+  productSections,
+  productTags,
+} from '../../add-new/utils';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import {
   useGetSellerProductQuery,
@@ -35,9 +39,9 @@ import {
   InputHandlerTypes,
   appendDataToForm,
   initialState,
-  productSections,
 } from '../utils';
 import { EditorState, convertFromRaw } from 'draft-js';
+import { ProductSectionName } from '@/types/product.types';
 
 //-----------------------------------------------------------------------
 
@@ -102,7 +106,7 @@ export default function CreateProduct({ params }: { params: { id: string } }) {
             discountPrice: discountPrice,
           };
         });
-
+        break;
       //
       case 'discountPercent':
         if (typeof value !== 'number')
@@ -111,34 +115,21 @@ export default function CreateProduct({ params }: { params: { id: string } }) {
         if (value > 99 || value < 0) return;
         setInitialStateData(prevS => ({
           ...prevS,
-          [fieldName]: calculateDiscountedPrice(prevS.price, value),
+          [fieldName]: value,
+          discountPrice: calculateDiscountedPrice(prevS.price, value),
         }));
         break;
-
-      //
-      case 'images':
-        if (typeof value !== 'object')
-          return errorHandler('images', 'Please Select Image');
-
-        //@ts-expect-error
-        const images = displayImageHandler(value);
-
-        //@ts-expect-error
-        setInitialStateData(prevS => ({
-          ...prevS,
-          [fieldName]: images,
-        }));
-
       //
       case 'category':
+        if (typeof value !== 'string') return;
         //@ts-expect-error
         const tags = productTags[value];
         setSelectAbleTags(tags);
         setInitialStateData(prevS => ({
           ...prevS,
-          [fieldName]: value,
+          category: value,
         }));
-
+        break;
       //
       case 'createTag':
         if (typeof value !== 'string') return;
@@ -215,6 +206,10 @@ export default function CreateProduct({ params }: { params: { id: string } }) {
         convertFromRaw(JSON.parse(product.specification ?? ''))
       ),
     }));
+
+    //@ts-expect-error
+    const tags = productTags[product.category];
+    setSelectAbleTags(tags);
   }, [params.id, getProduct.isLoading, getProduct.data?.data]);
 
   useEffect(() => {
@@ -226,20 +221,37 @@ export default function CreateProduct({ params }: { params: { id: string } }) {
         type: AlertType.Success,
       })
     );
-    setInitialStateData(initialState);
+
+    setInitialStateData({
+      title: '',
+      productCode: '',
+      category: '',
+      price: 0,
+      discountPrice: 0,
+      discountPercent: 0,
+      productSectionName: ProductSectionName.NewArrivals,
+      offerText: '',
+      sellerId: '',
+      inStock: true,
+      images: [],
+      description: EditorState.createEmpty(),
+      specification: EditorState.createEmpty(),
+      tags: [],
+    });
     router.replace(PATH_SELLER.products.manage);
   }, [isSuccess, router, dispatch]);
 
   useEffect(() => {
     if (!isError) return;
     //@ts-expect-error
-    errorHandler('Update Error', updateError);
+    errorHandler('Update Error', updateError?.data?.message);
   }, [isError, updateError]);
 
   const displayImageHandler = useCallback(
     (acceptedFiles: File[]) => {
       const currentLength =
         acceptedFiles?.length + initialStateData.images.length;
+
       const maximumImgLength = 3;
       if (currentLength >= maximumImgLength)
         return errorHandler('Image', 'Maximum image length is 2');
@@ -251,7 +263,11 @@ export default function CreateProduct({ params }: { params: { id: string } }) {
           preview: URL.createObjectURL(file),
         })
       );
-      return [...value, ...newFiles];
+      //@ts-expect-error
+      setInitialStateData(prevS => ({
+        ...prevS,
+        images: [...value, ...newFiles],
+      }));
     },
     [initialStateData.images]
   );
@@ -274,14 +290,14 @@ export default function CreateProduct({ params }: { params: { id: string } }) {
       images: [],
     }));
 
-  if (getProduct.isError) return router.back();
   if (getProduct.isLoading) return <LoadingPage />;
+  if (getProduct.isError) return router.back();
 
   return (
     <section className="w-full h-full md:p-5 max-w-[660px] mx-auto">
       <div className="w-full h-full">
         <PageTitle pageName="Create New Product" />
-        {error && InputApiErrorMessage(error.error)}
+        {error.error && InputApiErrorMessage(error.error)}
         <form
           onSubmit={onSubmit}
           className="w-full h-full flex flex-col gap-5 justify-between rounded-[16px] relative"
@@ -318,7 +334,7 @@ export default function CreateProduct({ params }: { params: { id: string } }) {
           </div>
 
           <div className="w-full py-3 border-t border-b border-gray-200 rounded-[6x]">
-            <div className="flex items-center justify-between mb-2">
+            <div className="w-full flex items-center justify-between mb-2">
               <Input
                 placeholder="Price *"
                 name="price"
@@ -328,7 +344,7 @@ export default function CreateProduct({ params }: { params: { id: string } }) {
                   inputHandler(parseInt(event.target.value, 10), 'price')
                 }
                 className="h-[48px] w-full"
-                containerClassName="max-w-[48%] w-full"
+                containerClassName="w-full"
               />
 
               <Input
@@ -343,7 +359,7 @@ export default function CreateProduct({ params }: { params: { id: string } }) {
                   )
                 }
                 className="h-[48px] w-full"
-                containerClassName="max-w-[48%] w-full"
+                containerClassName="w-full"
               />
             </div>
 
@@ -363,7 +379,7 @@ export default function CreateProduct({ params }: { params: { id: string } }) {
               inputHandler(event.target.value, 'title')
             }
             className="h-[48px] w-full"
-            containerClassName="max-w-[48%] w-full"
+            containerClassName="w-full"
           />
 
           <div className="mt-[24px]">
@@ -388,7 +404,7 @@ export default function CreateProduct({ params }: { params: { id: string } }) {
             </Suspense>
           </div>
 
-          <div className="mt-[24px]">
+          <div className="mt-[24px] w-full">
             <Input
               placeholder="Offer Text"
               name="offerText"
@@ -397,7 +413,7 @@ export default function CreateProduct({ params }: { params: { id: string } }) {
                 inputHandler(event.target.value, 'offerText')
               }
               className="h-[48px] w-full"
-              containerClassName="max-w-[48%] w-full"
+              containerClassName="w-full"
             />
           </div>
 
