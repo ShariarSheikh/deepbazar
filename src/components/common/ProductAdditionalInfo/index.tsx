@@ -6,11 +6,16 @@ import Reviews from './Reviews';
 import Specification from './Specification';
 
 //-------------------------------------------------
+export enum ComponentShowOnType {
+  UserProductDetails = 'UserProductDetails',
+  SellerDashboardProductDetails = 'SellerDashboardProductDetails',
+}
 interface IProps {
   productId: string;
-  isEditable: boolean;
+  userId: string;
   specification?: string;
   description?: string;
+  componentFor: ComponentShowOnType;
   createReplyReviewsHandler?: () => void;
   createReplyQuestionHandler?: () => void;
 }
@@ -25,9 +30,10 @@ enum ComponentTypeEnum {
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const ProductAdditionalInfo: FC<IProps> = ({
-  isEditable,
+  componentFor,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   productId,
+  userId,
   specification,
   description,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -45,7 +51,7 @@ const ProductAdditionalInfo: FC<IProps> = ({
 
   return (
     <div className="mt-[40px] bg-white w-full rounded-b-[18px]">
-      <header className="h-[48px] w-full flex items-center border-b borderColor">
+      <header className="h-[48px] w-full max-w-[640px] overflow-x-auto flex items-center border-b borderColor">
         <ul className="w-full flex items-center h-full">
           <li
             role="presentation"
@@ -109,13 +115,21 @@ const ProductAdditionalInfo: FC<IProps> = ({
             <Specification specification={specification} />
           ) : null}
           {componentType === ComponentTypeEnum.Reviews ? (
-            <Reviews isEditable={isEditable} />
+            <Reviews
+              userId={userId}
+              productId={productId}
+              componentFor={componentFor}
+            />
           ) : null}
           {componentType === ComponentTypeEnum.Description ? (
             <Description description={description} />
           ) : null}
           {componentType === ComponentTypeEnum.QnA ? (
-            <QuestionAndAns isEditable={isEditable} />
+            <QuestionAndAns
+              userId={userId}
+              productId={productId}
+              componentFor={componentFor}
+            />
           ) : null}
         </Suspense>
       </div>

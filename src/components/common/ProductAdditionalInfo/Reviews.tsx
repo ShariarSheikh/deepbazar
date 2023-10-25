@@ -1,15 +1,29 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import Image from 'next/image';
-import { useState } from 'react';
-import { AiFillStar } from 'react-icons/ai';
+import { useRef, useState } from 'react';
+import { AiFillStar, AiOutlineClose, AiOutlinePlus } from 'react-icons/ai';
 import { IoMdStarHalf } from 'react-icons/io';
 import { MdVerified } from 'react-icons/md';
+import { ComponentShowOnType } from '.';
+import Button from '../Button';
 
 interface IProps {
-  isEditable: boolean;
+  componentFor: ComponentShowOnType;
+  productId: string;
+  userId: string;
 }
 
-function Reviews({ isEditable }: IProps): JSX.Element {
+function Reviews({ componentFor, userId, productId }: IProps): JSX.Element {
+  const [isReviewBox, setIsReviewBox] = useState<boolean>(false);
+
+  const reviewBoxRef = useRef<HTMLTextAreaElement>(null);
+
+  const reviewBoxHandler = (isOpen: boolean) => setIsReviewBox(isOpen);
+  const submitReviewHandler = () => {
+    // eslint-disable-next-line prettier/prettier, no-console
+    console.log({ userId, productId, review: reviewBoxRef.current?.value });
+  };
+
   return (
     <div className="w-full h-full relative">
       <div className="flex w-full h-full min-h-[238px] border-b borderColor">
@@ -82,9 +96,57 @@ function Reviews({ isEditable }: IProps): JSX.Element {
         </div>
       </div>
 
+      {componentFor === ComponentShowOnType.UserProductDetails && (
+        <div>
+          <div className="flex items-center justify-between">
+            <h1 className="text-sm text-gray-600">
+              Click the button to add a review
+            </h1>
+
+            {isReviewBox ? (
+              <Button
+                onClick={() => reviewBoxHandler(false)}
+                className={`text-[14px] active:scale-95 duration-200 flex items-center space-x-2 font-semibold mt-[8px] px-2 py-1 rounded-[6px] text-primary`}
+              >
+                <AiOutlineClose /> <span>Close Review Box</span>
+              </Button>
+            ) : (
+              <Button
+                onClick={() => reviewBoxHandler(true)}
+                className={`text-[14px] active:scale-95 duration-200 flex items-center space-x-2 font-semibold mt-[8px] px-2 py-1 rounded-[6px] text-primary`}
+              >
+                <AiOutlinePlus /> <span>Add Review</span>
+              </Button>
+            )}
+          </div>
+
+          {isReviewBox ? (
+            <div>
+              <div className="mt-[8px]">
+                <textarea
+                  ref={reviewBoxRef}
+                  placeholder="Write review..."
+                  className="min-h-[56px] max-h-[250px] px-[14px] py-3 rounded-[8px] border border-gray-200 focus:border-2 outline-none w-full"
+                />
+              </div>
+              <Button
+                onClick={submitReviewHandler}
+                className="mt-[4px] font-semibold text-white rounded-[8px] py-[6px] px-[16px] bg-primary active:scale-95 duration-200"
+              >
+                Submit
+              </Button>
+            </div>
+          ) : null}
+        </div>
+      )}
+
       <div className="w-full bg-white pb-[40px]">
         {reviewsData.map(review => (
-          <UserReview key={review.id} review={review} isEditable={isEditable} />
+          <UserReview
+            key={review.id}
+            review={review}
+            componentFor={componentFor}
+          />
         ))}
       </div>
     </div>
@@ -95,10 +157,10 @@ export default Reviews;
 
 interface UserReviewProps {
   review: ReviewDataType;
-  isEditable: boolean;
+  componentFor: ComponentShowOnType;
 }
 
-function UserReview({ review, isEditable }: UserReviewProps) {
+function UserReview({ review, componentFor }: UserReviewProps) {
   const [isOpenReply, setIsOpenReply] = useState<boolean>(false);
 
   const replayThisReview = (): void => {
@@ -134,7 +196,7 @@ function UserReview({ review, isEditable }: UserReviewProps) {
         </div>
         <p className="text-[14px] mt-[8px]">{review.comment}</p>
 
-        {isEditable && (
+        {componentFor === ComponentShowOnType.SellerDashboardProductDetails && (
           <>
             <button
               onClick={replayThisReview}

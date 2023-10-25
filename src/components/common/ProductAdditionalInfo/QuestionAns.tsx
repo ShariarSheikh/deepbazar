@@ -1,17 +1,76 @@
-/* eslint-disable @typescript-eslint/no-use-before-define */
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { RiQuestionnaireFill } from 'react-icons/ri';
+import { ComponentShowOnType } from '.';
+import Button from '../Button';
+import { AiOutlineClose, AiOutlinePlus } from 'react-icons/ai';
 
 interface IProps {
-  isEditable: boolean;
+  componentFor: ComponentShowOnType;
+  productId: string;
+  userId: string;
 }
+function QuestionAndAns({
+  componentFor,
+  userId,
+  productId,
+}: IProps): JSX.Element {
+  const [isQuestionBox, setIsQuestionBox] = useState<boolean>(false);
 
-function QuestionAndAns({ isEditable }: IProps): JSX.Element {
+  const questionBoxRef = useRef<HTMLTextAreaElement>(null);
+
+  const questionBoxHandler = (isOpen: boolean) => setIsQuestionBox(isOpen);
+  const submitQuestionHandler = () => {
+    // eslint-disable-next-line prettier/prettier, no-console
+    console.log({ userId, productId, question: questionBoxRef.current?.value });
+  };
   return (
     <div className="p-[24px]">
+      {componentFor === ComponentShowOnType.UserProductDetails && (
+        <div className="mb-[22px]">
+          <div className="flex items-center justify-between">
+            <h1 className="text-sm text-gray-600">
+              Click the button to add a review
+            </h1>
+
+            {isQuestionBox ? (
+              <Button
+                onClick={() => questionBoxHandler(false)}
+                className={`text-[14px] active:scale-95 duration-200 flex items-center space-x-2 font-semibold mt-[8px] px-2 py-1 rounded-[6px] text-primary`}
+              >
+                <AiOutlineClose /> <span>Close Question Box</span>
+              </Button>
+            ) : (
+              <Button
+                onClick={() => questionBoxHandler(true)}
+                className={`text-[14px] active:scale-95 duration-200 flex items-center space-x-2 font-semibold mt-[8px] px-2 py-1 rounded-[6px] text-primary`}
+              >
+                <AiOutlinePlus /> <span>Add Question</span>
+              </Button>
+            )}
+          </div>
+
+          {isQuestionBox ? (
+            <div>
+              <div className="mt-[8px]">
+                <textarea
+                  ref={questionBoxRef}
+                  placeholder="Write question..."
+                  className="min-h-[56px] max-h-[250px] px-[14px] py-3 rounded-[8px] border border-gray-200 focus:border-2 outline-none w-full"
+                />
+              </div>
+              <Button
+                onClick={submitQuestionHandler}
+                className="mt-[4px] font-semibold text-white rounded-[8px] py-[6px] px-[16px] bg-primary active:scale-95 duration-200"
+              >
+                Submit
+              </Button>
+            </div>
+          ) : null}
+        </div>
+      )}
       <ul className="w-full">
         {qnaAndAns.map(list => (
-          <UserQanList key={list.id} list={list} isEditable={isEditable} />
+          <UserQanList key={list.id} list={list} componentFor={componentFor} />
         ))}
       </ul>
     </div>
@@ -21,7 +80,7 @@ function QuestionAndAns({ isEditable }: IProps): JSX.Element {
 export default QuestionAndAns;
 
 interface UserQnaListProps {
-  isEditable: boolean;
+  componentFor: ComponentShowOnType;
   list: {
     id: number;
     question: string;
@@ -31,7 +90,7 @@ interface UserQnaListProps {
   };
 }
 
-function UserQanList({ list, isEditable }: UserQnaListProps) {
+function UserQanList({ list, componentFor }: UserQnaListProps) {
   const [isOpenReply, setIsOpenReply] = useState<boolean>(false);
 
   const replayThisReview = (): void => {
@@ -49,7 +108,8 @@ function UserQanList({ list, isEditable }: UserQnaListProps) {
             By <b>{list.user}</b> {list.createdAt}
           </p>
 
-          {isEditable && (
+          {componentFor ===
+            ComponentShowOnType.SellerDashboardProductDetails && (
             <>
               <button
                 onClick={replayThisReview}

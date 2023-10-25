@@ -14,6 +14,16 @@ export const productApi = apiSlice.injectEndpoints({
       }),
     }),
 
+    getProductDetails: builder.query<
+      { data: ProductTypes; success: boolean },
+      { productId: string }
+    >({
+      query: credential => ({
+        url: `/product/get-details-by-id/${credential.productId}`,
+        method: 'get',
+      }),
+    }),
+
     getSellerProduct: builder.query<
       { data: ProductTypes; success: boolean },
       { productId: string }
@@ -60,4 +70,5 @@ export const {
   useDeleteProductMutation,
   useGetSellerProductQuery,
   useUpdateProductMutation,
+  useGetProductDetailsQuery,
 } = productApi;

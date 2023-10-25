@@ -42,7 +42,7 @@ const Product = ({
       <div className="mt-[10px]">
         <RatingStar
           reviews={{
-            total: 2,
+            totalReviews: 2,
             star: 4.2,
           }}
         />

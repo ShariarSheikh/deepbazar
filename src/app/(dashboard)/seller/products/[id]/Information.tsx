@@ -50,7 +50,7 @@ function Information({ data }: { data: ProductTypes }) {
         <div className="flex items-center space-x-1">
           <RatingStar
             reviews={{
-              total: data.ratings.totalReviews,
+              totalReviews: data.ratings.totalReviews,
               star: data.ratings.star,
             }}
           />

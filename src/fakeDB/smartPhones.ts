@@ -11,7 +11,7 @@ export interface SmartPhonesData {
   price: number;
   discountPrice: number;
   reviews: {
-    total: number;
+    totalReviews: number;
     star: number;
   };
 }
@@ -33,7 +33,7 @@ const smartPhones: SmartPhonesData[] = [
     price: 999,
     discountPrice: 899,
     reviews: {
-      total: 1200,
+      totalReviews: 1200,
       star: 4.7,
     },
   },
@@ -53,7 +53,7 @@ const smartPhones: SmartPhonesData[] = [
     price: 1299,
     discountPrice: 1199,
     reviews: {
-      total: 1500,
+      totalReviews: 1500,
       star: 4.9,
     },
   },
@@ -73,7 +73,7 @@ const smartPhones: SmartPhonesData[] = [
     price: 799,
     discountPrice: 699,
     reviews: {
-      total: 800,
+      totalReviews: 800,
       star: 4.5,
     },
   },
@@ -93,7 +93,7 @@ const smartPhones: SmartPhonesData[] = [
     price: 899,
     discountPrice: 799,
     reviews: {
-      total: 900,
+      totalReviews: 900,
       star: 4.6,
     },
   },
@@ -113,7 +113,7 @@ const smartPhones: SmartPhonesData[] = [
     price: 849,
     discountPrice: 749,
     reviews: {
-      total: 1000,
+      totalReviews: 1000,
       star: 4.4,
     },
   },
@@ -133,7 +133,7 @@ const smartPhones: SmartPhonesData[] = [
     price: 1099,
     discountPrice: 999,
     reviews: {
-      total: 700,
+      totalReviews: 700,
       star: 4.3,
     },
   },
@@ -153,7 +153,7 @@ const smartPhones: SmartPhonesData[] = [
     price: 1199,
     discountPrice: 1099,
     reviews: {
-      total: 850,
+      totalReviews: 850,
       star: 4.6,
     },
   },
@@ -173,7 +173,7 @@ const smartPhones: SmartPhonesData[] = [
     price: 799,
     discountPrice: 699,
     reviews: {
-      total: 600,
+      totalReviews: 600,
       star: 4.2,
     },
   },
@@ -193,7 +193,7 @@ const smartPhones: SmartPhonesData[] = [
     price: 599,
     discountPrice: 549,
     reviews: {
-      total: 500,
+      totalReviews: 500,
       star: 4.1,
     },
   },
@@ -213,7 +213,7 @@ const smartPhones: SmartPhonesData[] = [
     price: 1099,
     discountPrice: 999,
     reviews: {
-      total: 950,
+      totalReviews: 950,
       star: 4.7,
     },
   },
@@ -233,7 +233,7 @@ const smartPhones: SmartPhonesData[] = [
     price: 899,
     discountPrice: 799,
     reviews: {
-      total: 800,
+      totalReviews: 800,
       star: 4.5,
     },
   },
@@ -253,7 +253,7 @@ const smartPhones: SmartPhonesData[] = [
     price: 599,
     discountPrice: 549,
     reviews: {
-      total: 700,
+      totalReviews: 700,
       star: 4.3,
     },
   },
@@ -273,7 +273,7 @@ const smartPhones: SmartPhonesData[] = [
     price: 699,
     discountPrice: 649,
     reviews: {
-      total: 550,
+      totalReviews: 550,
       star: 4.4,
     },
   },
@@ -293,7 +293,7 @@ const smartPhones: SmartPhonesData[] = [
     price: 449,
     discountPrice: 399,
     reviews: {
-      total: 400,
+      totalReviews: 400,
       star: 4.0,
     },
   },
@@ -313,7 +313,7 @@ const smartPhones: SmartPhonesData[] = [
     price: 999,
     discountPrice: 899,
     reviews: {
-      total: 600,
+      totalReviews: 600,
       star: 4.3,
     },
   },
@@ -333,7 +333,7 @@ const smartPhones: SmartPhonesData[] = [
     price: 699,
     discountPrice: 649,
     reviews: {
-      total: 350,
+      totalReviews: 350,
       star: 4.1,
     },
   },

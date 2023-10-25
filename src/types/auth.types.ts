@@ -57,3 +57,18 @@ export interface ChangePassword {
   oldPassword: string;
   newPassword: string;
 }
+
+export interface ProductSellerProfile {
+  _id: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  imgUrl?: string;
+  address?: string;
+  socialLinks: {
+    facebook?: string;
+    instagram?: string;
+    linkedin?: string;
+    twitter?: string;
+  };
+}
