@@ -1,8 +1,33 @@
-import { ProductTypes, SellerProductList } from '@/types/product.types';
+import {
+  ProductListApiQuery,
+  ProductListType,
+  ProductTypes,
+  SellerProductList,
+} from '@/types/product.types';
 import { apiSlice } from '.';
 
 export const productApi = apiSlice.injectEndpoints({
   endpoints: builder => ({
+    getProducts: builder.query<
+      {
+        data: { products: ProductListType[]; totals: number };
+        success: boolean;
+      },
+      { query: ProductListApiQuery }
+    >({
+      query: ({ query }) => {
+        const queryParams: ProductListApiQuery = {
+          ...query,
+        };
+
+        return {
+          url: `/product/list`,
+          method: 'get',
+          params: queryParams,
+        };
+      },
+    }),
+
     createProduct: builder.mutation<
       { data: ProductTypes; success: boolean },
       ProductTypes
@@ -65,6 +90,7 @@ export const productApi = apiSlice.injectEndpoints({
 });
 
 export const {
+  useGetProductsQuery,
   useCreateProductMutation,
   useGetSellerProductsQuery,
   useDeleteProductMutation,

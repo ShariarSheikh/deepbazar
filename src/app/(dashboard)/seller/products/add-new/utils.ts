@@ -1,3 +1,4 @@
+import { ProductSectionName } from '@/types/product.types';
 import createFormData from '@/utils/createFormData';
 import uniqueCodeGenerator from '@/utils/uniqeCodeGenerator';
 import { EditorState, convertToRaw } from 'draft-js';
@@ -9,12 +10,6 @@ export const productTags = {
   Audio: ['Headphones', 'Speakers', 'Earbuds', 'Microphones'],
   Laptop: ['Gaming', 'Ultrabook', 'Business', '2-in-1'],
 };
-
-export const ProductSectionName = {
-  NewArrivals: 'New Arrivals',
-  FeaturedProducts: 'Featured Products',
-  JustForYou: 'Just For You!',
-} as const;
 
 export const productSections = [
   ProductSectionName.NewArrivals,

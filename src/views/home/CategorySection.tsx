@@ -11,11 +11,11 @@ const CategorySection = () => {
 
   const loadingSkeleton = (
     <>
-      <Skeleton />
-      <Skeleton />
-      <Skeleton />
-      <Skeleton />
-      <Skeleton />
+      <Skeleton width={'30%'} height={220} />
+      <Skeleton width={'30%'} height={220} />
+      <Skeleton width={'30%'} height={220} />
+      <Skeleton width={'30%'} height={220} />
+      <Skeleton width={'30%'} height={220} />
     </>
   );
 

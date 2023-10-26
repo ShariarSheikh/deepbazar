@@ -31,8 +31,8 @@ export interface ProductTypes {
   totalWishlist: number;
 
   price: number;
-  discountPrice?: number;
-  discountPercent?: number;
+  discountPrice: number;
+  discountPercent: number;
 
   offerText?: string;
   inStock: boolean;
@@ -73,3 +73,34 @@ export const ProductSectionName = {
 
 export type ProductSectionNameType =
   (typeof ProductSectionName)[keyof typeof ProductSectionName];
+
+export enum ProductFilterBy {
+  MostPopular = 'MostPopular',
+  Regular = 'Regular',
+}
+
+export interface ProductListApiQuery {
+  category?: string;
+  pageLength?: number;
+  limit: number;
+  startPrice?: number;
+  endPrice?: number;
+  filterBy?: ProductFilterBy;
+  productSectionName?: ProductSectionNameType;
+}
+
+export interface ProductListType {
+  _id: string;
+  title: string;
+  imgUrl: string;
+  price: number;
+  discountPercent: number;
+  discountPrice: number;
+  offerText: string;
+  inStock: boolean;
+  category: string;
+  ratings: {
+    star: number;
+    totalReviews: number;
+  };
+}

@@ -22,7 +22,7 @@ const Info: FC<{ data: ProductTypes }> = ({ data }) => {
   const addItems = () => dispatch(addToCart({ data, quantity }));
 
   const selPrice =
-    data.discountPrice && data.discountPercent
+    data.discountPrice > 0 && data.discountPercent
       ? data.discountPrice
       : data.price;
 
@@ -77,8 +77,8 @@ const Info: FC<{ data: ProductTypes }> = ({ data }) => {
             {selPrice}
           </span>
 
-          {data.discountPrice && <del>{data.price}</del>}
-          {data.discountPercent && (
+          {data.discountPrice > 0 && <del>{data.price}</del>}
+          {data.discountPercent > 0 && (
             <span className="bg-primary text-white text-[12px] px-2 py-[2px] rounded-[6px]">
               {data.discountPercent}%
             </span>

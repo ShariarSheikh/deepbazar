@@ -25,7 +25,7 @@ interface IProps {
 }
 //---------------------------------------------
 
-const ProductFeedsHome: FC<IProps> = ({ title, children, productPageLink }) => {
+const FeaturedProducts: FC<IProps> = ({ title, children, productPageLink }) => {
   return (
     <section className="w-full h-full relative mt-[60px] md:min-h-[500px]">
       <div className="w-full flex items-center justify-between">
@@ -66,4 +66,4 @@ const ProductFeedsHome: FC<IProps> = ({ title, children, productPageLink }) => {
   );
 };
 
-export default ProductFeedsHome;
+export default FeaturedProducts;

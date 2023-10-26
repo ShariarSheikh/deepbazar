@@ -73,8 +73,8 @@ export default function ManagePage() {
 
           <Button
             onClick={reFetchProductData}
-            disabled={isLoadingDelete}
-            isLoading={isLoadingDelete}
+            disabled={isLoading}
+            isLoading={isLoading}
             loadingColor="white"
             loadingSpinnerSize={40}
             className="px-[16px] py-[6px] bg-primary flex items-center rounded-[8px] text-white font-bold text-sm active:scale-95 duration-200"

@@ -1,12 +1,22 @@
 'use client';
 
+import ProductCart from '@/components/common/ProductCart';
+import Skeleton from '@/components/common/Skeleton';
+import { useGetProductsQuery } from '@/redux/services/productApi';
+import { ProductSectionName } from '@/types/product.types';
+import CategorySection from '@/views/home/CategorySection';
+import FeaturedProducts from '@/views/home/FeaturedProducts';
+import HeroSection from '@/views/home/HeroSection';
+import JustForYou from '@/views/home/JustForYou';
+import NewArrivals from '@/views/home/NewArrivals';
+import { SwiperSlide } from 'swiper/react';
+
 // import ProductCart from '@/components/common/ProductCart';
 // import smartPhones from '@/fakeDB/smartPhones';
 // import CategorySection from '@/views/home/CategorySection';
 // import FeaturedProducts from '@/views/home/FeaturedProducts';
 // import HeroSection from '@/views/home/HeroSection';
 // import JustForYou from '@/views/home/JustForYou';
-// import NewArrivals from '@/views/home/NewArrivals';
 // import SponsoredItem from '@/views/home/SponsoredItem';
 // import { ProductSectionName } from '@/views/home/utils';
 // import { SwiperSlide } from 'swiper/react';
@@ -15,28 +25,53 @@
 
 //---------------------------------------------------------
 export default function Home() {
+  const getNewArrivals = useGetProductsQuery({
+    query: { limit: 9, productSectionName: ProductSectionName.NewArrivals },
+  });
+
+  const getJustForYou = useGetProductsQuery({
+    query: { limit: 8, productSectionName: ProductSectionName.JustForYou },
+  });
+
+  const getFeaturedProducts = useGetProductsQuery({
+    query: {
+      limit: 15,
+      productSectionName: ProductSectionName.FeaturedProducts,
+    },
+  });
+
   return (
     <main className="min-h-screen w-full m-auto mt-10">
-      {/* <div className="w-full max-w-[1201px] mx-auto">
+      <div className="w-full max-w-[1201px] mx-auto">
         <HeroSection />
 
         <CategorySection />
 
-        <NewArrivals
-          data={smartPhones.slice(0, 9)}
-          productPageLink={{
-            pathname: '/shop',
-            query: {
-              keyword: 'flash-sale',
-            },
-          }}
-        />
+        {getNewArrivals.isLoading ? (
+          <div className="md:mt-[40px] flex items-center justify-between gap-y-10 flex-wrap">
+            <Skeleton className="w-[30%]" height={200} />
+            <Skeleton className="w-[30%]" height={200} />
+            <Skeleton className="w-[30%]" height={200} />
+            <Skeleton className="w-[30%]" height={200} />
+            <Skeleton className="w-[30%]" height={200} />
+          </div>
+        ) : (
+          <NewArrivals
+            data={getNewArrivals.data?.data.products}
+            productPageLink={{
+              pathname: '/shop',
+              query: {
+                keyword: ProductSectionName.NewArrivals,
+              },
+            }}
+          />
+        )}
 
         <JustForYou
           productPageLink={{
             pathname: '/shop',
             query: {
-              keyword: 'watch',
+              keyword: ProductSectionName.JustForYou,
             },
           }}
           title={ProductSectionName.JustForYou}
@@ -63,17 +98,28 @@ export default function Home() {
           }
         >
           <>
-            {smartPhones.slice(0, 8).map(phoneData => (
-              <ProductCart
-                key={phoneData._id}
-                isInsideSlider={false}
-                data={phoneData}
-              />
-            ))}
+            {getJustForYou.isLoading ? (
+              <div className="md:mt-[40px] flex items-center justify-between gap-y-10 flex-wrap">
+                <Skeleton className="w-[30%]" height={200} />
+                <Skeleton className="w-[30%]" height={200} />
+                <Skeleton className="w-[30%]" height={200} />
+                <Skeleton className="w-[30%]" height={200} />
+                <Skeleton className="w-[30%]" height={200} />
+              </div>
+            ) : (
+              typeof getJustForYou.data !== 'undefined' &&
+              getJustForYou.data.data.products.map(product => (
+                <ProductCart
+                  key={product._id}
+                  isInsideSlider={false}
+                  product={product}
+                />
+              ))
+            )}
           </>
         </JustForYou>
 
-        <SponsoredItem />
+        {/* <SponsoredItem /> */}
 
         <FeaturedProducts
           productPageLink={{
@@ -84,15 +130,28 @@ export default function Home() {
           }}
           title={ProductSectionName.FeaturedProducts}
         >
-          {smartPhones.map(phoneData => (
-            <SwiperSlide key={phoneData._id}>
-              <ProductCart isInsideSlider data={phoneData} />
-            </SwiperSlide>
-          ))}
+          <>
+            {getFeaturedProducts.isLoading ? (
+              <div className="md:mt-[40px] flex items-center justify-between gap-y-10 flex-wrap">
+                <Skeleton className="w-[30%]" height={200} />
+                <Skeleton className="w-[30%]" height={200} />
+                <Skeleton className="w-[30%]" height={200} />
+                <Skeleton className="w-[30%]" height={200} />
+                <Skeleton className="w-[30%]" height={200} />
+              </div>
+            ) : (
+              typeof getFeaturedProducts.data !== 'undefined' &&
+              getFeaturedProducts.data.data.products.map(product => (
+                <SwiperSlide key={product._id}>
+                  <ProductCart isInsideSlider product={product} />
+                </SwiperSlide>
+              ))
+            )}
+          </>
         </FeaturedProducts>
         <br />
         <br />
-      </div> */}
+      </div>
     </main>
   );
 }

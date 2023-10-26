@@ -41,8 +41,10 @@ export default function CreateProduct() {
   //GLOBAL SATE AND QUERY---------------------
   const getCategory = useGetCategoryQuery();
   const { user } = useAppSelector(state => state.authSlice);
-  const [createProduct, { isLoading, data, isError, error: createError }] =
-    useCreateProductMutation();
+  const [
+    createProduct,
+    { isLoading, isSuccess, data, isError, error: createError },
+  ] = useCreateProductMutation();
 
   //PRODUCT STATES-----------------------
   const [initialStateData, setInitialStateData] =
@@ -222,7 +224,7 @@ export default function CreateProduct() {
   }, []);
 
   useEffect(() => {
-    if (!isLoading) return undefined;
+    if (!isSuccess || !data?.data._id) return undefined;
 
     dispatch(
       showAlert({
@@ -231,7 +233,7 @@ export default function CreateProduct() {
       })
     );
     router.replace(PATH_SELLER.products.manage);
-  }, [isLoading, data, dispatch]);
+  }, [isSuccess, data, dispatch]);
 
   useEffect(() => {
     if (!isError) return;
