@@ -41,7 +41,7 @@ export default function Home() {
   });
 
   return (
-    <main className="min-h-screen w-full m-auto mt-10">
+    <main className="min-h-screen w-full m-auto mt-10 px-1">
       <div className="w-full max-w-[1201px] mx-auto">
         <HeroSection />
 

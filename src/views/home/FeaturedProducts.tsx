@@ -27,7 +27,7 @@ interface IProps {
 
 const FeaturedProducts: FC<IProps> = ({ title, children, productPageLink }) => {
   return (
-    <section className="w-full h-full relative mt-[60px] md:min-h-[500px]">
+    <section className="w-full h-full relative mt-[22px] lg:mt-[60px] md:min-h-[500px]">
       <div className="w-full flex items-center justify-between">
         <h1 className="text-sm md:text-[28px] font-bold">{title}</h1>
         <Link href={productPageLink}>

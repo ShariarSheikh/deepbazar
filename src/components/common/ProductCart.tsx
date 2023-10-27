@@ -35,17 +35,17 @@ const ProductCart: FC<IProps> = ({ isInsideSlider, product }) => {
         </div>
       </Link>
       <div>
-        <h1 className="md:mt-[16px] md:mb-2 mb-1 text-sm text-gray-800 font-semibold line-clamp-1 pr-1">
+        <h1 className="mt-[5px] md:mt-[16px] md:mb-2 text-[10px] lg:text-sm text-gray-800 font-semibold line-clamp-1 pr-1">
           {product.category}
         </h1>
         <Link href={`/product/${product._id}`} className="w-full text-gray-600">
-          <h1 className="mt-[7px] md:mb-[10px] font-normal text-sm line-clamp-1 pr-1">
+          <h1 className="lg:mt-[7px] md:mb-[10px] font-normal text-[12px] lg:text-sm line-clamp-1 pr-1">
             {product.title}
           </h1>
         </Link>
 
-        <div className="w-full flex items-center justify-between mb-[7px]">
-          <div className="flex items-center justify-start space-x-2 text-[12] md:text-[13px] font-bold text-primary">
+        <div className="w-full flex flex-col md:flex-row items-start md:items-center justify-between mb-[7px]">
+          <div className="flex items-center justify-start space-x-2 text-[12px] lg:text-[13px] font-bold text-primary">
             <span className="text-gray-600">${selPrice}</span>
             {product.discountPrice > 0 && <del>{product.price}</del>}
             {product.discountPercent > 0 && (
@@ -58,18 +58,18 @@ const ProductCart: FC<IProps> = ({ isInsideSlider, product }) => {
         </div>
 
         <div className="w-full flex justify-between">
-          <Button className="text-sm  w-[33px] h-[33px] flex items-center justify-center rounded-[6px] active:scale-95 duration-150 font-medium border border-[#008ECC] hover:bg-primary text-primary hover:text-white group">
-            <AiOutlineHeart className="text-primary group-hover:text-white font-medium text-[20px] group-hover:scale-110 duration-150" />
+          <Button className="text-sm w-[25px] lg:w-[33px] h-[25px] lg:h-[33px] flex items-center justify-center rounded-[6px] active:scale-95 duration-150 font-medium border border-[#008ECC] hover:bg-primary text-primary hover:text-white group">
+            <AiOutlineHeart className="text-primary group-hover:text-white font-medium text-[15px] lg:text-[20px] group-hover:scale-110 duration-150" />
           </Button>
 
-          <Button className="text-sm w-full max-w-[80%] rounded-[6px] active:scale-95 duration-150 font-medium h-[33px] border border-[#008ECC] hover:bg-primary text-primary hover:text-white">
+          <Button className="text-[12px] lg:text-sm w-full max-w-[68%] lg:max-w-[80%] rounded-[6px] active:scale-95 duration-150 font-medium h-[25px] lg:h-[33px] border border-[#008ECC] hover:bg-primary text-primary hover:text-white">
             Add to Cart
           </Button>
         </div>
       </div>
 
       {product.offerText && (
-        <div className="text-[12px] absolute pl-2 bg-primary text-white group line-clamp-1 overflow-hidden left-[0px] top-[0px] w-[120px] h-[30px] rounded-[6px] flex items-center justify-start">
+        <div className="text-[11px] absolute pl-2 bg-primary text-white group line-clamp-1 overflow-hidden left-[0px] top-[0px] w-[120px] h-[22px] rounded-[6px] flex items-center justify-start">
           {product.offerText}
         </div>
       )}

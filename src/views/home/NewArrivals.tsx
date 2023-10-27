@@ -18,7 +18,7 @@ interface IProps {
 
 const NewArrivals: FC<IProps> = ({ data, productPageLink }) => {
   return (
-    <section className="w-full relative mt-[40px] md:mt-[60px] min-h-[500px]">
+    <section className="w-full relative mt-[22px] lg:mt-[60px] min-h-[500px]">
       <div className="w-full flex items-center justify-between">
         <div className="flex items-center">
           <h1 className="text-sm md:text-[28px] font-bold">

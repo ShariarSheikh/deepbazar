@@ -52,7 +52,7 @@ const Page = ({ params }: { params: { id: string } }) => {
             <IoIosArrowForward /> <span>{product?.category}</span>
           </div>
         </Link>
-        <div className="flex items-center text-gray-500">
+        <div className="flex items-center text-gray-500 line-clamp-1">
           <IoIosArrowForward /> <span>{product.title}</span>
         </div>
       </div>
