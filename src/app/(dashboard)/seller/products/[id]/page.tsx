@@ -66,6 +66,7 @@ export default function Page({ params }: { params: { id: string } }) {
           componentFor={ComponentShowOnType.SellerDashboardProductDetails}
           productId={data.data._id}
           userId={user?._id ?? ''}
+          totalReview={data.data.ratings.totalReviews}
         />
       </div>
     </div>

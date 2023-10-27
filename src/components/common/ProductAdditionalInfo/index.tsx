@@ -15,6 +15,7 @@ interface IProps {
   userId: string;
   specification?: string;
   description?: string;
+  totalReview: number;
   componentFor: ComponentShowOnType;
   createReplyReviewsHandler?: () => void;
   createReplyQuestionHandler?: () => void;
@@ -31,16 +32,17 @@ enum ComponentTypeEnum {
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const ProductAdditionalInfo: FC<IProps> = ({
   componentFor,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   productId,
   userId,
   specification,
   description,
+  totalReview,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   createReplyReviewsHandler,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   createReplyQuestionHandler,
 }) => {
+  const [totalReviews, setTotalReviews] = useState<number>(totalReview);
   const [componentType, setComponentType] = useState<ComponentTypeEnum>(
     ComponentTypeEnum.Reviews
   );
@@ -88,7 +90,7 @@ const ProductAdditionalInfo: FC<IProps> = ({
                 : 'border-transparent text-gray-600'
             }`}
           >
-            Reviews(0)
+            Reviews({totalReviews})
           </li>
           <li
             role="presentation"
@@ -116,7 +118,7 @@ const ProductAdditionalInfo: FC<IProps> = ({
           ) : null}
           {componentType === ComponentTypeEnum.Reviews ? (
             <Reviews
-              userId={userId}
+              setTotalReviews={setTotalReviews}
               productId={productId}
               componentFor={componentFor}
             />

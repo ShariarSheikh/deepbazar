@@ -72,6 +72,7 @@ const Page = ({ params }: { params: { id: string } }) => {
         description={product.description}
         productId={product._id}
         userId={user?._id ?? ''}
+        totalReview={product.ratings.totalReviews}
       />
     </main>
   );
