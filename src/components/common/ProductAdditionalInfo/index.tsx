@@ -58,7 +58,7 @@ const ProductAdditionalInfo: FC<IProps> = ({
             onClick={() =>
               changeComponentHandler(ComponentTypeEnum.Specification)
             }
-            className={`text-[14px] font-semibold mr-[40px] ml-[24px] cursor-pointer h-full flex items-center border-b-[2px] duration-150 ${
+            className={`text-[13px] lg:text-[14px] font-semibold mr-[18px] lg:mr-[40px] ml-[18px] lg:ml-[24px] cursor-pointer h-full flex items-center border-b-[2px] duration-150 ${
               componentType === ComponentTypeEnum.Specification
                 ? 'border-gray-800 text-gray-700'
                 : 'border-transparent text-gray-600'
@@ -71,7 +71,7 @@ const ProductAdditionalInfo: FC<IProps> = ({
             onClick={() =>
               changeComponentHandler(ComponentTypeEnum.Description)
             }
-            className={`text-[14px] font-semibold mr-[40px] cursor-pointer h-full flex items-center border-b-[2px] duration-150 ${
+            className={`text-[13px] lg:text-[14px] font-semibold mr-[18px] lg:mr-[40px] cursor-pointer h-full flex items-center border-b-[2px] duration-150 ${
               componentType === ComponentTypeEnum.Description
                 ? 'border-gray-800 text-gray-700'
                 : 'border-transparent text-gray-600'
@@ -82,7 +82,7 @@ const ProductAdditionalInfo: FC<IProps> = ({
           <li
             role="presentation"
             onClick={() => changeComponentHandler(ComponentTypeEnum.Reviews)}
-            className={`text-[14px] font-semibold mr-[40px] cursor-pointer h-full flex items-center border-b-[2px] duration-150 ${
+            className={`text-[13px] lg:text-[14px] font-semibold mr-[18px] lg:mr-[40px] cursor-pointer h-full flex items-center border-b-[2px] duration-150 ${
               componentType === ComponentTypeEnum.Reviews
                 ? 'border-gray-800 text-gray-700'
                 : 'border-transparent text-gray-600'
@@ -93,7 +93,7 @@ const ProductAdditionalInfo: FC<IProps> = ({
           <li
             role="presentation"
             onClick={() => changeComponentHandler(ComponentTypeEnum.QnA)}
-            className={`text-[14px] font-semibold mr-[40px] cursor-pointer h-full flex items-center border-b-[2px] duration-150 ${
+            className={`text-[13px] lg:text-[14px] font-semibold mr-[18px] lg:mr-[40px] cursor-pointer h-full flex items-center border-b-[2px] duration-150 ${
               componentType === ComponentTypeEnum.QnA
                 ? 'border-gray-800 text-gray-700'
                 : 'border-transparent text-gray-600'

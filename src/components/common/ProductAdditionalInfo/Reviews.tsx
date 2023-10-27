@@ -3,7 +3,6 @@ import Image from 'next/image';
 import { useRef, useState } from 'react';
 import { AiFillStar, AiOutlineClose, AiOutlinePlus } from 'react-icons/ai';
 import { IoMdStarHalf } from 'react-icons/io';
-import { MdVerified } from 'react-icons/md';
 import { ComponentShowOnType } from '.';
 import Button from '../Button';
 
@@ -27,77 +26,81 @@ function Reviews({ componentFor, userId, productId }: IProps): JSX.Element {
   return (
     <div className="w-full h-full relative">
       <div className="flex w-full h-full min-h-[238px] border-b borderColor">
-        <div className="w-[50%] h-full min-h-[238px] flex items-center flex-col justify-center border-r borderColor">
-          <h2 className="text-[16px] text-gray-600 font-semibold">
+        <div className="w-[50%] h-full min-h-[140px] md:min-h-[238px] flex items-center flex-col justify-center border-r borderColor">
+          <h2 className="text-[13px] lg:text-[16px] text-gray-600 font-semibold">
             Average rating
           </h2>
-          <h1 className="text-[48px] font-extrabold text-primary">4/5</h1>
+          <h1 className="text-[26px] lg:text-[48px] font-extrabold text-primary">
+            4/5
+          </h1>
           <div className="flex items-center text-primary">
-            <AiFillStar className="fill-warningMain w-[28px] h-[28px]" />
-            <AiFillStar className="fill-warningMain w-[28px] h-[28px]" />
-            <AiFillStar className="fill-warningMain w-[28px] h-[28px]" />
-            <IoMdStarHalf className="w-[30px] h-[30px] fill-warningMain" />
-            <AiFillStar className="w-[28px] h-[28px] fill-gray-400" />
+            <AiFillStar className="fill-warningMain w-[14px] lg:w-[28px] h-[14px] lg:h-[28px]" />
+            <AiFillStar className="fill-warningMain w-[14px] lg:w-[28px] h-[14px] lg:h-[28px]" />
+            <AiFillStar className="fill-warningMain w-[14px] lg:w-[28px] h-[14px] lg:h-[28px]" />
+            <IoMdStarHalf className="w-[17px] lg:w-[30px] h-[17px] lg:h-[30px] fill-warningMain" />
+            <AiFillStar className="w-[14px] lg:w-[28px] h-[14px] lg:h-[28px] fill-gray-400" />
           </div>
           <p className="text-gray-600 text-[12px]">(8.24k reviews)</p>
         </div>
 
-        <div className="w-full max-w-[50%] flex flex-col justify-center items-center h-full min-h-[238px] px-[24px]">
+        <div className="w-full max-w-[50%] flex flex-col justify-center items-center h-full min-h-[140px] md:min-h-[238px] px-[24px]">
           <ul className="w-full">
             <li className="w-full flex items-center space-x-4">
-              <h1 className="text-gray-800 font-semibold text-[14px] min-w-[42px]">
+              <h1 className="text-gray-800 font-semibold text-[13px] lg:text-[14px] min-w-[42px]">
                 5 Star
               </h1>
               <div className="mx-[16px] w-full relative h-[4px] rounded-md bg-gray-300 max-w-[340px]">
                 <div className="absolute left-0 w-[30%] rounded-md h-full bg-primary" />
               </div>
-              <h1 className="text-[14px] text-gray-600">25.k</h1>
+              <h1 className="text-[13px] lg:text-[14px] text-gray-600">25.k</h1>
             </li>
 
-            <li className="w-full flex items-center space-x-4 mt-[12px]">
-              <h1 className="text-gray-800 font-semibold text-[14px] min-w-[42px]">
+            <li className="w-full flex items-center space-x-2 md:space-x-4 mt-[5px] lg:mt-[12px]">
+              <h1 className="text-gray-800 font-semibold text-[13px] lg:text-[14px] min-w-[42px]">
                 4 Star
               </h1>
               <div className="mx-[16px] w-full relative h-[4px] rounded-md bg-gray-300 max-w-[340px]">
                 <div className="absolute left-0 w-[23%] rounded-md h-full bg-primary" />
               </div>
-              <h1 className="text-[14px] text-gray-600">1.1k</h1>
+              <h1 className="text-[13px] lg:text-[14px] text-gray-600">1.1k</h1>
             </li>
 
-            <li className="w-full flex items-center space-x-4 mt-[12px]">
-              <h1 className="text-gray-800 font-semibold text-[14px] min-w-[42px]">
+            <li className="w-full flex items-center space-x-2 md:space-x-4 mt-[5px] lg:mt-[12px]">
+              <h1 className="text-gray-800 font-semibold text-[13px] lg:text-[14px] min-w-[42px]">
                 3 Star
               </h1>
               <div className="mx-[16px] w-full relative h-[4px] rounded-md bg-gray-300 max-w-[340px]">
                 <div className="absolute left-0 w-[60%] rounded-md h-full bg-primary" />
               </div>
-              <h1 className="text-[14px] text-gray-600">8.2k</h1>
+              <h1 className="text-[13px] lg:text-[14px] text-gray-600">8.2k</h1>
             </li>
 
-            <li className="w-full flex items-center space-x-4 mt-[12px]">
-              <h1 className="text-gray-800 font-semibold text-[14px] min-w-[42px]">
+            <li className="w-full flex items-center space-x-2 md:space-x-4 mt-[5px] lg:mt-[12px]">
+              <h1 className="text-gray-800 font-semibold text-[13px] lg:text-[14px] min-w-[42px]">
                 2 Star
               </h1>
               <div className="mx-[16px] w-full relative h-[4px] rounded-md bg-gray-300 max-w-[340px]">
                 <div className="absolute left-0 w-[19%] rounded-md h-full bg-primary" />
               </div>
-              <h1 className="text-[14px] text-gray-600">73.9k</h1>
+              <h1 className="text-[13px] lg:text-[14px] text-gray-600">
+                73.9k
+              </h1>
             </li>
-            <li className="w-full flex items-center space-x-4 mt-[12px]">
-              <h1 className="text-gray-800 font-semibold text-[14px] min-w-[42px]">
+            <li className="w-full flex items-center space-x-2 md:space-x-4 mt-[5px] lg:mt-[12px]">
+              <h1 className="text-gray-800 font-semibold text-[13px] lg:text-[14px] min-w-[42px]">
                 1 Star
               </h1>
               <div className="mx-[16px] w-full relative h-[4px] rounded-md bg-gray-300 max-w-[340px]">
                 <div className="absolute left-0 w-[16%] rounded-md h-full bg-primary" />
               </div>
-              <h1 className="text-[14px] text-gray-600">2.6k</h1>
+              <h1 className="text-[13px] lg:text-[14px] text-gray-600">2.6k</h1>
             </li>
           </ul>
         </div>
       </div>
 
       {componentFor === ComponentShowOnType.UserProductDetails && (
-        <div>
+        <>
           <div className="flex items-center justify-between">
             <h1 className="text-sm text-gray-600">
               Click the button to add a review
@@ -137,7 +140,7 @@ function Reviews({ componentFor, userId, productId }: IProps): JSX.Element {
               </Button>
             </div>
           ) : null}
-        </div>
+        </>
       )}
 
       <div className="w-full bg-white pb-[40px]">
@@ -168,9 +171,9 @@ function UserReview({ review, componentFor }: UserReviewProps) {
   };
 
   return (
-    <div className="min-h-[123px] w-full flex flex-row mt-[40px]">
-      <div className="w-full max-w-[240px] min-h-[123px] flex flex-col items-center justify-start h-full">
-        <div className="relative w-[64px] h-[64px] rounded-full overflow-hidden">
+    <div className="min-h-[123px] w-full flex flex-row mt-[18px] lg:mt-[40px]">
+      <div className="w-full max-w-[240px] min-h-[123px] flex flex-col items-start lg:items-center justify-start h-full">
+        <div className="relative w-[38px] lg:w-[64px] h-[38px] lg:h-[64px] rounded-full overflow-hidden">
           <Image
             src={review.profileUrl}
             fill
@@ -178,24 +181,21 @@ function UserReview({ review, componentFor }: UserReviewProps) {
             className="object-cover"
           />
         </div>
-        <h1 className="text-[14px] font-semibold mt-[16px]">{review.name}</h1>
+        <h1 className="text-[13px] lg:text-[14px] font-semibold mt-[10px] lg:mt-[16px] line-clamp-1">
+          {review.name}
+        </h1>
         <p className="text-[12px] text-gray-600 mt-[4px]">{review.createdAt}</p>
       </div>
 
       <div className="ml-[16px] pr-8">
         <div className="flex items-center text-primary">
-          <AiFillStar className="fill-warningMain w-[19px] h-[19px]" />
-          <AiFillStar className="fill-warningMain w-[19px] h-[19px]" />
-          <AiFillStar className="fill-warningMain w-[19px] h-[19px]" />
-          <IoMdStarHalf className="w-[21px] h-[21px] fill-warningMain" />
-          <AiFillStar className="w-[19px] h-[19px] fill-gray-400" />
+          <AiFillStar className="fill-warningMain w-[15px] lg:w-[19px] h-[15px] lg:h-[19px]" />
+          <AiFillStar className="fill-warningMain w-[15px] lg:w-[19px] h-[15px] lg:h-[19px]" />
+          <AiFillStar className="fill-warningMain w-[15px] lg:w-[19px] h-[15px] lg:h-[19px]" />
+          <IoMdStarHalf className="w-[17px] lg:w-[21px] h-[17px] lg:h-[21px] fill-warningMain" />
+          <AiFillStar className="w-[15px] lg:w-[19px] h-[15px] lg:h-[19px] fill-gray-400" />
         </div>
-        <div className="py-[8px] flex items-center space-x-2">
-          <MdVerified className="text-green-500" />
-          <h3 className="text-green-500 text-[12px]">Verified purchase</h3>
-        </div>
-        <p className="text-[14px] mt-[8px]">{review.comment}</p>
-
+        <p className="text-[13px] lg:text-[14px] mt-[8px]">{review.comment}</p>
         {componentFor === ComponentShowOnType.SellerDashboardProductDetails && (
           <>
             <button
