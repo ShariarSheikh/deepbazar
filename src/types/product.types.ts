@@ -28,7 +28,6 @@ export interface ProductTypes {
     totalReviews: number;
   };
   totalAnswers: number;
-  totalWishlist: number;
 
   price: number;
   discountPrice: number;

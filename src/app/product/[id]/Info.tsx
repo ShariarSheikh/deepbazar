@@ -1,25 +1,63 @@
 import CartQuantityButtons from '@/components/common/CartQuantityButtons';
 import { useAppDispatch } from '@/redux/hooks';
-import { FC, useState } from 'react';
-import { AiOutlineHeart } from 'react-icons/ai';
+import { FC, useEffect, useState } from 'react';
+import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 import SellerAndDeliveryInfo from './SellerAndDeliveryInfo';
 import { ProductTypes } from '@/types/product.types';
 import { addToCart } from '@/redux/features/cartSlice';
 import StarRating from '@/components/common/StarRating';
+import {
+  useCheckWishlistAddedOrNotQuery,
+  useCreateWishlistMutation,
+  useDeleteWishlistMutation,
+  useGetAllWishlistByIdQuery,
+} from '@/redux/services/wishlistApi';
+import Button from '@/components/common/Button';
 
 const Info: FC<{ data: ProductTypes }> = ({ data }) => {
+  // WISHLIST -------------- API
+  const [createWishlist, createWishlistApi] = useCreateWishlistMutation();
+  const [deleteWishlist, deleteWishlistApi] = useDeleteWishlistMutation();
+
+  const getWishlist = useGetAllWishlistByIdQuery({ productId: data._id });
+  const checkWishlist = useCheckWishlistAddedOrNotQuery({
+    productId: data._id,
+  });
+  // WISHLIST -------------- API
+
   const [quantity, setQuantity] = useState<number>(1);
+
   const dispatch = useAppDispatch();
 
-  const increment = () => {
-    setQuantity(quantity + 1);
-  };
+  const increment = () => setQuantity(quantity + 1);
   const decrement = () => {
     quantity > 1 && setQuantity(quantity - 1);
   };
 
+  const wishlistHandler = () => {
+    if (checkWishlist.isError) {
+      createWishlist({ productId: data._id });
+    } else {
+      deleteWishlist({ productId: data._id });
+    }
+  };
+
   //add to cart
-  const addItems = () => dispatch(addToCart({ data, quantity }));
+  const addItems = () => {
+    dispatch(addToCart({ data, quantity }));
+  };
+
+  useEffect(() => {
+    if (!createWishlistApi.isSuccess) return undefined;
+    getWishlist.refetch();
+    checkWishlist.refetch();
+  }, [createWishlistApi.isSuccess]);
+
+  useEffect(() => {
+    if (!deleteWishlistApi.isSuccess) return undefined;
+    getWishlist.refetch();
+    checkWishlist.refetch();
+  }, [deleteWishlistApi.isSuccess]);
 
   const selPrice =
     data.discountPrice > 0 && data.discountPercent
@@ -114,10 +152,33 @@ const Info: FC<{ data: ProductTypes }> = ({ data }) => {
             Add to Cart
           </button>
 
-          <button className="active:scale-95 duration-150 bg-white group hover:bg-[#def5ff] border-2 border-[#def5ff] h-[40px] px-[20px] rounded-[6px] flex items-center justify-center">
-            <span className="mr-[4px] text-primary">45</span>
-            <AiOutlineHeart className="text-primary font-medium text-[20px] group-hover:scale-110 duration-150" />
-          </button>
+          <Button
+            onClick={wishlistHandler}
+            disabled={
+              createWishlistApi.isLoading ||
+              deleteWishlistApi.isLoading ||
+              getWishlist.isLoading ||
+              checkWishlist.isLoading
+            }
+            isLoading={
+              createWishlistApi.isLoading ||
+              deleteWishlistApi.isLoading ||
+              getWishlist.isLoading ||
+              checkWishlist.isLoading
+            }
+            loadingColor="white"
+            loadingSpinnerSize={40}
+            className="active:scale-95 duration-150 bg-white group hover:bg-[#def5ff] border-2 border-[#def5ff] h-[40px] px-[20px] rounded-[6px] flex items-center justify-center"
+          >
+            <span className="mr-[4px] text-primary">
+              {getWishlist.data?.data.totals ?? 0}
+            </span>
+            {checkWishlist.isError ? (
+              <AiOutlineHeart className="text-primary font-medium text-[20px] group-hover:scale-110 duration-150" />
+            ) : (
+              <AiFillHeart className="fill-primary font-medium text-[20px] group-hover:scale-110 duration-150" />
+            )}
+          </Button>
         </div>
       </div>
 
