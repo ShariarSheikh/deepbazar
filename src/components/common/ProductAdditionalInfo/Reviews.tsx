@@ -14,13 +14,14 @@ import { InputApiErrorMessage } from '../FormikCustomInput';
 import { ReviewData } from '@/types/review.type';
 import dateFormat from '@/utils/dateFormat';
 import { useAppSelector } from '@/redux/hooks';
+import StarRating from '../StarRating';
 
 interface IProps {
   componentFor: ComponentShowOnType;
   productId: string;
   setTotalReviews: Dispatch<SetStateAction<number>>;
 }
-const RatingType = [
+export const RatingType = [
   'Rating is Required *',
   'Very Poor',
   'Poor',
@@ -321,13 +322,7 @@ function UserReview({ review, componentFor }: UserReviewProps) {
       </div>
 
       <div className="pl-[8px] lg:ml-[16px] pr-[5px] lg:pr-8">
-        <div className="flex items-center text-primary">
-          <AiFillStar className="fill-warningMain w-[15px] lg:w-[19px] h-[15px] lg:h-[19px]" />
-          <AiFillStar className="fill-warningMain w-[15px] lg:w-[19px] h-[15px] lg:h-[19px]" />
-          <AiFillStar className="fill-warningMain w-[15px] lg:w-[19px] h-[15px] lg:h-[19px]" />
-          <IoMdStarHalf className="w-[17px] lg:w-[21px] h-[17px] lg:h-[21px] fill-warningMain" />
-          <AiFillStar className="w-[15px] lg:w-[19px] h-[15px] lg:h-[19px] fill-gray-400" />
-        </div>
+        <StarRating rating={review.star} />
         <p className="text-[13px] lg:text-[14px] mt-[8px]">{review.message}</p>
         {componentFor === ComponentShowOnType.SellerDashboardProductDetails && (
           <>

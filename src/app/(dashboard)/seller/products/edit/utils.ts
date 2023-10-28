@@ -71,18 +71,24 @@ export const appendDataToForm = (props: AppendDataToForm): FormData => {
   const { data, sellerId, productCurrentImages } = props;
 
   const tags = data.tags.filter(tag => tag !== 'undefined');
+
+  const imagesLinks: ProductImage[] = [];
+
   data.images.map(image => {
     if (typeof image === 'object')
       // @ts-ignore
       return formData.append('images', image, image.name);
     else {
-      const imageLink = productCurrentImages.filter(
-        imgData => imgData.defaultImg === image
-      );
-
-      createFormData(formData, 'imagesLinks', imageLink);
+      productCurrentImages.map(imgData => {
+        if (imgData.defaultImg !== image) return undefined;
+        imagesLinks.push(imgData);
+      });
     }
   });
+
+  if (imagesLinks.length > 0) {
+    createFormData(formData, 'imagesLinks', imagesLinks);
+  }
 
   createFormData(formData, 'title', data.title);
   createFormData(formData, 'productCode', data.productCode);

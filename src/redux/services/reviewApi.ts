@@ -23,8 +23,32 @@ export const reviewApi = apiSlice.injectEndpoints({
         method: 'get',
       }),
     }),
+
+    getUserAllReviews: builder.query<
+      { data: { totals: number; reviews: ReviewData[] }; success: boolean },
+      void
+    >({
+      query: () => ({
+        url: `/review/get-user-all-reviews`,
+        method: 'get',
+      }),
+    }),
+
+    deleteReview: builder.mutation<
+      { data: { totals: number; reviews: ReviewData }; success: boolean },
+      { reviewId: string }
+    >({
+      query: credential => ({
+        url: `/review/delete/${credential.reviewId}`,
+        method: 'delete',
+      }),
+    }),
   }),
 });
 
-export const { useCreateReviewMutation, useGetAllReviewByProductIdQuery } =
-  reviewApi;
+export const {
+  useCreateReviewMutation,
+  useGetAllReviewByProductIdQuery,
+  useGetUserAllReviewsQuery,
+  useDeleteReviewMutation,
+} = reviewApi;

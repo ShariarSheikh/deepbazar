@@ -1,11 +1,11 @@
 import CartQuantityButtons from '@/components/common/CartQuantityButtons';
-import RatingStar from '@/components/common/RatingStar';
 import { useAppDispatch } from '@/redux/hooks';
 import { FC, useState } from 'react';
 import { AiOutlineHeart } from 'react-icons/ai';
 import SellerAndDeliveryInfo from './SellerAndDeliveryInfo';
 import { ProductTypes } from '@/types/product.types';
 import { addToCart } from '@/redux/features/cartSlice';
+import StarRating from '@/components/common/StarRating';
 
 const Info: FC<{ data: ProductTypes }> = ({ data }) => {
   const [quantity, setQuantity] = useState<number>(1);
@@ -37,7 +37,13 @@ const Info: FC<{ data: ProductTypes }> = ({ data }) => {
 
         <div className="mt-3 flex items-center space-x-3">
           <div className="flex items-center space-x-1">
-            <RatingStar reviews={data.ratings} />
+            <div className="flex items-center">
+              <StarRating rating={data.ratings.star} />
+              <p className="text-[10px] font-medium text-gray-500 pt-[5px] ml-[8px]">
+                ({data.ratings.totalReviews})
+              </p>
+            </div>
+
             <p className="text-[12px] text-gray-500 pt-[3px]">Ratings</p>
           </div>
           <span className="bg-[#D9D9D9] h-[18px] w-[1px]" />
@@ -77,7 +83,7 @@ const Info: FC<{ data: ProductTypes }> = ({ data }) => {
             {selPrice}
           </span>
 
-          {data.discountPrice > 0 && <del>{data.price}</del>}
+          {data.discountPrice > 0 && <del>${data.price}</del>}
           {data.discountPercent > 0 && (
             <span className="bg-primary text-white text-[12px] px-2 py-[2px] rounded-[6px]">
               {data.discountPercent}%

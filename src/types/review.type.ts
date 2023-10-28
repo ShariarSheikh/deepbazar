@@ -1,3 +1,5 @@
+import { ProductImage } from './product.types';
+
 export enum RatingLevelEnum {
   Required = 'Rating is Required *',
   VeryPoor = 'Very Poor',
@@ -21,7 +23,12 @@ export interface ReviewData {
     _id: string;
     name: string;
   };
-  productId: string;
+  product: {
+    images?: ProductImage[];
+    title?: string;
+    _id: string;
+  };
+
   star: number;
   ratingLevel: RatingLevelEnum;
   message: string;
