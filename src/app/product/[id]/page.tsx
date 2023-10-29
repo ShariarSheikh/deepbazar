@@ -1,5 +1,6 @@
 'use client';
 
+import type { Metadata } from 'next';
 import ProductAdditionalInfo, {
   ComponentShowOnType,
 } from '@/components/common/ProductAdditionalInfo';
@@ -15,6 +16,10 @@ import { useRouter } from 'next/navigation';
 import { useAppSelector } from '@/redux/hooks';
 
 //------------------------------------------------------------------
+const metadata: Metadata = {
+  title: 'Product',
+  description: 'Product Page',
+};
 //------------------------------------------------------------------
 
 const Page = ({ params }: { params: { id: string } }) => {
@@ -31,6 +36,8 @@ const Page = ({ params }: { params: { id: string } }) => {
 
   const product = data?.data;
   if (!product?._id || isError) return router.back();
+
+  metadata.title = product.title;
 
   return (
     <main className="min-h-[60vh] max-w-[1201px] w-full m-auto px-4 pb-4">

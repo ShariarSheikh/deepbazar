@@ -18,24 +18,18 @@ const Order = () => {
 
   const dispatch = useAppDispatch();
 
-  // useEffect(() => {
-  //   cartTotalQuantity <= 0 && router.replace('/');
-  // }, [cartItems]);
-
   return (
     <div className="w-full lg:w-2/4 py-2 px-2">
       <h1 className="text-xl font-semibold">Your Order</h1>
 
-      <div className="w-full max-h-[600px] overflow-y-scroll">
-        {/* {cartItems?.map((item: CartData) => ( */}
+      <div className="w-full max-h-[600px] overflow-y-auto invisible-scrollbar visible-scrollbar-onHover">
         <ItemsList data={cartItems} />
-        {/* ))} */}
       </div>
 
       <div className="w-full flex justify-between self-end items-center  h-14">
         <p
           className="py-2 px-3 rounded text-sm border border-red-500 hover:bg-red-500
-         hover:text-white text-red-400 cursor-pointer active:scale-105 duration-200"
+         hover:text-white text-red-500 cursor-pointer active:scale-105 duration-200"
           onClick={() => dispatch(clearCartItems())}
         >
           Clear All Items
@@ -136,13 +130,13 @@ const Item = ({ data }: { data: CartData }) => {
       </div>
 
       {/* remove items */}
-      <div className="w-10 h-10 rounded-full border border-red-500 absolute right-2 bottom-20">
-        <p className="w-full h-full flex justify-center items-center">
+      <div className="w-10 h-10 rounded-full border border-red-[#8b0000] absolute right-2 bottom-20">
+        <button className="w-full h-full flex justify-center items-center">
           <AiOutlineClose
-            className="cursor-pointer active:scale-125 duration-200 md:bg-transparent"
+            className="cursor-pointer active:scale-125 duration-200 md:bg-transparent fill-[#8b0000]"
             onClick={() => dispatch(removeItem({ id: productId }))}
           />
-        </p>
+        </button>
       </div>
     </div>
   );

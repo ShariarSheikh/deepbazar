@@ -2,8 +2,14 @@
 import { useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
 import Feed from './Feed';
+import type { Metadata } from 'next';
+
+//-----------------------------------------
+const metadata: Metadata = {};
+//-----------------------------------------
 
 export default function Page() {
+  metadata.title = 'Shop - DeepBazar';
   const searchParams = useSearchParams();
 
   const { category } = {

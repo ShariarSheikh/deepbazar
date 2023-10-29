@@ -10,21 +10,16 @@ import HeroSection from '@/views/home/HeroSection';
 import JustForYou from '@/views/home/JustForYou';
 import NewArrivals from '@/views/home/NewArrivals';
 import { SwiperSlide } from 'swiper/react';
+import type { Metadata } from 'next';
 
-// import ProductCart from '@/components/common/ProductCart';
-// import smartPhones from '@/fakeDB/smartPhones';
-// import CategorySection from '@/views/home/CategorySection';
-// import FeaturedProducts from '@/views/home/FeaturedProducts';
-// import HeroSection from '@/views/home/HeroSection';
-// import JustForYou from '@/views/home/JustForYou';
-// import SponsoredItem from '@/views/home/SponsoredItem';
-// import { ProductSectionName } from '@/views/home/utils';
-// import { SwiperSlide } from 'swiper/react';
-
-//---------------------------------------------------------
+//-----------------------------------------
+const metadata: Metadata = {};
+//-----------------------------------------
 
 //---------------------------------------------------------
 export default function Home() {
+  metadata.title = 'Home - DeepBazar';
+
   const getNewArrivals = useGetProductsQuery({
     query: { limit: 9, productSectionName: ProductSectionName.NewArrivals },
   });

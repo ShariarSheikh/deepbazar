@@ -45,6 +45,7 @@ const Page = () => {
 
   useEffect(() => {
     if (deleteWishlistApi.isLoading) return;
+    setIsDeleteBox(false);
     refetch();
     return () => undefined;
   }, [deleteWishlistApi.isLoading]);
@@ -58,7 +59,7 @@ const Page = () => {
       {isLoading && <LoadingPage />}
 
       <div className="w-full h-full p-1 md:p-5 bg-white mt-3 md:mt-10 rounded-[6px] shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]">
-        {typeof data !== 'undefined' && data.data.wishlist?.length && (
+        {typeof data !== 'undefined' && data.data.wishlist?.length > 0 && (
           <>
             {data.data.wishlist.map(wishlist => (
               <>
@@ -122,14 +123,17 @@ const Page = () => {
                   isOpen={isDeleteBox}
                 >
                   <div className="w-[300px] flex flex-col justify-end">
-                    <div className="w-full flex justify-center">
+                    <div className="w-full flex flex-col justify-center">
+                      <p className="text-gray-600 text-sm py-2">
+                        Delete Item from wishlist!
+                      </p>
                       <Button
                         disabled={deleteWishlistApi.isLoading}
                         isLoading={deleteWishlistApi.isLoading}
                         loadingColor="white"
                         loadingSpinnerSize={40}
                         onClick={() => deleteHandler(wishlist.product._id)}
-                        className="mt-[4px] font-semibold text-white rounded-[6px] h-[32px] w-[175px] bg-red-500 active:scale-95 duration-200"
+                        className="mt-[4px] font-semibold text-white rounded-[6px] h-[32px] w-full bg-red-500 active:scale-95 duration-200"
                       >
                         Confirm Delete
                       </Button>

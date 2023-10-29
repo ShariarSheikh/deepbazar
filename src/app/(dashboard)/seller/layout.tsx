@@ -6,14 +6,17 @@ import { Role } from '@/app/auth/utils';
 import { LoadingPage } from '@/components/common/loading';
 import Header from './header';
 import SellerSidebar from './header/HamburgerMenu';
+import type { Metadata } from 'next';
 
+const metadata: Metadata = {};
 interface IProps {
   children: ReactNode;
 }
 
 const SellerLayout: FC<IProps> = ({ children }) => {
-  const { user } = useAppSelector(state => state.authSlice);
+  metadata.title = 'Seller Dashboard - DeepBazar';
 
+  const { user } = useAppSelector(state => state.authSlice);
   const router = useRouter();
 
   if (user?.role.includes(Role.USER)) {

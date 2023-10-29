@@ -1,10 +1,11 @@
 import Link from 'next/link';
 import { FC } from 'react';
-import { AiOutlineHeart } from 'react-icons/ai';
 import RatingStar from './RatingStar';
 import { ProductListType } from '@/types/product.types';
 import Image from 'next/image';
 import Button from './Button';
+import { useAppDispatch } from '@/redux/hooks';
+import { CartDataTypes, addToCart } from '@/redux/features/cartSlice';
 
 //---------------------------------------
 interface IProps {
@@ -14,6 +15,21 @@ interface IProps {
 //---------------------------------------
 
 const ProductCart: FC<IProps> = ({ isInsideSlider, product }) => {
+  const dispatch = useAppDispatch();
+
+  //add to cart
+  const addItems = () => {
+    const cartItem: CartDataTypes = {
+      title: product.title,
+      imgUrl: product.imgUrl,
+      price: product.price,
+      discountPrice: product.discountPrice,
+      discountPercent: product.discountPercent,
+      productId: product._id,
+    };
+    dispatch(addToCart({ data: cartItem, quantity: 1 }));
+  };
+
   const selPrice =
     product.discountPrice > 0 && product.discountPercent
       ? product.discountPrice
@@ -57,12 +73,11 @@ const ProductCart: FC<IProps> = ({ isInsideSlider, product }) => {
           <RatingStar reviews={product.ratings} />
         </div>
 
-        <div className="w-full flex justify-between">
-          <Button className="text-sm w-[25px] lg:w-[33px] h-[25px] lg:h-[33px] flex items-center justify-center rounded-[6px] active:scale-95 duration-150 font-medium border border-[#008ECC] hover:bg-primary text-primary hover:text-white group">
-            <AiOutlineHeart className="text-primary group-hover:text-white font-medium text-[15px] lg:text-[20px] group-hover:scale-110 duration-150" />
-          </Button>
-
-          <Button className="text-[12px] lg:text-sm w-full max-w-[68%] lg:max-w-[80%] rounded-[6px] active:scale-95 duration-150 font-medium h-[25px] lg:h-[33px] border border-[#008ECC] hover:bg-primary text-primary hover:text-white">
+        <div className="w-full flex justify-center">
+          <Button
+            onClick={addItems}
+            className="text-[12px] lg:text-sm w-full max-w-[95%] rounded-full active:scale-95 duration-150 font-medium h-[25px] lg:h-[33px] border border-[#008ECC] hover:bg-primary text-primary hover:text-white"
+          >
             Add to Cart
           </Button>
         </div>

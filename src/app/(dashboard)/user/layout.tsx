@@ -5,12 +5,16 @@ import Sidebar from './Sidebar';
 import { useAppSelector } from '@/redux/hooks';
 import { Role } from '@/app/auth/utils';
 import { LoadingPage } from '@/components/common/loading';
+import type { Metadata } from 'next';
 
+const metadata: Metadata = {};
 interface IProps {
   children: ReactNode;
 }
 
 const UserLayout: FC<IProps> = ({ children }) => {
+  metadata.title = 'User Panel - DeepBazar';
+
   const { user } = useAppSelector(state => state.authSlice);
   const router = useRouter();
 
