@@ -1,10 +1,10 @@
 import CartQuantityButtons from '@/components/common/CartQuantityButtons';
-import { useAppDispatch } from '@/redux/hooks';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { FC, useEffect, useState } from 'react';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 import SellerAndDeliveryInfo from './SellerAndDeliveryInfo';
 import { ProductTypes } from '@/types/product.types';
-import { addToCart } from '@/redux/features/cartSlice';
+import { CartDataTypes, addToCart } from '@/redux/features/cartSlice';
 import StarRating from '@/components/common/StarRating';
 import {
   useCheckWishlistAddedOrNotQuery,
@@ -15,6 +15,8 @@ import {
 import Button from '@/components/common/Button';
 
 const Info: FC<{ data: ProductTypes }> = ({ data }) => {
+  const user = useAppSelector(state => state.authSlice);
+
   // WISHLIST -------------- API
   const [createWishlist, createWishlistApi] = useCreateWishlistMutation();
   const [deleteWishlist, deleteWishlistApi] = useDeleteWishlistMutation();
@@ -35,6 +37,8 @@ const Info: FC<{ data: ProductTypes }> = ({ data }) => {
   };
 
   const wishlistHandler = () => {
+    if (!user.user?.role.includes('USER')) return;
+
     if (checkWishlist.isError) {
       createWishlist({ productId: data._id });
     } else {
@@ -44,7 +48,15 @@ const Info: FC<{ data: ProductTypes }> = ({ data }) => {
 
   //add to cart
   const addItems = () => {
-    dispatch(addToCart({ data, quantity }));
+    const cartItem: CartDataTypes = {
+      title: data.title,
+      imgUrl: data.images.filter(imgUrl => imgUrl.isDefault)[0].cardImg,
+      price: data.price,
+      discountPrice: data.discountPrice,
+      discountPercent: data.discountPercent,
+      productId: data._id,
+    };
+    dispatch(addToCart({ data: cartItem, quantity }));
   };
 
   useEffect(() => {

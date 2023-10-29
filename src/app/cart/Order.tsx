@@ -7,6 +7,7 @@ import {
   removeItem,
 } from '@/redux/features/cartSlice';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
 
@@ -34,7 +35,7 @@ const Order = () => {
       <div className="w-full flex justify-between self-end items-center  h-14">
         <p
           className="py-2 px-3 rounded text-sm border border-red-500 hover:bg-red-500
-         hover:text-white cursor-pointer active:scale-105 duration-200"
+         hover:text-white text-red-400 cursor-pointer active:scale-105 duration-200"
           onClick={() => dispatch(clearCartItems())}
         >
           Clear All Items
@@ -57,7 +58,7 @@ export default Order;
 const ItemsList = ({ data }: { data: CartData[] }) => {
   return (
     <div className="w-full max-h-[100vh] h-full pb-4 px-3">
-      {data?.map(item => <Item data={item} key={item._id} />)}
+      {data?.map(item => <Item data={item} key={item.productId} />)}
     </div>
   );
 };
@@ -66,7 +67,7 @@ const Item = ({ data }: { data: CartData }) => {
   const { cartItems } = useAppSelector(state => state.cartSlice);
 
   //cart items data
-  const { title, price, cartQuantity, _id } = data;
+  const { title, price, cartQuantity, productId, imgUrl } = data;
 
   const [countItem, setCountItem] = useState<number>(1);
   const dispatch = useAppDispatch();
@@ -95,9 +96,10 @@ const Item = ({ data }: { data: CartData }) => {
     <div className="w-full bg-gray-50 max-h-[180px] flex flex-row items-center mt-0 relative border-b border-gray-300 pb-1 overflow-hidden">
       {/* img container  */}
       <div className="h-[150px] w-[35%] overflow-hidden relative rounded-[6px]">
-        <img
+        <Image
+          fill
           className="w-full h-full cursor-pointer hover:scale-110 duration-200"
-          src="https://via.placeholder.com/193x150"
+          src={imgUrl}
           alt="cart items"
         />
       </div>
@@ -138,7 +140,7 @@ const Item = ({ data }: { data: CartData }) => {
         <p className="w-full h-full flex justify-center items-center">
           <AiOutlineClose
             className="cursor-pointer active:scale-125 duration-200 md:bg-transparent"
-            onClick={() => dispatch(removeItem({ id: _id }))}
+            onClick={() => dispatch(removeItem({ id: productId }))}
           />
         </p>
       </div>

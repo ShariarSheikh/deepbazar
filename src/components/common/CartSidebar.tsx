@@ -20,7 +20,7 @@ import CartQuantityButtons from './CartQuantityButtons';
 const ItemsList = ({ cartItems }: { cartItems: CartData[] }) => {
   return (
     <div className="w-full max-h-[100vh] h-full overflow-y-scroll pb-4 px-3">
-      {cartItems?.map(item => <Item data={item} key={item._id} />)}
+      {cartItems?.map(item => <Item data={item} key={item.productId} />)}
     </div>
   );
 };
@@ -29,7 +29,7 @@ const Item = ({ data }: { data: CartData }) => {
   const { cartItems } = useAppSelector(state => state.cartSlice);
 
   //cart items data
-  const { title, price, cartQuantity, _id } = data;
+  const { title, price, cartQuantity, productId } = data;
 
   const [countItem, setCountItem] = useState<number>(1);
   const dispatch = useAppDispatch();
@@ -102,7 +102,7 @@ const Item = ({ data }: { data: CartData }) => {
         <p className="w-full h-full flex justify-center items-center">
           <AiOutlineClose
             className="cursor-pointer active:scale-125 duration-200 md:bg-transparent"
-            onClick={() => dispatch(removeItem({ id: _id }))}
+            onClick={() => dispatch(removeItem({ id: productId }))}
           />
         </p>
       </div>

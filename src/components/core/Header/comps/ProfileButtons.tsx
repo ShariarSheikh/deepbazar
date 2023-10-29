@@ -15,6 +15,9 @@ import { MdOutlinePersonOutline } from 'react-icons/md';
 
 const ProfileButtons = () => {
   const { user, isLoading } = useAppSelector(state => state.authSlice);
+  const cartTotalQuantity = useAppSelector(
+    state => state.cartSlice.cartTotalQuantity
+  );
 
   const route = useRouter();
 
@@ -28,6 +31,10 @@ const ProfileButtons = () => {
 
     //REDIRECT TO SELLER PROFILE
     if (user?.role.includes(Role.SELLER)) return route.push(`/seller`);
+  };
+
+  const handleCart = () => {
+    route.push('/cart');
   };
 
   const profile = isLoading ? (
@@ -72,27 +79,26 @@ const ProfileButtons = () => {
   return (
     <div className="flex items-center md:space-x-4 space-x-2 ml-[30px]">
       {profile}
-      <button
-        onClick={() => handleRouter('wishlist')}
-        className="flex items-center w-full relative"
-      >
-        <AiOutlineHeart size={24} className="text-primary" />
-        <div className="absolute right-[62px] -top-[7px] ">
-          <CartBadges number={6} />
-        </div>
 
-        <p className="ml-[6px] text-[16px] font-bold text-[#666666]">
-          Wishlist
-        </p>
-      </button>
+      {!user?.role.includes(Role.SELLER) && (
+        <button
+          onClick={() => handleRouter('wishlist')}
+          className="flex items-center w-full relative"
+        >
+          <AiOutlineHeart size={24} className="text-primary" />
+          <p className="ml-[6px] text-[16px] font-bold text-[#666666]">
+            Wishlist
+          </p>
+        </button>
+      )}
 
       <button
-        // onClick={handleCart}
+        onClick={handleCart}
         className="flex items-center w-full relative"
       >
         <FiShoppingCart size={24} className="text-primary" />
         <div className="absolute right-[35px] -top-[7px] ">
-          <CartBadges number={6} />
+          <CartBadges number={cartTotalQuantity ?? 0} />
         </div>
 
         <p className="ml-[6px] text-[16px] font-bold text-[#666666]">Cart</p>

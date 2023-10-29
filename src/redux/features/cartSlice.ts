@@ -1,8 +1,16 @@
-import { ProductTypes } from '@/types/product.types';
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 //----------------------------------------------
-export interface CartData extends ProductTypes {
+export interface CartDataTypes {
+  title: string;
+  imgUrl: string;
+  price: number;
+  discountPrice: number;
+  discountPercent: number;
+  productId: string;
+}
+
+export interface CartData extends CartDataTypes {
   cartQuantity: number;
 }
 
@@ -75,10 +83,10 @@ const cartSlice = createSlice({
 
     addToCart: (
       state,
-      action: PayloadAction<{ data: ProductTypes; quantity: number }>
+      action: PayloadAction<{ data: CartDataTypes; quantity: number }>
     ) => {
       const itemIndex = state.cartItems.findIndex(
-        item => item._id === action.payload.data._id
+        item => item.productId === action.payload.data.productId
       );
 
       if (itemIndex >= 0) {
@@ -100,7 +108,7 @@ const cartSlice = createSlice({
     },
     removeItem: (state, action: PayloadAction<{ id: string }>) => {
       const newCartItems = state.cartItems.filter(
-        item => item._id !== action.payload.id
+        item => item.productId !== action.payload.id
       );
 
       state.cartItems = newCartItems;
@@ -112,17 +120,17 @@ const cartSlice = createSlice({
 
     decreaseCartItems: (
       state,
-      action: PayloadAction<{ data: ProductTypes; quantity: number }>
+      action: PayloadAction<{ data: CartDataTypes; quantity: number }>
     ) => {
       const itemIndex = state.cartItems.findIndex(
-        item => item._id === action.payload.data._id
+        item => item.productId === action.payload.data.productId
       );
 
       if (state.cartItems[itemIndex].cartQuantity > 1) {
         state.cartItems[itemIndex].cartQuantity -= action.payload.quantity;
       } else if (state.cartItems[itemIndex].cartQuantity === 1) {
         state.cartItems = state.cartItems.filter(
-          item => item._id !== action.payload.data._id
+          item => item.productId !== action.payload.data.productId
         );
       }
 
