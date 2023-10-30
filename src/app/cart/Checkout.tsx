@@ -22,10 +22,6 @@ const Checkout = () => {
             <span className="font-semibold">${cart.subtotal}</span>
           </li>
           <li className="flex items-center justify-between mb-[12px]">
-            <span>Discount</span>
-            <span className="font-semibold">${cart.totalDiscountPrice}</span>
-          </li>
-          <li className="flex items-center justify-between mb-[12px]">
             <span>Tax</span>
             <span className="font-semibold">$0.00</span>
           </li>

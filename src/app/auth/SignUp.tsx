@@ -95,7 +95,6 @@ const SignUp: FC<IProps> = ({ activeOldUserHandler, role }) => {
         refreshToken: loginData.data.refreshToken,
       })
     );
-    router.replace('/');
   }, [loginData, isLoading, dispatch, router]);
 
   return (

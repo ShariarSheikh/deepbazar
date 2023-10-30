@@ -55,11 +55,12 @@ export const auth = apiSlice.injectEndpoints({
       }),
     }),
 
-    profile: builder.query<{ data: { user: Account }; success: boolean }, void>(
-      {
-        query: () => ({ url: '/profile/get' }),
-      }
-    ),
+    profile: builder.mutation<
+      { data: { user: Account }; success: boolean },
+      void
+    >({
+      query: () => ({ url: '/profile/get' }),
+    }),
 
     getProductSeller: builder.query<
       { data: { user: ProductSellerProfile }; success: boolean },
@@ -77,7 +78,7 @@ export const {
   useRegisterMutation,
   useUpdateAccountMutation,
   useChangePasswordMutation,
-  useProfileQuery,
+  useProfileMutation,
   useDeleteAccountMutation,
   useGetProductSellerQuery,
 } = auth;

@@ -117,7 +117,7 @@ const Item = ({ data }: { data: CartData }) => {
       <div className="w-10 h-10 absolute right-2 bottom-20">
         <button className="w-full h-full flex justify-center items-center">
           <RiDeleteBinLine
-            className="cursor-pointer h-8 w-8 active:scale-125 duration-200 md:bg-transparent"
+            className="cursor-pointer text-gray-600 fill-gray-600 h-[25px] w-[25px] active:scale-125 duration-200 md:bg-transparent"
             onClick={() => dispatch(removeItem({ id: data.productId }))}
           />
         </button>

@@ -12,7 +12,7 @@ import PhoneInput, { isValidPhoneNumber } from 'react-phone-number-input';
 import Button from '@/components/common/Button';
 import { InputApiErrorMessage } from '@/components/common/FormikCustomInput';
 import { useCreateShippingAddressMutation } from '@/redux/services/shippingAddressApi';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { PATH_USER } from '@/utils/routes';
 import { AlertType, showAlert } from '@/redux/features/alertSlice';
 
@@ -52,6 +52,11 @@ const ShippingAddress = () => {
 
   const dispatch = useAppDispatch();
   const router = useRouter();
+  const searchParams = useSearchParams();
+
+  const { redirect } = {
+    redirect: searchParams.get('redirect'),
+  };
 
   const inputHandler = (value: string, fieldName: FieldName) => {
     switch (fieldName) {
@@ -182,7 +187,12 @@ const ShippingAddress = () => {
         type: AlertType.Success,
       })
     );
-    router.replace(PATH_USER.shippingAddress);
+
+    if (redirect?.trim()) {
+      return router.replace(redirect);
+    } else {
+      router.replace(PATH_USER.shippingAddress);
+    }
   }, [createShippingAddressApi, router, dispatch]);
 
   return (

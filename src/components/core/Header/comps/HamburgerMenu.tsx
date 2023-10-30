@@ -29,6 +29,7 @@ export default function HamburgerMenu({
 
   const logOutHandle = () => {
     dispatch(logout());
+    closeMenu();
   };
 
   return (

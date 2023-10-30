@@ -19,7 +19,6 @@ interface CartState {
   cartItems: CartData[];
   totalQuantity: number;
   totalAmount: number;
-  totalDiscountPrice: number;
   shippingFee: number;
   subtotal: number;
 }
@@ -35,47 +34,40 @@ const cartInfo =
     : {
         totalAmount: 0,
         totalQuantity: 0,
-        totalDiscount: 0,
         subtotal: 0,
       };
 
 //----------------------------------------------
 const getTotals = (state: CartState) => {
-  const { totalAmount, quantity, totalDiscountPrice, shippingFee } =
-    state.cartItems.reduce(
-      (cartTotal, cartItem) => {
-        const { price, cartQuantity, discountPrice } = cartItem;
+  const { totalAmount, quantity, shippingFee } = state.cartItems.reduce(
+    (cartTotal, cartItem) => {
+      const { price, cartQuantity, discountPrice } = cartItem;
 
-        const currentPrice = discountPrice > 0 ? discountPrice : price;
+      const currentPrice = discountPrice > 0 ? discountPrice : price;
 
-        const itemTotalAmount = currentPrice * cartQuantity;
-        const itemTotalDiscountPrice =
-          discountPrice > 0 ? price * cartQuantity : 0;
+      const itemTotalAmount = currentPrice * cartQuantity;
 
-        cartTotal.totalAmount += itemTotalAmount;
-        cartTotal.quantity += cartQuantity;
-        cartTotal.totalDiscountPrice += itemTotalDiscountPrice;
-        return cartTotal;
-      },
-      {
-        totalAmount: 0,
-        quantity: 0,
-        totalDiscountPrice: 0,
-        shippingFee: 5,
-      }
-    );
+      cartTotal.totalAmount += itemTotalAmount;
+      cartTotal.quantity += cartQuantity;
+
+      return cartTotal;
+    },
+    {
+      totalAmount: 0,
+      quantity: 0,
+      shippingFee: 5,
+    }
+  );
 
   state.totalQuantity = quantity;
   state.subtotal = Number(totalAmount.toFixed(2));
   state.totalAmount = Number((totalAmount + shippingFee).toFixed(2));
-  state.totalDiscountPrice = Number(totalDiscountPrice.toFixed(2));
 
   localStorage.setItem(
     'cartInfo',
     JSON.stringify({
       totalAmount: state.totalAmount,
       totalQuantity: state.totalQuantity,
-      totalDiscount: state.totalDiscountPrice,
       subtotal: state.subtotal,
     })
   );
@@ -87,7 +79,6 @@ const initialState: CartState = {
   cartItems: data,
   totalQuantity: cartInfo.totalQuantity,
   totalAmount: cartInfo.totalAmount,
-  totalDiscountPrice: cartInfo.totalDiscount,
   subtotal: cartInfo.subtotal,
   shippingFee: 0,
 };
