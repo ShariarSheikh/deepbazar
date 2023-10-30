@@ -27,7 +27,7 @@ enum NavigationLinks {
 //-----------------------------------------
 
 const BottomNavigationComp: FC = () => {
-  const { cartTotalQuantity } = useAppSelector(state => state.cartSlice);
+  const { totalQuantity } = useAppSelector(state => state.cartSlice);
   const { user, isLoading } = useAppSelector(state => state.authSlice);
 
   const segment = useSelectedLayoutSegment();
@@ -160,7 +160,7 @@ const BottomNavigationComp: FC = () => {
           <FiShoppingCart />
           <span className="text-[10px]">Cart</span>
           <div className="absolute -top-[5px] right-[15px]">
-            <CartBadges number={cartTotalQuantity || 6} />
+            <CartBadges number={totalQuantity || 6} />
           </div>
         </button>
         <button

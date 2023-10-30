@@ -17,59 +17,79 @@ export interface CartData extends CartDataTypes {
 interface CartState {
   isShowCart: boolean;
   cartItems: CartData[];
-  cartTotalQuantity: number;
-  cartTotalAmount: number;
+  totalQuantity: number;
+  totalAmount: number;
+  totalDiscountPrice: number;
+  shippingFee: number;
+  subtotal: number;
 }
-//----------------------------------------------
-const getTotals = (state: CartState) => {
-  const { total, quantity } = state.cartItems.reduce(
-    (cartTotal, cartItem) => {
-      const { price, cartQuantity } = cartItem;
-      const itemTotal = price * cartQuantity;
-
-      cartTotal.total += itemTotal;
-      cartTotal.quantity += cartQuantity;
-
-      return cartTotal;
-    },
-    {
-      total: 0,
-      quantity: 0,
-    }
-  );
-
-  state.cartTotalQuantity = quantity;
-  state.cartTotalAmount = Number(total.toFixed(2));
-
-  //store in local storage
-  localStorage.setItem('totalAmount', JSON.stringify(state.cartTotalAmount));
-  localStorage.setItem(
-    'totalQuantity',
-    JSON.stringify(state.cartTotalQuantity)
-  );
-};
 
 const data =
   typeof window !== 'undefined' && localStorage.getItem('cartItems')
     ? JSON.parse(localStorage.getItem('cartItems') || '')
     : [];
 
-const totalAmount =
-  typeof window !== 'undefined' && localStorage.getItem('totalAmount')
-    ? JSON.parse(localStorage.getItem('totalAmount') || '')
-    : 0;
+const cartInfo =
+  typeof window !== 'undefined' && localStorage.getItem('cartInfo')
+    ? JSON.parse(localStorage.getItem('cartInfo') || '')
+    : {
+        totalAmount: 0,
+        totalQuantity: 0,
+        totalDiscount: 0,
+        subtotal: 0,
+      };
 
-const totalQuantity =
-  typeof window !== 'undefined' && localStorage.getItem('totalQuantity')
-    ? JSON.parse(localStorage.getItem('totalQuantity') || '')
-    : 0;
+//----------------------------------------------
+const getTotals = (state: CartState) => {
+  const { totalAmount, quantity, totalDiscountPrice, shippingFee } =
+    state.cartItems.reduce(
+      (cartTotal, cartItem) => {
+        const { price, cartQuantity, discountPrice } = cartItem;
+
+        const currentPrice = discountPrice > 0 ? discountPrice : price;
+
+        const itemTotalAmount = currentPrice * cartQuantity;
+        const itemTotalDiscountPrice =
+          discountPrice > 0 ? price * cartQuantity : 0;
+
+        cartTotal.totalAmount += itemTotalAmount;
+        cartTotal.quantity += cartQuantity;
+        cartTotal.totalDiscountPrice += itemTotalDiscountPrice;
+        return cartTotal;
+      },
+      {
+        totalAmount: 0,
+        quantity: 0,
+        totalDiscountPrice: 0,
+        shippingFee: 5,
+      }
+    );
+
+  state.totalQuantity = quantity;
+  state.subtotal = Number(totalAmount.toFixed(2));
+  state.totalAmount = Number((totalAmount + shippingFee).toFixed(2));
+  state.totalDiscountPrice = Number(totalDiscountPrice.toFixed(2));
+
+  localStorage.setItem(
+    'cartInfo',
+    JSON.stringify({
+      totalAmount: state.totalAmount,
+      totalQuantity: state.totalQuantity,
+      totalDiscount: state.totalDiscountPrice,
+      subtotal: state.subtotal,
+    })
+  );
+};
 
 // MAIN
 const initialState: CartState = {
   isShowCart: false,
   cartItems: data,
-  cartTotalQuantity: totalQuantity,
-  cartTotalAmount: totalAmount,
+  totalQuantity: cartInfo.totalQuantity,
+  totalAmount: cartInfo.totalAmount,
+  totalDiscountPrice: cartInfo.totalDiscount,
+  subtotal: cartInfo.subtotal,
+  shippingFee: 0,
 };
 
 const cartSlice = createSlice({

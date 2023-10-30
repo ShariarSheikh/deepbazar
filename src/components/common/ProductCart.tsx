@@ -31,7 +31,7 @@ const ProductCart: FC<IProps> = ({ isInsideSlider, product }) => {
   };
 
   const selPrice =
-    product.discountPrice > 0 && product.discountPercent
+    product.discountPrice > 0 && product.discountPercent > 0
       ? product.discountPrice
       : product.price;
   return (

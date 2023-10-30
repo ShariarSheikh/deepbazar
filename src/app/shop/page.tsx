@@ -5,11 +5,13 @@ import Feed from './Feed';
 import type { Metadata } from 'next';
 
 //-----------------------------------------
-const metadata: Metadata = {};
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const metadata: Metadata = {
+  title: 'Shop - DeepBazar',
+};
 //-----------------------------------------
 
 export default function Page() {
-  metadata.title = 'Shop - DeepBazar';
   const searchParams = useSearchParams();
 
   const { category } = {

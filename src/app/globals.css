@@ -93,8 +93,11 @@ body {
 .swiper-scrollbar-drag {
   background: #008ecc !important;
 }
-/* .swiper-wrapper{
-  display:flex;
-  flex-direction: row;
-  margin: 0 auto;
-} */
+/* PhoneInput package style*/
+.PhoneInputInput {
+  flex: 1;
+  min-width: 0;
+  width: 100% !important;
+  height: 100% !important;
+  border-radius: 6px !important;
+}

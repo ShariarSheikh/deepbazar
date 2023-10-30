@@ -16,7 +16,7 @@ import { MdOutlinePersonOutline } from 'react-icons/md';
 const ProfileButtons = () => {
   const { user, isLoading } = useAppSelector(state => state.authSlice);
   const cartTotalQuantity = useAppSelector(
-    state => state.cartSlice.cartTotalQuantity
+    state => state.cartSlice.totalQuantity
   );
 
   const route = useRouter();

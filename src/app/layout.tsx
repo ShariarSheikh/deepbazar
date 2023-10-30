@@ -5,11 +5,6 @@ import Footer from '@/components/core/Footer';
 
 import './globals.css';
 
-export const metadata = {
-  title: 'DeepBazar - Electronics eCommerce Website In Bangladesh',
-  description: 'Biggest E-commerce website in bangladesh',
-};
-
 interface RootLayoutProps {
   children: React.ReactNode;
 }

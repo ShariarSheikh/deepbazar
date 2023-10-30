@@ -6,27 +6,31 @@ import { LoadingPage } from '@/components/common/loading';
 import Link from 'next/link';
 import { AiFillHome } from 'react-icons/ai';
 import { IoIosArrowForward } from 'react-icons/io';
+import Head from 'next/head';
 
 interface IProps {
   children: ReactNode;
 }
 
 const SellerLayout: FC<IProps> = ({ children }) => {
-  const { cartTotalQuantity } = useAppSelector(state => state.cartSlice);
+  const { totalQuantity } = useAppSelector(state => state.cartSlice);
   const [isInitialized, setIsInitialized] = useState<boolean>(false);
 
   const router = useRouter();
 
   useEffect(() => {
-    if (!cartTotalQuantity) router.back();
+    if (!totalQuantity) router.back();
     setIsInitialized(true);
-  }, [cartTotalQuantity, router]);
+  }, [totalQuantity, router]);
 
   if (!isInitialized) return <LoadingPage />;
 
   return (
-    <main className="w-full h-auto bg-[#f5f5f5] mb-4">
-      <section className="w-full lg:max-w-[1366px] max-w-[685px] lg:w-full m-auto mt-5 px-3 pb-10">
+    <main className="w-full h-auto bg-[#f5f5f5]">
+      <Head>
+        <title>Cart Page - DeepBazar</title>
+      </Head>
+      <section className="w-full lg:max-w-[1201px] max-w-[685px] lg:w-full mx-auto pt-5 px-3 pb-10">
         <div className="w-full mx-auto">
           <h1 className="text-xl font-semibold text-gray-600">Shopping Cart</h1>
           <div className="mt-2 flex items-center w-full h-[48px] space-x-2 text-[12px] uppercase text-primary">
@@ -42,9 +46,7 @@ const SellerLayout: FC<IProps> = ({ children }) => {
             </Link>
           </div>
         </div>
-        <div className="md:px-4 w-full h-full bg-white px-3 md:p-5 mt-3 md:mt-[35px] rounded-[6px] shadow-md">
-          {children}
-        </div>
+        <div className="w-full h-full">{children}</div>
       </section>
     </main>
   );

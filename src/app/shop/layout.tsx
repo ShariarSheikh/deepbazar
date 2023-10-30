@@ -5,6 +5,7 @@ import { FC, ReactNode } from 'react';
 import Breadcrumb from './Breadcrumb';
 import SearchAndFilter from './SearchAndFilter';
 import Sidebar from './Sidebar';
+import Head from 'next/head';
 
 interface IProps {
   children: ReactNode;
@@ -16,6 +17,9 @@ const ShopLayout: FC<IProps> = ({ children }) => {
 
   return (
     <section className="w-full h-auto bg-primaryLight">
+      <Head>
+        <title>Shop page - DeepBazar</title>
+      </Head>
       <div className="w-full flex max-w-[1201px] mx-auto">
         <div className="w-full max-w-[280px] sticky top-[133px] mb-[20px]">
           <Breadcrumb category={category} />

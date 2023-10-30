@@ -6,16 +6,13 @@ import { Role } from '@/app/auth/utils';
 import { LoadingPage } from '@/components/common/loading';
 import Header from './header';
 import SellerSidebar from './header/HamburgerMenu';
-import type { Metadata } from 'next';
+import Head from 'next/head';
 
-const metadata: Metadata = {};
 interface IProps {
   children: ReactNode;
 }
 
 const SellerLayout: FC<IProps> = ({ children }) => {
-  metadata.title = 'Seller Dashboard - DeepBazar';
-
   const { user } = useAppSelector(state => state.authSlice);
   const router = useRouter();
 
@@ -26,6 +23,9 @@ const SellerLayout: FC<IProps> = ({ children }) => {
 
   return (
     <section className="w-full h-auto bg-[#f5f5f5] mb-4">
+      <Head>
+        <title>Seller Dashboard - DeepBazar</title>
+      </Head>
       <div className="w-full min-h-screen ">
         <Header />
         <div className="w-full lg:flex lg:flex-row lg:space-x-6 max-w-[1080px] mx-auto">

@@ -138,7 +138,7 @@ const NoItems = () => {
 
 // MAIN
 const CartSidebar = () => {
-  const { isShowCart, cartItems, cartTotalQuantity } = useAppSelector(
+  const { isShowCart, cartItems, totalQuantity } = useAppSelector(
     state => state.cartSlice
   );
   const dispatch = useAppDispatch();
@@ -174,7 +174,7 @@ const CartSidebar = () => {
           <p className="text-2xl pr-6">Shopping Cart</p>
         </div>
 
-        {cartTotalQuantity > 0 ? (
+        {totalQuantity > 0 ? (
           <>
             <ItemsList cartItems={cartItems} />
 

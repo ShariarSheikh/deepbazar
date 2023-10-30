@@ -1,15 +1,15 @@
 'use client';
 
-import ItemContainer from './ItemContainer';
-import Checkout from './Checkout';
+import ItemContainer from '../ItemContainer';
+import ShippingInfo from './ShippingInfo';
 
-const CartPage = () => {
+const Page = () => {
   return (
     <div className="w-full flex flex-col lg:flex-row items-start justify-between relative">
       <ItemContainer />
-      <Checkout />
+      <ShippingInfo />
     </div>
   );
 };
 
-export default CartPage;
+export default Page;

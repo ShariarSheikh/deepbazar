@@ -14,11 +14,12 @@ import { useGetProductDetailsQuery } from '@/redux/services/productApi';
 import { LoadingPage } from '@/components/common/loading';
 import { useRouter } from 'next/navigation';
 import { useAppSelector } from '@/redux/hooks';
+import Head from 'next/head';
 
 //------------------------------------------------------------------
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const metadata: Metadata = {
-  title: 'Product',
-  description: 'Product Page',
+  title: 'Product Page - DeepBazar',
 };
 //------------------------------------------------------------------
 
@@ -37,10 +38,11 @@ const Page = ({ params }: { params: { id: string } }) => {
   const product = data?.data;
   if (!product?._id || isError) return router.back();
 
-  metadata.title = product.title;
-
   return (
     <main className="min-h-[60vh] max-w-[1201px] w-full m-auto px-4 pb-4">
+      <Head>
+        <title>{product.title ?? 'Product'} - DeepBazar</title>
+      </Head>
       <div className="flex items-center w-full h-[48px] space-x-2 text-[12px] uppercase text-primary">
         <Link href="/">
           <div className="flex items-center">

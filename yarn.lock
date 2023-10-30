@@ -585,13 +585,6 @@
   resolved "https://registry.yarnpkg.com/@types/prop-types/-/prop-types-15.7.8.tgz#805eae6e8f41bd19e88917d2ea200dc992f405d3"
   integrity sha512-kMpQpfZKSCBqltAJwskgePRaYRFukDkm1oItcAbC3gNELR20XIBcN9VRgg4+m8DKsTfkWeA4m4Imp4DDuWy7FQ==
 
-"@types/react-autocomplete@^1.8.7":
-  version "1.8.7"
-  resolved "https://registry.yarnpkg.com/@types/react-autocomplete/-/react-autocomplete-1.8.7.tgz#e776c557301de8683025d431ba50cf6397b38fdd"
-  integrity sha512-U5xl8pnfR/FUlvLNegnVHO5X+2pGDjqtZs5PHu79Pkcrwq0L26F3CMItc4YglxtELqz1K5O754ntZAsu4USX6A==
-  dependencies:
-    "@types/react" "*"
-
 "@types/react-date-range@^1.4.4":
   version "1.4.4"
   resolved "https://registry.npmjs.org/@types/react-date-range/-/react-date-range-1.4.4.tgz"
@@ -1104,7 +1097,7 @@ chownr@^1.1.1:
   resolved "https://registry.yarnpkg.com/chownr/-/chownr-1.1.4.tgz#6fc9d7b42d32a583596337666e7d08084da2cc6b"
   integrity sha512-jJ0bqzaylmJtVnNgzTeSOs8DPavpbYgEr/b0YL8/2GO3xJEhInFmhKMUnEJQjZumK7KXGFhUy89PrsJWlakBVg==
 
-classnames@^2.2.5, classnames@^2.2.6:
+classnames@^2.2.5, classnames@^2.2.6, classnames@^2.3.1:
   version "2.3.2"
   resolved "https://registry.npmjs.org/classnames/-/classnames-2.3.2.tgz"
   integrity sha512-CSbhY4cFEJRe6/GQzIk5qXZ4Jeg5pcsP7b5peFSDpffpe1cqjASH/n9UTjBwOp6XpMSTwQ8Za2K5V02ueA7Tmw==
@@ -1194,6 +1187,11 @@ cosmiconfig@^7.0.0:
     parse-json "^5.0.0"
     path-type "^4.0.0"
     yaml "^1.10.0"
+
+country-flag-icons@^1.5.4:
+  version "1.5.7"
+  resolved "https://registry.yarnpkg.com/country-flag-icons/-/country-flag-icons-1.5.7.tgz#f1f2ddf14f3cbf01cba6746374aeba94db35d4b4"
+  integrity sha512-AdvXhMcmSp7nBSkpGfW4qR/luAdRUutJqya9PuwRbsBzuoknThfultbv7Ib6fWsHXC43Es/4QJ8gzQQdBNm75A==
 
 cross-fetch@^3.0.4:
   version "3.1.8"
@@ -1355,11 +1353,6 @@ dom-helpers@^5.0.1:
   dependencies:
     "@babel/runtime" "^7.8.7"
     csstype "^3.0.2"
-
-dom-scroll-into-view@1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/dom-scroll-into-view/-/dom-scroll-into-view-1.0.1.tgz#32abb92f0d8feca6215162aef43e4b449ab8d99c"
-  integrity sha512-1Dmy6uH1vRcm2+Lvggyrlc04cMh+mr+VA+qcgs085hAEZp+v+6NT/xhRjfc6vRc7965sCSDdQcw063VkG+eNmQ==
 
 draft-js@^0.11.7:
   version "0.11.7"
@@ -2122,6 +2115,13 @@ ini@~1.3.0:
   resolved "https://registry.yarnpkg.com/ini/-/ini-1.3.8.tgz#a29da425b48806f34767a4efce397269af28432c"
   integrity sha512-JV/yugV2uzW5iMRSiZAyDtQd+nxtUnjeLt0acNdw98kKLrvuRVyB80tsREOE7yvGVgalhZ6RNXCmEHkUKBKxew==
 
+input-format@^0.3.8:
+  version "0.3.8"
+  resolved "https://registry.yarnpkg.com/input-format/-/input-format-0.3.8.tgz#9445b0cab2f0457fbe36d77d607e942fd37345c5"
+  integrity sha512-tLR0XRig1xIcG1PtIpMd/uoltvkAI62CN9OIbtj4/tEJAkqTCQLNHUZ9N4M46w0dopny7Rlt/lRH5Xzp7e6F+g==
+  dependencies:
+    prop-types "^15.8.1"
+
 internal-slot@^1.0.5:
   version "1.0.5"
   resolved "https://registry.npmjs.org/internal-slot/-/internal-slot-1.0.5.tgz"
@@ -2445,6 +2445,11 @@ levn@^0.4.1:
   dependencies:
     prelude-ls "^1.2.1"
     type-check "~0.4.0"
+
+libphonenumber-js@^1.10.48:
+  version "1.10.49"
+  resolved "https://registry.yarnpkg.com/libphonenumber-js/-/libphonenumber-js-1.10.49.tgz#c871661c62452348d228c96425f75ddf7e10f05a"
+  integrity sha512-gvLtyC3tIuqfPzjvYLH9BmVdqzGDiSi4VjtWe2fAgSdBf0yt8yPmbNnRIHNbR5IdtVkm0ayGuzwQKTWmU0hdjQ==
 
 lilconfig@^2.0.5, lilconfig@^2.1.0:
   version "2.1.0"
@@ -2997,7 +3002,7 @@ promise@^7.1.1:
   dependencies:
     asap "~2.0.3"
 
-prop-types@15, prop-types@^15.5.10, prop-types@^15.5.8, prop-types@^15.6.2, prop-types@^15.7.2, prop-types@^15.8.1:
+prop-types@15, prop-types@^15.5.8, prop-types@^15.6.2, prop-types@^15.7.2, prop-types@^15.8.1:
   version "15.8.1"
   resolved "https://registry.npmjs.org/prop-types/-/prop-types-15.8.1.tgz"
   integrity sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==
@@ -3043,14 +3048,6 @@ rc@^1.2.7:
     ini "~1.3.0"
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
-
-react-autocomplete@^1.8.1:
-  version "1.8.1"
-  resolved "https://registry.yarnpkg.com/react-autocomplete/-/react-autocomplete-1.8.1.tgz#ebbbc400006aa91ad538b2d14727b9e7e5d06310"
-  integrity sha512-YQGVN5POdcI3G89wUVWnJhk9rLF6JeB6Ik6xnNpfvSMG4tJkksBzqOE4mkFNGqEz+2AaQw13xNmVXresg9E3zg==
-  dependencies:
-    dom-scroll-into-view "1.0.1"
-    prop-types "^15.5.10"
 
 react-click-away-listener@^2.2.3:
   version "2.2.3"
@@ -3133,6 +3130,17 @@ react-loading-skeleton@^3.3.1:
   version "3.3.1"
   resolved "https://registry.yarnpkg.com/react-loading-skeleton/-/react-loading-skeleton-3.3.1.tgz#cd6e3a626ee86c76a46c14e2379243f2f8834e1b"
   integrity sha512-NilqqwMh2v9omN7LteiDloEVpFyMIa0VGqF+ukqp0ncVlYu1sKYbYGX9JEl+GtOT9TKsh04zCHAbavnQ2USldA==
+
+react-phone-number-input@^3.3.7:
+  version "3.3.7"
+  resolved "https://registry.yarnpkg.com/react-phone-number-input/-/react-phone-number-input-3.3.7.tgz#2925340c0aa260df549d2bf9f91f0d0c67b421ee"
+  integrity sha512-/yusEJl2oJA5rTRtny59pf7T1gg/whmfhdZsgrZaL063KEx6FFnmwTskTJ9yR4lYgzj2GyUjXpnA3O9d+ZTHwA==
+  dependencies:
+    classnames "^2.3.1"
+    country-flag-icons "^1.5.4"
+    input-format "^0.3.8"
+    libphonenumber-js "^1.10.48"
+    prop-types "^15.8.1"
 
 react-redux@^8.1.3:
   version "8.1.3"

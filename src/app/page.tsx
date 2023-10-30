@@ -10,16 +10,13 @@ import HeroSection from '@/views/home/HeroSection';
 import JustForYou from '@/views/home/JustForYou';
 import NewArrivals from '@/views/home/NewArrivals';
 import { SwiperSlide } from 'swiper/react';
-import type { Metadata } from 'next';
+import Head from 'next/head';
 
 //-----------------------------------------
-const metadata: Metadata = {};
+
 //-----------------------------------------
 
-//---------------------------------------------------------
 export default function Home() {
-  metadata.title = 'Home - DeepBazar';
-
   const getNewArrivals = useGetProductsQuery({
     query: { limit: 9, productSectionName: ProductSectionName.NewArrivals },
   });
@@ -37,6 +34,9 @@ export default function Home() {
 
   return (
     <main className="min-h-screen w-full m-auto mt-10 px-1">
+      <Head>
+        <title>Home - DeepBazar</title>
+      </Head>
       <div className="w-full max-w-[1201px] mx-auto">
         <HeroSection />
 
