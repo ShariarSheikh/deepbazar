@@ -11,8 +11,27 @@ export interface LoginAccountReturnType {
   };
 }
 
-export interface Account {
-  _id?: string;
+export interface AccountCreate {
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+  imgUrl: string;
+  role: RoleType | RoleType[];
+  isCustomAccount: boolean;
+  address: string;
+  zipCode: number;
+  bio: string;
+  socialLinks: {
+    facebook?: string;
+    instagram?: string;
+    linkedin?: string;
+    twitter?: string;
+  };
+}
+
+export interface AccountData {
+  _id: string;
   firstName: string;
   lastName: string;
   email: string;
@@ -29,26 +48,6 @@ export interface Account {
     instagram: string;
     linkedin: string;
     twitter: string;
-  };
-}
-
-export interface UpdateAccount {
-  _id?: string;
-  firstName?: string;
-  lastName?: string;
-  email: string;
-  password?: string;
-  imgUrl?: string;
-  role: RoleType | RoleType[];
-  isCustomAccount?: boolean;
-  address?: string;
-  zipCode?: number;
-  bio?: string;
-  socialLinks: {
-    facebook?: string;
-    instagram?: string;
-    linkedin?: string;
-    twitter?: string;
   };
 }
 

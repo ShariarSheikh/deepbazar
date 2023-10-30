@@ -14,7 +14,7 @@ import {
   useDeleteAccountMutation,
   useUpdateAccountMutation,
 } from '@/redux/services/auth';
-import { Account } from '@/types/auth.types';
+import { AccountCreate } from '@/types/auth.types';
 import { Field, Form, Formik } from 'formik';
 import { FC, useCallback, useEffect, useState } from 'react';
 import * as Yup from 'yup';
@@ -63,7 +63,7 @@ const GeneralPage: FC = () => {
   };
 
   // UPDATE FORM-------------------------------------------
-  const handleSubmit = async (values: Account) => {
+  const handleSubmit = async (values: AccountCreate) => {
     const formData = new FormData();
 
     formData.append('firstName', values.firstName);

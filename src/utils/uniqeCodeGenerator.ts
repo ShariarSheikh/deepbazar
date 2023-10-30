@@ -1,5 +1,11 @@
 const date = new Date();
 
-export default function uniqueCodeGenerator(): string {
-  return `v1-${date.getFullYear()}${date.getMonth()}${date.getDay()}${date.getHours()}${date.getSeconds()}`;
+interface IProps {
+  optionalKey?: string;
+}
+
+export default function uniqueCodeGenerator({
+  optionalKey = 'v1-',
+}: IProps): string {
+  return `${optionalKey}${date.getFullYear()}${date.getMonth()}${date.getDay()}${date.getHours()}${date.getSeconds()}`;
 }

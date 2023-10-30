@@ -1,10 +1,10 @@
 import {
-  Account,
+  AccountCreate,
+  AccountData,
   ChangePassword,
   LoginAccount,
   LoginAccountReturnType,
   ProductSellerProfile,
-  UpdateAccount,
 } from '@/types/auth.types';
 import { apiSlice } from '.';
 
@@ -18,7 +18,7 @@ export const auth = apiSlice.injectEndpoints({
       }),
     }),
 
-    register: builder.mutation<void, Account>({
+    register: builder.mutation<void, AccountCreate>({
       query: credential => ({
         url: '/auth/register',
         method: 'post',
@@ -27,8 +27,8 @@ export const auth = apiSlice.injectEndpoints({
     }),
 
     updateAccount: builder.mutation<
-      { data: { user: Account }; success: boolean },
-      { userId: string; user: UpdateAccount }
+      { data: { user: AccountData }; success: boolean },
+      { userId: string; user: AccountCreate }
     >({
       query: credential => ({
         url: `/profile/update/${credential.userId}`,
@@ -56,7 +56,7 @@ export const auth = apiSlice.injectEndpoints({
     }),
 
     profile: builder.mutation<
-      { data: { user: Account }; success: boolean },
+      { data: { user: AccountData }; success: boolean },
       void
     >({
       query: () => ({ url: '/profile/get' }),

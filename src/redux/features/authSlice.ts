@@ -1,4 +1,4 @@
-import { Account } from '@/types/auth.types';
+import { AccountData } from '@/types/auth.types';
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import Cookies from 'js-cookie';
 import { RootState } from '../store';
@@ -10,11 +10,18 @@ const refreshTokenLocal = Cookies.get(refreshTokenCookiesName) ?? '';
 const accessTokenLocal = Cookies.get(accessTokenCookiesName) ?? '';
 
 //----------------------------------------------
-interface InitialStateProps {
+interface CredentialsHandlerProps {
   accessToken?: string;
   refreshToken?: string;
-  user?: Account;
+  user?: AccountData;
   isLoading?: boolean;
+}
+
+interface InitialStateProps {
+  accessToken: string;
+  refreshToken: string;
+  user: AccountData;
+  isLoading: boolean;
 }
 
 const initialState: InitialStateProps = {
@@ -48,7 +55,7 @@ const authSlice = createSlice({
   initialState,
 
   reducers: {
-    setCredentials: (state, action: PayloadAction<InitialStateProps>) => {
+    setCredentials: (state, action: PayloadAction<CredentialsHandlerProps>) => {
       const { user, accessToken, refreshToken } = action.payload;
       if (user?._id) state.user = user;
       if (accessToken) {

@@ -1,27 +1,45 @@
 import Button from '@/components/common/Button';
-import { useAppSelector } from '@/redux/hooks';
+import { AlertType, showAlert } from '@/redux/features/alertSlice';
+import { clearCartItems } from '@/redux/features/cartSlice';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import { useCreateOrderMutation } from '@/redux/services/orderApi';
 import { useGetUserAllShippingAddressQuery } from '@/redux/services/shippingAddressApi';
 import { PATH_USER } from '@/utils/routes';
+import uniqueCodeGenerator from '@/utils/uniqeCodeGenerator';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 
 const ShippingInfo = () => {
   const getShippingAddress = useGetUserAllShippingAddressQuery();
+  const [createOrder, createOrderApi] = useCreateOrderMutation();
 
   const cart = useAppSelector(state => state.cartSlice);
   const user = useAppSelector(state => state.authSlice.user);
   const [isAllowToCheckout, setIsAllowToCheckout] = useState<boolean>(false);
 
-  // const router = useRouter();
+  const router = useRouter();
   const pathname = usePathname();
+  const dispatch = useAppDispatch();
 
-  const gotToCheckoutHandler = () => {};
+  const gotToCheckoutHandler = () => {
+    createOrder({
+      order: {
+        orderId: uniqueCodeGenerator({ optionalKey: 'order' }),
+        totalAmount: cart.totalAmount,
+        subtotalAmount: cart.subtotal,
+        shippingFee: cart.shippingFee,
+        items: cart.cartItems,
+      },
+    });
+  };
 
+  // FETCH SHIPPING ADDRESS
   useEffect(() => {
     getShippingAddress.refetch();
   }, [pathname]);
 
+  // ALLOW BUY NOW BUTTON
   useEffect(() => {
     if (getShippingAddress.isLoading) return;
 
@@ -34,11 +52,31 @@ const ShippingInfo = () => {
     setIsAllowToCheckout(true);
   }, [getShippingAddress.isLoading]);
 
+  // DISABLE BUY NOW BUTTON
   useEffect(() => {
     if (isAllowToCheckout && !user?._id) {
       setIsAllowToCheckout(false);
     }
   }, [user?._id]);
+
+  // AFTER ORDER COMPLETE
+  useEffect(() => {
+    if (createOrderApi.isLoading) return;
+    if (!createOrderApi.data?.data._id) return;
+
+    dispatch(
+      showAlert({
+        type: AlertType.Success,
+        message:
+          'WoW! Thanks for your order. You can find order info to your profile',
+      })
+    );
+
+    setTimeout(() => {
+      dispatch(clearCartItems());
+    }, 1000);
+    router.replace(PATH_USER.order);
+  }, [createOrderApi.isLoading]);
 
   return (
     <div className="w-full bg-white rounded-[6px] max-w-[100%] h-full min-h-[395px] lg:max-w-[360px] flex flex-col items-start justify-start px-2 py-2 lg:py-6 lg:px-4">
@@ -161,7 +199,7 @@ const ShippingInfo = () => {
               : 'bg-primary bg-opacity-40 cursor-not-allowed'
           }  flex justify-center items-center w-full mt-[10px] h-[42px] rounded-[6px] text-white text-[13px]`}
         >
-          Checkout Now
+          Order Now
         </Button>
       </div>
     </div>

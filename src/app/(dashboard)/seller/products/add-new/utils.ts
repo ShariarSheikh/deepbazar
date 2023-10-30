@@ -45,7 +45,7 @@ export interface ProductInitialState {
 
 export const initialState: ProductInitialState = {
   title: '',
-  productCode: uniqueCodeGenerator(),
+  productCode: uniqueCodeGenerator({}),
   category: '',
   price: 0,
   discountPrice: 0,

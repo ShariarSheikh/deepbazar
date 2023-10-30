@@ -28,7 +28,6 @@ export default function ManagePage() {
   ] = useDeleteProductMutation();
 
   const { data, isLoading, refetch } = useGetSellerProductsQuery({
-    //@ts-expect-error
     sellerId: user?._id,
   });
 
