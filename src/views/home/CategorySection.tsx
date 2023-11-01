@@ -37,7 +37,7 @@ const CategorySection = () => {
                 href={{
                   pathname: '/shop',
                   query: {
-                    category: category.pageUrl,
+                    category: category.name,
                   },
                 }}
                 className={`w-full ${
@@ -54,8 +54,12 @@ const CategorySection = () => {
                     }}
                   />
 
-                  <h1 className="pt-[20px] cursor-pointer absolute inset-0 text-sm md:text-[24px] z-20 text-center font-medium text-white group">
+                  <h1 className="pt-[20px] absolute inset-0 text-sm md:text-[24px] z-20 text-center font-medium text-white group">
                     {category.name}
+                  </h1>
+
+                  <h1 className="pt-[195px] text-opacity-[64%]  absolute inset-0 text-[12px] z-20 text-center font-medium text-white group">
+                    {category.totalItems}
                   </h1>
                 </div>
               </Link>

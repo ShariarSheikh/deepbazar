@@ -79,7 +79,7 @@ export enum ProductFilterBy {
 
 export interface ProductListApiQuery {
   category?: string;
-  pageLength?: string;
+  pageLength?: number;
   limit: number;
   startPrice?: string;
   endPrice?: string;

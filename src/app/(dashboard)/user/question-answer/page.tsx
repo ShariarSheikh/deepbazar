@@ -1,5 +1,5 @@
 'use client';
-import Pagination from '@/components/common/Pagination';
+import Pagination from '@/components/common/PaginationComponent';
 import { NextPage } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -124,9 +124,10 @@ const Page: NextPage<PageProps> = () => {
           }
           <div className="h-[56px] rounded-b-[16px] flex items-center justify-center">
             <Pagination
-              totalPages={totalPages}
+              limit={totalPages}
               currentPage={currentPage}
               setCurrentPage={setCurrentPage}
+              totalProducts={100}
             />
           </div>
         </div>

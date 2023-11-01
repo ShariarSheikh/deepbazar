@@ -24,7 +24,7 @@ const CustomModal: React.FC<CustomModalProps> = ({
       onClick={onClose}
     >
       <div
-        className={`bg-white px-6 pb-6 rounded-lg shadow-lg ${boxContainerClassName}`}
+        className={`bg-white px-6 pb-6 overflow-y-auto invisible-scrollbar visible-scrollbar-onHover rounded-lg shadow-lg ${boxContainerClassName}`}
         style={boxStyle}
         onClick={e => e.stopPropagation()}
       >

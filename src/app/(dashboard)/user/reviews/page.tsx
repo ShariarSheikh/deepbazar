@@ -1,7 +1,7 @@
 'use client';
 import Button from '@/components/common/Button';
 import CustomModal from '@/components/common/CustomModal';
-import Pagination from '@/components/common/Pagination';
+import Pagination from '@/components/common/PaginationComponent';
 import StarRating from '@/components/common/StarRating';
 import { LoadingPage } from '@/components/common/loading';
 import { AlertType, showAlert } from '@/redux/features/alertSlice';
@@ -127,9 +127,10 @@ const Page: NextPage = () => {
             ))}
             <div className="h-[56px] rounded-b-[16px] flex items-center justify-center">
               <Pagination
-                totalPages={totalPages}
+                limit={totalPages}
                 currentPage={currentPage}
                 setCurrentPage={setCurrentPage}
+                totalProducts={100}
               />
             </div>
           </div>

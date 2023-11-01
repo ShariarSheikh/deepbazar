@@ -1,5 +1,5 @@
 'use client';
-import Pagination from '@/components/common/Pagination';
+import Pagination from '@/components/common/PaginationComponent';
 import { PATH_SELLER } from '@/utils/routes';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
@@ -127,9 +127,10 @@ export default function ManagePage() {
 
           <div className="px-[18px] w-full border-t borderColor h-[56px] flex items-center justify-center mt-[16px]">
             <Pagination
-              totalPages={totalPages}
+              limit={totalPages}
               currentPage={currentPage}
               setCurrentPage={setCurrentPage}
+              totalProducts={100}
             />
           </div>
         </>

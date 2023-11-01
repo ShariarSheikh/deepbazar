@@ -29,7 +29,7 @@ export default function Home() {
     if (isInitialize) return;
     getNewArrivals({
       query: {
-        limit: 9,
+        limit: 4,
         productSectionName: ProductSectionName.NewArrivals,
       },
     });
@@ -44,7 +44,7 @@ export default function Home() {
     getFeaturedProducts({
       query: {
         limit: 15,
-        productSectionName: ProductSectionName.NewArrivals,
+        productSectionName: ProductSectionName.FeaturedProducts,
       },
     });
 

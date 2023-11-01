@@ -29,17 +29,17 @@ const SearchAndFilter: FC<IProps> = ({ totalItems }) => {
 
   return (
     <div className="mt-4 w-full h-[48px] bg-[#0c648bc7] text-white flex justify-between items-center px-3 rounded-[6px]">
-      <div className="flex items-center text-sm text-[#d4e9ff]">
+      <div className="flex items-center text-[11px] md:text-sm text-[#d4e9ff]">
         <h2 className="mr-4">Active Filter:</h2>
         {pageQuery.category !== null && pageQuery.category?.trim() ? (
-          <Button className="flex items-center space-x-2 cursor-pointer bg-[#0c648b] hover:bg-[#2f7d9f] border border-[#72acc57a] active:scale-95 duration-150 rounded-[6px] px-3 py-[5px] mr-3">
+          <Button className="flex items-center space-x-2 cursor-pointer bg-[#0c648b] hover:bg-[#2f7d9f] border border-[#72acc57a] active:scale-95 duration-150 rounded-[6px] px-2 md:px-3 py-[2.5px] md:py-[5px] mr-3">
             <span>{pageQuery.category}</span>
           </Button>
         ) : null}
 
         {(pageQuery.startPrice !== null || pageQuery.endPrice !== null) &&
         pageQuery.startPrice?.trim() ? (
-          <Button className="flex items-center space-x-2 cursor-pointer bg-[#0c648b] hover:bg-[#2f7d9f] border border-[#72acc57a] active:scale-95 duration-150 rounded-[6px] px-3 py-[5px]">
+          <Button className="flex items-center space-x-2 cursor-pointer bg-[#0c648b] hover:bg-[#2f7d9f] border border-[#72acc57a] active:scale-95 duration-150 rounded-[6px] px-2 md:px-3 py-[2.5px] md:py-[5px]">
             <span>
               ${pageQuery.startPrice} to ${pageQuery.endPrice}
             </span>
@@ -47,7 +47,7 @@ const SearchAndFilter: FC<IProps> = ({ totalItems }) => {
         ) : null}
       </div>
 
-      <div className="flex items-center space-x-1 text-sm">
+      <div className="flex items-center space-x-1 text-[11px] md:text-sm">
         <h3 className="font-medium">{totalItems}</h3>
         <p className="text-[#d8eded]">Result found.</p>
       </div>

@@ -16,14 +16,14 @@ const Product: FC<IProps> = ({ product }) => {
 
   return (
     <Link href={`/product/${product._id}`}>
-      <div className="h-full w-[100%] bg-white rounded-[6px] p-[10px] relative hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] group">
+      <div className="h-full w-[100%] bg-white rounded-[6px] p-[5px] md:p-[10px] relative hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] group">
         {product.offerText && (
           <div className="bg-[#EE5858] line-clamp-1 rounded-[3px] text-white absolute left-[7px] top-[7px] text-[10px] z-[5] px-[10px] py-[5px]">
             {product.offerText}
           </div>
         )}
 
-        <div className="w-full relative max-w-[190px] h-[190px] overflow-hidden z-[3] rounded-[10px] bg-[#f5f6f6] cursor-pointer">
+        <div className="w-full relative max-w-[190px] h-[135px] md:h-[190px] overflow-hidden z-[3] rounded-[10px] bg-[#f5f6f6] cursor-pointer">
           <Image
             fill
             className="w-full h-full group-hover:scale-110 duration-150"
@@ -40,9 +40,11 @@ const Product: FC<IProps> = ({ product }) => {
             </p>
           </div>
 
-          <h1 className="line-clamp-2 text-[16px] mt-[6px]">{product.title}</h1>
+          <h1 className="line-clamp-2 text-[13px] lg:text-[16px] mt-[6px]">
+            {product.title}
+          </h1>
 
-          <div className="mt-[12px] flex items-center justify-start space-x-2 text-[16px] font-bold text-primary">
+          <div className="mt-[7px] lg:mt-[12px] flex items-center justify-start space-x-2 text-[16px] font-bold text-primary">
             <span className="text-gray-600">${selPrice}</span>
             {product.discountPrice > 0 && <del>{product.price}</del>}
             {product.discountPercent > 0 && (
