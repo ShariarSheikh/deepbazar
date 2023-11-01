@@ -3,7 +3,6 @@
 import { useSearchParams } from 'next/navigation';
 import { FC, ReactNode } from 'react';
 import Breadcrumb from './Breadcrumb';
-import SearchAndFilter from './SearchAndFilter';
 import Sidebar from './Sidebar';
 import Head from 'next/head';
 
@@ -25,10 +24,7 @@ const ShopLayout: FC<IProps> = ({ children }) => {
           <Breadcrumb category={category} />
           <Sidebar />
         </div>
-        <div className="w-full h-full px-4 pt-1">
-          <SearchAndFilter />
-          {children}
-        </div>
+        <div className="w-full h-full px-4 pt-1">{children}</div>
       </div>
     </section>
   );

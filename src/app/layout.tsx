@@ -2,8 +2,13 @@ import Header from '@/components/core/Header';
 import { Providers } from '@/redux/provider';
 import BottomNavigation from '@/components/core/BottomNavigation';
 import Footer from '@/components/core/Footer';
+import type { Metadata } from 'next';
 
 import './globals.css';
+
+export const metadata: Metadata = {
+  title: 'Largest E-Commerce Platform In Bangladesh - DeepBazar',
+};
 
 interface RootLayoutProps {
   children: React.ReactNode;

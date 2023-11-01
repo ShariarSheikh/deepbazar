@@ -1,11 +1,11 @@
 import Link from 'next/link';
 import { FC } from 'react';
-import RatingStar from './RatingStar';
 import { ProductListType } from '@/types/product.types';
 import Image from 'next/image';
 import Button from './Button';
 import { useAppDispatch } from '@/redux/hooks';
 import { CartDataTypes, addToCart } from '@/redux/features/cartSlice';
+import StarRating from './StarRating';
 
 //---------------------------------------
 interface IProps {
@@ -70,7 +70,13 @@ const ProductCart: FC<IProps> = ({ isInsideSlider, product }) => {
               </span>
             )}
           </div>
-          <RatingStar reviews={product.ratings} />
+
+          <div className="flex items-center">
+            <StarRating rating={product.ratings.star} />
+            <p className="text-[10px] font-medium text-gray-500 pt-[5px] ml-[8px]">
+              ({product.ratings.totalReviews})
+            </p>
+          </div>
         </div>
 
         <div className="w-full flex justify-center">

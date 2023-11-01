@@ -190,7 +190,6 @@ export default function CreateProduct({ params }: { params: { id: string } }) {
       ...prevS,
       images: imgData,
       title: product.title,
-      productCode: product.productCode,
       productSectionName: product.productSectionName,
       offerText: product.offerText ?? '',
       inStock: product.inStock,
@@ -224,7 +223,6 @@ export default function CreateProduct({ params }: { params: { id: string } }) {
 
     setInitialStateData({
       title: '',
-      productCode: '',
       category: '',
       price: 0,
       discountPrice: 0,
@@ -415,12 +413,6 @@ export default function CreateProduct({ params }: { params: { id: string } }) {
               className="h-[48px] w-full"
               containerClassName="w-full"
             />
-          </div>
-
-          <div className="mt-[24px] w-full h-[48px] flex items-center justify-center bg-gray-200 rounded-[6px]">
-            <span className="text-sm">
-              Product Code: {getProduct.data?.data.productCode}
-            </span>
           </div>
 
           <div className="mt-[24px]">

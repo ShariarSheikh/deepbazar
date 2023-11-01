@@ -1,70 +1,59 @@
-import RatingStar from '@/components/common/RatingStar';
+import StarRating from '@/components/common/StarRating';
+import { ProductListType } from '@/types/product.types';
+import Image from 'next/image';
 import Link from 'next/link';
+import { FC } from 'react';
 
-const Product = ({
-  discount,
-  offerText,
-}: {
-  discount?: string;
-  offerText?: string;
-}) => {
+interface IProps {
+  product: ProductListType;
+}
+
+const Product: FC<IProps> = ({ product }) => {
+  const selPrice =
+    product.discountPrice > 0 && product.discountPercent > 0
+      ? product.discountPrice
+      : product.price;
+
   return (
-    <div className="h-full w-[100%] bg-white rounded-[6px] p-[10px] relative">
-      {discount && (
-        <div className="bg-primary rounded-[3px] text-white absolute left-[7px] top-[7px] text-[10px] z-[5] px-[10px] py-[5px]">
-          {discount} <span>OFF</span>
-        </div>
-      )}
+    <Link href={`/product/${product._id}`}>
+      <div className="h-full w-[100%] bg-white rounded-[6px] p-[10px] relative hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] group">
+        {product.offerText && (
+          <div className="bg-[#EE5858] line-clamp-1 rounded-[3px] text-white absolute left-[7px] top-[7px] text-[10px] z-[5] px-[10px] py-[5px]">
+            {product.offerText}
+          </div>
+        )}
 
-      {offerText && (
-        <div className="bg-[#EE5858] rounded-[3px] text-white absolute right-[7px] top-[7px] text-[10px] z-[5] px-[10px] py-[5px]">
-          {offerText}
-        </div>
-      )}
-
-      <Link
-        href={{
-          pathname: '/product',
-          query: {
-            category: 'watch',
-            productId: 7,
-          },
-        }}
-      >
-        <div className="w-full max-w-[190px] h-[190px] overflow-hidden z-[3] rounded-[10px] bg-[#f5f6f6] group cursor-pointer">
-          <img
+        <div className="w-full relative max-w-[190px] h-[190px] overflow-hidden z-[3] rounded-[10px] bg-[#f5f6f6] cursor-pointer">
+          <Image
+            fill
             className="w-full h-full group-hover:scale-110 duration-150"
-            src="https://i.pinimg.com/originals/8b/06/29/8b062905bcd44b0d9164b46cc309a251.jpg"
+            src={product.imgUrl}
             alt="product image"
           />
         </div>
-      </Link>
-      <div className="mt-[10px]">
-        <RatingStar
-          reviews={{
-            totalReviews: 2,
-            star: 4.2,
-          }}
-        />
-        <Link
-          href={{
-            pathname: '/product',
-            query: {
-              category: 'watch',
-              productId: 7,
-            },
-          }}
-        >
-          <h1 className="line-clamp-2 text-[16px] mt-[6px]">OnePlus 9 Pro</h1>
-        </Link>
-        <p className="text-[12px] text-gray-400 line-clamp-2 font-normal">
-          Experience speed and smoothness with the OnePlus 9 Pro powered by the
-        </p>
-        <div className="mt-[12px] flex items-center w-full space-x-2 text-[16px]">
-          <span className="font-bold text-primary">$799</span>
+
+        <div className="mt-[10px]">
+          <div className="flex items-center">
+            <StarRating rating={product.ratings.star} />
+            <p className="text-[10px] font-medium text-gray-500 pt-[5px] ml-[8px]">
+              ({product.ratings.totalReviews})
+            </p>
+          </div>
+
+          <h1 className="line-clamp-2 text-[16px] mt-[6px]">{product.title}</h1>
+
+          <div className="mt-[12px] flex items-center justify-start space-x-2 text-[16px] font-bold text-primary">
+            <span className="text-gray-600">${selPrice}</span>
+            {product.discountPrice > 0 && <del>{product.price}</del>}
+            {product.discountPercent > 0 && (
+              <span className="bg-primary text-white px-2 py-[1px] rounded-[6px]">
+                {product.discountPercent}%
+              </span>
+            )}
+          </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

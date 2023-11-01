@@ -8,7 +8,7 @@ import { apiSlice } from '.';
 
 export const productApi = apiSlice.injectEndpoints({
   endpoints: builder => ({
-    getProducts: builder.query<
+    getProducts: builder.mutation<
       {
         data: { products: ProductListType[]; totals: number };
         success: boolean;
@@ -90,7 +90,7 @@ export const productApi = apiSlice.injectEndpoints({
 });
 
 export const {
-  useGetProductsQuery,
+  useGetProductsMutation,
   useCreateProductMutation,
   useGetSellerProductsQuery,
   useDeleteProductMutation,

@@ -8,7 +8,6 @@ import { EditorState, convertToRaw } from 'draft-js';
 
 export interface InitialState {
   title: string;
-  productCode: string;
   category: string;
   price: number;
   discountPrice: number;
@@ -46,7 +45,6 @@ export type FieldName =
 
 export const initialState: InitialState = {
   title: '',
-  productCode: '',
   category: '',
   price: 0,
   discountPrice: 0,
@@ -91,7 +89,6 @@ export const appendDataToForm = (props: AppendDataToForm): FormData => {
   }
 
   createFormData(formData, 'title', data.title);
-  createFormData(formData, 'productCode', data.productCode);
 
   createFormData(formData, 'price', data.price);
   createFormData(formData, 'discountPrice', data.discountPrice);

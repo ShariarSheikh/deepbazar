@@ -2,7 +2,6 @@
 
 import ProductCart from '@/components/common/ProductCart';
 import Skeleton from '@/components/common/Skeleton';
-import { useGetProductsQuery } from '@/redux/services/productApi';
 import { ProductSectionName } from '@/types/product.types';
 import CategorySection from '@/views/home/CategorySection';
 import FeaturedProducts from '@/views/home/FeaturedProducts';
@@ -11,26 +10,48 @@ import JustForYou from '@/views/home/JustForYou';
 import NewArrivals from '@/views/home/NewArrivals';
 import { SwiperSlide } from 'swiper/react';
 import Head from 'next/head';
+import { useGetProductsMutation } from '@/redux/services/productApi';
+import { useEffect, useState } from 'react';
 
 //-----------------------------------------
 
 //-----------------------------------------
 
 export default function Home() {
-  const getNewArrivals = useGetProductsQuery({
-    query: { limit: 9, productSectionName: ProductSectionName.NewArrivals },
-  });
+  const [getNewArrivals, getNewArrivalsApi] = useGetProductsMutation();
+  const [getJustForYou, getJustForYouApi] = useGetProductsMutation();
+  const [getFeaturedProducts, getFeaturedProductsApi] =
+    useGetProductsMutation();
 
-  const getJustForYou = useGetProductsQuery({
-    query: { limit: 8, productSectionName: ProductSectionName.JustForYou },
-  });
+  const [isInitialize, setIsInitialize] = useState<boolean>(false);
 
-  const getFeaturedProducts = useGetProductsQuery({
-    query: {
-      limit: 15,
-      productSectionName: ProductSectionName.FeaturedProducts,
-    },
-  });
+  useEffect(() => {
+    if (isInitialize) return;
+    getNewArrivals({
+      query: {
+        limit: 9,
+        productSectionName: ProductSectionName.NewArrivals,
+      },
+    });
+
+    getJustForYou({
+      query: {
+        limit: 8,
+        productSectionName: ProductSectionName.JustForYou,
+      },
+    });
+
+    getFeaturedProducts({
+      query: {
+        limit: 15,
+        productSectionName: ProductSectionName.NewArrivals,
+      },
+    });
+
+    setIsInitialize(true);
+
+    return () => undefined;
+  }, []);
 
   return (
     <main className="min-h-screen w-full m-auto mt-10 px-1">
@@ -42,7 +63,7 @@ export default function Home() {
 
         <CategorySection />
 
-        {getNewArrivals.isLoading ? (
+        {getNewArrivalsApi.isLoading ? (
           <div className="md:mt-[40px] flex items-center justify-between gap-y-10 flex-wrap">
             <Skeleton className="w-[30%]" height={200} />
             <Skeleton className="w-[30%]" height={200} />
@@ -52,7 +73,7 @@ export default function Home() {
           </div>
         ) : (
           <NewArrivals
-            data={getNewArrivals.data?.data.products}
+            data={getNewArrivalsApi.data?.data.products}
             productPageLink={{
               pathname: '/shop',
               query: {
@@ -93,7 +114,7 @@ export default function Home() {
           }
         >
           <>
-            {getJustForYou.isLoading ? (
+            {getJustForYouApi.isLoading ? (
               <div className="md:mt-[40px] flex items-center justify-between gap-y-10 flex-wrap">
                 <Skeleton className="w-[30%]" height={200} />
                 <Skeleton className="w-[30%]" height={200} />
@@ -102,8 +123,8 @@ export default function Home() {
                 <Skeleton className="w-[30%]" height={200} />
               </div>
             ) : (
-              typeof getJustForYou.data !== 'undefined' &&
-              getJustForYou.data.data.products.map(product => (
+              typeof getJustForYouApi.data !== 'undefined' &&
+              getJustForYouApi.data.data.products.map(product => (
                 <ProductCart
                   key={product._id}
                   isInsideSlider={false}
@@ -126,7 +147,7 @@ export default function Home() {
           title={ProductSectionName.FeaturedProducts}
         >
           <>
-            {getFeaturedProducts.isLoading ? (
+            {getFeaturedProductsApi.isLoading ? (
               <div className="md:mt-[40px] flex items-center justify-between gap-y-10 flex-wrap">
                 <Skeleton className="w-[30%]" height={200} />
                 <Skeleton className="w-[30%]" height={200} />
@@ -135,8 +156,8 @@ export default function Home() {
                 <Skeleton className="w-[30%]" height={200} />
               </div>
             ) : (
-              typeof getFeaturedProducts.data !== 'undefined' &&
-              getFeaturedProducts.data.data.products.map(product => (
+              typeof getFeaturedProductsApi.data !== 'undefined' &&
+              getFeaturedProductsApi.data.data.products.map(product => (
                 <SwiperSlide key={product._id}>
                   <ProductCart isInsideSlider product={product} />
                 </SwiperSlide>

@@ -4,7 +4,6 @@ import dynamic from 'next/dynamic';
 import { Field } from 'formik';
 import { CustomFormikInput } from '@/components/common/FormikCustomInput';
 import { EditorState } from 'draft-js';
-import { initialState } from './utils';
 
 const ReactDraftWysiwyg = dynamic(
   () => import('@/components/common/ReactDraftWysiwyg')
@@ -100,14 +99,6 @@ function FormFirst({
           name="offerText"
           className="h-[56px] rounded-[8px] border borderColor w-full px-[14px] outline-none"
         />
-      </div>
-
-      <div className="mt-[24px]">
-        <div className="w-full h-[48px] flex items-center justify-center bg-gray-200 rounded-[6px]">
-          <span className="text-sm">
-            Product Code: {initialState.productCode}
-          </span>
-        </div>
       </div>
 
       <div className="mt-[24px]">

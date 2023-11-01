@@ -366,12 +366,6 @@ export default function CreateProduct() {
             />
           </div>
 
-          <div className="mt-[24px] w-full h-[48px] flex items-center justify-center bg-gray-200 rounded-[6px]">
-            <span className="text-sm">
-              Product Code: {initialStateData.productCode}
-            </span>
-          </div>
-
           <div className="mt-[24px]">
             <h1 className="text-[14px] text-gray-600 font-semibold mb-2">
               Product Description *

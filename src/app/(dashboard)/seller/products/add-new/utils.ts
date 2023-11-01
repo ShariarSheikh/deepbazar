@@ -1,6 +1,5 @@
 import { ProductSectionName } from '@/types/product.types';
 import createFormData from '@/utils/createFormData';
-import uniqueCodeGenerator from '@/utils/uniqeCodeGenerator';
 import { EditorState, convertToRaw } from 'draft-js';
 
 export const productTags = {
@@ -22,7 +21,6 @@ export type ProductSectionNameType =
 
 export interface ProductInitialState {
   title: string;
-  productCode: string;
   category: string;
   price: number;
   discountPrice: number;
@@ -45,7 +43,6 @@ export interface ProductInitialState {
 
 export const initialState: ProductInitialState = {
   title: '',
-  productCode: uniqueCodeGenerator({}),
   category: '',
   price: 0,
   discountPrice: 0,
@@ -87,7 +84,6 @@ export const appendDataToForm = (props: AppendDataToForm): FormData => {
   data.images?.forEach(file => formData.append('images', file, file.name));
 
   createFormData(formData, 'title', data.title);
-  createFormData(formData, 'productCode', data.productCode);
 
   createFormData(formData, 'price', data.price);
   createFormData(formData, 'discountPrice', data.discountPrice);

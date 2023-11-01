@@ -29,7 +29,7 @@ export default function MultiFilePreview({
 
               {onRemove && (
                 <button
-                  className="absolute w-4 h-4 top-[2px] right-[2px] bg-primaryLight bg-opacity-40 rounded-full flex justify-center items-center"
+                  className="absolute w-4 h-4 top-[2px] right-[2px] bg-[#2b262673] rounded-full flex justify-center items-center"
                   onClick={() => onRemove(file)}
                 >
                   <AiOutlineClose className="w-3 h-3 text-white" />

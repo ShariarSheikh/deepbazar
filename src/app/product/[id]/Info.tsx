@@ -114,10 +114,6 @@ const Info: FC<{ data: ProductTypes }> = ({ data }) => {
           <span>{data.category}</span>
         </div>
 
-        <div className="mt-[10px] text-[12px] md:text-sm flex items-center flex-wrap space-x-2 pt-[3px] text-gray-500">
-          <span>Code:</span> <span>{data.productCode}</span>
-        </div>
-
         <button
           style={{
             background: data.inStock ? '#48BB78' : '#E53E3E',

@@ -19,7 +19,6 @@ export interface ProductTypes {
   _id: string;
   status: ProductStatusType;
   title: string;
-  productCode: string;
   category: string;
   productSectionName: ProductSectionNameType;
   sellerId: string;
@@ -80,10 +79,10 @@ export enum ProductFilterBy {
 
 export interface ProductListApiQuery {
   category?: string;
-  pageLength?: number;
+  pageLength?: string;
   limit: number;
-  startPrice?: number;
-  endPrice?: number;
+  startPrice?: string;
+  endPrice?: string;
   filterBy?: ProductFilterBy;
   productSectionName?: ProductSectionNameType;
 }
