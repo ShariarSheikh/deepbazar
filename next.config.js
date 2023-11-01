@@ -7,7 +7,6 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 const nextConfig = {
   images: {
     domains: [
-      'via.placeholder.com',
       'images.unsplash.com',
       'i.ibb.co',
       'plus.unsplash.com',

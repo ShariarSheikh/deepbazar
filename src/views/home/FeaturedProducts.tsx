@@ -15,22 +15,15 @@ import 'swiper/css/scrollbar';
 interface IProps {
   title: string;
   children: ReactElement | ReactNode;
-
-  productPageLink: {
-    pathname: string;
-    query: {
-      keyword: string;
-    };
-  };
 }
 //---------------------------------------------
 
-const FeaturedProducts: FC<IProps> = ({ title, children, productPageLink }) => {
+const FeaturedProducts: FC<IProps> = ({ title, children }) => {
   return (
     <section className="w-full h-full relative mt-[22px] lg:mt-[60px] md:min-h-[500px]">
       <div className="w-full flex items-center justify-between">
         <h1 className="text-sm md:text-[28px] font-bold">{title}</h1>
-        <Link href={productPageLink}>
+        <Link href={`/shop`}>
           <button className="text-sm md:text-[28px] font-bold flex items-center space-x-1 hover:underline text-primary">
             <p>More</p> <MdKeyboardArrowRight className="text-primary" />
           </button>

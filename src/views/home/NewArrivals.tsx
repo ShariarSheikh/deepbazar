@@ -7,16 +7,10 @@ import { MdKeyboardArrowRight } from 'react-icons/md';
 //---------------------------------------------
 interface IProps {
   data: ProductListType[] | undefined;
-  productPageLink: {
-    pathname: string;
-    query: {
-      keyword: string;
-    };
-  };
 }
 //---------------------------------------------
 
-const NewArrivals: FC<IProps> = ({ data, productPageLink }) => {
+const NewArrivals: FC<IProps> = ({ data }) => {
   return (
     <section className="w-full relative mt-[22px] lg:mt-[60px] min-h-[500px]">
       <div className="w-full flex items-center justify-between">
@@ -25,7 +19,7 @@ const NewArrivals: FC<IProps> = ({ data, productPageLink }) => {
             {ProductSectionName.NewArrivals}
           </h1>
         </div>
-        <Link href={productPageLink}>
+        <Link href={'/shop'}>
           <button className="text-sm md:text-[28px] text-primary font-bold flex items-center space-x-1 hover:underline">
             <p>More</p> <MdKeyboardArrowRight className="text-primary" />
           </button>

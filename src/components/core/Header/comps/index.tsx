@@ -14,7 +14,7 @@ const HeaderSection = () => {
   return (
     <div
       className="w-full flex items-center justify-between
-      font-roboto px-4 2xl:px-0 transition-all duration-150"
+      font-roboto transition-all duration-150"
     >
       {width <= 1023 ? <MobileView /> : <DesktopView />}
     </div>

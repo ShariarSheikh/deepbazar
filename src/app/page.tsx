@@ -72,24 +72,10 @@ export default function Home() {
             <Skeleton className="w-[30%]" height={200} />
           </div>
         ) : (
-          <NewArrivals
-            data={getNewArrivalsApi.data?.data.products}
-            productPageLink={{
-              pathname: '/shop',
-              query: {
-                keyword: ProductSectionName.NewArrivals,
-              },
-            }}
-          />
+          <NewArrivals data={getNewArrivalsApi.data?.data.products} />
         )}
 
         <JustForYou
-          productPageLink={{
-            pathname: '/shop',
-            query: {
-              keyword: ProductSectionName.JustForYou,
-            },
-          }}
           title={ProductSectionName.JustForYou}
           navigationComp={
             <div className="w-full pt-[16px] pb-[40px] md:pt-[40px]">
@@ -137,15 +123,7 @@ export default function Home() {
 
         {/* <SponsoredItem /> */}
 
-        <FeaturedProducts
-          productPageLink={{
-            pathname: '/shop',
-            query: {
-              keyword: 'smart-phones',
-            },
-          }}
-          title={ProductSectionName.FeaturedProducts}
-        >
+        <FeaturedProducts title={ProductSectionName.FeaturedProducts}>
           <>
             {getFeaturedProductsApi.isLoading ? (
               <div className="md:mt-[40px] flex items-center justify-between gap-y-10 flex-wrap">

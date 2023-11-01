@@ -15,7 +15,7 @@ export default function DesktopView() {
 
   return (
     <div className="hidden w-full h-full lg:block">
-      <div className="w-full bg-[#F5F5F5]">
+      <div className="w-full bg-[#F5F5F5] px-4">
         <div className="h-[42px] max-w-[1201px] text-[#666666] font-light mx-auto flex items-center justify-between">
           <h1 className="text-sm">Welcome to worldwide DeepBazar!</h1>
           <div className="flex space-x-4">
@@ -47,7 +47,7 @@ export default function DesktopView() {
         </div>
       </div>
 
-      <div className="border-b border-[#EDEDED]">
+      <div className="border-b border-[#EDEDED] px-4">
         <div className="max-w-[1201px] h-full min-h-[90px] mx-auto flex items-center justify-between w-full">
           <div className="flex items-center">
             <HamburgerMenuIcon open={open} setOpen={setOpen} />
