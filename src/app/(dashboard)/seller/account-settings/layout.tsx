@@ -7,6 +7,7 @@ import Navigation from './Navigation';
 import { BiLogOutCircle } from 'react-icons/bi';
 import { useAppDispatch } from '@/redux/hooks';
 import { logout } from '@/redux/features/authSlice';
+import AccountVerifiedAlert from '@/components/common/AccountVerifiedAlert';
 
 //-------------------------------------------------
 interface IProps {
@@ -25,7 +26,9 @@ const AccountSettingLayout: FC<IProps> = ({ children }) => {
 
   return (
     <section className="w-full h-full p-5 mx-auto pt-3">
-      <div className="w-full h-full px-5 bg-white rounded-[6px] shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]">
+      <div className="w-full h-full px-5 bg-white rounded-[6px]">
+        <AccountVerifiedAlert />
+
         <header className="flex items-center justify-between mb-3">
           <h1 className="text-gray-600 font-medium">Account & Settings</h1>
           <button

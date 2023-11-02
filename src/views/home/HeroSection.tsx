@@ -54,25 +54,25 @@ export interface Banners {
   id: number;
   bannerUrl: string;
   link: string;
-  offer: string;
+  offer: number;
 }
 export const banners: Banners[] = [
   {
     id: 1,
     bannerUrl: 'https://i.ibb.co/0ftZYZR/Group-204.png',
     link: 'offers',
-    offer: '80%',
+    offer: 80,
   },
   {
     id: 2,
     bannerUrl: 'https://i.ibb.co/5jV29wG/www-reallygreatsite-com-2.png',
     link: 'men-clothes',
-    offer: '80%',
+    offer: 50,
   },
   {
     id: 3,
     bannerUrl: 'https://i.ibb.co/Kjx6f47/Mac-Book-Air-1.png',
     link: 'shoes',
-    offer: '30%',
+    offer: 30,
   },
 ];

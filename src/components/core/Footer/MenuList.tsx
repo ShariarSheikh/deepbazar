@@ -1,6 +1,21 @@
+import { loginOpenModal } from '@/redux/features/loginFirstSlice';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import { PATH_USER } from '@/utils/routes';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 const MenuList = () => {
+  const user = useAppSelector(state => state.authSlice.user);
+
+  const dispatch = useAppDispatch();
+  const router = useRouter();
+
+  const trackOrderHandler = () => {
+    if (!user._id)
+      return dispatch(loginOpenModal({ redirectUrl: PATH_USER.trackOrder }));
+    router.push(PATH_USER.trackOrder);
+  };
+
   return (
     <div className="flex-grow lg:pt-4 w-2/4 sm:w-[30%] md:w-1/4 text-white">
       <div className="w-full">
@@ -22,11 +37,12 @@ const MenuList = () => {
               Best Offers
             </li>
           </Link>
-          <Link href="/track-order">
-            <li className="mb-2 cursor-pointer hover:underline duration-200">
-              Track Order
-            </li>
-          </Link>
+          <li
+            onClick={trackOrderHandler}
+            className="mb-2 cursor-pointer hover:underline duration-200"
+          >
+            Track Order
+          </li>
           <Link href="/cart">
             <li className="mb-2 cursor-pointer hover:underline duration-200">
               Cart

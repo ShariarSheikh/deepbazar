@@ -110,7 +110,6 @@ export default function CreateProduct() {
       //
       case 'category':
         if (typeof value !== 'string') return;
-        //@ts-expect-error
         const tags = productTags[value];
         setSelectAbleTags(tags);
         setInitialStateData(prevS => ({
@@ -210,13 +209,18 @@ export default function CreateProduct() {
   useEffect(() => {
     if (!getCategory.isSuccess && !getCategory?.data?.data) return;
 
+    const firstInitialCategory = getCategory?.data?.data[0].name ?? '';
+    const tags = productTags[firstInitialCategory];
+    setSelectAbleTags(tags);
+
     setInitialStateData(prevS => ({
       ...prevS,
-      category: getCategory?.data?.data[0].name ?? '',
+      category: firstInitialCategory,
     }));
   }, [getCategory.isSuccess, dispatch]);
 
   useEffect(() => {
+    if (initialStateData.category) return;
     setInitialStateData(prevS => ({
       ...prevS,
       category: 'Watch',

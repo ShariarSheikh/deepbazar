@@ -12,7 +12,6 @@ export enum ComponentShowOnType {
 }
 interface IProps {
   productId: string;
-  userId: string;
   specification?: string;
   description?: string;
   totalReview: number;
@@ -33,7 +32,6 @@ enum ComponentTypeEnum {
 const ProductAdditionalInfo: FC<IProps> = ({
   componentFor,
   productId,
-  userId,
   specification,
   description,
   totalReview,
@@ -127,11 +125,7 @@ const ProductAdditionalInfo: FC<IProps> = ({
             <Description description={description} />
           ) : null}
           {componentType === ComponentTypeEnum.QnA ? (
-            <QuestionAndAns
-              userId={userId}
-              productId={productId}
-              componentFor={componentFor}
-            />
+            <QuestionAndAns productId={productId} componentFor={componentFor} />
           ) : null}
         </Suspense>
       </div>

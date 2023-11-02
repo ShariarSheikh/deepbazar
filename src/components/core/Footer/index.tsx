@@ -1,3 +1,5 @@
+'use client';
+
 import Category from './Category';
 import DeepBazar from './DeepBazar';
 import MenuList from './MenuList';

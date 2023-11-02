@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   Environment,
   SERVER_API_ACCESS_KEY,

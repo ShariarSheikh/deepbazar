@@ -1,8 +1,10 @@
+import { productTags } from '@/app/(dashboard)/seller/products/add-new/utils';
+import HighlightMatchingText from '@/components/common/HighlightMatchingText';
 import { useGetCategoryQuery } from '@/redux/services/categoryApi';
 import { AnimatePresence, motion } from 'framer-motion';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { ChangeEvent, useEffect, useRef, useState } from 'react';
+import { usePathname, useRouter } from 'next/navigation';
+import { ChangeEvent, FormEvent, useEffect, useRef, useState } from 'react';
 import ClickAwayListener from 'react-click-away-listener';
 import { AiOutlineUnorderedList } from 'react-icons/ai';
 import { FiArrowUpLeft, FiSearch } from 'react-icons/fi';
@@ -51,6 +53,7 @@ const SearchBar = () => {
 
   useEffect(() => {
     setIsShowResult(false);
+    setIsShowCategory(false);
     return undefined;
   }, [pathname]);
 
@@ -58,17 +61,26 @@ const SearchBar = () => {
     <AnimatePresence>
       <ClickAwayListener onClickAway={() => setIsShowResult(false)}>
         <div className="relative w-full max-w-full lg:max-w-[556px] h-[48px]">
-          <form className="w-full flex items-center justify-between h-[48px] bg-[#F3F9FB] rounded-[6px] relative">
+          <form
+            onSubmit={(event: FormEvent<HTMLFormElement>) => {
+              event.preventDefault();
+            }}
+            style={
+              isShowResult
+                ? { border: '2px solid #c5eafa' }
+                : { border: '2px solid transparent' }
+            }
+            className="w-full flex items-center justify-between h-[48px] bg-[#F3F9FB] rounded-[6px] relative"
+          >
             <FiSearch className="text-primary absolute left-[16px] z-0 hidden md:block" />
             <input
               className="max-w-[90%] w-full md:flex-1 pl-2 md:pl-[36px] outline-none text-[14px] bg-transparent z-10"
               type="text"
-              placeholder="Search product name and more..."
+              placeholder="Search DeepBazar..."
               ref={searchInputRef}
               value={searchInput}
               onChange={onSearchHandler}
               onFocus={handleFocus}
-              onKeyPress={e => e.key === 'Enter' && ''}
             />
 
             <div className="w-[40px] h-[20px] relative">
@@ -91,36 +103,14 @@ const SearchBar = () => {
               animate={{ opacity: 1, y: -10 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ type: 'spring', damping: 30, stiffness: 400 }}
-              className="h-full w-full mt-2 z-50  relative bg-[#ffffff] border border-[#EDEDED] text-gray-400 max-w-[556px] min-w-[200px] min-h-[370px] overflow-hidden rounded-[10px]"
+              className="h-full w-full fixed inset-0 top-[122px] bg-[#0000004a]"
               ref={resultContainerRef}
               onClick={e => hideResult(e.currentTarget)}
             >
-              <div className="w-full h-full">
-                <ul className="mt-[35px] w-full h-full p-[10px]">
-                  <h1 className="text-[#91929D] text-[14px]">Your searches</h1>
-                  <li className=" w-full h-[40px] mb-[3px] pl-[8px] flex items-center justify-between text-[#23263B] hover:bg-[#F3F9FB] rounded-[6px] cursor-pointer">
-                    <div className="flex items-center h-full">
-                      <FiSearch className="mr-[8px] text-[20px]" />
-                      <h1 className="text-[14px] pt-[3px]">Motorola Edge 20</h1>
-                    </div>
-                    <FiArrowUpLeft className="ml-[8px] text-[20px]" />
-                  </li>
-                  <li className=" w-full h-[40px] mb-[3px] pl-[8px] flex items-center justify-between text-[#23263B] hover:bg-[#F3F9FB] rounded-[6px] cursor-pointer">
-                    <div className="flex items-center h-full">
-                      <FiSearch className="mr-[8px] text-[20px]" />
-                      <h1 className="text-[14px] pt-[3px]">Motorola Edge 20</h1>
-                    </div>
-                    <FiArrowUpLeft className="ml-[8px] text-[20px]" />
-                  </li>
-                  <li className=" w-full h-[40px] mb-[3px] pl-[8px] flex items-center justify-between text-[#23263B] hover:bg-[#F3F9FB] rounded-[6px] cursor-pointer">
-                    <div className="flex items-center h-full">
-                      <FiSearch className="mr-[8px] text-[20px]" />
-                      <h1 className="text-[14px] pt-[3px]">Motorola Edge 20</h1>
-                    </div>
-                    <FiArrowUpLeft className="ml-[8px] text-[20px]" />
-                  </li>
-                </ul>
-              </div>
+              <SearchResult
+                searchInput={searchInput}
+                hideResult={() => setIsShowResult(false)}
+              />
             </motion.div>
           )}
 
@@ -200,3 +190,85 @@ const SearchBar = () => {
 };
 
 export default SearchBar;
+
+interface SearchResultProps {
+  hideResult: () => void;
+  searchInput: string;
+}
+
+const SearchResult = ({ searchInput, hideResult }: SearchResultProps) => {
+  const [suggestions, setSuggestions] = useState<string[]>([]);
+
+  const router = useRouter();
+
+  function findParentCategory(childTag: string) {
+    const matchingCategories = [];
+
+    const normalizedChildTag = childTag.toLowerCase();
+
+    for (const parentCategory in productTags) {
+      const tagsInCategory = productTags[parentCategory].map(tag =>
+        tag.toLowerCase()
+      );
+
+      for (const tag of tagsInCategory) {
+        if (tag.includes(normalizedChildTag)) {
+          matchingCategories.push(parentCategory);
+          break;
+        }
+      }
+    }
+
+    return matchingCategories;
+  }
+
+  const handleInputChange = () => {
+    const matchingTags = findParentCategory(searchInput);
+    setSuggestions(matchingTags);
+  };
+
+  const linkClickHandler = (path: string) => {
+    router.push(`/shop?category=${path}`);
+    hideResult();
+  };
+
+  useEffect(() => {
+    handleInputChange();
+  }, [searchInput]);
+
+  return (
+    <div className="w-full h-full overflow-y-auto invisible-scrollbar visible-scrollbar-onHover -mt-[1px] z-50 relative bg-[#ffffff] border border-[#EDEDED] text-gray-400 max-w-full lg:max-w-[446px] min-w-[200px] min-h-[370px] max-h-[370px] mx-auto overflow-hidden rounded-[6px]">
+      <ul className="w-full h-full p-[10px]">
+        <h1 className="text-[#91929D] text-[14px]">Your searches tags</h1>
+        {suggestions.length > 0 &&
+          suggestions.map((result, i) => (
+            <div key={i}>
+              <div
+                onClick={() => linkClickHandler(result)}
+                className=" w-full h-[40px] mb-[3px] pl-[8px] flex items-center justify-between text-[#23263B] hover:bg-[#F3F9FB] rounded-[6px] cursor-pointer"
+              >
+                <div className="flex items-center h-full">
+                  <FiSearch className="mr-[8px] text-[20px]" />
+                  <h1 className="text-[14px] pt-[3px]">{result}</h1>
+                </div>
+                <FiArrowUpLeft className="ml-[8px] text-[20px]" />
+              </div>
+              <ul className="pl-3 flex space-x-2 items-center text-sm pb-2">
+                {productTags[result].map((childTag, i) => (
+                  <li key={i}>
+                    {HighlightMatchingText(childTag, searchInput)}
+                    {i !== productTags[result].length ? ',' : ''}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        {suggestions.length === 0 && (
+          <li className="text-center text-sm text-gray-600 py-3">
+            Nothing Found
+          </li>
+        )}
+      </ul>
+    </div>
+  );
+};

@@ -5,7 +5,6 @@ import {
   CustomFormikInput,
   InputApiErrorMessage,
 } from '@/components/common/FormikCustomInput';
-import Input from '@/components/common/Input';
 import { UploadAvatar } from '@/components/common/Upload';
 import { AlertType, showAlert } from '@/redux/features/alertSlice';
 import { logout, setCredentials } from '@/redux/features/authSlice';
@@ -17,6 +16,7 @@ import {
 import { AccountCreate } from '@/types/auth.types';
 import { Field, Form, Formik } from 'formik';
 import { FC, useCallback, useEffect, useState } from 'react';
+import { AiOutlineCheckCircle } from 'react-icons/ai';
 import * as Yup from 'yup';
 
 const validationSchema = Yup.object().shape({
@@ -31,10 +31,8 @@ const GeneralPage: FC = () => {
   const [updateAccount, updateAccountReturnResult] = useUpdateAccountMutation();
   const [deleteAccount, deleteAccountReturnResult] = useDeleteAccountMutation();
   const user = useAppSelector(state => state.authSlice.user);
-  const [email, setEmail] = useState<string>('');
   const [profileImg, setProfileImg] = useState<string>('');
   const [bio, setBio] = useState<string>('');
-  const [accountDeleteError, setAccountDeleteError] = useState<string>('');
   const [isOpen, setIsOpen] = useState(false);
 
   const initialValues = { ...user };
@@ -56,10 +54,7 @@ const GeneralPage: FC = () => {
   const closeModal = () => setIsOpen(false);
 
   const deleteAccountHandler = async () => {
-    if (email !== user?.email)
-      return setAccountDeleteError('Please enter your current account email');
-    //@ts-ignore
-    await deleteAccount({ userId: user?._id });
+    await deleteAccount({ userId: user._id });
   };
 
   // UPDATE FORM-------------------------------------------
@@ -167,11 +162,6 @@ const GeneralPage: FC = () => {
               //@ts-expect-error
               updateAccountReturnResult.error?.data?.message
             )}
-          {deleteAccountReturnResult.isError &&
-            InputApiErrorMessage(
-              //@ts-expect-error
-              deleteAccountReturnResult.error?.data?.message
-            )}
           <div className="w-full flex gap-3 flex-wrap">
             <div className="w-full flex items-center justify-between">
               <div className="w-[48%]">
@@ -249,31 +239,39 @@ const GeneralPage: FC = () => {
         </Form>
       </Formik>
       <CustomModal
-        boxStyle={{ width: 350 }}
+        boxStyle={{ width: 380 }}
         onClose={closeModal}
         isOpen={isOpen}
       >
-        <div className="w-[300px] flex flex-col justify-end">
-          <h3 className="py-[3px]">Please Enter current your email!</h3>
-          {accountDeleteError && (
+        <div className="w-[320px] mx-auto flex flex-col justify-end">
+          <div className="w-full flex">
+            <div className="h-[50px] w-[50px] rounded-[8px] bg-[#F5F5F5] flex items-center justify-center">
+              <AiOutlineCheckCircle />
+            </div>
+            <div className="pl-3">
+              <h1 className="text-[20px] font-semibold">
+                Sure you want to delete?
+              </h1>
+              <p className="mt-2 text-sm text-[@54595E]">
+                Are you sure you want to accept this?
+              </p>
+            </div>
+          </div>
+          {deleteAccountReturnResult.isError && (
             <p className="text-[11px] text-red-700 px-[3px] pt-[4px] pb-2">
-              {accountDeleteError}
+              {InputApiErrorMessage(
+                //@ts-expect-error
+                deleteAccountReturnResult.error?.data?.message
+              )}
             </p>
           )}
-          <Input
-            placeholder="Enter your email"
-            name="email"
-            value={email}
-            onChange={event => setEmail(event.target.value)}
-            className="h-full w-full rounded-[8px]"
-          />
           <Button
             disabled={deleteAccountReturnResult.isLoading}
             isLoading={deleteAccountReturnResult.isLoading}
             loadingColor="white"
             loadingSpinnerSize={40}
             onClick={deleteAccountHandler}
-            className="bg-red-600 mt-[16px] max-w-[134.89px] w-full rounded-[6px] active:scale-95 duration-150 text-white font-bold text-[14px] h-[33px]"
+            className="bg-red-600 mt-[24px] w-full rounded-[6px] active:scale-95 duration-150 text-white font-bold text-[14px] h-[33px]"
           >
             Confirm Delete
           </Button>

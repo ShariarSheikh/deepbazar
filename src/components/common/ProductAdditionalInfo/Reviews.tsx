@@ -13,8 +13,9 @@ import {
 import { InputApiErrorMessage } from '../FormikCustomInput';
 import { ReviewData } from '@/types/review.type';
 import dateFormat from '@/utils/dateFormat';
-import { useAppSelector } from '@/redux/hooks';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import StarRating from '../StarRating';
+import { loginOpenModal } from '@/redux/features/loginFirstSlice';
 
 interface IProps {
   componentFor: ComponentShowOnType;
@@ -47,9 +48,17 @@ function Reviews({
   const [error, setError] = useState<string>('');
 
   const reviewBoxRef = useRef<HTMLTextAreaElement>(null);
+  const dispatch = useAppDispatch();
 
   const reviewBoxHandler = (isOpen: boolean) => setIsReviewBox(isOpen);
+
   const submitReviewHandler = () => {
+    if (!user._id)
+      return dispatch(loginOpenModal({ redirectUrl: `/product/${productId}` }));
+
+    if (user.role.includes('SELLER'))
+      return alert('Seller not allow to review');
+
     if (!reviewBoxRef.current?.value.trim() || rating === 0)
       return setError('Please add rating and write your feedback');
 
@@ -182,82 +191,72 @@ function Reviews({
           </div>
         )}
 
-      {componentFor === ComponentShowOnType.UserProductDetails &&
-        user?.role.includes('USER') &&
-        !user.verified && (
-          <p className="text-[12px] text-center py-2 text-red-400">
-            Please verified your account to review
-          </p>
-        )}
-
-      {componentFor === ComponentShowOnType.UserProductDetails &&
-        !user?.role.includes('SELLER') &&
-        user?.verified && (
-          <>
-            <div className="flex items-center justify-between">
-              <h1 className="text-sm text-gray-600">
-                Click the button to add a review
-              </h1>
-
-              {isReviewBox ? (
-                <Button
-                  onClick={() => reviewBoxHandler(false)}
-                  className={`text-[14px] active:scale-95 duration-200 flex items-center space-x-2 font-semibold mt-[8px] px-2 py-1 rounded-[6px] text-primary`}
-                >
-                  <AiOutlineClose /> <span>Close Review Box</span>
-                </Button>
-              ) : (
-                <Button
-                  onClick={() => reviewBoxHandler(true)}
-                  className={`text-[14px] active:scale-95 duration-200 flex items-center space-x-2 font-semibold mt-[8px] px-2 py-1 rounded-[6px] text-primary`}
-                >
-                  <AiOutlinePlus /> <span>Add Review</span>
-                </Button>
-              )}
-            </div>
+      {componentFor === ComponentShowOnType.UserProductDetails && (
+        <>
+          <div className="flex items-center justify-between">
+            <h1 className="text-sm text-gray-600">
+              Click the button to add a review
+            </h1>
 
             {isReviewBox ? (
-              <>
-                <div className="mt-[8px]">
-                  <div>
-                    {error && InputApiErrorMessage(error)}
-                    <div className="flex items-center justify-start space-x-3">
-                      {[...Array(5)].map((_, i) => (
-                        <ReviewWriteRating
-                          className={'ratingIcon'}
-                          fill={rating >= i + 1 ? '#008ECC' : '#DBDEDF'}
-                          onClick={() => ratingHandler(i + 1)}
-                          key={i}
-                        />
-                      ))}
-                    </div>
-                    <div className="text-[13px] text-gray-600">
-                      {RatingType[rating]}
-                    </div>
-                  </div>
+              <Button
+                onClick={() => reviewBoxHandler(false)}
+                className={`text-[14px] active:scale-95 duration-200 flex items-center space-x-2 font-semibold mt-[8px] px-2 py-1 rounded-[6px] text-primary`}
+              >
+                <AiOutlineClose /> <span>Close Review Box</span>
+              </Button>
+            ) : (
+              <Button
+                onClick={() => reviewBoxHandler(true)}
+                className={`text-[14px] active:scale-95 duration-200 flex items-center space-x-2 font-semibold mt-[8px] px-2 py-1 rounded-[6px] text-primary`}
+              >
+                <AiOutlinePlus /> <span>Add Review</span>
+              </Button>
+            )}
+          </div>
 
-                  <textarea
-                    ref={reviewBoxRef}
-                    placeholder="Write review..."
-                    className="min-h-[56px] max-h-[250px] px-[14px] py-3 rounded-[8px] border border-gray-200 focus:border-2 outline-none w-full mt-[5px]"
-                  />
+          {isReviewBox ? (
+            <>
+              <div className="mt-[8px]">
+                <div>
+                  {error && InputApiErrorMessage(error)}
+                  <div className="flex items-center justify-start space-x-3">
+                    {[...Array(5)].map((_, i) => (
+                      <ReviewWriteRating
+                        className={'ratingIcon'}
+                        fill={rating >= i + 1 ? '#008ECC' : '#DBDEDF'}
+                        onClick={() => ratingHandler(i + 1)}
+                        key={i}
+                      />
+                    ))}
+                  </div>
+                  <div className="text-[13px] text-gray-600">
+                    {RatingType[rating]}
+                  </div>
                 </div>
-                <div className="w-full flex justify-end">
-                  <Button
-                    disabled={isLoading}
-                    isLoading={isLoading}
-                    loadingColor="white"
-                    loadingSpinnerSize={40}
-                    onClick={submitReviewHandler}
-                    className="mt-[4px] font-semibold text-white rounded-[8px] h-[32px] w-[86px] bg-primary active:scale-95 duration-200"
-                  >
-                    Submit
-                  </Button>
-                </div>
-              </>
-            ) : null}
-          </>
-        )}
+
+                <textarea
+                  ref={reviewBoxRef}
+                  placeholder="Write review..."
+                  className="min-h-[56px] max-h-[250px] px-[14px] py-3 rounded-[8px] border border-gray-200 focus:border-2 outline-none w-full mt-[5px]"
+                />
+              </div>
+              <div className="w-full flex justify-end">
+                <Button
+                  disabled={isLoading}
+                  isLoading={isLoading}
+                  loadingColor="white"
+                  loadingSpinnerSize={40}
+                  onClick={submitReviewHandler}
+                  className="mt-[4px] font-semibold text-white rounded-[8px] h-[32px] w-[86px] bg-primary active:scale-95 duration-200"
+                >
+                  Submit
+                </Button>
+              </div>
+            </>
+          ) : null}
+        </>
+      )}
 
       {typeof getReviews.data !== 'undefined' &&
         getReviews.data.data.totals > 0 && (

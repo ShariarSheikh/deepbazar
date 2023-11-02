@@ -5,6 +5,7 @@ import cartSlice from './features/cartSlice';
 import favoriteCartSlice from './features/favoriteCartSlice';
 import authSlice from './features/authSlice';
 import alertSlice from './features/alertSlice';
+import loginFirstSlice from './features/loginFirstSlice';
 
 export const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ export const store = configureStore({
     favoriteCartSlice: favoriteCartSlice,
     authSlice: authSlice,
     alertSlice: alertSlice,
+    loginFirstSlice: loginFirstSlice,
     [apiSlice.reducerPath]: apiSlice.reducer,
   },
 

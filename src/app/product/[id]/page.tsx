@@ -13,7 +13,6 @@ import Info from './Info';
 import { useGetProductDetailsQuery } from '@/redux/services/productApi';
 import { LoadingPage } from '@/components/common/loading';
 import { useRouter } from 'next/navigation';
-import { useAppSelector } from '@/redux/hooks';
 import Head from 'next/head';
 
 //------------------------------------------------------------------
@@ -24,7 +23,6 @@ const metadata: Metadata = {
 //------------------------------------------------------------------
 
 const Page = ({ params }: { params: { id: string } }) => {
-  const user = useAppSelector(state => state.authSlice.user);
   const { data, isLoading, isError } = useGetProductDetailsQuery({
     productId: params.id,
   });
@@ -80,7 +78,6 @@ const Page = ({ params }: { params: { id: string } }) => {
         specification={product.specification}
         description={product.description}
         productId={product._id}
-        userId={user?._id ?? ''}
         totalReview={product.ratings.totalReviews}
       />
     </main>

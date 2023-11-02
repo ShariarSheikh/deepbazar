@@ -3,7 +3,9 @@
 import { Role } from '@/app/auth/utils';
 import CartBadges from '@/components/common/CartBadge';
 import Skeleton from '@/components/common/Skeleton';
-import { useAppSelector } from '@/redux/hooks';
+import { loginOpenModal } from '@/redux/features/loginFirstSlice';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import { PATH_USER } from '@/utils/routes';
 import Image from 'next/image';
 import {
   useRouter,
@@ -33,10 +35,9 @@ const BottomNavigationComp: FC = () => {
   const segment = useSelectedLayoutSegment();
   const segments = useSelectedLayoutSegments();
   const router = useRouter();
+  const dispatch = useAppDispatch();
 
   const handleRouter = () => {
-    if (!user?._id) return router.push('/auth');
-
     //REDIRECT TO USER PROFILE
     if (user?.role.includes(Role.USER)) return router.push(`/user`);
 
@@ -100,7 +101,13 @@ const BottomNavigationComp: FC = () => {
           <span className="text-[10px]">Shop</span>
         </button>
         <button
-          onClick={() => router.push('/user/wishlist')}
+          onClick={() => {
+            if (!user?._id)
+              return dispatch(
+                loginOpenModal({ redirectUrl: PATH_USER.wishlist })
+              );
+            router.push(PATH_USER.wishlist);
+          }}
           style={
             segments?.includes('wishlist')
               ? {
@@ -160,7 +167,7 @@ const BottomNavigationComp: FC = () => {
           <FiShoppingCart />
           <span className="text-[10px]">Cart</span>
           <div className="absolute -top-[5px] right-[15px]">
-            <CartBadges number={totalQuantity || 6} />
+            <CartBadges number={totalQuantity || 0} />
           </div>
         </button>
         <button

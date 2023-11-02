@@ -9,9 +9,23 @@ import Logo from './Logo';
 import ProfileButtons from './ProfileButtons';
 import SearchBar from './SearchBar';
 import DeliveryLocation from './DeliveryLocation';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import { loginOpenModal } from '@/redux/features/loginFirstSlice';
+import { PATH_USER } from '@/utils/routes';
+import { useRouter } from 'next/navigation';
 
 export default function DesktopView() {
+  const user = useAppSelector(state => state.authSlice.user);
   const [open, setOpen] = useState(false);
+
+  const dispatch = useAppDispatch();
+  const router = useRouter();
+
+  const trackOrderHandler = () => {
+    if (!user._id)
+      return dispatch(loginOpenModal({ redirectUrl: PATH_USER.trackOrder }));
+    router.push(PATH_USER.trackOrder);
+  };
 
   return (
     <div className="hidden w-full h-full lg:block">
@@ -29,15 +43,13 @@ export default function DesktopView() {
             </button>
             <span className="bg-[#D9D9D9] h-[18px] w-[1px]" />
 
-            <Link href="/user/track-order">
-              <button className="flex items-center">
-                <FaCaravan className="text-primary" />
-                <p className="ml-[6px] text-sm">Track your order</p>
-              </button>
-            </Link>
+            <button onClick={trackOrderHandler} className="flex items-center">
+              <FaCaravan className="text-primary" />
+              <p className="ml-[6px] text-sm">Track your order</p>
+            </button>
             <span className="bg-[#D9D9D9] h-[18px] w-[1px]" />
 
-            <Link href="/best-offer">
+            <Link href="/best-offers">
               <button className="flex items-center">
                 <MdLocalOffer className="text-primary" />
                 <p className="ml-[6px] text-sm">Best Offers</p>

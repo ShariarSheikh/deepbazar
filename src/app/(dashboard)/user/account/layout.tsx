@@ -9,6 +9,7 @@ import { IoIosArrowForward } from 'react-icons/io';
 import Navigation from './Navigation';
 import { Role } from '@/app/auth/utils';
 import { LoadingPage } from '@/components/common/loading';
+import AccountVerifiedAlert from '@/components/common/AccountVerifiedAlert';
 
 //-------------------------------------------------
 interface IProps {
@@ -33,6 +34,7 @@ const AccountSettingLayout: FC<IProps> = ({ children }) => {
 
   return (
     <section className="w-full h-full p-1 md:p-5 mx-auto pt-3">
+      <AccountVerifiedAlert />
       <header className="flex items-center justify-between mb-3">
         <h1 className="text-gray-600 font-medium">My Account</h1>
         <button

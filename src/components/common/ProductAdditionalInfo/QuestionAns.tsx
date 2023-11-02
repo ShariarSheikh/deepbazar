@@ -3,25 +3,28 @@ import { RiQuestionnaireFill } from 'react-icons/ri';
 import { ComponentShowOnType } from '.';
 import Button from '../Button';
 import { AiOutlineClose, AiOutlinePlus } from 'react-icons/ai';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import { loginOpenModal } from '@/redux/features/loginFirstSlice';
 
 interface IProps {
   componentFor: ComponentShowOnType;
   productId: string;
-  userId: string;
 }
-function QuestionAndAns({
-  componentFor,
-  userId,
-  productId,
-}: IProps): JSX.Element {
+function QuestionAndAns({ componentFor, productId }: IProps): JSX.Element {
+  const user = useAppSelector(state => state.authSlice.user);
   const [isQuestionBox, setIsQuestionBox] = useState<boolean>(false);
 
   const questionBoxRef = useRef<HTMLTextAreaElement>(null);
+  const dispatch = useAppDispatch();
 
   const questionBoxHandler = (isOpen: boolean) => setIsQuestionBox(isOpen);
   const submitQuestionHandler = () => {
+    if (!user._id)
+      return dispatch(loginOpenModal({ redirectUrl: `/product/${productId}` }));
+    if (user.role.includes('SELLER'))
+      return alert('Seller not allow to review');
     // eslint-disable-next-line prettier/prettier, no-console
-    console.log({ userId, productId, question: questionBoxRef.current?.value });
+    console.log({ productId, question: questionBoxRef.current?.value });
   };
   return (
     <div className="p-[24px]">

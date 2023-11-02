@@ -11,10 +11,8 @@ import { MdEdit } from 'react-icons/md';
 import ImageGallery from './ImageGallery';
 import Information from './Information';
 import { useGetSellerProductQuery } from '@/redux/services/productApi';
-import { useAppSelector } from '@/redux/hooks';
 
 export default function Page({ params }: { params: { id: string } }) {
-  const user = useAppSelector(state => state.authSlice.user);
   const { data } = useGetSellerProductQuery({
     productId: params.id,
   });
@@ -65,7 +63,6 @@ export default function Page({ params }: { params: { id: string } }) {
           description={data.data.description}
           componentFor={ComponentShowOnType.SellerDashboardProductDetails}
           productId={data.data._id}
-          userId={user?._id ?? ''}
           totalReview={data.data.ratings.totalReviews}
         />
       </div>

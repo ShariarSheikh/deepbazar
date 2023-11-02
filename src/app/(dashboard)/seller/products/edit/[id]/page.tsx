@@ -122,7 +122,6 @@ export default function CreateProduct({ params }: { params: { id: string } }) {
       //
       case 'category':
         if (typeof value !== 'string') return;
-        //@ts-expect-error
         const tags = productTags[value];
         setSelectAbleTags(tags);
         setInitialStateData(prevS => ({
@@ -206,7 +205,6 @@ export default function CreateProduct({ params }: { params: { id: string } }) {
       ),
     }));
 
-    //@ts-expect-error
     const tags = productTags[product.category];
     setSelectAbleTags(tags);
   }, [params.id, getProduct.isLoading, getProduct.data?.data]);

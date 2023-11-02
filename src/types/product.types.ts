@@ -81,6 +81,7 @@ export interface ProductListApiQuery {
   category?: string;
   pageLength?: number;
   limit: number;
+  discountPercentUpTo?: number;
   startPrice?: string;
   endPrice?: string;
   filterBy?: ProductFilterBy;

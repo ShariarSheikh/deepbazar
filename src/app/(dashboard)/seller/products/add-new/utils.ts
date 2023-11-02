@@ -2,7 +2,11 @@ import { ProductSectionName } from '@/types/product.types';
 import createFormData from '@/utils/createFormData';
 import { EditorState, convertToRaw } from 'draft-js';
 
-export const productTags = {
+export interface ProductTags {
+  [category: string]: string[];
+}
+
+export const productTags: ProductTags = {
   Watch: ['Analog', 'Digital', 'Luxury', 'Sports', 'Smartwatch'],
   'Smart Phone': ['Smartphone', 'Feature Phone', 'Accessories'],
   Camera: ['DSLR', 'Mirrorless', 'Compact', 'Action Cam'],

@@ -23,7 +23,7 @@ const Product: FC<IProps> = ({ product }) => {
           </div>
         )}
 
-        <div className="w-full relative max-w-[190px] h-[135px] md:h-[190px] overflow-hidden z-[3] rounded-[10px] bg-[#f5f6f6] cursor-pointer">
+        <div className="w-full relative max-w-[100%] h-[135px] md:h-[190px] overflow-hidden z-[3] rounded-[10px] bg-[#f5f6f6] cursor-pointer">
           <Image
             fill
             className="w-full h-full group-hover:scale-110 duration-150"

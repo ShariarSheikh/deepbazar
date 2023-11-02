@@ -13,6 +13,7 @@ import {
   useGetAllWishlistByIdQuery,
 } from '@/redux/services/wishlistApi';
 import Button from '@/components/common/Button';
+import { loginOpenModal } from '@/redux/features/loginFirstSlice';
 
 const Info: FC<{ data: ProductTypes }> = ({ data }) => {
   const user = useAppSelector(state => state.authSlice);
@@ -37,6 +38,8 @@ const Info: FC<{ data: ProductTypes }> = ({ data }) => {
   };
 
   const wishlistHandler = () => {
+    if (!user.user._id)
+      return dispatch(loginOpenModal({ redirectUrl: `/product/${data._id}` }));
     if (!user.user?.role.includes('USER')) return;
 
     if (checkWishlist.isError) {

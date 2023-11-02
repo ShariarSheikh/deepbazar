@@ -1,7 +1,9 @@
 import { Role } from '@/app/auth/utils';
 import CartBadges from '@/components/common/CartBadge';
 import Skeleton from '@/components/common/Skeleton';
-import { useAppSelector } from '@/redux/hooks';
+import { loginOpenModal } from '@/redux/features/loginFirstSlice';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import { PATH_USER } from '@/utils/routes';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -20,10 +22,12 @@ const ProfileButtons = () => {
   );
 
   const route = useRouter();
+  const dispatch = useAppDispatch();
 
   const handleRouter = (afterPath: string = '') => {
     //IF USER NOT LOGGED IN THEN REDIRECT TO AUTH PAGE
-    if (!user?._id && afterPath === 'wishlist') return route.push('/auth');
+    if (!user?._id && afterPath === 'wishlist')
+      return dispatch(loginOpenModal({ redirectUrl: PATH_USER.wishlist }));
 
     //REDIRECT TO USER PROFILE
     if (user?.role.includes(Role.USER))
