@@ -1,5 +1,5 @@
-import useWindowSize from '@/hooks/useWindowSize';
 import dynamic from 'next/dynamic';
+import { Suspense } from 'react';
 
 const MobileView = dynamic(() => import('./MobileView'));
 const DesktopView = dynamic(() => import('./DesktopView'));
@@ -9,14 +9,15 @@ const DesktopView = dynamic(() => import('./DesktopView'));
 //---------------------------------------------
 
 const HeaderSection = () => {
-  const { width } = useWindowSize();
-
   return (
     <div
       className="w-full flex items-center justify-between
       font-roboto transition-all duration-150"
     >
-      {width <= 1023 ? <MobileView /> : <DesktopView />}
+      <Suspense fallback={<div className="w-full h-[70px]" />}>
+        <MobileView />
+        <DesktopView />
+      </Suspense>
     </div>
   );
 };

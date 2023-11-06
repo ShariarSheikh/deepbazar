@@ -80,7 +80,7 @@ const initialState: CartState = {
   totalQuantity: cartInfo.totalQuantity,
   totalAmount: cartInfo.totalAmount,
   subtotal: cartInfo.subtotal,
-  shippingFee: 0,
+  shippingFee: 5,
 };
 
 const cartSlice = createSlice({

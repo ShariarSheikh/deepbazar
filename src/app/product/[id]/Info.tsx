@@ -102,7 +102,7 @@ const Info: FC<{ data: ProductTypes }> = ({ data }) => {
           <span className="bg-[#D9D9D9] h-[18px] w-[1px]" />
 
           <p className="text-[12px] text-gray-500 pt-[3px]">
-            ({data.totalAnswers}) Answered Questions
+            ({data.totalQuestion}) Questions
           </p>
         </div>
 

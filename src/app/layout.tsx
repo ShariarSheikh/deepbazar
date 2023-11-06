@@ -51,7 +51,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <body>
         <Providers>
           <Header />
-          <div className="min-h-[20vh]">{children}</div>
+          <div className="min-h-[40vh]">{children}</div>
           <BottomNavigation />
           <Footer />
         </Providers>

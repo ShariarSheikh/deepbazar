@@ -27,12 +27,10 @@ export default function ManagePage() {
     { isLoading: isLoadingDelete, isSuccess: isSuccessDelete },
   ] = useDeleteProductMutation();
 
+  const [currentPage, setCurrentPage] = useState(0);
   const { data, isLoading, refetch } = useGetSellerProductsQuery({
     sellerId: user?._id,
   });
-
-  const totalPages = 10;
-  const [currentPage, setCurrentPage] = useState(0);
 
   // USE HOOK
   const dispatch = useAppDispatch();
@@ -127,10 +125,10 @@ export default function ManagePage() {
 
           <div className="px-[18px] w-full border-t borderColor h-[56px] flex items-center justify-center mt-[16px]">
             <Pagination
-              limit={totalPages}
+              limit={10}
               currentPage={currentPage}
               setCurrentPage={setCurrentPage}
-              totalProducts={100}
+              totalProducts={data.data.length}
             />
           </div>
         </>

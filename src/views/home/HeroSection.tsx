@@ -30,7 +30,7 @@ const HeroSection: FC = () => {
                 },
               }}
             >
-              <div className="w-full min-h-[150px] md:min-h-[316px] max-w-[1201px] mx-auto cursor-pointer rounded-md max-h-[150px] md:max-h-[316px] relative group">
+              <div className="w-full min-h-[150px] md:min-h-[316px] max-w-[1201px] mx-auto cursor-pointer overflow-hidden rounded-[8px] max-h-[150px] md:max-h-[316px] relative group">
                 <Image
                   src={banner.bannerUrl}
                   alt="banner"

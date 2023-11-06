@@ -5,6 +5,8 @@ import {
   LoginAccount,
   LoginAccountReturnType,
   ProductSellerProfile,
+  SellerDashboardData,
+  UserDashboardData,
 } from '@/types/auth.types';
 import { apiSlice } from '.';
 
@@ -70,6 +72,24 @@ export const auth = apiSlice.injectEndpoints({
         url: `/profile/get-product-seller/${sellerId}`,
       }),
     }),
+
+    getSellerDashboard: builder.query<
+      { data: SellerDashboardData; success: boolean },
+      void
+    >({
+      query: () => ({
+        url: `/profile/get-seller-dashboard`,
+      }),
+    }),
+
+    getUserDashboard: builder.query<
+      { data: UserDashboardData; success: boolean },
+      void
+    >({
+      query: () => ({
+        url: `/profile/get-user-dashboard`,
+      }),
+    }),
   }),
 });
 
@@ -81,4 +101,6 @@ export const {
   useProfileMutation,
   useDeleteAccountMutation,
   useGetProductSellerQuery,
+  useGetSellerDashboardQuery,
+  useGetUserDashboardQuery,
 } = auth;

@@ -49,6 +49,16 @@ export const productApi = apiSlice.injectEndpoints({
       }),
     }),
 
+    getSponsorItem: builder.query<
+      { data: ProductListType; success: boolean },
+      void
+    >({
+      query: () => ({
+        url: `/product/get-sponsor-item`,
+        method: 'get',
+      }),
+    }),
+
     getSellerProduct: builder.query<
       { data: ProductTypes; success: boolean },
       { productId: string }
@@ -97,4 +107,5 @@ export const {
   useGetSellerProductQuery,
   useUpdateProductMutation,
   useGetProductDetailsQuery,
+  useGetSponsorItemQuery,
 } = productApi;

@@ -39,7 +39,7 @@ const LoginFirst = () => {
           </div>
           <div className="pl-3">
             <h1 className="text-[20px] font-semibold">Please login first!</h1>
-            <p className="mt-2 text-sm text-[@54595E]">
+            <p className="mt-2 text-sm text-[#54595E]">
               To achieve your goals.
             </p>
           </div>

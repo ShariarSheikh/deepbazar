@@ -20,14 +20,16 @@ const UserLayout: FC<IProps> = ({ children }) => {
   }
 
   return (
-    <section className="w-full bg-[#f5f5f5] max-w-[1190px] md:px-[10px] mx-auto min-h-[593px]">
-      <div className="w-full flex flex-col md:flex-row h-full">
-        <Sidebar />
-        <div className="w-full h-full bg-white lg:ml-[20px] md:p-3 mt-[20px] md:mt-[50px] rounded-[6px] mb-[20px]">
-          {children}
+    <main className="w-full h-full bg-[#f5f5f5]">
+      <section className="w-full max-w-[1190px] md:px-[10px] mx-auto min-h-[593px]">
+        <div className="w-full flex flex-col md:flex-row h-full">
+          <Sidebar />
+          <div className="w-full h-full bg-white lg:ml-[20px] md:p-3 mt-[20px] md:mt-[50px] rounded-[6px] mb-[20px]">
+            {children}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </main>
   );
 };
 

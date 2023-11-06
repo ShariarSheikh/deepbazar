@@ -60,7 +60,7 @@ function Information({ data }: { data: ProductTypes }) {
         </div>
 
         <p className="text-[12px] text-gray-500 pt-[3px]">
-          ({data.totalAnswers}) Answered Questions
+          ({data.totalQuestion}) Questions
         </p>
       </div>
 

@@ -252,8 +252,8 @@ const GeneralPage: FC = () => {
               <h1 className="text-[20px] font-semibold">
                 Sure you want to delete?
               </h1>
-              <p className="mt-2 text-sm text-[@54595E]">
-                Are you sure you want to accept this?
+              <p className="mt-2 text-sm text-[#54595E]">
+                Are you sure you want to delete this?
               </p>
             </div>
           </div>

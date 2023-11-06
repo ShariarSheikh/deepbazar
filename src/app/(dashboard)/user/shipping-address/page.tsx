@@ -76,7 +76,7 @@ const Page = () => {
         </button>
       </header>
 
-      <div className="w-full h-full pt-1 md:p-5 bg-white mt-3 md:mt-10 rounded-[6px] shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]">
+      <div className="w-full h-full pt-1 md:p-5 bg-white mt-3 rounded-[6px]">
         {getShippingAddress.isLoading && <LoadingPage />}
 
         {typeof getShippingAddress.data !== 'undefined' &&

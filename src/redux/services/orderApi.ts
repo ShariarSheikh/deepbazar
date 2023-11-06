@@ -24,7 +24,7 @@ export const orderApi = apiSlice.injectEndpoints({
       }),
     }),
 
-    getOrderDetails: builder.query<
+    getOrderDetails: builder.mutation<
       { data: OrderData; success: boolean },
       { orderId: string }
     >({
@@ -43,6 +43,16 @@ export const orderApi = apiSlice.injectEndpoints({
         method: 'get',
       }),
     }),
+
+    getOrderById: builder.mutation<
+      { data: OrderData; success: boolean },
+      { orderId: string }
+    >({
+      query: ({ orderId }) => ({
+        url: `/order/getByOrderId/${orderId}`,
+        method: 'get',
+      }),
+    }),
   }),
 });
 
@@ -50,5 +60,6 @@ export const {
   useCreateOrderMutation,
   useDeleteOrderMutation,
   useGetAllOrdersQuery,
-  useGetOrderDetailsQuery,
+  useGetOrderDetailsMutation,
+  useGetOrderByIdMutation,
 } = orderApi;

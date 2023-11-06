@@ -71,3 +71,15 @@ export interface ProductSellerProfile {
     twitter?: string;
   };
 }
+
+export interface UserDashboardData {
+  orders: number;
+  wishlist: number;
+  shippingAddress: number;
+  reviews: number;
+  question: number;
+}
+
+export interface SellerDashboardData {
+  products: number;
+}

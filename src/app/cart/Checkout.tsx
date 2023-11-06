@@ -23,11 +23,11 @@ const Checkout = () => {
           </li>
           <li className="flex items-center justify-between mb-[12px]">
             <span>Tax</span>
-            <span className="font-semibold">$0.00</span>
+            <span className="font-semibold text-primary">Free</span>
           </li>
           <li className="flex items-center justify-between mb-[12px]">
             <span>Shipping</span>
-            <span className="font-semibold text-primary">Free</span>
+            <span className="font-semibold">{cart.shippingFee}</span>
           </li>
           <li className="flex items-center justify-between mb-[20px]">
             <span>Total</span>

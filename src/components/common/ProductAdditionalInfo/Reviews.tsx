@@ -103,7 +103,7 @@ function Reviews({
     );
 
   return (
-    <>
+    <div className="p-[24px]">
       {typeof getReviews.data !== 'undefined' &&
         getReviews.data.data.totals > 0 && (
           <div className="w-full h-full relative">
@@ -277,7 +277,7 @@ function Reviews({
             <span>Zero Reviews on this product</span>
           </div>
         )}
-    </>
+    </div>
   );
 }
 

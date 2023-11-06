@@ -2,19 +2,18 @@ import Link from 'next/link';
 import { FC } from 'react';
 import { ProductListType } from '@/types/product.types';
 import Image from 'next/image';
-import Button from './Button';
 import { useAppDispatch } from '@/redux/hooks';
 import { CartDataTypes, addToCart } from '@/redux/features/cartSlice';
-import StarRating from './StarRating';
+import StarRating from '@/components/common/StarRating';
+import Button from '@/components/common/Button';
 
 //---------------------------------------
 interface IProps {
-  isInsideSlider: boolean;
   product: ProductListType;
 }
 //---------------------------------------
 
-const ProductCart: FC<IProps> = ({ isInsideSlider, product }) => {
+const ProductCart: FC<IProps> = ({ product }) => {
   const dispatch = useAppDispatch();
 
   //add to cart
@@ -35,13 +34,9 @@ const ProductCart: FC<IProps> = ({ isInsideSlider, product }) => {
       ? product.discountPrice
       : product.price;
   return (
-    <div
-      className={`w-full h-[300px] md:h-[450px] bg-white relative ${
-        isInsideSlider ? 'max-w-full' : 'max-w-[48%] md:max-w-[277px]'
-      }`}
-    >
+    <div className={`w-full h-[300px] lg:h-[450px] bg-white relative`}>
       <Link href={`/product/${product._id}`}>
-        <div className="w-full h-[140px] md:h-[303px] rounded-[6px] relative overflow-hidden bg-[#f5f6f6] group cursor-pointer">
+        <div className="w-full h-[140px] lg:h-[303px] rounded-[6px] relative overflow-hidden bg-[#f5f6f6] group cursor-pointer">
           <Image
             src={product.imgUrl}
             alt="product image"
@@ -51,16 +46,16 @@ const ProductCart: FC<IProps> = ({ isInsideSlider, product }) => {
         </div>
       </Link>
       <div>
-        <h1 className="mt-[5px] md:mt-[16px] md:mb-2 text-[10px] lg:text-sm text-gray-800 font-semibold line-clamp-1 pr-1">
+        <h1 className="mt-[5px] lg:mt-[16px] lg:mb-2 text-[10px] lg:text-sm text-gray-800 font-semibold line-clamp-1 pr-1">
           {product.category}
         </h1>
         <Link href={`/product/${product._id}`} className="w-full text-gray-600">
-          <h1 className="lg:mt-[7px] md:mb-[10px] font-normal text-[12px] lg:text-sm line-clamp-1 pr-1">
+          <h1 className="lg:mt-[7px] lg:mb-[10px] font-normal text-[12px] lg:text-sm line-clamp-1 pr-1">
             {product.title}
           </h1>
         </Link>
 
-        <div className="w-full flex flex-col md:flex-row items-start md:items-center justify-between mb-[7px]">
+        <div className="w-full flex flex-col lg:flex-row items-start lg:items-center justify-between mb-[7px]">
           <div className="flex items-center justify-start space-x-2 text-[12px] lg:text-[13px] font-bold text-primary">
             <span className="text-gray-600">${selPrice}</span>
             {product.discountPrice > 0 && <del>{product.price}</del>}

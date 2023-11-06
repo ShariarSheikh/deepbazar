@@ -32,12 +32,6 @@ export interface ProductInitialState {
   productSectionName: ProductSectionNameType;
   offerText: string;
   sellerId: string;
-  ratings: {
-    star: number;
-    totalReviews: number;
-  };
-  totalAnswers: number;
-  totalWishlist: number;
   inStock: boolean;
   images: string[];
   description: EditorState;
@@ -54,12 +48,6 @@ export const initialState: ProductInitialState = {
   productSectionName: ProductSectionName.NewArrivals,
   offerText: '',
   sellerId: '',
-  ratings: {
-    star: 0,
-    totalReviews: 0,
-  },
-  totalAnswers: 0,
-  totalWishlist: 0,
   inStock: true,
   images: [],
   description: EditorState.createEmpty(),

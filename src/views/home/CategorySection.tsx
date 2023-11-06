@@ -10,13 +10,12 @@ const CategorySection = () => {
   const { data, isSuccess, isLoading } = useGetCategoryQuery();
 
   const loadingSkeleton = (
-    <>
-      <Skeleton width={'30%'} height={220} />
-      <Skeleton width={'30%'} height={220} />
-      <Skeleton width={'30%'} height={220} />
-      <Skeleton width={'30%'} height={220} />
-      <Skeleton width={'30%'} height={220} />
-    </>
+    <div className="md:mt-[40px] grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[8px] lg:gap-4">
+      <Skeleton className="w-[100%]" height={200} />
+      <Skeleton className="w-[100%]" height={200} />
+      <Skeleton className="w-[100%]" height={200} />
+      <Skeleton className="w-[100%]" height={200} />
+    </div>
   );
 
   return (
@@ -25,11 +24,11 @@ const CategorySection = () => {
         Shop Our Top Categories
       </h1>
 
-      <div className="w-full relative flex flex-wrap md:flex-nowrap items-center gap-3 md:gap-0 md:space-x-4 justify-start md:justify-between mt-[24px] md:mt-[40px]">
-        {isLoading && loadingSkeleton}
+      {isLoading && loadingSkeleton}
 
-        {isSuccess &&
-          data?.data.map((category, index) => {
+      {isSuccess && (
+        <div className="w-full relative flex flex-wrap md:flex-nowrap items-center gap-3 md:gap-0 md:space-x-4 justify-start md:justify-between mt-[24px] md:mt-[40px]">
+          {data?.data.map((category, index) => {
             const isLastItem = index + 1 === data.data.length;
             return (
               <Link
@@ -59,13 +58,14 @@ const CategorySection = () => {
                   </h1>
 
                   <h1 className="pt-[195px] text-opacity-[64%]  absolute inset-0 text-[12px] z-20 text-center font-medium text-white group">
-                    {category.totalItems}
+                    Totals {category.totalItems}
                   </h1>
                 </div>
               </Link>
             );
           })}
-      </div>
+        </div>
+      )}
     </section>
   );
 };

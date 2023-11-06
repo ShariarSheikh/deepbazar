@@ -1,15 +1,18 @@
 import { logout } from '@/redux/features/authSlice';
+import { loginOpenModal } from '@/redux/features/loginFirstSlice';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import { PATH_USER } from '@/utils/routes';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { ChangeEvent, MutableRefObject } from 'react';
 import ClickAwayListener from 'react-click-away-listener';
 import { AiFillHome, AiFillProject, AiOutlineHeart } from 'react-icons/ai';
 import { BiLogOutCircle, BiSolidOffer } from 'react-icons/bi';
 import { BsShop } from 'react-icons/bs';
 import { FaSellcast } from 'react-icons/fa';
-import { FiPhoneCall, FiShoppingCart } from 'react-icons/fi';
+import { FiShoppingCart } from 'react-icons/fi';
 import { GiDeerTrack } from 'react-icons/gi';
 
 interface HamburgerMenuProps {
@@ -25,11 +28,19 @@ export default function HamburgerMenu({
 }: HamburgerMenuProps) {
   const user = useAppSelector(state => state.authSlice.user);
 
+  const router = useRouter();
   const dispatch = useAppDispatch();
 
   const logOutHandle = () => {
     dispatch(logout());
     closeMenu();
+  };
+
+  const linkHandler = (link: string, isAuthNeed: boolean) => {
+    //IF USER NOT LOGGED IN THEN LOGGED IN FIRST THEN REDIRECT
+    if (isAuthNeed && !user._id)
+      return dispatch(loginOpenModal({ redirectUrl: link }));
+    router.push(link);
   };
 
   return (
@@ -38,8 +49,10 @@ export default function HamburgerMenu({
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: -10 }}
         exit={{ opacity: 0, y: -10 }}
-        transition={{ type: 'spring', damping: 30, stiffness: 400 }}
-        className="h-full w-full mt-2 z-50 min-h-[calc(100vh-150px)] relative bg-[#ffffff] border border-[#EDEDED] text-gray-400 max-w-[200px] min-w-[200px] rounded-[10px] overflow-hidden"
+        transition={{ type: 'spring ', damping: 30, stiffness: 400 }}
+        className={`h-full w-full mt-2 z-50 ${
+          user._id ? 'min-h-[calc(100vh-200px)]' : 'min-h-[calc(100vh-185px)]'
+        } relative bg-[#ffffff] border border-[#EDEDED] text-gray-400 max-w-[200px] min-w-[200px] rounded-[10px] overflow-hidden`}
         ref={resultContainerRef}
         onClick={e => hideResult(e.currentTarget)}
       >
@@ -50,40 +63,44 @@ export default function HamburgerMenu({
                 <AiFillHome /> <p className="ml-[8px] pt-[2px]">Home</p>
               </li>
             </Link>
-            <Link href="/shop">
-              <li className="text-[14px] w-full h-[36px] mb-[3px] flex items-center pl-[8px] hover:bg-[#F3F9FB]">
-                <BsShop />
-                <p className="ml-[8px] pt-[2px]">Shop</p>
-              </li>
-            </Link>
-            <Link href="/best-offer">
-              <li className="text-[14px] w-full h-[36px] mb-[3px] flex items-center pl-[8px] hover:bg-[#F3F9FB]">
-                <BiSolidOffer />
-                <p className="ml-[8px] pt-[2px]">Best Offers</p>
-              </li>
-            </Link>
-            <Link href="/track-order">
-              <li className="text-[14px] w-full h-[36px] mb-[3px] flex items-center pl-[8px] hover:bg-[#F3F9FB]">
-                <GiDeerTrack />
-                <p className="ml-[8px] pt-[2px]">Track Order</p>
-              </li>
-            </Link>
+
+            <li
+              onClick={() => linkHandler('/shop', false)}
+              className="cursor-pointer text-[14px] w-full h-[36px] mb-[3px] flex items-center pl-[8px] hover:bg-[#F3F9FB]"
+            >
+              <BsShop />
+              <p className="ml-[8px] pt-[2px]">Shop</p>
+            </li>
+
+            <li
+              onClick={() => linkHandler('/best-offers', false)}
+              className="text-[14px] w-full h-[36px] mb-[3px] flex items-center pl-[8px] hover:bg-[#F3F9FB]"
+            >
+              <BiSolidOffer />
+              <p className="ml-[8px] pt-[2px]">Best Offers</p>
+            </li>
+
+            <li
+              onClick={() => linkHandler(PATH_USER.trackOrder, true)}
+              className="text-[14px] w-full h-[36px] mb-[3px] flex items-center pl-[8px] hover:bg-[#F3F9FB]"
+            >
+              <GiDeerTrack />
+              <p className="ml-[8px] pt-[2px]">Track Order</p>
+            </li>
+
             <Link href="/cart">
               <li className="text-[14px] w-full h-[36px] mb-[3px] flex items-center pl-[8px] hover:bg-[#F3F9FB]">
                 <FiShoppingCart />
                 <p className="ml-[8px] pt-[2px]">Cart</p>
               </li>
             </Link>
-            <Link href="/user/favorite">
-              <li className="text-[14px] w-full h-[36px] mb-[3px] flex items-center pl-[8px] hover:bg-[#F3F9FB]">
+            <Link href={PATH_USER.wishlist}>
+              <li
+                onClick={() => linkHandler(PATH_USER.wishlist, true)}
+                className="text-[14px] w-full h-[36px] mb-[3px] flex items-center pl-[8px] hover:bg-[#F3F9FB]"
+              >
                 <AiOutlineHeart />
-                <p className="ml-[8px] pt-[2px]">Favorite</p>
-              </li>
-            </Link>
-            <Link href="/contact">
-              <li className="text-[14px] w-full h-[36px] mb-[3px] flex items-center pl-[8px] hover:bg-[#F3F9FB]">
-                <FiPhoneCall />
-                <p className="ml-[8px] pt-[2px]">Contact</p>
+                <p className="ml-[8px] pt-[2px]">Wishlist</p>
               </li>
             </Link>
             {!user?._id && (
@@ -104,7 +121,7 @@ export default function HamburgerMenu({
           </ul>
 
           <div>
-            <Link href="/flash-sale">
+            <Link href="/best-offers?id=2">
               <div className="relative w-[180px] mx-auto h-[200px] mb-[20px] rounded-[6px] overflow-hidden">
                 <Image
                   src="https://i.ibb.co/KNSg6rq/Screenshot-2.png"

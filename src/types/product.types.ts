@@ -26,7 +26,7 @@ export interface ProductTypes {
     star: number;
     totalReviews: number;
   };
-  totalAnswers: number;
+  totalQuestion: number;
 
   price: number;
   discountPrice: number;

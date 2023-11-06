@@ -41,6 +41,7 @@ const ProductAdditionalInfo: FC<IProps> = ({
   createReplyQuestionHandler,
 }) => {
   const [totalReviews, setTotalReviews] = useState<number>(totalReview);
+  const [totalQuestion, setTotalQuestion] = useState<number>(totalReview);
   const [componentType, setComponentType] = useState<ComponentTypeEnum>(
     ComponentTypeEnum.Reviews
   );
@@ -99,7 +100,7 @@ const ProductAdditionalInfo: FC<IProps> = ({
                 : 'border-transparent text-gray-600'
             }`}
           >
-            Q&A(0)
+            Q&A({totalQuestion})
           </li>
         </ul>
       </header>
@@ -125,7 +126,11 @@ const ProductAdditionalInfo: FC<IProps> = ({
             <Description description={description} />
           ) : null}
           {componentType === ComponentTypeEnum.QnA ? (
-            <QuestionAndAns productId={productId} componentFor={componentFor} />
+            <QuestionAndAns
+              setTotalQuestion={setTotalQuestion}
+              productId={productId}
+              componentFor={componentFor}
+            />
           ) : null}
         </Suspense>
       </div>

@@ -67,7 +67,7 @@ const SearchBar = () => {
             }}
             style={
               isShowResult
-                ? { border: '2px solid #c5eafa' }
+                ? { border: '2px solid #2589b5' }
                 : { border: '2px solid transparent' }
             }
             className="w-full flex items-center justify-between h-[48px] bg-[#F3F9FB] rounded-[6px] relative"
@@ -103,10 +103,14 @@ const SearchBar = () => {
               animate={{ opacity: 1, y: -10 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ type: 'spring', damping: 30, stiffness: 400 }}
-              className="h-full w-full fixed inset-0 top-[122px] bg-[#0000004a]"
+              className="h-full w-full fixed inset-0"
               ref={resultContainerRef}
               onClick={e => hideResult(e.currentTarget)}
             >
+              <div
+                onClick={() => setIsShowResult(false)}
+                className="w-full h-full fixed inset-0 top-[122px] bg-[#0000004a] z-10"
+              />
               <SearchResult
                 searchInput={searchInput}
                 hideResult={() => setIsShowResult(false)}
@@ -237,7 +241,7 @@ const SearchResult = ({ searchInput, hideResult }: SearchResultProps) => {
   }, [searchInput]);
 
   return (
-    <div className="w-full h-full overflow-y-auto invisible-scrollbar visible-scrollbar-onHover -mt-[1px] z-50 relative bg-[#ffffff] border border-[#EDEDED] text-gray-400 max-w-full lg:max-w-[446px] min-w-[200px] min-h-[370px] max-h-[370px] mx-auto overflow-hidden rounded-[6px]">
+    <div className="w-full h-full mt-[122px] overflow-y-auto invisible-scrollbar visible-scrollbar-onHover z-50 relative bg-[#ffffff] border border-[#EDEDED] text-gray-400 max-w-full lg:max-w-[446px] min-w-[200px] min-h-[370px] max-h-[370px] mx-auto overflow-hidden rounded-[6px]">
       <ul className="w-full h-full p-[10px]">
         <h1 className="text-[#91929D] text-[14px]">Your searches tags</h1>
         {suggestions.length > 0 &&

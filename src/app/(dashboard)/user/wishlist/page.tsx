@@ -1,6 +1,7 @@
 'use client';
 import Button from '@/components/common/Button';
 import CustomModal from '@/components/common/CustomModal';
+import { InputApiErrorMessage } from '@/components/common/FormikCustomInput';
 import Pagination from '@/components/common/PaginationComponent';
 import { LoadingPage } from '@/components/common/loading';
 import { CartDataTypes, addToCart } from '@/redux/features/cartSlice';
@@ -13,7 +14,11 @@ import { WishlistData } from '@/types/wishlist.type';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { AiOutlineDelete, AiOutlineHeart } from 'react-icons/ai';
+import {
+  AiOutlineCheckCircle,
+  AiOutlineDelete,
+  AiOutlineHeart,
+} from 'react-icons/ai';
 import { BsCart2 } from 'react-icons/bs';
 
 //-------------------------------------
@@ -26,7 +31,6 @@ const Page = () => {
   const [isDeleteBox, setIsDeleteBox] = useState<boolean>(false);
 
   const [currentPage, setCurrentPage] = useState(0);
-  const totalPages = 100;
 
   const dispatch = useAppDispatch();
 
@@ -58,8 +62,8 @@ const Page = () => {
 
       {isLoading && <LoadingPage />}
 
-      <div className="w-full h-full p-1 md:p-5 bg-white mt-3 md:mt-10 rounded-[6px] shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]">
-        {typeof data !== 'undefined' && data.data.wishlist?.length > 0 && (
+      <div className="w-full h-full p-1 md:p-5 bg-white mt-3 rounded-[6px]">
+        {typeof data !== 'undefined' && data.data.totals > 0 && (
           <>
             {data.data.wishlist.map(wishlist => (
               <>
@@ -122,32 +126,48 @@ const Page = () => {
                   onClose={() => setIsDeleteBox(false)}
                   isOpen={isDeleteBox}
                 >
-                  <div className="w-[300px] flex flex-col justify-end">
-                    <div className="w-full flex flex-col justify-center">
-                      <p className="text-gray-600 text-sm py-2">
-                        Delete Item from wishlist!
-                      </p>
-                      <Button
-                        disabled={deleteWishlistApi.isLoading}
-                        isLoading={deleteWishlistApi.isLoading}
-                        loadingColor="white"
-                        loadingSpinnerSize={40}
-                        onClick={() => deleteHandler(wishlist.product._id)}
-                        className="mt-[4px] font-semibold text-white rounded-[6px] h-[32px] w-full bg-red-500 active:scale-95 duration-200"
-                      >
-                        Confirm Delete
-                      </Button>
+                  <div className="w-[320px] mx-auto flex flex-col justify-end">
+                    <div className="w-full flex">
+                      <div className="h-[50px] w-[50px] rounded-[8px] bg-[#F5F5F5] flex items-center justify-center">
+                        <AiOutlineCheckCircle />
+                      </div>
+                      <div className="pl-3">
+                        <h1 className="text-[20px] font-semibold">
+                          Sure you want to delete?
+                        </h1>
+                        <p className="mt-2 text-sm text-[#54595E]">
+                          Are you sure you want to delete this?
+                        </p>
+                      </div>
                     </div>
+                    {deleteWishlistApi.isError && (
+                      <p className="text-[11px] text-red-700 px-[3px] pt-[4px] pb-2">
+                        {InputApiErrorMessage(
+                          //@ts-expect-error
+                          deleteWishlistApi.error?.data?.message
+                        )}
+                      </p>
+                    )}
+                    <Button
+                      disabled={deleteWishlistApi.isLoading}
+                      isLoading={deleteWishlistApi.isLoading}
+                      loadingColor="white"
+                      loadingSpinnerSize={40}
+                      onClick={() => deleteHandler(wishlist.product._id)}
+                      className="bg-red-600 mt-[24px] w-full rounded-[6px] active:scale-95 duration-150 text-white font-bold text-[14px] h-[33px]"
+                    >
+                      Confirm Delete
+                    </Button>
                   </div>
                 </CustomModal>
               </>
             ))}
             <div className="h-[56px] rounded-b-[16px] flex items-center justify-center">
               <Pagination
-                limit={totalPages}
+                limit={10}
                 currentPage={currentPage}
                 setCurrentPage={setCurrentPage}
-                totalProducts={100}
+                totalProducts={data.data.totals}
               />
             </div>
           </>
