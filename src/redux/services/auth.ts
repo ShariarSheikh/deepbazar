@@ -28,6 +28,45 @@ export const auth = apiSlice.injectEndpoints({
       }),
     }),
 
+    verifiedEmail: builder.mutation<
+      { data: { user: AccountData }; success: boolean },
+      { email: string; id: string }
+    >({
+      query: ({ email, id }) => ({
+        url: `/auth/verifiedEmail`,
+        method: 'get',
+        params: {
+          email,
+          id,
+        },
+      }),
+    }),
+
+    sendResetPasswordMail: builder.mutation<void, { email: string }>({
+      query: ({ email }) => ({
+        url: `/auth/send-reset-password-mail`,
+        method: 'get',
+        params: {
+          email,
+        },
+      }),
+    }),
+
+    resetPassword: builder.mutation<
+      void,
+      { email: string; password: string; id: string }
+    >({
+      query: ({ email, password, id }) => ({
+        url: `/auth/reset-password`,
+        method: 'put',
+        body: {
+          email,
+          password,
+          id,
+        },
+      }),
+    }),
+
     updateAccount: builder.mutation<
       { data: { user: AccountData }; success: boolean },
       { userId: string; user: AccountCreate }
@@ -103,4 +142,7 @@ export const {
   useGetProductSellerQuery,
   useGetSellerDashboardQuery,
   useGetUserDashboardQuery,
+  useVerifiedEmailMutation,
+  useSendResetPasswordMailMutation,
+  useResetPasswordMutation,
 } = auth;

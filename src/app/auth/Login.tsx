@@ -85,10 +85,10 @@ const Login: FC<IProps> = ({ activeNewUserHandler }) => {
 
         <Button className="flex justify-end w-full mt-[10px] cursor-default">
           <Link
-            href="/auth/recover-password"
+            href="/auth/forgot-password"
             className="text-[12px] text-gray-400 hover:underline"
           >
-            Recover Password?
+            Forgot Password?
           </Link>
         </Button>
 

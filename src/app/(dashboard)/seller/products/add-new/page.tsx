@@ -153,6 +153,9 @@ export default function CreateProduct() {
   const onSubmit = async (event: FormEvent<HTMLFormElement>): Promise<void> => {
     event.preventDefault();
 
+    // // NOT ALLOW TO CREATE PRODUCT FOR NOW
+    // if (1 > 1) return undefined;
+
     const product = appendDataToForm({
       data: initialStateData,
       sellerId: user?._id ?? '',
@@ -484,6 +487,14 @@ export default function CreateProduct() {
             className="w-full rounded-[8px] h-[48px] bg-primary text-white flex items-center justify-center font-bold mt-[20px] active:scale-95 duration-200 hover:bg-primaryDark"
           >
             Create Product
+          </Button>
+
+          <Button
+            disabled
+            type="button"
+            className="w-full cursor-not-allowed rounded-[8px] h-[48px] bg-[#d8d8d8] text-[#605757] flex items-center justify-center font-bold mt-[20px]"
+          >
+            You don't have permission to upload product.
           </Button>
         </form>
       </div>

@@ -1,7 +1,6 @@
 import Skeleton from '@/components/common/Skeleton';
 import { useGetProductSellerQuery } from '@/redux/services/auth';
 import Image from 'next/image';
-import Link from 'next/link';
 import { FC } from 'react';
 import { AiOutlineFieldTime } from 'react-icons/ai';
 import { BiRotateRight } from 'react-icons/bi';
@@ -55,12 +54,12 @@ const SellerAndDeliveryInfo: FC<{ sellerId: string }> = ({ sellerId }) => {
           <h1 className="text-[16px] line-clamp-1">
             {user.firstName} {user.lastName}
           </h1>
-          <Link
+          {/* <Link
             href={`/seller/${user._id}`}
             className="w-full mt-[5px] line-clamp-1"
           >
             <p className="text-[12px] text-gray-600">See More Options</p>
-          </Link>
+          </Link> */}
         </div>
       </div>
 
