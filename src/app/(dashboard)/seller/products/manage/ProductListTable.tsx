@@ -10,8 +10,6 @@ import { MdModeEditOutline } from 'react-icons/md';
 import { RiDeleteBinLine } from 'react-icons/ri';
 import { productStatusStyle } from './utils';
 import dateFormat from '@/utils/dateFormat';
-import { AiOutlineSearch } from 'react-icons/ai';
-import Input from '@/components/common/Input';
 import CustomModal from '@/components/common/CustomModal';
 
 interface ProductListProps {
@@ -29,7 +27,7 @@ function ProductListTable({
 }: ProductListProps): JSX.Element {
   return (
     <div className="w-full h-full bg-white mt-3 md:mt-5 rounded-[16px]">
-      <div className="w-full flex md:pb-3">
+      {/* <div className="w-full flex md:pb-3">
         <div className="w-full flex items-center h-[48px] bg-[#F9FAFB] border border-gary-200 rounded-md relative">
           <AiOutlineSearch className="text-gray-500 w-6 h-6 ml-4" />
           <Input
@@ -38,7 +36,7 @@ function ProductListTable({
             placeholder="Search product"
           />
         </div>
-      </div>
+      </div> */}
 
       <div className="w-full h-full overflow-x-auto border-t border-gray-200 pt-5 min-h-[300px]">
         <div className="overflow-x-auto min-w-[440px] flex justify-between items-center w-full h-[48px] px-[18px] bg-primaryLight mb-[10px]">

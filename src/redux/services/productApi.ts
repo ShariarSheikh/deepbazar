@@ -10,7 +10,11 @@ export const productApi = apiSlice.injectEndpoints({
   endpoints: builder => ({
     getProducts: builder.mutation<
       {
-        data: { products: ProductListType[]; totals: number };
+        data: {
+          products: ProductListType[];
+          totals: number;
+          exitsLength: number;
+        };
         success: boolean;
       },
       { query: ProductListApiQuery }

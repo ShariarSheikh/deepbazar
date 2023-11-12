@@ -96,7 +96,7 @@ export default function Page() {
       <PaginationComponent
         currentPage={pageLengthSate}
         onChange={pageLengthHandler}
-        totalProducts={getProductsApi.data?.data.totals}
+        totalProducts={getProductsApi.data?.data.exitsLength}
         limit={12}
       />
     );
