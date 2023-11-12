@@ -58,7 +58,7 @@ const ProductCart: FC<IProps> = ({ product }) => {
         <div className="w-full flex flex-col lg:flex-row items-start lg:items-center justify-between mb-[7px]">
           <div className="flex items-center justify-start space-x-2 text-[12px] lg:text-[13px] font-bold text-primary">
             <span className="text-gray-600">${selPrice}</span>
-            {product.discountPrice > 0 && <del>{product.price}</del>}
+            {product.discountPrice > 0 && <del>${product.price}</del>}
             {product.discountPercent > 0 && (
               <span className="bg-primary text-white px-2 py-[1px] rounded-[6px]">
                 {product.discountPercent}%
