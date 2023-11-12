@@ -76,8 +76,8 @@ export default function Home() {
         ) : (
           <NewArrivals
             data={
-              typeof getJustForYouApi.data !== 'undefined'
-                ? getJustForYouApi.data.data.products
+              typeof getNewArrivalsApi.data !== 'undefined'
+                ? getNewArrivalsApi.data.data.products
                 : []
             }
           />
