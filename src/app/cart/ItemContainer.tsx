@@ -15,7 +15,7 @@ const ItemContainer = () => {
   const { cartItems } = useAppSelector(state => state.cartSlice);
 
   return (
-    <div className="w-full max-w-[100%] lg:max-w-[68%] bg-white rounded-[6px] p-[16px]">
+    <div className="w-full max-w-[100%] lg:max-w-[68%] bg-white rounded-[6px] p-[8px] md:p-[16px]">
       <h1 className="text-xl font-semibold">Your Items</h1>
 
       <div className="w-full max-h-[395px] overflow-y-auto invisible-scrollbar visible-scrollbar-onHover">
@@ -66,7 +66,7 @@ const Item = ({ data }: { data: CartData }) => {
     <div className="w-full max-h-[180px] flex flex-row items-center relative border-b border-gray-300 pb-1 overflow-hidden">
       {/* img container  */}
       <Link href={`/product/${data.productId}`}>
-        <div className="h-[150px] w-[185px] overflow-hidden relative rounded-[6px]">
+        <div className="h-[130px] md:h-[150px] w-[130px] md:w-[185px] overflow-hidden relative rounded-[6px]">
           <Image
             fill
             className="w-full h-full cursor-pointer hover:scale-110 duration-200"
@@ -77,7 +77,7 @@ const Item = ({ data }: { data: CartData }) => {
       </Link>
 
       {/* infoContainer */}
-      <div className="w-[60%] max-h-[280px] h-[180px] pl-3 ml-5 pb-2 py-3">
+      <div className="w-[60%] max-h-[280px] h-[180px] pl-2 md:pl-3 md:ml-5 pb-2 py-3">
         <div>
           <Link href={`/product/${data.productId}`}>
             <h2 className="font-medium text-[15px] text-gray-700 line-clamp-2">
@@ -114,7 +114,7 @@ const Item = ({ data }: { data: CartData }) => {
       </div>
 
       {/* remove items */}
-      <div className="w-10 h-10 absolute right-2 bottom-20">
+      <div className="w-10 h-10 absolute right-0 bottom-[10px]">
         <button className="w-full h-full flex justify-center items-center">
           <RiDeleteBinLine
             className="cursor-pointer text-gray-600 fill-gray-600 h-[25px] w-[25px] active:scale-125 duration-200 md:bg-transparent"

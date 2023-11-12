@@ -14,6 +14,7 @@ import {
 } from '@/redux/services/wishlistApi';
 import Button from '@/components/common/Button';
 import { loginOpenModal } from '@/redux/features/loginFirstSlice';
+import { useRouter } from 'next/navigation';
 
 const Info: FC<{ data: ProductTypes }> = ({ data }) => {
   const user = useAppSelector(state => state.authSlice);
@@ -30,6 +31,7 @@ const Info: FC<{ data: ProductTypes }> = ({ data }) => {
 
   const [quantity, setQuantity] = useState<number>(1);
 
+  const router = useRouter();
   const dispatch = useAppDispatch();
 
   const increment = () => setQuantity(quantity + 1);
@@ -60,6 +62,20 @@ const Info: FC<{ data: ProductTypes }> = ({ data }) => {
       productId: data._id,
     };
     dispatch(addToCart({ data: cartItem, quantity }));
+  };
+
+  //buy now item
+  const buyNowItems = () => {
+    const cartItem: CartDataTypes = {
+      title: data.title,
+      imgUrl: data.images.filter(imgUrl => imgUrl.isDefault)[0].cardImg,
+      price: data.price,
+      discountPrice: data.discountPrice,
+      discountPercent: data.discountPercent,
+      productId: data._id,
+    };
+    dispatch(addToCart({ data: cartItem, quantity }));
+    router.push('/cart/checkout');
   };
 
   useEffect(() => {
@@ -152,7 +168,7 @@ const Info: FC<{ data: ProductTypes }> = ({ data }) => {
         <div className="flex items-center space-x-3 h-[40px] mt-5">
           <button
             className="h-[38px] w-[80px] rounded-[6px] text-[14px] font-medium cursor-pointer bg-[#ffa41c] text-black active:scale-95 duration-200"
-            onClick={addItems}
+            onClick={buyNowItems}
           >
             By Now
           </button>
