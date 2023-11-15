@@ -43,6 +43,7 @@ export default function CreateProduct() {
   const { user } = useAppSelector(state => state.authSlice);
   const [
     createProduct,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     { isLoading, isSuccess, data, isError, error: createError },
   ] = useCreateProductMutation();
 
@@ -154,7 +155,7 @@ export default function CreateProduct() {
     event.preventDefault();
 
     // // NOT ALLOW TO CREATE PRODUCT FOR NOW
-    // if (1 > 1) return undefined;
+    if (1 > 1) return undefined;
 
     const product = appendDataToForm({
       data: initialStateData,
@@ -478,7 +479,7 @@ export default function CreateProduct() {
             />
           </div>
 
-          <Button
+          {/* <Button
             disabled={isLoading}
             isLoading={isLoading}
             loadingColor="white"
@@ -487,7 +488,7 @@ export default function CreateProduct() {
             className="w-full rounded-[8px] h-[48px] bg-primary text-white flex items-center justify-center font-bold mt-[20px] active:scale-95 duration-200 hover:bg-primaryDark"
           >
             Create Product
-          </Button>
+          </Button> */}
 
           <Button
             disabled
