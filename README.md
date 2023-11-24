@@ -6,7 +6,9 @@
 
 Ready to embark on a journey of innovation and creativity? Visit the GitHub repository to access the complete source code and dive into the world of modern web development. Explore, learn, and reimagine – the possibilities are limitless.
 
-GitHub Repository: [https://github.com/ShariarSheikh/resturant-website]
+GitHub Repository: [https://github.com/ShariarSheikh/deepbazar]
+
+Live Demo: [https://deepbazar.vercel.app]
 
 Feel free to connect with me on [LinkedIn](https://www.linkedin.com/in/sheikhshariar/) to share your thoughts and experiences
 
