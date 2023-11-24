@@ -1,4 +1,6 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<p align="center">
+  <img src="https://i.ibb.co/F4xZfCD/Deep-Bazar.png" height="320" width="640" title="Project Picture">
+</p>
 
 ## Getting Started
 
