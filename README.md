@@ -2,7 +2,8 @@
   <img src="https://i.ibb.co/F4xZfCD/Deep-Bazar.png" height="320" width="640" title="Project Picture">
 </p>
 
-💻 Get Started 💻
+## 💻 Get Started 💻
+
 Ready to embark on a journey of innovation and creativity? Visit the GitHub repository to access the complete source code and dive into the world of modern web development. Explore, learn, and reimagine – the possibilities are limitless.
 
 GitHub Repository: [https://github.com/ShariarSheikh/resturant-website]
