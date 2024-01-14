@@ -24,7 +24,7 @@ Before you begin, ensure you have the following tools installed:
      
 ### Clone the Repository
 ```bash
-git clone https://github.com/ShariarSheikh/resturant-website.git
+git clone https://github.com/ShariarSheikh/deepbazar.git
 ```
 
 ### Install Dependencies
