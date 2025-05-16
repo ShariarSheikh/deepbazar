@@ -43,7 +43,7 @@ const HamburgerMenuIcon: FC<HamburgerMenuIconProps> = ({ open, setOpen }) => {
       <div className="relative w-[48px] h-[48px]">
         <button
           onClick={open ? closeMenu : openMenu}
-          className="flex items-center cursor-pointer justify-center min-w-[48px] max-w-[48px] h-[48px] bg-[#F3F9FB] active:scale-95 duration-150 rounded-[10px]"
+          className="flex items-center cursor-pointer justify-center min-w-[48px] max-w-[48px] h-[48px] bg-gradient-to-br from-primary/10 to-primary/20 active:scale-95 duration-150 rounded-[10px]"
         >
           {open ? (
             <TfiClose className="text-primary" />

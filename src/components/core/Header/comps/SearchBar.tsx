@@ -5,185 +5,237 @@ import { usePathname } from 'next/navigation';
 import { ChangeEvent, useEffect, useRef, useState } from 'react';
 import ClickAwayListener from 'react-click-away-listener';
 import { AiOutlineUnorderedList } from 'react-icons/ai';
-import { FiArrowUpLeft, FiSearch } from 'react-icons/fi';
-
-//-------------------------------------------------------
-
-//-------------------------------------------------------
+import { FiArrowUpRight, FiSearch, FiX } from 'react-icons/fi';
 
 const SearchBar = () => {
-  //STATE
-  const [searchInput, setSearchInput] = useState<string>('');
-  const [isShowResult, setIsShowResult] = useState<boolean>(false);
-  const [isShowCategory, setIsShowCategory] = useState<boolean>(false);
+  const [searchInput, setSearchInput] = useState('');
+  const [showResults, setShowResults] = useState(false);
+  const [showCategories, setShowCategories] = useState(false);
+  const [recentSearches, setRecentSearches] = useState<string[]>([]);
 
-  //HOOKS
   const pathname = usePathname();
   const searchInputRef = useRef<HTMLInputElement>(null);
-  const resultContainerRef = useRef(null);
+  const resultContainerRef = useRef<HTMLDivElement>(null);
 
-  // CATEGORY HANDLERS---------------------------------------
-  const showCategoryHandler = (): void => {
-    setIsShowResult(false);
-    setIsShowCategory(true);
+  // Toggle category dropdown
+  const toggleCategories = () => {
+    setShowCategories(!showCategories);
+    setShowResults(false);
   };
-  const hideCategoryHandler = (): void => setIsShowCategory(false);
-  // CATEGORY HANDLERS---------------------------------------
 
-  // INPUT HANDLERS------------------------------------------------------------
-  const onSearchHandler = (event: ChangeEvent<HTMLInputElement>) => {
-    event.preventDefault();
-    setSearchInput(event.target.value);
-    setIsShowResult(!!event.target.value?.trim());
+  // Handle search input changes
+  const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setSearchInput(value);
+    setShowResults(!!value.trim());
   };
-  const hideResult = (
-    element: ChangeEvent<HTMLInputElement> | HTMLDivElement
-  ): void => {
-    if (resultContainerRef.current === element) return undefined;
-    return setIsShowResult(false);
-  };
-  const handleFocus = () => {
-    if (!searchInput?.trim()) return undefined;
-    setIsShowResult(true);
-  };
-  // INPUT HANDLERS------------------------------------------------------------
 
+  // Clear search input
+  const clearSearch = () => {
+    setSearchInput('');
+    setShowResults(false);
+    searchInputRef.current?.focus();
+  };
+
+  // Handle search submission
+  const handleSearchSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchInput.trim()) {
+      // Add to recent searches (limit to 5 items)
+      setRecentSearches(prev => [
+        searchInput,
+        ...prev.filter(item => item !== searchInput).slice(0, 4),
+      ]);
+      // Perform search action here
+      // eslint-disable-next-line no-console
+      console.log('Searching for:', searchInput);
+    }
+  };
+
+  // Close dropdowns when navigating
   useEffect(() => {
-    setIsShowResult(false);
-    return undefined;
+    setShowResults(false);
+    setShowCategories(false);
   }, [pathname]);
 
   return (
-    <AnimatePresence>
-      <ClickAwayListener onClickAway={() => setIsShowResult(false)}>
-        <div className="relative w-full max-w-full lg:max-w-[556px] h-[48px]">
-          <form className="w-full flex items-center justify-between h-[48px] bg-[#F3F9FB] rounded-[10px] relative">
-            <FiSearch className="text-primary absolute left-[16px] z-0" />
-            <input
-              className="flex-1 pl-[36px] outline-none text-[14px] bg-transparent z-10"
-              type="text"
-              placeholder="Search product name and more..."
-              ref={searchInputRef}
-              value={searchInput}
-              onChange={onSearchHandler}
-              onFocus={handleFocus}
-              onKeyPress={e => e.key === 'Enter' && ''}
-            />
+    <div className="relative w-full max-w-full lg:max-w-[646px]">
+      <form
+        onSubmit={handleSearchSubmit}
+        className="flex items-center w-full h-12 bg-gray-50 rounded-xl border border-gray-200 hover:border-primary transition-colors focus-within:ring-2 focus-within:ring-primary focus-within:border-transparent"
+      >
+        {/* Search Icon */}
+        <FiSearch className="ml-4 text-gray-400" />
 
-            <div className="w-[40px] h-[20px] relative">
-              <button
-                type="button"
-                onClick={showCategoryHandler}
-                className="w-10 flex items-center justify-center cursor-pointer group"
-              >
-                <AiOutlineUnorderedList className="text-primary font-bold text-xl group-hover:scale-110 active:scale-95 transform ease-out transition duration-200" />
-              </button>
-            </div>
-          </form>
+        {/* Search Input */}
+        <input
+          ref={searchInputRef}
+          type="text"
+          value={searchInput}
+          onChange={handleSearchChange}
+          onFocus={() => searchInput.trim() && setShowResults(true)}
+          placeholder="Search for products, brands, and more..."
+          className="flex-1 px-3 py-2 bg-transparent outline-none text-sm text-gray-800 placeholder-gray-400"
+        />
 
-          {isShowResult && (
+        {/* Clear Button (visible when input has value) */}
+        {searchInput && (
+          <button
+            type="button"
+            onClick={clearSearch}
+            className="p-1 text-gray-400 hover:text-gray-600 transition-colors"
+          >
+            <FiX size={18} />
+          </button>
+        )}
+
+        {/* Category Toggle Button */}
+        <button
+          type="button"
+          onClick={toggleCategories}
+          className="flex items-center justify-center h-full px-4 border-l border-gray-200 text-primary hover:bg-gray-100 rounded-r-xl transition-colors"
+        >
+          <AiOutlineUnorderedList className="text-xl" />
+        </button>
+      </form>
+
+      {/* Search Results Dropdown */}
+      <AnimatePresence>
+        {showResults && (
+          <ClickAwayListener onClickAway={() => setShowResults(false)}>
             <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: -10 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ type: 'spring', damping: 30, stiffness: 400 }}
-              className="h-full w-full mt-2 z-50  relative bg-[#ffffff] border border-[#EDEDED] text-gray-400 max-w-[556px] min-w-[200px] min-h-[370px] overflow-hidden rounded-[10px]"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 10 }}
+              transition={{ duration: 0.2 }}
               ref={resultContainerRef}
-              onClick={e => hideResult(e.currentTarget)}
+              className="absolute top-full mt-2 w-full bg-white rounded-xl shadow-lg border border-gray-200 z-50 overflow-hidden"
             >
-              <div className="w-full h-full">
-                <ul className="mt-[35px] w-full h-full p-[10px]">
-                  <h1 className="text-[#91929D] text-[14px]">Your searches</h1>
-                  <li className=" w-full h-[40px] mb-[3px] pl-[8px] flex items-center justify-between text-[#23263B] hover:bg-[#F3F9FB] rounded-[6px] cursor-pointer">
-                    <div className="flex items-center h-full">
-                      <FiSearch className="mr-[8px] text-[20px]" />
-                      <h1 className="text-[14px] pt-[3px]">Motorola Edge 20</h1>
-                    </div>
-                    <FiArrowUpLeft className="ml-[8px] text-[20px]" />
-                  </li>
-                  <li className=" w-full h-[40px] mb-[3px] pl-[8px] flex items-center justify-between text-[#23263B] hover:bg-[#F3F9FB] rounded-[6px] cursor-pointer">
-                    <div className="flex items-center h-full">
-                      <FiSearch className="mr-[8px] text-[20px]" />
-                      <h1 className="text-[14px] pt-[3px]">Motorola Edge 20</h1>
-                    </div>
-                    <FiArrowUpLeft className="ml-[8px] text-[20px]" />
-                  </li>
-                  <li className=" w-full h-[40px] mb-[3px] pl-[8px] flex items-center justify-between text-[#23263B] hover:bg-[#F3F9FB] rounded-[6px] cursor-pointer">
-                    <div className="flex items-center h-full">
-                      <FiSearch className="mr-[8px] text-[20px]" />
-                      <h1 className="text-[14px] pt-[3px]">Motorola Edge 20</h1>
-                    </div>
-                    <FiArrowUpLeft className="ml-[8px] text-[20px]" />
-                  </li>
+              <div className="p-4">
+                {recentSearches.length > 0 && (
+                  <>
+                    <h3 className="text-xs font-medium text-gray-500 mb-2 uppercase tracking-wider">
+                      Recent Searches
+                    </h3>
+                    <ul className="space-y-1 mb-4">
+                      {recentSearches.map((search, index) => (
+                        <li
+                          key={index}
+                          className="flex items-center justify-between p-2 hover:bg-gray-50 rounded-lg cursor-pointer"
+                          onClick={() => {
+                            setSearchInput(search);
+                            searchInputRef.current?.focus();
+                          }}
+                        >
+                          <div className="flex items-center">
+                            <FiSearch className="mr-3 text-gray-400" />
+                            <span className="text-sm text-gray-800">
+                              {search}
+                            </span>
+                          </div>
+                          <FiArrowUpRight className="text-gray-400" />
+                        </li>
+                      ))}
+                    </ul>
+                  </>
+                )}
+
+                {/* Suggested Results */}
+                <h3 className="text-xs font-medium text-gray-500 mb-2 uppercase tracking-wider">
+                  Popular Searches
+                </h3>
+                <ul className="space-y-1">
+                  {['Smartphones', 'Laptops', 'Headphones', 'Watches'].map(
+                    (item, index) => (
+                      <li
+                        key={index}
+                        className="flex items-center justify-between p-2 hover:bg-gray-50 rounded-lg cursor-pointer"
+                        onClick={() => {
+                          setSearchInput(item);
+                          searchInputRef.current?.focus();
+                        }}
+                      >
+                        <div className="flex items-center">
+                          <FiSearch className="mr-3 text-gray-400" />
+                          <span className="text-sm text-gray-800">{item}</span>
+                        </div>
+                        <FiArrowUpRight className="text-gray-400" />
+                      </li>
+                    )
+                  )}
                 </ul>
               </div>
             </motion.div>
-          )}
+          </ClickAwayListener>
+        )}
+      </AnimatePresence>
 
-          {isShowCategory && (
-            <ClickAwayListener onClickAway={hideCategoryHandler}>
-              <motion.div
-                initial={{ opacity: 0, y: -20, x: 0 }}
-                animate={{ opacity: 1, y: -10, x: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ type: 'spring', damping: 30, stiffness: 400 }}
-                className="h-full w-full mt-2 z-50 right-0 relative bg-[#ffffff] border border-[#EDEDED] text-gray-400 max-w-[507px] min-h-[315px] rounded-[10px]"
-              >
-                <div className="w-full h-full">
-                  <h1 className="text-black text-opacity-80 text-[20px] font-poppins font-medium border-b pb-[10px] mt-[20px] pl-[15px]">
-                    Categories
-                  </h1>
-                  <ul className="mt-[8px] w-full flex flex-wrap justify-between gap-2 items-center p-[12px]">
-                    {categories.map(category => (
-                      <Link
-                        key={category.id}
-                        href={{
-                          pathname: '/shop',
-                          query: {
-                            category: category.catPath,
-                          },
-                        }}
-                        className="h-[58px] w-[48%]"
-                      >
-                        <li className="w-full h-full rounded-[6px] flex items-center p-2 justify-start bg-[#F3F9FB] group cursor-pointer hover:bg-[#e9f4f8] duration-150">
-                          <div className="w-[50px] h-[50px] rounded-[6px] overflow-hidden">
-                            <img
-                              className="w-full h-full object-cover"
-                              src={category.bgImgUrl}
-                              alt={category.catName}
-                            />
-                          </div>
-                          <div className="ml-[8px]">
-                            <h1 className="text-primary text-[12px] md:text-base line-clamp-1 md:list-none">
-                              {category.catName}
-                            </h1>
-                            <p className="text-[10px] md:text-[12px] text-gray-500">
-                              {category.totalItems} Item Available
-                            </p>
-                          </div>
-                        </li>
-                      </Link>
-                    ))}
-                    <Link
-                      href={{
-                        pathname: '/shop',
-                      }}
-                      className="h-[58px] w-[48%]"
-                    >
-                      <li className="w-full h-full rounded-[6px] flex items-center p-2 justify-center bg-[#F3F9FB] cursor-pointer hover:bg-[#e9f4f8] duration-150">
-                        <h1 className="text-primary text-[12px] md:text-base line-clamp-1 md:list-none underline">
-                          More...
-                        </h1>
-                      </li>
-                    </Link>
-                  </ul>
-                </div>
-              </motion.div>
-            </ClickAwayListener>
-          )}
-        </div>
-      </ClickAwayListener>
-    </AnimatePresence>
+      {/* Categories Dropdown */}
+      <AnimatePresence>
+        {showCategories && (
+          <ClickAwayListener onClickAway={() => setShowCategories(false)}>
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 10 }}
+              transition={{ duration: 0.15 }}
+              className="absolute top-full right-0 mt-1 w-full lg:w-72 bg-white rounded-lg shadow-lg z-50 border border-gray-100"
+            >
+              {/* Dropdown Header */}
+              <div className="p-3 border-b border-gray-100">
+                <h3 className="text-sm font-semibold text-gray-700 flex items-center">
+                  <AiOutlineUnorderedList className="mr-2 text-primary" />
+                  Browse Categories
+                </h3>
+              </div>
+
+              {/* Categories List */}
+              <div className="p-2 max-h-96 overflow-y-auto">
+                {categories.map(category => (
+                  <Link
+                    key={category.id}
+                    href={`/shop?category=${category.catPath}`}
+                    className="group flex items-center p-2 rounded-md hover:bg-primary/5 transition-colors"
+                    onClick={() => setShowCategories(false)}
+                  >
+                    {/* Category Icon */}
+                    <div className="w-8 h-8 min-w-[32px] mr-3 rounded-md bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary/20 transition-colors">
+                      <img
+                        src={category.bgImgUrl}
+                        alt={category.catName}
+                        className="w-5 h-5 object-contain"
+                      />
+                    </div>
+
+                    {/* Category Info */}
+                    <div className="flex-1 min-w-0">
+                      <h4 className="text-sm font-medium text-gray-800 group-hover:text-primary truncate transition-colors">
+                        {category.catName}
+                      </h4>
+                      <p className="text-xs text-gray-500 mt-0.5">
+                        {category.totalItems} items
+                      </p>
+                    </div>
+
+                    {/* Arrow Indicator */}
+                    <FiArrowUpRight className="ml-2 text-gray-400 group-hover:text-primary transition-colors" />
+                  </Link>
+                ))}
+
+                {/* View All Link */}
+                <Link
+                  href="/shop"
+                  className="block mt-1 p-2 text-center text-sm font-medium text-primary hover:bg-primary/5 rounded-md transition-colors"
+                  onClick={() => setShowCategories(false)}
+                >
+                  View All Categories →
+                </Link>
+              </div>
+            </motion.div>
+          </ClickAwayListener>
+        )}
+      </AnimatePresence>
+    </div>
   );
 };
 

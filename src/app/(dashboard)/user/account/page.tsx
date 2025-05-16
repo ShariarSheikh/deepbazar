@@ -80,8 +80,18 @@ const Page: NextPage = () => {
             className="bg-gray-50 text-sm p-3 min-h-[104px] max-h-[200px] rounded-[8px] border border-gray-200 w-full mt-[14px]"
             placeholder="About"
           />
-          <div className="flex items-center justify-end w-full mt-[14px]">
-            <Button className="bg-primary rounded-[8px] text-white font-bold text-[14px] px-[16px] py-[6px]">
+          <div className="flex items-center justify-between w-full mt-[14px]">
+            <Button
+              type="button"
+              className="bg-red-600 rounded-[6px] active:scale-95 duration-150 text-white font-bold text-[14px] px-[16px] py-[6px]"
+            >
+              Delete Account
+            </Button>
+
+            <Button
+              type="submit"
+              className="bg-primary rounded-[6px] active:scale-95 duration-150 text-white font-bold text-[14px] px-[16px] py-[6px]"
+            >
               Save Changes
             </Button>
           </div>

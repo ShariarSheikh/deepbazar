@@ -1,10 +1,15 @@
-const CartBadges = ({ number }: { number: number }) => {
+const CartBadges = ({
+  number,
+  className = '',
+}: {
+  number: number;
+  className?: string;
+}) => {
   return (
     <div
-      className={`w-[18px]
-      h-[18px] bg-primary text-white rounded-full flex justify-center items-center overflow-hidden`}
+      className={`w-5 h-5 bg-primary text-white rounded-full flex justify-center items-center text-xs font-medium shadow-sm ${className}`}
     >
-      <p className="text-[11px]">{number}</p>
+      {number > 9 ? '9+' : number}
     </div>
   );
 };
