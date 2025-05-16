@@ -21,7 +21,7 @@ import { RootState } from '../store';
 export const url = Environment === 'development' ? serverDevUrl : serverProdUrl;
 
 export const baseQuery = fetchBaseQuery({
-  baseUrl: serverProdUrl,
+  baseUrl: url,
   headers: {
     'x-api-key': SERVER_API_ACCESS_KEY,
   },
