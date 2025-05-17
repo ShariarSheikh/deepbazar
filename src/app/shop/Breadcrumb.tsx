@@ -11,7 +11,7 @@ const Breadcrumb = ({ category = '' }: { category: string | null }) => {
         </div>
       </Link>
 
-      <Link href={`/user`}>
+      <Link href={`/shop`}>
         <div className="flex items-center">
           <IoIosArrowForward />
           <span className="mt-[3px] ml-[3px]">Shop</span>
@@ -19,9 +19,9 @@ const Breadcrumb = ({ category = '' }: { category: string | null }) => {
       </Link>
 
       {category && (
-        <div className="flex items-center text-primary">
+        <div className="flex items-center text-primary max-w-[80px]">
           <IoIosArrowForward />
-          <span className="mt-[3px] ml-[3px]">{category}</span>
+          <span className="mt-[3px] ml-[3px] line-clamp-1">{category}</span>
         </div>
       )}
     </div>

@@ -1,95 +1,123 @@
 'use client';
 
-import ProductCart from '@/components/common/ProductCart';
-import smartPhones from '@/fakeDB/smartPhones';
+import Skeleton from '@/components/common/Skeleton';
+import { ProductSectionName } from '@/types/product.types';
 import CategorySection from '@/views/home/CategorySection';
 import FeaturedProducts from '@/views/home/FeaturedProducts';
 import HeroSection from '@/views/home/HeroSection';
 import JustForYou from '@/views/home/JustForYou';
 import NewArrivals from '@/views/home/NewArrivals';
+import { useGetProductsMutation } from '@/redux/services/productApi';
+import { useEffect, useState } from 'react';
 import SponsoredItem from '@/views/home/SponsoredItem';
-import { ProductSectionName } from '@/views/home/utils';
-import { SwiperSlide } from 'swiper/react';
 
-//---------------------------------------------------------
+//-----------------------------------------
 
-//---------------------------------------------------------
+//-----------------------------------------
+
 export default function Home() {
+  const [getNewArrivals, getNewArrivalsApi] = useGetProductsMutation();
+  const [getJustForYou, getJustForYouApi] = useGetProductsMutation();
+  const [getFeaturedProducts, getFeaturedProductsApi] =
+    useGetProductsMutation();
+
+  const [isInitialize, setIsInitialize] = useState<boolean>(false);
+
+  // 1 FETCH NEW ARRIVALS PRODUCTS
+  useEffect(() => {
+    if (isInitialize) return;
+    getNewArrivals({
+      query: {
+        limit: 4,
+        productSectionName: ProductSectionName.NewArrivals,
+      },
+    });
+    setIsInitialize(true);
+    return () => undefined;
+  }, []);
+
+  // 2 FETCH JUST FOR YOUR PRODUCTS && IS ALREADY INITIALIZE AND FETCH 1 API ALREADY FETCH
+  useEffect(() => {
+    if (!isInitialize && getNewArrivalsApi.isUninitialized) return;
+    getJustForYou({
+      query: {
+        limit: 4,
+        productSectionName: ProductSectionName.JustForYou,
+      },
+    });
+    return () => undefined;
+  }, [getNewArrivalsApi, isInitialize]);
+
+  // 2 FETCH JUST FOR YOUR PRODUCTS && IS ALREADY INITIALIZE AND FETCH 2 API ALREADY FETCH
+  useEffect(() => {
+    if (!isInitialize && getJustForYouApi.isUninitialized) return;
+    getFeaturedProducts({
+      query: {
+        limit: 15,
+        productSectionName: ProductSectionName.FeaturedProducts,
+      },
+    });
+    return () => undefined;
+  }, [isInitialize, getJustForYouApi]);
+
   return (
-    <main className="min-h-screen w-full m-auto mt-10">
+    <main className="min-h-screen w-full m-auto mt-10 px-4">
       <div className="w-full max-w-[1201px] mx-auto">
         <HeroSection />
-
         <CategorySection />
 
-        <NewArrivals
-          data={smartPhones.slice(0, 9)}
-          productPageLink={{
-            pathname: '/shop',
-            query: {
-              keyword: 'flash-sale',
-            },
-          }}
-        />
+        {getNewArrivalsApi.isLoading ? (
+          <div className="md:mt-[40px] grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[8px] lg:gap-4">
+            <Skeleton className="w-[100%]" height={200} />
+            <Skeleton className="w-[100%]" height={200} />
+            <Skeleton className="w-[100%]" height={200} />
+            <Skeleton className="w-[100%]" height={200} />
+          </div>
+        ) : (
+          <NewArrivals
+            data={
+              typeof getNewArrivalsApi.data !== 'undefined'
+                ? getNewArrivalsApi.data.data.products
+                : []
+            }
+          />
+        )}
 
-        <JustForYou
-          productPageLink={{
-            pathname: '/shop',
-            query: {
-              keyword: 'watch',
-            },
-          }}
-          title={ProductSectionName.JustForYou}
-          navigationComp={
-            <div className="w-full pt-[16px] pb-[40px] md:pt-[40px]">
-              <div className="w-full flex-wrap flex items-center justify-start md:space-x-4">
-                <button className="rounded-[100px] h-[35px] md:h-[43px] border border-[#c5c5c5] px-[10px] md:px-[23px] text-[12px] md:text-sm font-medium md:font-semibold ml-[5px] mb-[5px]">
-                  Watch
-                </button>
-                <button className="rounded-[100px] h-[35px] md:h-[43px] border border-[#c5c5c5] px-[10px] md:px-[23px] text-[12px] md:text-sm font-medium md:font-semibold ml-[5px] mb-[5px]">
-                  Smart Phone
-                </button>
-                <button className="rounded-[100px] h-[35px] md:h-[43px] border border-[#c5c5c5] px-[10px] md:px-[23px] text-[12px] md:text-sm font-medium md:font-semibold ml-[5px] mb-[5px]">
-                  Laptop
-                </button>
-                <button className="rounded-[100px] h-[35px] md:h-[43px] border border-[#c5c5c5] px-[10px] md:px-[23px] text-[12px] md:text-sm font-medium md:font-semibold ml-[5px] mb-[5px]">
-                  Camera
-                </button>
-                <button className="rounded-[100px] h-[35px] md:h-[43px] border border-[#c5c5c5] px-[10px] md:px-[23px] text-[12px] md:text-sm font-medium md:font-semibold ml-[5px] mb-[5px]">
-                  Audio
-                </button>
-              </div>
-            </div>
-          }
-        >
-          <>
-            {smartPhones.slice(0, 8).map(phoneData => (
-              <ProductCart
-                key={phoneData._id}
-                isInsideSlider={false}
-                data={phoneData}
-              />
-            ))}
-          </>
-        </JustForYou>
+        {getJustForYouApi.isLoading ? (
+          <div className="md:mt-[40px] grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[8px] lg:gap-4">
+            <Skeleton className="w-[100%]" height={200} />
+            <Skeleton className="w-[100%]" height={200} />
+            <Skeleton className="w-[100%]" height={200} />
+            <Skeleton className="w-[100%]" height={200} />
+          </div>
+        ) : (
+          <JustForYou
+            data={
+              typeof getJustForYouApi.data !== 'undefined'
+                ? getJustForYouApi.data.data.products
+                : []
+            }
+          />
+        )}
 
         <SponsoredItem />
+        {getFeaturedProductsApi.isLoading ? (
+          <div className="md:mt-[40px] grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[8px] lg:gap-4">
+            <Skeleton className="w-[100%]" height={200} />
+            <Skeleton className="w-[100%]" height={200} />
+            <Skeleton className="w-[100%]" height={200} />
+            <Skeleton className="w-[100%]" height={200} />
+          </div>
+        ) : (
+          <FeaturedProducts
+            data={
+              typeof getFeaturedProductsApi.data !== 'undefined'
+                ? getFeaturedProductsApi.data.data.products
+                : []
+            }
+          />
+        )}
 
-        <FeaturedProducts
-          productPageLink={{
-            pathname: '/shop',
-            query: {
-              keyword: 'smart-phones',
-            },
-          }}
-          title={ProductSectionName.FeaturedProducts}
-        >
-          {smartPhones.map(phoneData => (
-            <SwiperSlide key={phoneData._id}>
-              <ProductCart isInsideSlider data={phoneData} />
-            </SwiperSlide>
-          ))}
-        </FeaturedProducts>
         <br />
         <br />
       </div>

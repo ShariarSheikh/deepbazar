@@ -2,12 +2,12 @@ import Header from '@/components/core/Header';
 import { Providers } from '@/redux/provider';
 import BottomNavigation from '@/components/core/BottomNavigation';
 import Footer from '@/components/core/Footer';
+import type { Metadata } from 'next';
 
 import './globals.css';
 
-export const metadata = {
-  title: 'DeepBazar - Electronics eCommerce Website In Bangladesh',
-  description: 'Biggest E-commerce website in bangladesh',
+export const metadata: Metadata = {
+  title: 'Largest E-Commerce Platform In Bangladesh - DeepBazar',
 };
 
 interface RootLayoutProps {
@@ -51,7 +51,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <body>
         <Providers>
           <Header />
-          <div className="min-h-[20vh] px-4">{children}</div>
+          <div className="min-h-[40vh]">{children}</div>
           <BottomNavigation />
           <Footer />
         </Providers>

@@ -1,28 +1,35 @@
 'use client';
-import { useSelectedLayoutSegment } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { FC, ReactNode } from 'react';
-import Breadcrumb from './Breadcrumb';
 import Sidebar from './Sidebar';
+import { useAppSelector } from '@/redux/hooks';
+import { Role } from '@/app/auth/utils';
+import { LoadingPage } from '@/components/common/loading';
 
 interface IProps {
   children: ReactNode;
 }
 
 const UserLayout: FC<IProps> = ({ children }) => {
-  const segment = useSelectedLayoutSegment();
+  const { user } = useAppSelector(state => state.authSlice);
+  const router = useRouter();
+
+  if (user?.role.includes(Role.SELLER)) {
+    router.replace(`/seller`);
+    return <LoadingPage />;
+  }
 
   return (
-    <section className="w-full h-auto max-w-[1190px] px-[10px] mx-auto min-h-[60vh]">
-      <div className="w-full flex h-full">
-        <div className="w-full max-w-[290px] max-h-[460px] sticky top-[133px] mb-[20px]">
-          <Breadcrumb segment={segment} />
+    <main className="w-full h-full bg-[#f5f5f5]">
+      <section className="w-full max-w-[1190px] md:px-[10px] mx-auto min-h-[593px]">
+        <div className="w-full flex flex-col md:flex-row h-full">
           <Sidebar />
+          <div className="w-full h-full bg-white lg:ml-[20px] md:p-3 mt-[20px] md:mt-[50px] rounded-[6px] mb-[20px]">
+            {children}
+          </div>
         </div>
-        <div className="w-full h-full ml-[20px] p-3 mt-[48px] rounded-[6px] mb-[20px]">
-          {children}
-        </div>
-      </div>
-    </section>
+      </section>
+    </main>
   );
 };
 

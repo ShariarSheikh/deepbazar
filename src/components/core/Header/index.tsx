@@ -9,7 +9,7 @@ const Header = () => {
   if (segments[1] === 'seller') return null;
 
   return (
-    <header className="w-full sticky top-0 z-30 bg-white">
+    <header className="w-full sticky top-0 z-30 bg-white min-h-[40px]">
       <HeaderSection />
     </header>
   );

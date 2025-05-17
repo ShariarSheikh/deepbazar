@@ -1,5 +1,5 @@
-import { Interweave } from 'interweave';
-import { SellerSidebarActionList } from '../sidebar/navLinks';
+import { SellerSidebarActionList } from './HamburgerMenu/navLinks';
+import HighlightMatchingText from '@/components/common/HighlightMatchingText';
 
 // -------------------------------------------------- SEARCH BAR RESULT
 
@@ -17,20 +17,6 @@ export function SearchResult({
   resultLinkOnClickHandler,
 }: SearchResultProps) {
   //
-  const highlightSearchText = (text: string): JSX.Element => {
-    if (!searchText?.trim())
-      return <p className="text-[12px] text-gray-900">{text}</p>;
-
-    const regex = new RegExp(searchText, 'ig');
-    const textWithHighlight = text.replace(regex, `<mark>${searchText}</mark>`);
-
-    return (
-      <Interweave
-        className="text-[12px] [&>b]:text-successDark text-gray-900"
-        content={textWithHighlight}
-      />
-    );
-  };
 
   return (
     <div className="w-full h-auto bg-white pl-5 pr-1 py-8 rounded-lg shadow-[0_8px_30px_rgb(0,0,0,0.12)]">
@@ -66,7 +52,10 @@ export function SearchResult({
                               <h1 className="font-medium text-sm">
                                 {childLink.text}
                               </h1>
-                              {highlightSearchText(childLink.link)}
+                              {HighlightMatchingText(
+                                childLink.link,
+                                searchText
+                              )}
                             </div>
                           </li>
                         ))}
@@ -85,7 +74,7 @@ export function SearchResult({
                   <div className="w-full">
                     <h1 className="font-medium text-sm">{result.text}</h1>
                     <p className="text-[12px]">
-                      {highlightSearchText(result.link)}
+                      {HighlightMatchingText(result.link, searchText)}
                     </p>
                   </div>
                 </li>

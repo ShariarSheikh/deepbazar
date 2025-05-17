@@ -1,12 +1,15 @@
 'use client';
 import { logout } from '@/redux/features/authSlice';
-import { useAppDispatch } from '@/redux/hooks';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import Link from 'next/link';
-import { useSelectedLayoutSegment } from 'next/navigation';
+import { useRouter, useSelectedLayoutSegment } from 'next/navigation';
 import { FC } from 'react';
 import { BiLogOutCircle } from 'react-icons/bi';
 import { IoIosArrowForward } from 'react-icons/io';
 import Navigation from './Navigation';
+import { Role } from '@/app/auth/utils';
+import { LoadingPage } from '@/components/common/loading';
+import AccountVerifiedAlert from '@/components/common/AccountVerifiedAlert';
 
 //-------------------------------------------------
 interface IProps {
@@ -15,14 +18,23 @@ interface IProps {
 //-------------------------------------------------
 
 const AccountSettingLayout: FC<IProps> = ({ children }) => {
+  const user = useAppSelector(state => state.authSlice.user);
   const segment = useSelectedLayoutSegment();
   const dispatch = useAppDispatch();
+  const router = useRouter();
 
   const logOutHandle = () => {
     dispatch(logout());
   };
+
+  if (user?.role.includes(Role.SELLER)) {
+    router.replace(`/seller`);
+    return <LoadingPage />;
+  }
+
   return (
-    <section className="w-full h-full p-5 mx-auto pt-3">
+    <section className="w-full h-full p-1 md:p-5 mx-auto pt-3">
+      <AccountVerifiedAlert />
       <header className="flex items-center justify-between mb-3">
         <h1 className="text-gray-600 font-medium">My Account</h1>
         <button
@@ -34,8 +46,8 @@ const AccountSettingLayout: FC<IProps> = ({ children }) => {
         </button>
       </header>
 
-      <div className="w-full h-full px-5 bg-white pt-10 rounded-[6px] shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]">
-        <h1 className="text-[24px] font-bold">Account & Settings</h1>
+      <div className="w-full h-full p-1 md:px-5 bg-white pt-10 rounded-[6px] shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px]">
+        <h1 className="text-lg md:text-[24px] font-bold">Account & Settings</h1>
         <div className="mt-[5px] text-[14px] flex items-center h-8 space-x-3">
           <Link href={'/user'} className=" text-gray-900 hover:underline">
             Profile

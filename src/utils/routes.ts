@@ -22,6 +22,7 @@ export const PATH_SELLER = {
   products: {
     manage: path(ROOTS_SELLER, '/products/manage'),
     new: path(ROOTS_SELLER, '/products/add-new'),
+    edit: path(ROOTS_SELLER, '/products/edit'),
   },
 };
 
@@ -30,6 +31,7 @@ const ROOTS_USER = '/user';
 export const PATH_USER = {
   overview: path(ROOTS_USER, ''),
   order: path(ROOTS_USER, '/order'),
+  trackOrder: path(ROOTS_USER, '/track-order'),
   wishlist: path(ROOTS_USER, '/wishlist'),
   shippingAddress: path(ROOTS_USER, '/shipping-address'),
   newShippingAddress: path(ROOTS_USER, '/shipping-address/add-new'),
@@ -37,5 +39,3 @@ export const PATH_USER = {
   questionAnswer: path(ROOTS_USER, '/question-answer'),
   account: path(ROOTS_USER, '/account'),
 };
-
-export const mainSiteLink = 'https://deepbazar.vercel.app';

@@ -2,12 +2,16 @@ import Button from '@/components/common/Button';
 import { setCredentials } from '@/redux/features/authSlice';
 import { useAppDispatch } from '@/redux/hooks';
 import { useLoginMutation, useRegisterMutation } from '@/redux/services/auth';
-import { Account } from '@/types/auth.types';
+import { AccountCreate } from '@/types/auth.types';
 import { Field, Form, Formik } from 'formik';
 import { useRouter } from 'next/navigation';
 import { FC, useEffect } from 'react';
 import * as Yup from 'yup';
-import { CustomFormikInput, InputApiErrorMessage, RoleType } from './utils';
+import { RoleType } from './utils';
+import {
+  CustomFormikInput,
+  InputApiErrorMessage,
+} from '@/components/common/FormikCustomInput';
 
 //------------------------------------------
 interface IProps {
@@ -53,7 +57,7 @@ const SignUp: FC<IProps> = ({ activeOldUserHandler, role }) => {
   const dispatch = useAppDispatch();
 
   const handleSubmit = async (values: FormValues): Promise<void> => {
-    const body: Account = {
+    const body: AccountCreate = {
       firstName: values.firstName,
       lastName: values.lastName,
       email: values.email,
@@ -91,7 +95,6 @@ const SignUp: FC<IProps> = ({ activeOldUserHandler, role }) => {
         refreshToken: loginData.data.refreshToken,
       })
     );
-    router.replace('/');
   }, [loginData, isLoading, dispatch, router]);
 
   return (

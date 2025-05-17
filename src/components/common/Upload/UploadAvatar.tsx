@@ -32,8 +32,6 @@ export default function UploadAvatar({
 
   const hasFile = !!file;
 
-  const isError = isDragReject || !!error;
-
   return (
     <>
       <div
@@ -46,12 +44,12 @@ export default function UploadAvatar({
           <AvatarPreview imageClassName={imageClassName} file={file} />
         )}
 
-        <div className="w-full h-full flex flex-col items-center justify-center bg-gray-600 bg-opacity-40 absolute inset-0 cursor-pointer">
+        <div className="w-full h-full flex flex-col items-center justify-center bg-primary bg-opacity-40 absolute inset-0 cursor-pointer">
           <button>
             <MdAddAPhoto className="text-white w-[30px] h-[30px]" />
           </button>
 
-          <h1 className="text-[12px] text-white">
+          <h1 className="text-[12px] text-white font-semibold">
             {file ? 'Update photo' : 'Upload photo'}
           </h1>
         </div>

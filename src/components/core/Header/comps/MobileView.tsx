@@ -19,7 +19,7 @@ export default function Mobile() {
   }, [router]);
 
   return (
-    <div className="w-full lg:hidden">
+    <div className="w-full lg:hidden block px-4">
       <div className="flex items-center justify-between pt-[8px]">
         <HamburgerMenuIcon open={open} setOpen={setOpen} />
         <DeliveryLocation />

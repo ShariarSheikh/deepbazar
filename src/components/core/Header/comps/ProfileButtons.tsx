@@ -117,7 +117,7 @@ import { MdOutlinePersonOutline } from 'react-icons/md';
 
 const ProfileButtons = () => {
   const { user } = useAppSelector(state => state.authSlice);
-  const { cartTotalQuantity } = useAppSelector(state => state.cartSlice);
+  const { totalQuantity } = useAppSelector(state => state.cartSlice);
   const router = useRouter();
 
   const handleNavigation = (path: string = '') => {
@@ -152,9 +152,9 @@ const ProfileButtons = () => {
           size={20}
           className="text-primary group-hover:text-primary-dark"
         />
-        {cartTotalQuantity > 0 && (
+        {totalQuantity > 0 && (
           <CartBadges
-            number={cartTotalQuantity}
+            number={totalQuantity}
             className="absolute -top-1 -right-1"
           />
         )}

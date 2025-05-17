@@ -1,67 +1,86 @@
-import { ProductTypes } from '@/types/product.types';
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 //----------------------------------------------
-export interface CartData extends ProductTypes {
+export interface CartDataTypes {
+  title: string;
+  imgUrl: string;
+  price: number;
+  discountPrice: number;
+  discountPercent: number;
+  productId: string;
+}
+
+export interface CartData extends CartDataTypes {
   cartQuantity: number;
 }
 
 interface CartState {
   isShowCart: boolean;
   cartItems: CartData[];
-  cartTotalQuantity: number;
-  cartTotalAmount: number;
+  totalQuantity: number;
+  totalAmount: number;
+  shippingFee: number;
+  subtotal: number;
 }
-//----------------------------------------------
-const getTotals = (state: CartState) => {
-  const { total, quantity } = state.cartItems.reduce(
-    (cartTotal, cartItem) => {
-      const { price, cartQuantity } = cartItem;
-      const itemTotal = price * cartQuantity;
-
-      cartTotal.total += itemTotal;
-      cartTotal.quantity += cartQuantity;
-
-      return cartTotal;
-    },
-    {
-      total: 0,
-      quantity: 0,
-    }
-  );
-
-  state.cartTotalQuantity = quantity;
-  state.cartTotalAmount = Number(total.toFixed(2));
-
-  //store in local storage
-  localStorage.setItem('totalAmount', JSON.stringify(state.cartTotalAmount));
-  localStorage.setItem(
-    'totalQuantity',
-    JSON.stringify(state.cartTotalQuantity)
-  );
-};
 
 const data =
   typeof window !== 'undefined' && localStorage.getItem('cartItems')
     ? JSON.parse(localStorage.getItem('cartItems') || '')
     : [];
 
-const totalAmount =
-  typeof window !== 'undefined' && localStorage.getItem('totalAmount')
-    ? JSON.parse(localStorage.getItem('totalAmount') || '')
-    : 0;
+const cartInfo =
+  typeof window !== 'undefined' && localStorage.getItem('cartInfo')
+    ? JSON.parse(localStorage.getItem('cartInfo') || '')
+    : {
+        totalAmount: 0,
+        totalQuantity: 0,
+        subtotal: 0,
+      };
 
-const totalQuantity =
-  typeof window !== 'undefined' && localStorage.getItem('totalQuantity')
-    ? JSON.parse(localStorage.getItem('totalQuantity') || '')
-    : 0;
+//----------------------------------------------
+const getTotals = (state: CartState) => {
+  const { totalAmount, quantity, shippingFee } = state.cartItems.reduce(
+    (cartTotal, cartItem) => {
+      const { price, cartQuantity, discountPrice } = cartItem;
+
+      const currentPrice = discountPrice > 0 ? discountPrice : price;
+
+      const itemTotalAmount = currentPrice * cartQuantity;
+
+      cartTotal.totalAmount += itemTotalAmount;
+      cartTotal.quantity += cartQuantity;
+
+      return cartTotal;
+    },
+    {
+      totalAmount: 0,
+      quantity: 0,
+      shippingFee: 5,
+    }
+  );
+
+  state.totalQuantity = quantity;
+  state.subtotal = Number(totalAmount.toFixed(2));
+  state.totalAmount = Number((totalAmount + shippingFee).toFixed(2));
+
+  localStorage.setItem(
+    'cartInfo',
+    JSON.stringify({
+      totalAmount: state.totalAmount,
+      totalQuantity: state.totalQuantity,
+      subtotal: state.subtotal,
+    })
+  );
+};
 
 // MAIN
 const initialState: CartState = {
   isShowCart: false,
   cartItems: data,
-  cartTotalQuantity: totalQuantity,
-  cartTotalAmount: totalAmount,
+  totalQuantity: cartInfo.totalQuantity,
+  totalAmount: cartInfo.totalAmount,
+  subtotal: cartInfo.subtotal,
+  shippingFee: 5,
 };
 
 const cartSlice = createSlice({
@@ -75,10 +94,10 @@ const cartSlice = createSlice({
 
     addToCart: (
       state,
-      action: PayloadAction<{ data: ProductTypes; quantity: number }>
+      action: PayloadAction<{ data: CartDataTypes; quantity: number }>
     ) => {
       const itemIndex = state.cartItems.findIndex(
-        item => item.product_id === action.payload.data.product_id
+        item => item.productId === action.payload.data.productId
       );
 
       if (itemIndex >= 0) {
@@ -100,7 +119,7 @@ const cartSlice = createSlice({
     },
     removeItem: (state, action: PayloadAction<{ id: string }>) => {
       const newCartItems = state.cartItems.filter(
-        item => item.product_id !== action.payload.id
+        item => item.productId !== action.payload.id
       );
 
       state.cartItems = newCartItems;
@@ -112,17 +131,17 @@ const cartSlice = createSlice({
 
     decreaseCartItems: (
       state,
-      action: PayloadAction<{ data: ProductTypes; quantity: number }>
+      action: PayloadAction<{ data: CartDataTypes; quantity: number }>
     ) => {
       const itemIndex = state.cartItems.findIndex(
-        item => item.product_id === action.payload.data.product_id
+        item => item.productId === action.payload.data.productId
       );
 
       if (state.cartItems[itemIndex].cartQuantity > 1) {
         state.cartItems[itemIndex].cartQuantity -= action.payload.quantity;
       } else if (state.cartItems[itemIndex].cartQuantity === 1) {
         state.cartItems = state.cartItems.filter(
-          item => item.product_id !== action.payload.data.product_id
+          item => item.productId !== action.payload.data.productId
         );
       }
 

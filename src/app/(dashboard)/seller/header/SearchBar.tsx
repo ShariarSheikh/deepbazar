@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import { ChangeEvent, Dispatch, SetStateAction, useRef, useState } from 'react';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { IoCloseOutline } from 'react-icons/io5';
-import navLinks, { SellerSidebarActionList } from '../sidebar/navLinks';
+import navLinks, { SellerSidebarActionList } from './HamburgerMenu/navLinks';
 import { SearchResult } from './SearchResult';
 
 // ----------------------------------------------
@@ -93,7 +93,7 @@ function SearchBar({ isShow, setIsShow }: IProps) {
           </motion.div>
           <div
             role="presentation"
-            className="z-40 cursor-default w-full fixed bottom-0 min-h-[calc(100%-92px)] bg-transparent"
+            className="z-40 cursor-default w-full fixed bottom-0 min-h-[calc(100%-142px)] bg-transparent"
             onClick={() => {
               setIsShowResult(false);
               setIsShow(prevState => !prevState);

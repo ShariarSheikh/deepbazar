@@ -167,7 +167,15 @@ export default function HamburgerMenu({
 
   const logOutHandle = () => {
     dispatch(logout());
+    closeMenu();
   };
+
+  // const linkHandler = (link: string, isAuthNeed: boolean) => {
+  //   //IF USER NOT LOGGED IN THEN LOGGED IN FIRST THEN REDIRECT
+  //   if (isAuthNeed && !user._id)
+  //     return dispatch(loginOpenModal({ redirectUrl: link }));
+  //   router.push(link);
+  // };
 
   return (
     <ClickAwayListener onClickAway={closeMenu}>

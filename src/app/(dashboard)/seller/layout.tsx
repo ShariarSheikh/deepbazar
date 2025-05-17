@@ -1,32 +1,36 @@
 'use client';
-import { FC, ReactNode, useState } from 'react';
-import SellerHeader from './header';
-import SellerSidebar from './sidebar';
+import { FC, ReactNode } from 'react';
+import { useAppSelector } from '@/redux/hooks';
+import { useRouter } from 'next/navigation';
+import { Role } from '@/app/auth/utils';
+import { LoadingPage } from '@/components/common/loading';
+import Header from './header';
+import SellerSidebar from './header/HamburgerMenu';
 
 interface IProps {
   children: ReactNode;
 }
 
 const SellerLayout: FC<IProps> = ({ children }) => {
-  const [expendSidebar, setExpendSidebar] = useState<boolean>(true);
-  return (
-    <section className="w-full h-auto bg-primaryLight">
-      <div className="w-full flex min-h-screen max-w-[1366px] mx-auto">
-        <div
-          style={{
-            maxWidth: expendSidebar ? 280 : 80,
-          }}
-          className="max-h-[calc(100vh-16px)] sticky top-0 z-[80] w-full pt-4 rounded-[6px]"
-        >
-          <SellerSidebar
-            expendSidebar={expendSidebar}
-            setIsExpendSidebar={setExpendSidebar}
-          />
-        </div>
+  const { user } = useAppSelector(state => state.authSlice);
+  const router = useRouter();
 
-        <div className="w-full h-full px-4 pt-4">
-          <SellerHeader />
-          {children}
+  if (user?.role.includes(Role.USER)) {
+    router.replace(`/user`);
+    return <LoadingPage />;
+  }
+
+  return (
+    <section className="w-full h-auto bg-[#f5f5f5] mb-4">
+      <div className="w-full min-h-screen ">
+        <Header />
+        <div className="w-full lg:flex lg:flex-row lg:space-x-6 max-w-[1080px] mx-auto">
+          <div className="lg:block hidden pt-[35px] max-w-[247px] min-w-[247px]">
+            <SellerSidebar />
+          </div>
+          <div className="md:px-4 w-full h-full bg-white px-3 md:p-5 mt-3 md:mt-[35px] rounded-[6px]">
+            {children}
+          </div>
         </div>
       </div>
     </section>

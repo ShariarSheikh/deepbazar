@@ -22,6 +22,7 @@ function CheckBox({
       name={name}
       onClick={() => onClick?.(isChecked)}
       className={className}
+      type="button"
     >
       {isChecked ? (
         <div

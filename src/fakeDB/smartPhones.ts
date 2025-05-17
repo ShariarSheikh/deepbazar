@@ -1,5 +1,5 @@
 export interface SmartPhonesData {
-  _id: number;
+  _id: string;
   images: {
     cardSizeUrl: string;
     displayUrl: string;
@@ -11,14 +11,14 @@ export interface SmartPhonesData {
   price: number;
   discountPrice: number;
   reviews: {
-    total: number;
+    totalReviews: number;
     star: number;
   };
 }
 
 const smartPhones: SmartPhonesData[] = [
   {
-    _id: 1,
+    _id: '1',
     images: {
       cardSizeUrl:
         'https://i.pinimg.com/originals/8b/06/29/8b062905bcd44b0d9164b46cc309a251.jpg',
@@ -33,12 +33,12 @@ const smartPhones: SmartPhonesData[] = [
     price: 999,
     discountPrice: 899,
     reviews: {
-      total: 1200,
+      totalReviews: 1200,
       star: 4.7,
     },
   },
   {
-    _id: 2,
+    _id: '2',
     images: {
       cardSizeUrl:
         'https://img.freepik.com/free-vector/realistic-white-smartphone-design-with-three-cameras_23-2148374059.jpg?w=740&t=st=1693325365~exp=1693325965~hmac=c9b3279c6914514e75d77a938ce6bbf8a99b36be764c28707197b3314119c4f2',
@@ -53,12 +53,12 @@ const smartPhones: SmartPhonesData[] = [
     price: 1299,
     discountPrice: 1199,
     reviews: {
-      total: 1500,
+      totalReviews: 1500,
       star: 4.9,
     },
   },
   {
-    _id: 3,
+    _id: '3',
     images: {
       cardSizeUrl:
         'https://img.freepik.com/free-vector/realistic-smartphone-device_52683-29765.jpg?w=740&t=st=1693325408~exp=1693326008~hmac=bac80f8ff800000c958d6669c5f75022a09b3aefdaec178d827c8265cdf68627',
@@ -73,12 +73,12 @@ const smartPhones: SmartPhonesData[] = [
     price: 799,
     discountPrice: 699,
     reviews: {
-      total: 800,
+      totalReviews: 800,
       star: 4.5,
     },
   },
   {
-    _id: 4,
+    _id: '4',
     images: {
       cardSizeUrl:
         'https://uploads-ssl.webflow.com/63e857eaeaf853471d5335ff/63e8c4e4aed3c6720e446aa1_airpod%20max-min.png',
@@ -93,12 +93,12 @@ const smartPhones: SmartPhonesData[] = [
     price: 899,
     discountPrice: 799,
     reviews: {
-      total: 900,
+      totalReviews: 900,
       star: 4.6,
     },
   },
   {
-    _id: 5,
+    _id: '5',
     images: {
       cardSizeUrl:
         'https://uploads-ssl.webflow.com/63e857eaeaf853471d5335ff/63e8c4e4aed3c6720e446aa1_airpod%20max-min.png',
@@ -113,12 +113,12 @@ const smartPhones: SmartPhonesData[] = [
     price: 849,
     discountPrice: 749,
     reviews: {
-      total: 1000,
+      totalReviews: 1000,
       star: 4.4,
     },
   },
   {
-    _id: 6,
+    _id: '6',
     images: {
       cardSizeUrl:
         'https://uploads-ssl.webflow.com/63e857eaeaf853471d5335ff/63e8c4e4aed3c6720e446aa1_airpod%20max-min.png',
@@ -133,12 +133,12 @@ const smartPhones: SmartPhonesData[] = [
     price: 1099,
     discountPrice: 999,
     reviews: {
-      total: 700,
+      totalReviews: 700,
       star: 4.3,
     },
   },
   {
-    _id: 7,
+    _id: '7',
     images: {
       cardSizeUrl:
         'https://uploads-ssl.webflow.com/63e857eaeaf853471d5335ff/63e8c4e4aed3c6720e446aa1_airpod%20max-min.png',
@@ -153,12 +153,12 @@ const smartPhones: SmartPhonesData[] = [
     price: 1199,
     discountPrice: 1099,
     reviews: {
-      total: 850,
+      totalReviews: 850,
       star: 4.6,
     },
   },
   {
-    _id: 8,
+    _id: '8',
     images: {
       cardSizeUrl:
         'https://uploads-ssl.webflow.com/63e857eaeaf853471d5335ff/63e8c4e4aed3c6720e446aa1_airpod%20max-min.png',
@@ -173,12 +173,12 @@ const smartPhones: SmartPhonesData[] = [
     price: 799,
     discountPrice: 699,
     reviews: {
-      total: 600,
+      totalReviews: 600,
       star: 4.2,
     },
   },
   {
-    _id: 9,
+    _id: '9',
     images: {
       cardSizeUrl:
         'https://uploads-ssl.webflow.com/63e857eaeaf853471d5335ff/63e8c4e4aed3c6720e446aa1_airpod%20max-min.png',
@@ -193,12 +193,12 @@ const smartPhones: SmartPhonesData[] = [
     price: 599,
     discountPrice: 549,
     reviews: {
-      total: 500,
+      totalReviews: 500,
       star: 4.1,
     },
   },
   {
-    _id: 10,
+    _id: '10',
     images: {
       cardSizeUrl:
         'https://uploads-ssl.webflow.com/63e857eaeaf853471d5335ff/63e8c4e4aed3c6720e446aa1_airpod%20max-min.png',
@@ -213,12 +213,12 @@ const smartPhones: SmartPhonesData[] = [
     price: 1099,
     discountPrice: 999,
     reviews: {
-      total: 950,
+      totalReviews: 950,
       star: 4.7,
     },
   },
   {
-    _id: 11,
+    _id: '11',
     images: {
       cardSizeUrl:
         'https://uploads-ssl.webflow.com/63e857eaeaf853471d5335ff/63e8c4e4aed3c6720e446aa1_airpod%20max-min.png',
@@ -233,12 +233,12 @@ const smartPhones: SmartPhonesData[] = [
     price: 899,
     discountPrice: 799,
     reviews: {
-      total: 800,
+      totalReviews: 800,
       star: 4.5,
     },
   },
   {
-    _id: 12,
+    _id: '12',
     images: {
       cardSizeUrl:
         'https://uploads-ssl.webflow.com/63e857eaeaf853471d5335ff/63e8c4e4aed3c6720e446aa1_airpod%20max-min.png',
@@ -253,12 +253,12 @@ const smartPhones: SmartPhonesData[] = [
     price: 599,
     discountPrice: 549,
     reviews: {
-      total: 700,
+      totalReviews: 700,
       star: 4.3,
     },
   },
   {
-    _id: 13,
+    _id: '13',
     images: {
       cardSizeUrl:
         'https://uploads-ssl.webflow.com/63e857eaeaf853471d5335ff/63e8c4e4aed3c6720e446aa1_airpod%20max-min.png',
@@ -273,12 +273,12 @@ const smartPhones: SmartPhonesData[] = [
     price: 699,
     discountPrice: 649,
     reviews: {
-      total: 550,
+      totalReviews: 550,
       star: 4.4,
     },
   },
   {
-    _id: 14,
+    _id: '14',
     images: {
       cardSizeUrl:
         'https://uploads-ssl.webflow.com/63e857eaeaf853471d5335ff/63e8c4e4aed3c6720e446aa1_airpod%20max-min.png',
@@ -293,12 +293,12 @@ const smartPhones: SmartPhonesData[] = [
     price: 449,
     discountPrice: 399,
     reviews: {
-      total: 400,
+      totalReviews: 400,
       star: 4.0,
     },
   },
   {
-    _id: 15,
+    _id: '15',
     images: {
       cardSizeUrl:
         'https://uploads-ssl.webflow.com/63e857eaeaf853471d5335ff/63e8c4e4aed3c6720e446aa1_airpod%20max-min.png',
@@ -313,12 +313,12 @@ const smartPhones: SmartPhonesData[] = [
     price: 999,
     discountPrice: 899,
     reviews: {
-      total: 600,
+      totalReviews: 600,
       star: 4.3,
     },
   },
   {
-    _id: 16,
+    _id: '16',
     images: {
       cardSizeUrl:
         'https://uploads-ssl.webflow.com/63e857eaeaf853471d5335ff/63e8c4e4aed3c6720e446aa1_airpod%20max-min.png',
@@ -333,7 +333,7 @@ const smartPhones: SmartPhonesData[] = [
     price: 699,
     discountPrice: 649,
     reviews: {
-      total: 350,
+      totalReviews: 350,
       star: 4.1,
     },
   },

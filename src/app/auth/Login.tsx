@@ -7,7 +7,10 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { FC, useEffect } from 'react';
 import * as Yup from 'yup';
-import { CustomFormikInput, InputApiErrorMessage } from './utils';
+import {
+  CustomFormikInput,
+  InputApiErrorMessage,
+} from '@/components/common/FormikCustomInput';
 //-----------------------------------------------------------
 interface IProps {
   activeNewUserHandler: () => void;
@@ -41,6 +44,7 @@ const Login: FC<IProps> = ({ activeNewUserHandler }) => {
   const dispatch = useAppDispatch();
 
   const handleSubmit = (values: FormValues) => loginQuery(values);
+
   useEffect(() => {
     if (isLoading) return;
     if (!data?.data.accessToken) return;
@@ -51,7 +55,6 @@ const Login: FC<IProps> = ({ activeNewUserHandler }) => {
         refreshToken: data.data.refreshToken,
       })
     );
-    router.replace('/');
   }, [data, isLoading, dispatch, router]);
 
   return (
@@ -68,6 +71,7 @@ const Login: FC<IProps> = ({ activeNewUserHandler }) => {
             type="text"
             name="email"
             placeholder="Enter your email"
+            containerStyle={{ marginBottom: '16px' }}
             component={CustomFormikInput}
           />
 
@@ -81,10 +85,10 @@ const Login: FC<IProps> = ({ activeNewUserHandler }) => {
 
         <Button className="flex justify-end w-full mt-[10px] cursor-default">
           <Link
-            href="/auth/recover-password"
+            href="/auth/forgot-password"
             className="text-[12px] text-gray-400 hover:underline"
           >
-            Recover Password?
+            Forgot Password?
           </Link>
         </Button>
 
@@ -98,11 +102,6 @@ const Login: FC<IProps> = ({ activeNewUserHandler }) => {
         >
           Sign In
         </Button>
-        {/* <div className="flex items-center justify-between w-full mt-[20px]">
-          <div className="h-[1px] w-[32%] bg-[#e5e5e6]"></div>
-          <p className="text-[12px] text-gray-400">Or continue with</p>
-          <div className="h-[1px] w-[32%] bg-[#e5e5e6]"></div>
-        </div> */}
 
         <Button
           onClick={activeNewUserHandler}
@@ -112,24 +111,6 @@ const Login: FC<IProps> = ({ activeNewUserHandler }) => {
           <p>New to DeepBazar?</p>
           <p className="text-primary cursor-pointer hover:underline">Sign Up</p>
         </Button>
-
-        {/* <div className="flex items-center justify-between mt-[20px]">
-          <Button
-            className="w-[30%] flex items-center justify-center cursor-pointer hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:border-transparent h-[42px] rounded-[4px] border border-[#e5e5e6]"
-          >
-            <FcGoogle />
-          </Button>
-          <Button
-            className="w-[30%] flex items-center justify-center cursor-pointer hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:border-transparent h-[42px] rounded-[4px] border border-[#e5e5e6]"
-          >
-            <FaApple />
-          </Button>
-          <Button
-            className="w-[30%] flex items-center justify-center cursor-pointer hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:border-transparent h-[42px] rounded-[4px] border border-[#e5e5e6]"
-          >
-            <FaFacebookF color="#4267B2" />
-          </Button>
-        </div> */}
       </Form>
     </Formik>
   );

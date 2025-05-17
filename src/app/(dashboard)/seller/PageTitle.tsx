@@ -2,7 +2,7 @@ import { FC, ReactElement } from 'react';
 
 //-------------------------------------------------
 interface IProps {
-  pageName: string;
+  pageName?: string;
   breadcrumb?: ReactElement;
 }
 //-------------------------------------------------
@@ -10,7 +10,11 @@ interface IProps {
 const PageTitle: FC<IProps> = ({ pageName, breadcrumb }) => {
   return (
     <>
-      <h1 className="text-[24px] font-bold py-[12px]">{pageName}</h1>
+      {pageName && (
+        <h1 className="text-base lg:text-[24px] font-bold py-[4px] lg:py-[12px]">
+          {pageName}
+        </h1>
+      )}
       {breadcrumb}
     </>
   );

@@ -191,24 +191,36 @@ export default [
         name: 'Kishoreganj',
         cities: [
           {
-            id: 7001,
+            id: 62001,
             name: 'Kishoreganj Sadar',
           },
           {
-            id: 7002,
-            name: 'Bhairab',
+            id: 62002,
+            name: 'Austagram',
           },
           {
-            id: 7003,
-            name: 'Itna',
+            id: 62003,
+            name: 'Katiadi',
           },
           {
-            id: 7004,
+            id: 62004,
             name: 'Karimganj',
           },
           {
-            id: 7005,
-            name: 'Katiadi',
+            id: 62005,
+            name: 'Mithamain',
+          },
+          {
+            id: 62006,
+            name: 'Kuliarchar',
+          },
+          {
+            id: 62007,
+            name: 'Hossainpur',
+          },
+          {
+            id: 62008,
+            name: 'Bhairab',
           },
         ],
       },

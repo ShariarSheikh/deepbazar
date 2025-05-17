@@ -1,4 +1,4 @@
-import { categories } from '@/views/home/CategorySection';
+import { useGetCategoryQuery } from '@/redux/services/categoryApi';
 import { AnimatePresence, motion } from 'framer-motion';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -12,6 +12,7 @@ const SearchBar = () => {
   const [showResults, setShowResults] = useState(false);
   const [showCategories, setShowCategories] = useState(false);
   const [recentSearches, setRecentSearches] = useState<string[]>([]);
+  const { data, isSuccess, isLoading } = useGetCategoryQuery();
 
   const pathname = usePathname();
   const searchInputRef = useRef<HTMLInputElement>(null);
@@ -190,47 +191,59 @@ const SearchBar = () => {
               </div>
 
               {/* Categories List */}
-              <div className="p-2 max-h-96 overflow-y-auto">
-                {categories.map(category => (
+              {isLoading ? (
+                <span className="text-center p-4 text-sm text-gray-600">
+                  Loading...
+                </span>
+              ) : (
+                <div className="p-2 max-h-96 overflow-y-auto">
+                  {isSuccess &&
+                    data?.data.map(category => (
+                      <Link
+                        key={category._id}
+                        href={{
+                          pathname: '/shop',
+                          query: {
+                            category: category.pageUrl,
+                          },
+                        }}
+                        className="group flex items-center p-2 rounded-md hover:bg-primary/5 transition-colors"
+                        onClick={() => setShowCategories(false)}
+                      >
+                        {/* Category Icon */}
+                        <div className="w-8 h-8 min-w-[32px] mr-3 rounded-md bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary/20 transition-colors">
+                          <img
+                            src={category.imgUrl}
+                            alt={category.name}
+                            className="w-5 h-5 object-contain"
+                          />
+                        </div>
+
+                        {/* Category Info */}
+                        <div className="flex-1 min-w-0">
+                          <h4 className="text-sm font-medium text-gray-800 group-hover:text-primary truncate transition-colors">
+                            {category.name}
+                          </h4>
+                          <p className="text-xs text-gray-500 mt-0.5">
+                            {category.totalItems} items
+                          </p>
+                        </div>
+
+                        {/* Arrow Indicator */}
+                        <FiArrowUpRight className="ml-2 text-gray-400 group-hover:text-primary transition-colors" />
+                      </Link>
+                    ))}
+
+                  {/* View All Link */}
                   <Link
-                    key={category.id}
-                    href={`/shop?category=${category.catPath}`}
-                    className="group flex items-center p-2 rounded-md hover:bg-primary/5 transition-colors"
+                    href="/shop"
+                    className="block mt-1 p-2 text-center text-sm font-medium text-primary hover:bg-primary/5 rounded-md transition-colors"
                     onClick={() => setShowCategories(false)}
                   >
-                    {/* Category Icon */}
-                    <div className="w-8 h-8 min-w-[32px] mr-3 rounded-md bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary/20 transition-colors">
-                      <img
-                        src={category.bgImgUrl}
-                        alt={category.catName}
-                        className="w-5 h-5 object-contain"
-                      />
-                    </div>
-
-                    {/* Category Info */}
-                    <div className="flex-1 min-w-0">
-                      <h4 className="text-sm font-medium text-gray-800 group-hover:text-primary truncate transition-colors">
-                        {category.catName}
-                      </h4>
-                      <p className="text-xs text-gray-500 mt-0.5">
-                        {category.totalItems} items
-                      </p>
-                    </div>
-
-                    {/* Arrow Indicator */}
-                    <FiArrowUpRight className="ml-2 text-gray-400 group-hover:text-primary transition-colors" />
+                    View All Categories →
                   </Link>
-                ))}
-
-                {/* View All Link */}
-                <Link
-                  href="/shop"
-                  className="block mt-1 p-2 text-center text-sm font-medium text-primary hover:bg-primary/5 rounded-md transition-colors"
-                  onClick={() => setShowCategories(false)}
-                >
-                  View All Categories →
-                </Link>
-              </div>
+                </div>
+              )}
             </motion.div>
           </ClickAwayListener>
         )}
