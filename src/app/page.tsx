@@ -1,15 +1,14 @@
 'use client';
 
 import Skeleton from '@/components/common/Skeleton';
+import { useGetProductsMutation } from '@/redux/services/productApi';
 import { ProductSectionName } from '@/types/product.types';
-import CategorySection from '@/views/home/CategorySection';
 import FeaturedProducts from '@/views/home/FeaturedProducts';
 import HeroSection from '@/views/home/HeroSection';
 import JustForYou from '@/views/home/JustForYou';
 import NewArrivals from '@/views/home/NewArrivals';
-import { useGetProductsMutation } from '@/redux/services/productApi';
-import { useEffect, useState } from 'react';
 import SponsoredItem from '@/views/home/SponsoredItem';
+import { useEffect, useState } from 'react';
 
 //-----------------------------------------
 
@@ -64,7 +63,7 @@ export default function Home() {
     <main className="min-h-screen w-full m-auto mt-10 px-4">
       <div className="w-full max-w-[1201px] mx-auto">
         <HeroSection />
-        <CategorySection />
+        {/* <CategorySection /> */}
 
         {getNewArrivalsApi.isLoading ? (
           <div className="md:mt-[40px] grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[8px] lg:gap-4">
